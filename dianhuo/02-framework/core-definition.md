@@ -1,15 +1,10 @@
-# Core definition
+# 核心定义
 
-System = collaboration system + recognition system.
+系统 = 协作系统（搭房） + 认同系统（点火）
 
-Collaboration system includes institutions, processes, organizations, resources, and technical structure.
+协作系统包括制度、流程、组织、资源配置、技术结构。
+认同系统包括身份、意义、参与感、归属感、共同方向。
 
-Recognition system includes identity, meaning, participation, belonging, and shared direction.
+搭房不等于点火。房子搭好，只说明系统能运行；火点起来，才说明有人愿意住进去。
 
-Building the house is not the same as lighting the fire.
-
-A house can be built while nobody feels they live inside it.
-
-Core question:
-
-Why do some new systems come alive, while others remain empty even after institutions, resources, technologies, and processes are in place?
+核心问题：一个新系统为什么有时能被人接住，有时制度、资源、技术、流程都已经搭好，却仍然没有活起来？

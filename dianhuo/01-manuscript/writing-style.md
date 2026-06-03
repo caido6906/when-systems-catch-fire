@@ -1,13 +1,16 @@
-# Writing style
+# 《点火》写作风格锚点
 
-- Storyteller, not scholar.
-- Civilization as the main thread; policy and company cases as interwoven echoes.
-- Structure should be hidden inside story order.
-- Chapter titles should open through scenes, not arguments.
-- Start each chapter from concrete detail.
-- Avoid heavy theoretical terms in the public manuscript.
-- End chapters with hidden echoes rather than summaries.
+- 讲故事的人，不是学者。
+- 文明为主线，政策和公司穿插。
+- 结构藏在故事排列里，读者不需要知道的东西不写。
+- 小标题不用论点式，用故事切口。
+- 每章从具体场景、物理细节进入，不从概念进入。
+- “框架”“模型”“方法论”这些词尽量不在正文出现。
+- 跳层不写过渡句，用细节做跳板自然滑过去。
+- 每章收尾留暗扣，不总结，不点题。
+- 跨章节互文：同一句话在不同章节承担不同层级。
+- 锋利与柔软的暗线贯穿全书。
 
-Public stance:
-
-I have found a recurring phenomenon of system rewriting, and I am willing to let it be tested by the future.
+对外表达姿态：
+不要说“我发现了终极规律”。
+要说：“我发现了一种反复出现的系统重写现象，并且愿意把它放到未来里接受检验。”

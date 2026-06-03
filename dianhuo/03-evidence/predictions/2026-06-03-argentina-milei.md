@@ -1,19 +1,19 @@
-# Argentina Milei reform
+# 阿根廷米莱改革
 
-## Current state
+## 当前状态
 
-To be filled.
+待补。
 
-## Conditional predictions
+## 预测条件句
 
-To be filled.
+待补。
 
-## Success and failure criteria
+## 成败判定
 
-To be filled.
+待补。
 
-## How I would be wrong
+## 我判断错了的标准
 
-To be filled.
+待补。
 
-Rule: do not overwrite this original prediction file after publication. Add future reviews under `03-evidence/reviews/`.
+重要规则：预测必须保留原始版本，不能事后覆盖。未来只能在 03-evidence/reviews/ 中新增复盘文件，不能改写原预测。

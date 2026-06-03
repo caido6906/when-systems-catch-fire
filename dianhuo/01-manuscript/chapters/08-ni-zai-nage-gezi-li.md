@@ -3,24 +3,24 @@ status: outline
 version: 2026-06-03
 ---
 
-# Chapter 8: Which Cell Are You In
+# 第八章：你在哪个格子里
 
-## Opening scene
+## 开场场景
 
-To be written.
+待写。
 
-## Main story
+## 主体故事
 
-To be written.
+待写。
 
-## Interwoven cases
+## 穿插案例
 
-To be added.
+待补。
 
-## Hidden echo
+## 暗扣
 
-To be added.
+待补。
 
-## Materials to add
+## 待补材料
 
-To be added.
+待补。

@@ -1,37 +1,13 @@
-# Exit rights
+# 退出权
 
-Exit rights are not a binary switch. They are a spectrum.
+退出权不是有或无的二元开关，而是一条光谱。
 
-## Real exit right
+真实退出权：制度上允许退出，事实上也能退出。应约者可以走，也走得了。留下这个动作包含了认同验证。
 
-The system allows exit, and the responder can actually leave.
+事实退出权：制度上可能允许，也可能不允许，但实际退出成本极高，走不了。关键问题不是法律允不允许，而是走了之后能不能活。
 
-Staying under this condition is a stronger test of recognition.
+心理退出权：人走不了，但心可以走。身体还在系统内，认同已经撤回。只做最低限度配合，精力转向自保。系统最危险的时刻，往往不是人离开的时候，而是人还在、心已经走了的时候。
 
-## Factual exit right
+象征退出权：退出权被仪式化、符号化，只剩形式，没有实质。系统保留了退出的形式，但把退出代价设计到不可承受。注意：象征退出权不是“强制力的优雅版本”，而是“强制力的仪式化版本”。
 
-Exit may exist in form, but the practical cost is too high.
-
-The key question is not whether the law allows exit, but whether the responder can still live after leaving.
-
-## Psychological exit right
-
-The body stays, but the heart has left.
-
-The responder remains inside the system while recognition has already been withdrawn.
-
-The most dangerous moment is often not when people leave, but when people remain while their hearts are already gone.
-
-## Symbolic exit right
-
-Exit exists as ritual or form, but not as a real path.
-
-The system keeps the symbol of exit while making its cost unbearable.
-
-Symbolic exit right is not an elegant form of force. It is a ritualized form of force.
-
-## Premodern criterion
-
-In ancient or premodern politics, real exit right does not mean modern legal freedom.
-
-The key test is whether the responder can survive after leaving.
+古代退出权判据：古代/前现代政治中的真实退出权，不等于现代法理退出权。核心判据不是法律允不允许，而是走了之后能不能活。应约者存在可承受的叛离、迁徙、改投、拒绝合作空间，即可视为真实退出权。

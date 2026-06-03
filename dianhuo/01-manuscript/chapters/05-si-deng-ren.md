@@ -3,24 +3,24 @@ status: outline
 version: 2026-06-03
 ---
 
-# Chapter 5: Four Classes
+# 第五章：四等人
 
-## Opening scene
+## 开场场景
 
-To be written.
+待写。
 
-## Main story
+## 主体故事
 
-To be written.
+待写。
 
-## Interwoven cases
+## 穿插案例
 
-To be added.
+待补。
 
-## Hidden echo
+## 暗扣
 
-To be added.
+待补。
 
-## Materials to add
+## 待补材料
 
-To be added.
+待补。

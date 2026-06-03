@@ -1,19 +1,9 @@
-# Counter-cases
+# 反证文件
 
-This file records cases that resist or weaken the framework.
+这个文件只放三类内容：
 
-## 1. Cases that look supportive but are not
+一、看起来支持点火，但其实不能支持的案例。
+二、明显挑战点火的案例。
+三、点火解释力弱于其他解释的案例。
 
-These cases may be tempting to absorb, but their core variables do not actually hold.
-
-## 2. Cases that directly challenge the framework
-
-These cases challenge recognition, responder commitment, or exit rights as sufficient explanations.
-
-## 3. Cases better explained by other factors
-
-Fiscal capacity, military power, geography, technology, demography, or resource conditions may explain these cases better than ignition.
-
-Principle:
-
-Cases come before the framework. If the facts resist the framework, revise the framework.
+原则：案例优先于框架。史实不配合时，修正框架，不强压案例。反证文件写得越狠，框架越有骨头。

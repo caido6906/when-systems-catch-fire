@@ -1,23 +1,24 @@
-# Recurring lines
+# 反复出现的句子
 
-## Nobody feels they live in this house
+## 没有人觉得自己住在这间房子里
 
-First use: Qin and organizational reform.
+第一次出现：第一章，秦帝国 / 空降 CEO。
+第二次出现：第七章，清朝满汉一体。
+功能变化：从失败判断，变成成功判断。
 
-Later use: a case where the house is recognized as one's own.
+## 成本更低
 
-## Lower cost
+第一次出现：第二章，周公封建。
+第二次出现：第六章，文明续存成本。
+功能变化：从统治成本，变成认同维护成本。
 
-First use: incorporation of defeated participants.
+## 烧自己的房子
 
-Later use: recognition maintenance cost.
+第一次出现：引言，五种趋势之一。
+第二次出现：第四章，苏联解体。
+功能变化：从抽象趋势，变成一个人站在废墟上的画面。
 
-## Burning one's own house
+## 人还在，心已走
 
-First use: a general trend.
-
-Later use: standing in the ruins after an old identity is dismantled.
-
-## People remain, but the heart has left
-
-Core line for psychological exit rights.
+功能：心理退出权的核心句。
+用法：用于苏联后期、恒大、国企改革、公司文化退化等案例。

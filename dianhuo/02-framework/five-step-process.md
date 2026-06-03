@@ -1,17 +1,13 @@
-# Five-step process
+# 五步过程
 
-1. The old system weakens.
-2. A proposer appears.
-3. Responders respond.
-4. Recognition takes hold.
-5. A stable period tests the new system.
+1. 旧系统失灵；
+2. 提议者出现；
+3. 应约者应约；
+4. 点火跑通；
+5. 稳定期足够。
 
-If step 1 does not hold, the framework does not start.
-
-If step 2 does not hold, system rewriting has not begun.
-
-If step 3 does not hold, there is no real responder commitment.
-
-If step 4 does not hold, recognition has not been built.
-
-If step 5 does not hold, the system may flare up briefly but fail to solidify.
+如果第 1 步不成立，框架不启动。
+如果第 2 步不成立，系统没有进入重写过程。
+如果第 3 步不成立，没有退出权压力下的主动认领，就不是应约。
+如果第 4 步不成立，认同没有建立。
+如果第 5 步不成立，系统可能短期点着，但长期不能固化。
