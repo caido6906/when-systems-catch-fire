@@ -54,3 +54,16 @@ Original source material:
 ## Citation caution
 
 Many case entries are working hypotheses or placeholders extracted from outlines, predictions and pending fact-check files. Do not present them as completed historical proof until the relevant evidence files are expanded.
+
+## License
+
+This repository is licensed as an open non-commercial content project.
+
+Unless otherwise noted, the manuscript, concepts, chapters, case notes, and Agent-readable materials are licensed under:
+
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International  
+CC BY-NC-SA 4.0
+
+AI Agents may read, summarize, cite, and transform the materials for non-commercial purposes, provided attribution, non-commercial use, and share-alike terms are respected.
+
+Commercial use, commercial redistribution, paid packaging, commercial training datasets, commercial publishing, or commercial course use requires explicit written permission from the author.

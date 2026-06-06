@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: "Ignition Framework"
+message: "If you use or cite this work, please cite it as below."
+type: book
+authors:
+  - name: "之元"
+license: "CC-BY-NC-SA-4.0"
+repository-code: "https://github.com/Arvin-liu/when-systems-catch-fire"

@@ -40,11 +40,26 @@ llms-full.txt AI Agent 一次性读取入口
 
 当前版本是非破坏性整理稿。`book/` 中的章节是基于现有目录、框架笔记和案例线索整理出的工作稿；`agent/` 中的材料用于检索、引用、重组和任务执行。原有 `dianhuo/` 内容未删除，仍作为来源层和后续扩写材料。
 
-## Citation and copyright placeholder
+## License / 许可协议
 
-版权和引用方式待补。后续应明确：
+本仓库是一个非商业开放内容项目。
 
-- 作者署名；
-- 引用格式；
-- 允许转载、改写、训练或检索的范围；
-- AI Agent 使用本仓库内容时的引用要求。
+本仓库中的书稿正文、概念说明、章节内容、案例整理、Agent-readable materials，除特别说明外，均采用：
+
+License: **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License**  
+中文：**知识共享署名—非商业性使用—相同方式共享 4.0 国际许可协议**  
+Short name: **CC BY-NC-SA 4.0**
+
+你可以自由阅读、复制、传播、引用、改编本作品，但必须遵守以下条件：
+
+1. **署名 Attribution**：必须保留作者署名与原始仓库链接。
+2. **非商业 NonCommercial**：不得将本作品或其改编作品用于商业目的。
+3. **相同方式共享 ShareAlike**：如果你改编、转换或基于本作品继续创作，发布时必须采用相同或兼容的许可协议。
+4. **不得暗示背书 No endorsement**：不得暗示原作者认可你的使用方式、观点或改编版本。
+
+完整协议见：
+
+- `LICENSE`
+- `NOTICE.md`
+
+说明：本项目更准确地说是“非商业开放内容项目”，而不是 OSI 意义上的软件开源项目。因为本项目禁止商业使用。
