@@ -23,6 +23,7 @@
 - `01-manuscript/chapter-structure-event-framework-2026-06-06.md`
 - `03-evidence/cases/all-cases-71.md`
 - `04-materials/cognitive-structure-writing-style-2026-06-06.md`
+- `04-materials/narrative-strategy-parallel-tracks-2026-06-06.md`
 
 项目三层结构：
 1. 01-manuscript/：给读者看的书稿；

@@ -47,6 +47,7 @@ New Get-note materials have been incorporated as working drafts:
 - `dianhuo/03-evidence/cases/all-cases-71.md`
 - `data/ignition-cases-event-framework-2026-06-06.csv`
 - `dianhuo/04-materials/cognitive-structure-writing-style-2026-06-06.md`
+- `dianhuo/04-materials/narrative-strategy-parallel-tracks-2026-06-06.md`
 
 The core update is:
 

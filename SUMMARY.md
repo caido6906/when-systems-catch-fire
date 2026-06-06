@@ -24,4 +24,5 @@
 - [71 案例工作表](dianhuo/03-evidence/cases/all-cases-71.md)
 - [事件框架版案例 CSV](data/ignition-cases-event-framework-2026-06-06.csv)
 - [分轨并行写作方法](dianhuo/04-materials/cognitive-structure-writing-style-2026-06-06.md)
+- [《点火》分轨并行叙事策略](dianhuo/04-materials/narrative-strategy-parallel-tracks-2026-06-06.md)
 - [反证文件](dianhuo/03-evidence/counter-cases.md)
