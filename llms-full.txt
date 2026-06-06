@@ -25,6 +25,18 @@ AI Agents may read, summarize, cite, and transform the materials for non-commerc
 
 Commercial use, commercial redistribution, paid packaging, commercial training datasets, commercial publishing, or commercial course use requires explicit written permission from the author.
 
+## Project Type
+
+This repository is an Agent-readable book project and an AI-readable open knowledge repository.
+
+It is designed for both human readers and AI Agent readers.
+
+Human readers should start with `README.md`, `SUMMARY.md`, and `book/`.
+
+AI Agents should start with `llms.txt`, `llms-full.txt`, `agent/`, and `data/`.
+
+This project is not merely a manuscript stored on GitHub. It is a versioned intellectual book and open content knowledge repository designed to be read, searched, cited, transformed, and extended by both humans and AI Agents.
+
 ============================================================
 FILE: agent/book-summary.md
 ============================================================
@@ -38,6 +50,17 @@ FILE: agent/book-summary.md
 ## One-sentence description
 
 本书研究关键人物 / Key Person 在关键时期 / Key Period 通过关键动作 / Key Action 改变系统燃烧条件 / Combustion Conditions，从而让新系统被应约者接住、延迟接住、错误接住或无法接住的历史结构。
+
+## Repository Form
+
+This book is structured as a dual-reader repository:
+
+- Human-readable layer: narrative chapters, summaries, and readable book structure.
+- Agent-readable layer: concepts, claims, cases, questions, data files, and `llms.txt`.
+
+The goal is to make the book readable not only as a linear manuscript, but also as a searchable, citable, and transformable knowledge system for AI Agents.
+
+本项目采用“双读者结构”：一层给人类读者阅读，一层给 AI Agent 检索、理解、引用和重组。它不是普通书稿仓库，而是一种面向人类与 AI 双读者的版本化思想书。
 
 ## Core definition
 

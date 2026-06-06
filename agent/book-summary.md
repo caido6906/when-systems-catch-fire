@@ -8,6 +8,17 @@
 
 本书研究关键人物 / Key Person 在关键时期 / Key Period 通过关键动作 / Key Action 改变系统燃烧条件 / Combustion Conditions，从而让新系统被应约者接住、延迟接住、错误接住或无法接住的历史结构。
 
+## Repository Form
+
+This book is structured as a dual-reader repository:
+
+- Human-readable layer: narrative chapters, summaries, and readable book structure.
+- Agent-readable layer: concepts, claims, cases, questions, data files, and `llms.txt`.
+
+The goal is to make the book readable not only as a linear manuscript, but also as a searchable, citable, and transformable knowledge system for AI Agents.
+
+本项目采用“双读者结构”：一层给人类读者阅读，一层给 AI Agent 检索、理解、引用和重组。它不是普通书稿仓库，而是一种面向人类与 AI 双读者的版本化思想书。
+
 ## Core definition
 
 系统 = 协作系统（搭房） + 认同系统（点火）
@@ -58,4 +69,3 @@
 ## Recommended use by AI Agents
 
 优先使用 `agent/` 文件进行检索、摘要和任务规划。引用正文时，优先链接 `book/`；追溯来源时，链接 `dianhuo/` 中的原始笔记。
-
