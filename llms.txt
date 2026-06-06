@@ -1,4 +1,4 @@
-# 点火框架 / Ignition Framework
+# When Systems Catch Fire / 点火
 
 ## 项目名称
 
@@ -11,6 +11,15 @@
 核心定义：系统 = 协作系统（搭房） + 认同系统（点火）。
 
 点火不是新系统被建成，而是应约者在退出权压力下仍愿意把自己放进新系统，并主动认领它。
+
+## Naming / 命名关系
+
+Book title: **When Systems Catch Fire**  
+中文书名 / Chinese title: **点火**  
+Core theory: **Ignition Framework / 点火框架**  
+Repository: **when-systems-catch-fire**
+
+说明：`Ignition Framework / 点火框架` 是本书使用和发展的核心理论名；`when-systems-catch-fire` 是当前 GitHub 仓库名。仓库名会保持为 `when-systems-catch-fire`，不要求也不暗示必须改名为 `ignition-framework`。
 
 ## Core files
 

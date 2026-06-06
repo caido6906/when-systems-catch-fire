@@ -1,8 +1,17 @@
-# 点火框架 / Ignition Framework
+# When Systems Catch Fire / 点火
 
 这是一本关于系统重写的思想型非虚构书。它研究关键人物在关键时期通过关键动作改变系统燃烧条件，使一个新系统被应约者接住、延迟接住、错误接住或无法接住的历史结构。
 
 本书不宣称发现终极规律，而是尝试观察一种反复出现的现象：制度、资源、技术、流程都已经搭好以后，为什么有些系统真正活起来，有些系统仍然没有人愿意住进去。
+
+## Naming / 命名关系
+
+Book title: **When Systems Catch Fire**  
+中文书名 / Chinese title: **点火**  
+Core theory: **Ignition Framework / 点火框架**  
+Repository: **when-systems-catch-fire**
+
+说明：`Ignition Framework / 点火框架` 是本书使用和发展的核心理论名；`when-systems-catch-fire` 是当前 GitHub 仓库名。仓库名会保持为 `when-systems-catch-fire`，不要求也不暗示必须改名为 `ignition-framework`。
 
 ## English abstract
 
