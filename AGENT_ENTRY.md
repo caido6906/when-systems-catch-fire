@@ -43,6 +43,7 @@ Every saved item should include, when applicable:
 
 - source
 - date
+- timestamp
 - status
 - privacy_level
 - confidence
@@ -134,5 +135,5 @@ the Agent should:
 5. Reject or ignore temporary, sensitive, or unrelated content.
 6. Choose the correct storage layer.
 7. Create or update files according to repository rules.
-8. Add metadata.
+8. Add metadata, including a save timestamp in ISO 8601 format with timezone.
 9. Report exactly what was saved, where it was saved, what was not saved, and what needs user confirmation.
