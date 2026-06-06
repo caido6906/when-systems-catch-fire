@@ -25,6 +25,18 @@ Answer path: `dianhuo/02-framework/event-framework-2026-06-06.md` -> `agent/conc
 
 Suggested answer: The Event Framework update defines an event as “a proposer offers a proposal, and responders accept or do not accept.” A system is a repeated event that has solidified over time. This update lets the book compare parent-child, company, policy, nation and civilization cases on the same structural skeleton.
 
+### How should event scale be classified?
+
+Answer path: `dianhuo/02-framework/event-scale-matrix.md` -> `data/event-scale-matrix.csv` -> `book/02-framework.md`.
+
+Suggested answer: Event scale should be classified by participant scale x duration scale. Human relationship, company, policy, nation and civilization are common layer labels, not the first-order categories. The minimum event has two participants: one proposer and one responder.
+
+### Is the 8-cell matrix the main matrix?
+
+Answer path: `dianhuo/02-framework/matrix.md` -> `dianhuo/02-framework/event-scale-matrix.md` -> `agent/concept-map.md`.
+
+Suggested answer: No. The 8-cell matrix is the event condition matrix. It comes after scale classification and tracks proposer awareness, proposer exit right and responder exit right.
+
 ### What is the difference between building the house and lighting the fire?
 
 Answer path: `agent/concept-map.md` -> `book/02-framework.md`.
@@ -53,7 +65,7 @@ Suggested answer: 推方案 means the proposer decides what responders need and 
 
 Answer path: `agent/cases.md` -> `data/ignition-cases.csv`.
 
-Suggested answer: Current cases are mostly case lines and working classifications rather than completed proofs. The 2026-06-06 event-framework case table contains 71 entries across civilization, nation, policy, company and boundary cases. Use `dianhuo/03-evidence/cases/all-cases-71.md` for the full table.
+Suggested answer: Current cases are mostly case lines and working classifications rather than completed proofs. The 2026-06-06 event-framework case table contains 71 entries using civilization, nation, policy, company and boundary as event-layer labels. Use `dianhuo/03-evidence/cases/all-cases-71.md` for the full table, and use `data/ignition-cases-event-framework-2026-06-06.csv` when participant scale, duration scale and condition cell must be separated.
 
 ### What cases should not be used as proof of the framework?
 
@@ -71,4 +83,4 @@ Suggested answer: Do not claim completed historical proof for the case table yet
 
 Answer path: `data/ignition-cases.csv` -> `agent/cases.md` -> `dianhuo/03-evidence/cases/all-cases-71.md` -> `dianhuo/02-framework/matrix.md`.
 
-Suggested answer: Add the actor, period, action, domain, system before/after, ignition type, evidence path and related chapter. For event-framework cases, also record scale, cell, outcome, exit layer, step reached and fact-check status. Mark uncertain fields as pending instead of forcing a classification.
+Suggested answer: Add the actor, period, action, domain, system before/after, ignition type, evidence path and related chapter. For event-framework cases, also record event layer, participant scale, duration scale, condition cell, outcome, exit layer, step reached and fact-check status. Mark uncertain fields as pending instead of forcing a classification.

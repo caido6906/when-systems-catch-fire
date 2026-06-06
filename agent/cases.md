@@ -10,10 +10,10 @@
 
 | Group | Count | Source file | Main use |
 | --- | --- | --- | --- |
-| 文明级事件 | 18 | `dianhuo/03-evidence/cases/civilization-level.md` | 测试点火框架在文明尺度上的解释力。 |
-| 国家级事件 | 17 | `dianhuo/03-evidence/cases/nation-level.md` | 测试国家建构、改革、革命、负时间差。 |
-| 政策级事件 | 17 | `dianhuo/03-evidence/cases/policy-level.md` | 测试政策是否被应约者接住。 |
-| 公司级事件 | 13 | `dianhuo/03-evidence/cases/company-level.md` | 测试组织文化、员工退出权和公司级认同。 |
+| 文明级事件 | 18 | `dianhuo/03-evidence/cases/civilization-level.md` | 作为 P6 + T5/T6 区域的工作标签。 |
+| 国家级事件 | 17 | `dianhuo/03-evidence/cases/nation-level.md` | 作为 P5 + T3/T4/T5 区域的工作标签。 |
+| 政策级事件 | 17 | `dianhuo/03-evidence/cases/policy-level.md` | 作为 P4/P5 + T2/T3/T4/T5 区域的工作标签。 |
+| 公司级事件 | 13 | `dianhuo/03-evidence/cases/company-level.md` | 作为 P3 + T3/T4 区域的工作标签。 |
 | 边界案例 | 6 | `dianhuo/03-evidence/cases/marginal-cases.md` | 标出不应被强行解释为点火的案例。 |
 
 ## High-priority cases
@@ -46,3 +46,5 @@
 ## Fact-check caution
 
 Do not cite this file as historical proof. Use it as a retrieval index and working classification map. Before making a strong claim, check source-level evidence and mark unresolved items as `needs_fact_check`.
+
+The labels `civilization`, `nation`, `policy`, and `company` are event-layer shortcuts. For stricter classification, use participant scale and duration scale from `dianhuo/02-framework/event-scale-matrix.md` and `data/event-scale-matrix.csv`.

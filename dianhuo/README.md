@@ -16,9 +16,10 @@
 2026-06-06 事件框架版补充：
 事件 = 提议者出方案 + 应约者接或不接。
 
-系统可以被理解为同一个事件被足够多人、足够长时间地重复以后凝固下来的形态。事件框架版材料见：
+系统可以被理解为同一个事件被足够多人、足够长时间地重复以后凝固下来的形态。这里的尺度由参与者规模 × 持续时间决定；文明、国家、政策、公司、人际只是矩阵中的常见区域标签。事件框架版材料见：
 
 - `02-framework/event-framework-2026-06-06.md`
+- `02-framework/event-scale-matrix.md`
 - `02-framework/non-ignition-view-2026-06-06.md`
 - `01-manuscript/chapter-structure-event-framework-2026-06-06.md`
 - `03-evidence/cases/all-cases-71.md`
@@ -26,6 +27,7 @@
 - `04-materials/narrative-strategy-parallel-tracks-2026-06-06.md`
 
 项目三层结构：
+
 1. 01-manuscript/：给读者看的书稿；
 2. 02-framework/：框架定义、变量、矩阵、退出权四分法；
 3. 03-evidence/：案例库、反例、预测、史实核查和校准日志。

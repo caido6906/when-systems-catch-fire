@@ -1,7 +1,20 @@
 # Event Condition Matrix
 
 Source: `dianhuo/02-framework/event-framework-2026-06-06.md`
+Saved timestamp: 2026-06-07T01:11:36+08:00
 Status: working-draft
+
+## Position in the Framework
+
+This is not the total matrix of the Ignition Framework.
+
+It is the second-layer matrix used after the event scale matrix.
+
+Use the matrices in this order:
+
+1. Event scale matrix: participant scale x duration scale.
+2. Event condition matrix: proposer awareness x proposer exit right x responder exit right.
+3. Event outcome table: correct ignition, insufficient ignition, misaligned ignition, reverse ignition, or negative time gap.
 
 ## Core Update
 
@@ -30,6 +43,17 @@ The 2026-06-06 event-framework note reduces the earlier placeholder matrix into 
 
 The cell does not by itself determine the outcome.
 
+The cell also does not determine the event scale.
+
+For example, 格1 can appear in:
+
+- a two-person relationship event;
+- a company culture event;
+- a national reform event;
+- a civilization-level recognition event.
+
+The same condition cell can therefore recur at different participant-duration levels.
+
 Outcome still depends on event path:
 
 - 点对了
@@ -42,8 +66,10 @@ Outcome still depends on event path:
 
 Each case should record:
 
-- scale
-- cell
+- event_layer
+- participant_scale
+- duration_scale
+- condition_cell
 - event outcome
 - dominant exit layer
 - step reached

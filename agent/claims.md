@@ -19,10 +19,11 @@
 | C08 | placeholder | 秦、周、唐、苏联、元、罗马等案例可用于测试点火框架。 | 这些案例已在目录和提纲中出现，但多数正文和证据仍待补。 | `dianhuo/01-manuscript/outline.md`, `dianhuo/03-evidence/fact-checks/pending-fact-checks.md` | `book/03-cases.md` | 具体史实可能支持其他解释，如军事、财政、地理或外部冲击。 |
 | C09 | extracted | 预测必须保留原始版本，不能事后覆盖。 | 未来只能新增复盘文件，不能改写原预测。 | `dianhuo/03-evidence/predictions/*.md` | `book/04-method.md` | 如果预测条件本身模糊，复盘也会失真。 |
 | C10 | working | 事件 = 提议者出方案 + 应约者接或不接。 | 系统可以被理解为同一个事件被足够多人、足够长时间地重复后凝固的结果。 | `dianhuo/02-framework/event-framework-2026-06-06.md` | `book/02-framework.md` | 纯外部冲击或无方案结构不能强行解释为事件走向。 |
-| C11 | working | 文明、国家、政策、公司、亲子是同一事件的不同刻度。 | 刻度不同，但都可以追问提议者、应约者、退出权和叙事权。 | `dianhuo/02-framework/event-framework-2026-06-06.md` | `book/02-framework.md`, `book/03-cases.md` | 大尺度历史事件可能有多重因果，不能只用单一事件骨架解释。 |
+| C11 | working | 文明、国家、政策、公司、人际是事件尺度矩阵中的常见区域标签。 | 第一性尺度不是标签，而是参与者规模 × 持续时间；最小事件参与者是 2 人。 | `dianhuo/02-framework/event-scale-matrix.md`, `dianhuo/02-framework/event-framework-2026-06-06.md` | `book/02-framework.md`, `book/03-cases.md` | 有些事件跨越多个尺度，需要允许多层标注而不是强行归类。 |
 | C12 | working | 推方案不是应约，而是服从。 | 当提议者替应约者决定需求并推送方案，应约者没有完整选择权。 | `dianhuo/02-framework/non-ignition-view-2026-06-06.md` | `book/02-framework.md`, `book/05-limits.md` | 紧急状态下的强推方案是否仍可能产生真实认同，需要案例细分。 |
 | C13 | working | 备方案比推方案更接近真应约。 | 备方案保留应约者选择权，提议者像管家一样让方案可取用而不越界。 | `dianhuo/02-framework/non-ignition-view-2026-06-06.md` | `book/02-framework.md` | 应约者是否真的自由取用，仍需检查现实权力关系。 |
 | C14 | working | 点歪了不易被识别，因为叙事权可能遮蔽退化信号。 | 如果评价标准由提议者书写，应约者会用提议者的尺子衡量自己。 | `dianhuo/02-framework/non-ignition-view-2026-06-06.md` | `book/05-limits.md` | 外部参照也可能暂时有组织效能，不能立即判定为失败。 |
 | C15 | working | 负时间差是先拆旧系统、后建新系统之间的危险真空。 | 旧支撑被拆，新协作和新认同尚未跑通，中间真空期可能杀死事件。 | `dianhuo/02-framework/event-framework-2026-06-06.md`, `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md`, `book/05-limits.md` | 法国大革命等案例提示负时间差可能被补回。 |
 | C16 | working | 多柱事件会遮蔽单柱退化信号。 | 王室、军方、宗教、文化编码等互相支撑时，退出念头本身可能被提前消解。 | `dianhuo/02-framework/event-framework-2026-06-06.md`, `dianhuo/02-framework/non-ignition-view-2026-06-06.md` | `book/05-limits.md` | 多柱稳定也可能是真认同而非遮蔽，需要区分。 |
 | C17 | working | 点火框架只覆盖“方案输出—承接”型事件。 | 纯外部冲击、收费站型结构、方案造假结构应作为边界案例处理。 | `dianhuo/02-framework/event-framework-2026-06-06.md`, `dianhuo/03-evidence/cases/all-cases-71.md` | `book/05-limits.md` | 有些外部冲击可能触发内部新事件，需要拆分阶段。 |
+| C18 | working | 8 格矩阵应被视为事件条件矩阵，而不是总矩阵。 | 8 格只处理提议者意识、提议者退出权、应约者退出权；它可以出现在任意参与者规模和持续时间上。 | `dianhuo/02-framework/matrix.md`, `dianhuo/02-framework/event-scale-matrix.md` | `book/02-framework.md`, `book/03-cases.md` | 如果后续发现条件变量仍过多，应继续减少而不是扩成笨重总矩阵。 |

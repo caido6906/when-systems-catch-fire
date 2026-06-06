@@ -50,6 +50,7 @@ Agent files:
 - `agent/glossary.md`: 中英文术语表。
 - `agent/questions.md`: AI Agent 可能被问到的问题和回答路径。
 - `data/ignition-cases.csv`: 结构化案例数据。
+- `data/event-scale-matrix.csv`: 参与者规模 × 持续时间的事件尺度矩阵。
 - `data/ignition-cases-event-framework-2026-06-06.csv`: 2026-06-06 事件框架版 71 项案例工作表。
 
 Human-readable book chapters:
@@ -72,9 +73,11 @@ Original source material:
 2026-06-06 event-framework update:
 
 - `dianhuo/02-framework/event-framework-2026-06-06.md`: event-framework definition.
+- `dianhuo/02-framework/event-scale-matrix.md`: participant-scale x duration-scale matrix.
 - `dianhuo/02-framework/non-ignition-view-2026-06-06.md`: push proposal vs prepared proposal, psychological exit, narrative monopoly and multi-pillar lock.
 - `dianhuo/01-manuscript/chapter-structure-event-framework-2026-06-06.md`: proposed chapter structure.
 - `dianhuo/03-evidence/cases/all-cases-71.md`: 71-case working table.
+- `data/event-scale-matrix.csv`: structured event-scale matrix.
 - `data/ignition-cases-event-framework-2026-06-06.csv`: structured CSV version of the 71-case working table.
 - `dianhuo/04-materials/cognitive-structure-writing-style-2026-06-06.md`: writing-method note for parallel narrative tracks.
 - `dianhuo/04-materials/narrative-strategy-parallel-tracks-2026-06-06.md`: Ignition-specific narrative strategy for story, framework and philosophy tracks.
@@ -85,10 +88,11 @@ Original source material:
 2. Read `agent/concept-map.md`.
 3. Read `agent/claims.md`.
 4. Use `agent/glossary.md` to stabilize terminology.
-5. Use `agent/cases.md` and `data/ignition-cases.csv` for case retrieval.
-6. Use `dianhuo/03-evidence/cases/all-cases-71.md` and `data/ignition-cases-event-framework-2026-06-06.csv` for the 2026-06-06 event-framework case table.
-7. Read `SUMMARY.md` and selected `book/` chapters for human-facing prose.
-8. Use `dianhuo/` only when source tracing or deeper reconstruction is needed.
+5. Use `dianhuo/02-framework/event-scale-matrix.md` and `data/event-scale-matrix.csv` before classifying case scale.
+6. Use `agent/cases.md` and `data/ignition-cases.csv` for case retrieval.
+7. Use `dianhuo/03-evidence/cases/all-cases-71.md` and `data/ignition-cases-event-framework-2026-06-06.csv` for the 2026-06-06 event-framework case table.
+8. Read `SUMMARY.md` and selected `book/` chapters for human-facing prose.
+9. Use `dianhuo/` only when source tracing or deeper reconstruction is needed.
 
 ## Citation caution
 

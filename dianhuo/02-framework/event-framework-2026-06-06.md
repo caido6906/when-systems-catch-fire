@@ -25,12 +25,24 @@ Evidence status: concept note; case claims still need fact-checking
 
 文明、国家、政策、公司、亲子，不是不同类型的事件，而是同一事件在不同刻度上的展开。
 
+更精确地说，事件尺度由两项矩阵决定：
+
+```text
+事件尺度 = 参与者规模 × 持续时间
+```
+
+最小事件参与者是 2 人：一个提议者 + 一个应约者。
+
+文明、国家、政策、公司、人际等说法，只是这个二维尺度矩阵中常见区域的标签。
+
 | Scale | Participants | Duration | Radius |
 | --- | --- | --- | --- |
-| 亲子 | 2 | 几年到几十年 | 一张桌子 |
-| 公司 | 几人到几万人 | 几年到几十年 | 一个行业 |
-| 政策 | 几万到几亿 | 几年到几百年 | 一个国家 |
-| 文明 | 几百万到几亿 | 几百年到几千年 | 一片大陆 |
+| 人际 / dyadic | 2 | 一次互动到几十年 | 一张桌子、一段关系 |
+| 小群体 | 3 到几十人 | 几周到几十年 | 一个家庭、小组、创始团队 |
+| 公司 / 组织 | 几十人到几万人 | 几年到几十年 | 一个组织或行业 |
+| 政策 / 群体 | 几万到几百万 | 几周到几十年 | 一个城市、行业或政策对象 |
+| 国家 | 几百万到几亿 | 几年到几百年 | 一个国家 |
+| 文明 | 几千万到几亿以上 | 几百年到几千年 | 一片大陆、宗教共同体或文明协议 |
 
 刻度不同，骨架相同：提议者出方案，应约者接或不接，退出权在不在，叙事权归谁。
 
@@ -44,9 +56,9 @@ Evidence status: concept note; case claims still need fact-checking
 
 制度是凝固了的事件。
 
-## Three Variables
+## Three Event-Condition Variables
 
-事件条件先看三个变量：
+在识别事件尺度之后，再看三个事件条件变量：
 
 1. 提议者意识：提议者知不知道自己在提议。
 2. 提议者退出权：提议者能不能从自己的方案里撤出。
@@ -55,6 +67,8 @@ Evidence status: concept note; case claims still need fact-checking
 应约者状态，如积极、消极或无人应约，不是前提条件，而是事件走向的结果。
 
 ## Eight Event Conditions
+
+这 8 格不是总矩阵，而是事件条件矩阵。它可以出现在任意尺度上：同一个格1，可能是两个人的关系事件，也可能是公司改革、国家改革或文明协议。
 
 | Cell | Proposer awareness | Proposer exit right | Responder exit right |
 | --- | --- | --- | --- |
@@ -126,4 +140,3 @@ Evidence status: concept note; case claims still need fact-checking
 - 纯外部冲击，如瘟疫、天灾、外部征服。
 - 收费站型结构，即只收租不提供应约价值的结构。
 - 方案本身造假的结构，因为事件可能根本没有真正启动。
-

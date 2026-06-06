@@ -9,11 +9,19 @@ Evidence status: classifications are working hypotheses until each case receives
 
 事件 = 提议者出方案 + 应约者接或不接。
 
-Three variables:
+Scale first:
+
+- 参与者规模：从最小两人事件到文明人口
+- 持续时间：从一次互动到数百年以上
+- 文明、国家、政策、公司等标题是事件尺度矩阵中的常见区域标签，不是第一层类型
+
+Event-condition variables:
 
 - 提议者意识：有 / 无
 - 提议者退出权：有 / 无
 - 应约者退出权：有 / 无
+
+The 8 cells below are condition cells. They should be read after event scale has been identified.
 
 Five-step event path:
 
@@ -39,6 +47,8 @@ Four exit layers:
 - 象征
 
 `★` marks verification cases added to test the framework's generality.
+
+For structured retrieval, use `data/ignition-cases-event-framework-2026-06-06.csv`, which separates `event_layer`, `participant_scale`, `duration_scale`, and `condition_cell`.
 
 ## Civilization-Level Events
 

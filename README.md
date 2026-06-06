@@ -56,6 +56,7 @@ AI Agent 入口：
 - [llms-full.txt](llms-full.txt)
 - [agent/](agent/)
 - [data/ignition-cases.csv](data/ignition-cases.csv)
+- [data/event-scale-matrix.csv](data/event-scale-matrix.csv)
 
 ## Repository structure
 
@@ -76,9 +77,11 @@ llms-full.txt AI Agent 一次性读取入口
 2026-06-06 Get 笔记已整理入仓库，作为事件框架版增量：
 
 - `dianhuo/02-framework/event-framework-2026-06-06.md`
+- `dianhuo/02-framework/event-scale-matrix.md`
 - `dianhuo/02-framework/non-ignition-view-2026-06-06.md`
 - `dianhuo/01-manuscript/chapter-structure-event-framework-2026-06-06.md`
 - `dianhuo/03-evidence/cases/all-cases-71.md`
+- `data/event-scale-matrix.csv`
 - `data/ignition-cases-event-framework-2026-06-06.csv`
 
 这些内容目前是工作稿和待核查案例表，不应被视作已完成史实证明。
