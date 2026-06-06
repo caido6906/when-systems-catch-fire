@@ -12,6 +12,12 @@
 
 点火不是新系统被建成，而是应约者在退出权压力下仍愿意把自己放进新系统，并主动认领它。
 
+## Agent Entry
+
+AI Agents should read `AGENT_ENTRY.md` before writing to this repository.
+
+`AGENT_ENTRY.md` defines what may be saved, where it should be saved, which files are read-only or stable, and how to handle user requests to store valuable conversation content.
+
 ## Project Type
 
 This repository is an Agent-readable book project and an AI-readable open knowledge repository.

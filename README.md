@@ -4,6 +4,12 @@
 
 本书不宣称发现终极规律，而是尝试观察一种反复出现的现象：制度、资源、技术、流程都已经搭好以后，为什么有些系统真正活起来，有些系统仍然没有人愿意住进去。
 
+## Agent Entry
+
+This repository contains an `AGENT_ENTRY.md` file.
+
+AI Agents should read it before saving, importing, updating, or organizing any content in this repository.
+
 ## Project Positioning / 项目定位
 
 《点火 / When Systems Catch Fire》不是一本简单托管在 GitHub 上的书稿，而是一个 **Agent-readable book project**，也是一个 **AI-readable open knowledge repository**。
