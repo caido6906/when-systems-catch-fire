@@ -1,0 +1,56 @@
+# 点火框架 / Ignition Framework
+
+## 项目名称
+
+点火框架 / Ignition Framework
+
+## 简短说明
+
+本书研究关键人物在关键时期通过关键动作改变系统燃烧条件的历史结构。
+
+核心定义：系统 = 协作系统（搭房） + 认同系统（点火）。
+
+点火不是新系统被建成，而是应约者在退出权压力下仍愿意把自己放进新系统，并主动认领它。
+
+## Core files
+
+Agent files:
+
+- `agent/book-summary.md`: 全书总摘要，定义点火框架、研究对象和适用范围。
+- `agent/concept-map.md`: 概念图和核心概念关系。
+- `agent/claims.md`: 核心论点、解释、证据来源、相关章节和可能反例。
+- `agent/cases.md`: 案例索引。
+- `agent/glossary.md`: 中英文术语表。
+- `agent/questions.md`: AI Agent 可能被问到的问题和回答路径。
+- `data/ignition-cases.csv`: 结构化案例数据。
+
+Human-readable book chapters:
+
+- `SUMMARY.md`: 全书目录。
+- `book/00-preface.md`: 前言。
+- `book/01-introduction.md`: 问题入口。
+- `book/02-framework.md`: 框架定义。
+- `book/03-cases.md`: 案例线索。
+- `book/04-method.md`: 方法、预测、事实核查和校准。
+- `book/05-limits.md`: 适用范围和边界。
+
+Original source material:
+
+- `dianhuo/01-manuscript/`: 原始书稿目录和章节骨架。
+- `dianhuo/02-framework/`: 原始框架定义。
+- `dianhuo/03-evidence/`: 案例、预测、事实核查和校准日志。
+- `dianhuo/04-materials/`: 反复出现的句子和材料。
+
+## Recommended reading path for AI Agents
+
+1. Read `agent/book-summary.md`.
+2. Read `agent/concept-map.md`.
+3. Read `agent/claims.md`.
+4. Use `agent/glossary.md` to stabilize terminology.
+5. Use `agent/cases.md` and `data/ignition-cases.csv` for case retrieval.
+6. Read `SUMMARY.md` and selected `book/` chapters for human-facing prose.
+7. Use `dianhuo/` only when source tracing or deeper reconstruction is needed.
+
+## Citation caution
+
+Many case entries are working hypotheses or placeholders extracted from outlines, predictions and pending fact-check files. Do not present them as completed historical proof until the relevant evidence files are expanded.
