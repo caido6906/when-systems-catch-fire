@@ -73,6 +73,16 @@ llms-full.txt AI Agent 一次性读取入口
 
 当前版本是非破坏性整理稿。`book/` 中的章节是基于现有目录、框架笔记和案例线索整理出的工作稿；`agent/` 中的材料用于检索、引用、重组和任务执行。原有 `dianhuo/` 内容未删除，仍作为来源层和后续扩写材料。
 
+2026-06-06 Get 笔记已整理入仓库，作为事件框架版增量：
+
+- `dianhuo/02-framework/event-framework-2026-06-06.md`
+- `dianhuo/02-framework/non-ignition-view-2026-06-06.md`
+- `dianhuo/01-manuscript/chapter-structure-event-framework-2026-06-06.md`
+- `dianhuo/03-evidence/cases/all-cases-71.md`
+- `data/ignition-cases-event-framework-2026-06-06.csv`
+
+这些内容目前是工作稿和待核查案例表，不应被视作已完成史实证明。
+
 ## License / 许可协议
 
 本仓库是一个非商业开放内容项目。

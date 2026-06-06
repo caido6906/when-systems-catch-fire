@@ -37,6 +37,23 @@ AI Agents should start with `llms.txt`, `llms-full.txt`, `agent/`, and `data/`.
 
 This project is not merely a manuscript stored on GitHub. It is a versioned intellectual book and open content knowledge repository designed to be read, searched, cited, transformed, and extended by both humans and AI Agents.
 
+## 2026-06-06 Event Framework Update
+
+New Get-note materials have been incorporated as working drafts:
+
+- `dianhuo/02-framework/event-framework-2026-06-06.md`
+- `dianhuo/02-framework/non-ignition-view-2026-06-06.md`
+- `dianhuo/01-manuscript/chapter-structure-event-framework-2026-06-06.md`
+- `dianhuo/03-evidence/cases/all-cases-71.md`
+- `data/ignition-cases-event-framework-2026-06-06.csv`
+- `dianhuo/04-materials/cognitive-structure-writing-style-2026-06-06.md`
+
+The core update is:
+
+事件 = 提议者出方案 + 应约者接或不接。
+
+系统是同一个事件被足够多人、足够长时间地重复以后凝固下来的形态。The framework now tracks three event-condition variables: proposer awareness, proposer exit right, and responder exit right. Case classifications in the 71-case table are working hypotheses and require source-level fact checking before being cited as historical proof.
+
 ============================================================
 FILE: agent/book-summary.md
 ============================================================

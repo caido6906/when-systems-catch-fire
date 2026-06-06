@@ -50,6 +50,7 @@ Agent files:
 - `agent/glossary.md`: 中英文术语表。
 - `agent/questions.md`: AI Agent 可能被问到的问题和回答路径。
 - `data/ignition-cases.csv`: 结构化案例数据。
+- `data/ignition-cases-event-framework-2026-06-06.csv`: 2026-06-06 事件框架版 71 项案例工作表。
 
 Human-readable book chapters:
 
@@ -68,6 +69,15 @@ Original source material:
 - `dianhuo/03-evidence/`: 案例、预测、事实核查和校准日志。
 - `dianhuo/04-materials/`: 反复出现的句子和材料。
 
+2026-06-06 event-framework update:
+
+- `dianhuo/02-framework/event-framework-2026-06-06.md`: event-framework definition.
+- `dianhuo/02-framework/non-ignition-view-2026-06-06.md`: push proposal vs prepared proposal, psychological exit, narrative monopoly and multi-pillar lock.
+- `dianhuo/01-manuscript/chapter-structure-event-framework-2026-06-06.md`: proposed chapter structure.
+- `dianhuo/03-evidence/cases/all-cases-71.md`: 71-case working table.
+- `data/ignition-cases-event-framework-2026-06-06.csv`: structured CSV version of the 71-case working table.
+- `dianhuo/04-materials/cognitive-structure-writing-style-2026-06-06.md`: writing-method note for parallel narrative tracks.
+
 ## Recommended reading path for AI Agents
 
 1. Read `agent/book-summary.md`.
@@ -75,12 +85,13 @@ Original source material:
 3. Read `agent/claims.md`.
 4. Use `agent/glossary.md` to stabilize terminology.
 5. Use `agent/cases.md` and `data/ignition-cases.csv` for case retrieval.
-6. Read `SUMMARY.md` and selected `book/` chapters for human-facing prose.
-7. Use `dianhuo/` only when source tracing or deeper reconstruction is needed.
+6. Use `dianhuo/03-evidence/cases/all-cases-71.md` and `data/ignition-cases-event-framework-2026-06-06.csv` for the 2026-06-06 event-framework case table.
+7. Read `SUMMARY.md` and selected `book/` chapters for human-facing prose.
+8. Use `dianhuo/` only when source tracing or deeper reconstruction is needed.
 
 ## Citation caution
 
-Many case entries are working hypotheses or placeholders extracted from outlines, predictions and pending fact-check files. Do not present them as completed historical proof until the relevant evidence files are expanded.
+Many case entries are working hypotheses or placeholders extracted from outlines, predictions, Get notes and pending fact-check files. Do not present them as completed historical proof until the relevant evidence files are expanded.
 
 ## License
 

@@ -13,6 +13,17 @@
 搭房：制度、流程、组织、资源配置、技术结构的建立。
 点火：应约者在某种退出权压力下，仍愿意把自己放进新系统，并主动认领它。
 
+2026-06-06 事件框架版补充：
+事件 = 提议者出方案 + 应约者接或不接。
+
+系统可以被理解为同一个事件被足够多人、足够长时间地重复以后凝固下来的形态。事件框架版材料见：
+
+- `02-framework/event-framework-2026-06-06.md`
+- `02-framework/non-ignition-view-2026-06-06.md`
+- `01-manuscript/chapter-structure-event-framework-2026-06-06.md`
+- `03-evidence/cases/all-cases-71.md`
+- `04-materials/cognitive-structure-writing-style-2026-06-06.md`
+
 项目三层结构：
 1. 01-manuscript/：给读者看的书稿；
 2. 02-framework/：框架定义、变量、矩阵、退出权四分法；

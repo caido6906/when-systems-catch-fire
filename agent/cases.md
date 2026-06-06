@@ -2,28 +2,47 @@
 
 ## Case index
 
-本表只整理当前仓库已经出现的案例线索。没有完整证据的条目用“待补”或“工作假设”标明，不视为已完成事实论证。
+本文件整理 AI Agent 可快速检索的案例入口。完整 71 项工作表见 `dianhuo/03-evidence/cases/all-cases-71.md`；早期结构化索引见 `data/ignition-cases.csv`；2026-06-06 事件框架版详细 CSV 见 `data/ignition-cases-event-framework-2026-06-06.csv`。
+
+没有完整证据的条目用“工作假设”标明，不视为已完成事实论证。
+
+## Event-framework case groups
+
+| Group | Count | Source file | Main use |
+| --- | --- | --- | --- |
+| 文明级事件 | 18 | `dianhuo/03-evidence/cases/civilization-level.md` | 测试点火框架在文明尺度上的解释力。 |
+| 国家级事件 | 17 | `dianhuo/03-evidence/cases/nation-level.md` | 测试国家建构、改革、革命、负时间差。 |
+| 政策级事件 | 17 | `dianhuo/03-evidence/cases/policy-level.md` | 测试政策是否被应约者接住。 |
+| 公司级事件 | 13 | `dianhuo/03-evidence/cases/company-level.md` | 测试组织文化、员工退出权和公司级认同。 |
+| 边界案例 | 6 | `dianhuo/03-evidence/cases/marginal-cases.md` | 标出不应被强行解释为点火的案例。 |
+
+## High-priority cases
 
 | Person / actor | Period | Key action | System change | Ignition type | Source | Related chapter |
 | --- | --- | --- | --- | --- | --- | --- |
-| 秦 / Qin state | 秦帝国线索，具体时期待补 | 建立完整行政结构；“书同文”线索 | 协作系统增强，认同系统是否成立待核查 | 失败点火 / Failed Ignition（工作假设） | `dianhuo/01-manuscript/outline.md` | `book/03-cases.md` |
-| 周公 / Zhougong | 西周初期线索，具体时期待补 | 不杀被击败诸侯，而是纳入新秩序 | 旧势力被重新安置，认同机制待补证据 | 待判定 / To be determined | `dianhuo/01-manuscript/outline.md` | `book/03-cases.md` |
-| 唐 / Tang order | 唐代开放线索，具体时期待补 | 开放机制运作，同时暴露外部锚点风险 | 系统吸纳能力与外部风险并存 | 延迟点火或失败点火待判定 | `dianhuo/01-manuscript/outline.md` | `book/03-cases.md` |
-| 苏联 / Soviet system | 苏联后期和解体线索 | 旧旗帜落下，新身份未及时建立 | 旧系统撤退，新认同未完成 | 失败点火 / Failed Ignition（工作假设） | `dianhuo/01-manuscript/outline.md`, `dianhuo/03-evidence/fact-checks/pending-fact-checks.md` | `book/03-cases.md` |
-| 元 / Yuan hierarchy | 元代线索 | 依赖等级和强制而非共同提议 | 协作或统治结构存在，认同系统待核查 | 伪点火或失败点火待判定 | `dianhuo/01-manuscript/outline.md`, `dianhuo/03-evidence/fact-checks/pending-fact-checks.md` | `book/03-cases.md` |
-| 中国文明与罗马 / Chinese civilization and Rome | 文明续存对比线索 | 比较元后中国文明续存与罗马碎裂 | 文明层系统延续条件待补 | 待判定 / To be determined | `dianhuo/01-manuscript/outline.md`, `dianhuo/03-evidence/fact-checks/pending-fact-checks.md` | `book/03-cases.md` |
-| Google | 2026-06-03 预测文件 | AI 转型，具体动作待补 | 公司级系统重写待观察 | 预测中 / Prediction | `dianhuo/03-evidence/predictions/2026-06-03-google-ai-transition.md` | `book/04-method.md` |
-| 中国国企改革 / China SOE reform | 2026-06-03 预测文件 | 改革条件句待补 | 政策级和公司级应约者待拆分 | 预测中 / Prediction | `dianhuo/03-evidence/predictions/2026-06-03-china-soe-reform.md` | `book/04-method.md` |
-| 阿根廷米莱改革 / Argentina Milei reform | 2026-06-03 预测文件 | 改革条件句待补 | 国家级系统重写待观察 | 预测中 / Prediction | `dianhuo/03-evidence/predictions/2026-06-03-argentina-milei.md` | `book/04-method.md` |
-| AI 文明协议 / AI civilization protocol | 2026-06-03 预测文件 | 协议形成条件待补 | 文明级协作与认同结构待观察 | 预测中 / Prediction | `dianhuo/03-evidence/predictions/2026-06-03-ai-civilization-protocol.md` | `book/04-method.md` |
-| CHIPS Act 企业退出权 | 待核查 | 企业是否具有可承受退出空间待核查 | 政策级应约者承诺测试 | 待判定 / To be determined | `dianhuo/03-evidence/fact-checks/pending-fact-checks.md` | `book/04-method.md` |
-| 空降 CEO / parachuted CEO | 组织案例线索，时期待补 | 外部管理者进入旧组织 | 组织协作系统可能变化，认同系统待补 | 待判定 / To be determined | `dianhuo/04-materials/recurring-lines.md` | `book/03-cases.md` |
-| 恒大 / Evergrande | 组织案例线索，时期待补 | 具体动作待补 | 心理退出权线索待补 | 待判定 / To be determined | `dianhuo/04-materials/recurring-lines.md` | `book/03-cases.md` |
+| 秦统一 / Qin unification | 文明级 | 郡县制、书同文、车同轨 | 协作系统强，认同未被真正接住 | 只搭房没点火（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 周公制礼 / Zhougong rites | 文明级 | 以礼乐秩序重组诸侯 | 旧敌人转化为新秩序应约者 | 点对了（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 孔子作春秋 / Confucius and Spring and Autumn | 文明级 | 写下文化协议 | 软件先写好，制度硬件延迟补上 | 延迟点火（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 唐朝开放 / Tang openness | 文明级 | 建立外向开放认同 | 外部锚定暴露后转向内部整合 | 点歪了但转向成功（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 戈尔巴乔夫改革 / Gorbachev reform | 国家级 | 先拆旧系统，新认同未跑通 | 旧支撑消失，新系统未被接住 | 负时间差、崩盘（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 改革开放 / Reform and opening | 国家级 | 从无意识到有意识的制度与认同重写 | 事件仍在运行 | 点火中（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 中国计划生育 / One-child policy | 政策级 | 强制性推方案 | 没有退出权的应约更接近服从 | 框架衰减（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/05-limits.md` |
+| 英国 NHS / NHS | 政策级 | 建立福利医疗认同 | 认同建在“免费”而非“共担”上 | 点歪了但没崩（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 华为员工持股 / Huawei employee ownership | 公司级 | 员工持股与组织认同 | 员工有真实退出权并认领组织 | 点对了（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 微软文化转型 / Microsoft culture change | 公司级 | 从“know-it-all”转向“learn-it-all” | 修正外部锚定和组织走向 | 点歪了但转向成功（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| WeWork | 公司级 | 强认同叙事但协作系统失败 | 认同先燃，制度没跟上 | 只点火不搭房（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 恒大 / Evergrande | 公司级 | 推方案型债务与交付结构 | 购房者心理退出 | 点歪了->被迫服从（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/03-cases.md` |
+| 安然 / Enron | 公司级 | 虚假方案 | 事件本身不成立 | 框架衰减 / 边界（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/05-limits.md` |
+| Theranos | 公司级 | 方案造假 | 事件未真正启动 | 框架边界（工作假设） | `dianhuo/03-evidence/cases/all-cases-71.md` | `book/05-limits.md` |
 
 ## Extraction notes
 
 - 文明史案例主要来自 `dianhuo/01-manuscript/outline.md`。
+- 事件框架版 71 项案例表来自 2026-06-06 Get 笔记，整理在 `dianhuo/03-evidence/cases/all-cases-71.md`。
 - 预测案例来自 `dianhuo/03-evidence/predictions/`。
 - 待核查案例来自 `dianhuo/03-evidence/fact-checks/pending-fact-checks.md`。
 - 组织层案例线索来自 `dianhuo/04-materials/recurring-lines.md`。
 
+## Fact-check caution
+
+Do not cite this file as historical proof. Use it as a retrieval index and working classification map. Before making a strong claim, check source-level evidence and mark unresolved items as `needs_fact_check`.

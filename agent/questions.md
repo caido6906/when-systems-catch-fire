@@ -19,6 +19,12 @@ Answer path: `agent/book-summary.md` -> `agent/glossary.md` -> `book/02-framewor
 
 Suggested answer: It is a framework for studying when a new system is not only built as a collaboration system, but recognized by responders as a system they are willing to enter.
 
+### What is the Event Framework update?
+
+Answer path: `dianhuo/02-framework/event-framework-2026-06-06.md` -> `agent/concept-map.md` -> `book/02-framework.md`.
+
+Suggested answer: The Event Framework update defines an event as “a proposer offers a proposal, and responders accept or do not accept.” A system is a repeated event that has solidified over time. This update lets the book compare parent-child, company, policy, nation and civilization cases on the same structural skeleton.
+
 ### What is the difference between building the house and lighting the fire?
 
 Answer path: `agent/concept-map.md` -> `book/02-framework.md`.
@@ -33,15 +39,27 @@ Suggested answer: The responder is the person or group that must decide whether 
 
 ### How does the framework classify failure?
 
-Answer path: `agent/glossary.md` -> `book/05-limits.md` -> `agent/claims.md`.
+Answer path: `agent/glossary.md` -> `book/05-limits.md` -> `agent/claims.md` -> `dianhuo/02-framework/event-framework-2026-06-06.md`.
 
-Suggested answer: Failure may appear as failed ignition, where recognition never forms; false ignition, where visible heat hides lack of real commitment; or delayed ignition, where conditions are incomplete but may still accumulate.
+Suggested answer: Failure may appear as failed ignition, false ignition, insufficient ignition, misaligned ignition, reverse ignition, or negative time gap. The 2026-06-06 notes also distinguish push-proposal events from prepared-proposal events.
+
+### What is the difference between 推方案 and 备方案?
+
+Answer path: `dianhuo/02-framework/non-ignition-view-2026-06-06.md` -> `agent/glossary.md` -> `book/02-framework.md`.
+
+Suggested answer: 推方案 means the proposer decides what responders need and pushes the proposal onto them, so the apparent acceptance may be obedience. 备方案 means the proposer prepares a proposal and lets responders take it when needed, preserving real choice.
 
 ### Which cases are already supported by the manuscript?
 
 Answer path: `agent/cases.md` -> `data/ignition-cases.csv`.
 
-Suggested answer: Current cases are mostly case lines rather than completed proofs. Qin, Zhougong, Tang, Soviet, Yuan and Rome appear in the outline; Google AI transition, China SOE reform, Argentina Milei reform and AI civilization protocol appear as prediction files.
+Suggested answer: Current cases are mostly case lines and working classifications rather than completed proofs. The 2026-06-06 event-framework case table contains 71 entries across civilization, nation, policy, company and boundary cases. Use `dianhuo/03-evidence/cases/all-cases-71.md` for the full table.
+
+### What cases should not be used as proof of the framework?
+
+Answer path: `book/05-limits.md` -> `dianhuo/03-evidence/cases/marginal-cases.md` -> `dianhuo/03-evidence/cases/all-cases-71.md`.
+
+Suggested answer: Boundary cases include pure external interruption, cases where no new event starts, tollbooth structures that only collect rent without providing responder value, and fake-proposal cases where the event itself did not truly start.
 
 ### What should not be claimed yet?
 
@@ -51,7 +69,6 @@ Suggested answer: Do not claim completed historical proof for the case table yet
 
 ### How should new cases be added?
 
-Answer path: `data/ignition-cases.csv` -> `agent/cases.md` -> `dianhuo/03-evidence/cases/all-cases-71.md`.
+Answer path: `data/ignition-cases.csv` -> `agent/cases.md` -> `dianhuo/03-evidence/cases/all-cases-71.md` -> `dianhuo/02-framework/matrix.md`.
 
-Suggested answer: Add the actor, period, action, domain, system before/after, ignition type, evidence path and related chapter. Mark uncertain fields as pending instead of forcing a classification.
-
+Suggested answer: Add the actor, period, action, domain, system before/after, ignition type, evidence path and related chapter. For event-framework cases, also record scale, cell, outcome, exit layer, step reached and fact-check status. Mark uncertain fields as pending instead of forcing a classification.
