@@ -11,7 +11,9 @@
 - [04. 方法：把火放到未来里检验](book/04-method.md)
 - [05. 边界：这个结构能看到什么，看不到什么](book/05-limits.md)
 
-## 原始材料
+## 来源层与历史材料
+
+以下文件用于来源追溯、旧稿保存、事实核查和框架演化记录。除非 `agent/current-canon.md` 明确列为 current，否则不得作为当前结论直接引用。
 
 - [旧书稿目录](dianhuo/01-manuscript/book.md)
 - [核心定义](dianhuo/02-framework/core-definition.md)

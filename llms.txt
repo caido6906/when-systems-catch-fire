@@ -117,19 +117,20 @@ Original source material:
 
 ## Recommended reading path for AI Agents
 
-1. Read `agent/book-summary.md`.
-2. Read `agent/concept-map.md`.
-3. Read `agent/claims.md`.
-4. Use `agent/glossary.md` to stabilize terminology.
-5. Use `dianhuo/02-framework/event-scale-matrix.md` and `data/event-scale-matrix.csv` before classifying case scale.
-6. Use `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` before treating push/prepared posture as a variable.
-7. Use `agent/cases.md` and `data/ignition-cases.csv` for case retrieval.
-8. Use `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md` and `data/ignition-cases-event-condition-matrix-2026-06-07.csv` for the current event-condition case table.
-9. Use `dianhuo/03-evidence/cases/supplemental-cases-event-condition-matrix-2026-06-07.md` for P1/P2 and open-source validation cases.
-10. Read `SUMMARY.md` and selected `book/` chapters for human-facing prose.
-11. Use `dianhuo/` only when source tracing or deeper reconstruction is needed.
+1. Read `agent/current-canon.md` first.
+2. Read `agent/book-summary.md`.
+3. Read `agent/concept-map.md`.
+4. Read `agent/claims.md`.
+5. Use `agent/glossary.md` to stabilize terminology.
+6. Use `dianhuo/02-framework/event-condition-matrix-2026-06-07.md` as the current framework source.
+7. Use `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` before treating proposer posture as a variable.
+8. Use `data/ignition-cases.csv` as the current canonical case table.
+9. Use `dianhuo/` only for source tracing, historical reconstruction, or evidence expansion.
+10. Do not treat superseded files as current conclusions.
 
 ## Citation caution
+
+If a file contains `superseded`, `historical`, `legacy`, `source-only`, or `canonical: false`, do not use it as the current framework conclusion.
 
 Many case entries are working hypotheses or placeholders extracted from outlines, predictions, Get notes and pending fact-check files. Do not present them as completed historical proof until the relevant evidence files are expanded.
 

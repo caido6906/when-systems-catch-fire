@@ -77,6 +77,23 @@ llms.txt   AI Agent 简短入口
 llms-full.txt AI Agent 一次性读取入口
 ```
 
+## Current canonical layer / 当前主版本层
+
+当前仓库采用三层分离：
+
+1. `book/`：当前书籍工作稿，面向人类读者。
+2. `agent/` + `data/`：当前 Agent 可读主数据层。
+3. `dianhuo/`：来源层、原始材料层、旧稿和思想演化记录层。
+
+当前框架主版本为 2026-06-07 事件条件矩阵版：
+
+- `agent/current-canon.md`
+- `dianhuo/02-framework/event-condition-matrix-2026-06-07.md`
+- `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md`
+- `data/ignition-cases.csv`
+
+旧版 24 格矩阵、67 案例表、71 案例表、旧目录和旧窄表仅作历史材料或来源追溯使用，不得作为当前结论引用。
+
 ## Current status
 
 当前版本是非破坏性整理稿。`book/` 中的章节是基于现有目录、框架笔记和案例线索整理出的工作稿；`agent/` 中的材料用于检索、引用、重组和任务执行。原有 `dianhuo/` 内容未删除，仍作为来源层和后续扩写材料。

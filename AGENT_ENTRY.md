@@ -17,12 +17,32 @@ Do not save ordinary curiosity, temporary search results, casual chat, transacti
 Before writing anything, read in this order:
 
 1. `AGENT_ENTRY.md`
-2. `README.md`
-3. `llms.txt`
-4. `AGENTS.md` if present
-5. repository-specific protocol files if present
-6. `agent/reading-path.md` if present
-7. relevant files under `agent/`, `book/`, `data/`, `dianhuo/`, `dianhuo/originals/`, or `editor/`
+2. `agent/current-canon.md`
+3. `README.md`
+4. `llms.txt`
+5. `AGENTS.md` if present
+6. repository-specific protocol files if present
+7. `agent/reading-path.md` if present
+8. relevant files under `agent/`, `book/`, `data/`, `dianhuo/`, `dianhuo/originals/`, or `editor/`
+
+## Current Canon Rule
+
+Before answering, saving, editing, or restructuring this repository, identify the current canonical files.
+
+Start from:
+
+1. `agent/current-canon.md`
+2. `llms.txt`
+3. `agent/book-summary.md`
+4. `agent/concept-map.md`
+5. `agent/claims.md`
+6. `data/ignition-cases.csv`
+
+Files under `dianhuo/` may contain original notes, old drafts, historical framework versions, and superseded conclusions.
+
+Do not treat a `dianhuo/` file as current unless it is explicitly listed in `agent/current-canon.md`.
+
+If an older file conflicts with a current file, preserve the older file as historical material and follow the current file.
 
 ## Write Safety
 
