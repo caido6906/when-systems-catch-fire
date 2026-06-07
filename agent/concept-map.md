@@ -56,9 +56,9 @@
 - 失败点火和伪点火都可能有高度可见的制度或仪式，但缺少应约者主动认领。
 - 点歪了不容易被识别，因为叙事权可能由提议者垄断。
 
-## Pending concepts
+## Current framework files
 
-- 事件尺度矩阵：已在 `dianhuo/02-framework/event-scale-matrix.md` 写入工作稿，后续需要用案例逐项校准。
-- 8 格事件条件：已在 `dianhuo/02-framework/matrix.md` 写入工作稿，后续需要用案例逐项校准。它是条件矩阵，不是总矩阵。
-- 提议者姿态：已在 `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` 写入用户确认结论，作为次级变量处理。
-- 72 案例表：已在 `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md` 写入工作表，后续需要补充证据来源和事实核查。
+- 事件尺度矩阵：当前版本见 `dianhuo/02-framework/event-scale-matrix.md` 和 `data/event-scale-matrix.csv`。
+- 8 格事件条件矩阵：当前版本见 `dianhuo/02-framework/event-condition-matrix-2026-06-07.md`。
+- 提议者姿态：当前版本见 `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md`，作为事件条件矩阵内的次级变量处理。
+- 72 案例表：当前版本见 `data/ignition-cases.csv` 和 `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md`。

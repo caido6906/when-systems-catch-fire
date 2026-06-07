@@ -75,6 +75,14 @@ The goal is to make the book readable not only as a linear manuscript, but also 
 - 只有技术替换，没有认同系统变化。
 - 只有强制执行，没有应约者主动认领。
 
+## Current canon warning
+
+The current framework version is the 2026-06-07 Event Condition Matrix version.
+
+Use `agent/current-canon.md` to identify current files.
+
+Older notes under `dianhuo/` may preserve superseded 24-cell or 67-case formulations. These are historical development records, not current conclusions.
+
 ## Source status
 
 当前仓库中的正文仍是工作稿。已明确存在的材料包括：
