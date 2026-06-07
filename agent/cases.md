@@ -2,7 +2,7 @@
 
 ## Case index
 
-本文件整理 AI Agent 可快速检索的案例入口。完整 71 项工作表见 `dianhuo/03-evidence/cases/all-cases-71.md`；早期结构化索引见 `data/ignition-cases.csv`；2026-06-06 事件框架版详细 CSV 见 `data/ignition-cases-event-framework-2026-06-06.csv`。
+本文件整理 AI Agent 可快速检索的案例入口。当前事件条件矩阵版工作表见 `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md`；对应 CSV 见 `data/ignition-cases-event-condition-matrix-2026-06-07.csv`。完整 71 项旧工作表仍保留在 `dianhuo/03-evidence/cases/all-cases-71.md`；早期结构化索引见 `data/ignition-cases.csv`。
 
 没有完整证据的条目用“工作假设”标明，不视为已完成事实论证。
 
@@ -15,6 +15,13 @@
 | 政策级事件 | 17 | `dianhuo/03-evidence/cases/policy-level.md` | 作为 P4/P5 + T2/T3/T4/T5 区域的工作标签。 |
 | 公司级事件 | 13 | `dianhuo/03-evidence/cases/company-level.md` | 作为 P3 + T3/T4 区域的工作标签。 |
 | 边界案例 | 6 | `dianhuo/03-evidence/cases/marginal-cases.md` | 标出不应被强行解释为点火的案例。 |
+
+## 2026-06-07 case tables
+
+| Table | Count | Source file | Data file | Main use |
+| --- | --- | --- | --- | --- |
+| 事件条件矩阵版总表 | 72 | `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md` | `data/ignition-cases-event-condition-matrix-2026-06-07.csv` | 用 P×T 坐标、8 格条件、应约者状态、事件结果、退出权和五步流程重排案例。 |
+| 补充验证案例 | 8 | `dianhuo/03-evidence/cases/supplemental-cases-event-condition-matrix-2026-06-07.md` | `data/ignition-supplemental-cases-event-condition-matrix-2026-06-07.csv` | 补足 P1/P2、小尺度、开源社区和格间滑动验证案例。 |
 
 ## High-priority cases
 
@@ -39,6 +46,8 @@
 
 - 文明史案例主要来自 `dianhuo/01-manuscript/outline.md`。
 - 事件框架版 71 项案例表来自 2026-06-06 Get 笔记，整理在 `dianhuo/03-evidence/cases/all-cases-71.md`。
+- 事件条件矩阵版 72 项案例表来自 2026-06-07 Get 笔记，整理在 `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md`。
+- 补充验证案例来自 2026-06-07 Get 笔记，整理在 `dianhuo/03-evidence/cases/supplemental-cases-event-condition-matrix-2026-06-07.md`。
 - 预测案例来自 `dianhuo/03-evidence/predictions/`。
 - 待核查案例来自 `dianhuo/03-evidence/fact-checks/pending-fact-checks.md`。
 - 组织层案例线索来自 `dianhuo/04-materials/recurring-lines.md`。
@@ -48,3 +57,9 @@
 Do not cite this file as historical proof. Use it as a retrieval index and working classification map. Before making a strong claim, check source-level evidence and mark unresolved items as `needs_fact_check`.
 
 The labels `civilization`, `nation`, `policy`, and `company` are event-layer shortcuts. For stricter classification, use participant scale and duration scale from `dianhuo/02-framework/event-scale-matrix.md` and `data/event-scale-matrix.csv`.
+
+The 2026-06-07 supplemental cases include a source-level wording that treats
+proposer posture as a fourth key variable. Use the later revision note
+`dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md`
+instead: proposer posture is a secondary variable inside the event condition
+matrix.

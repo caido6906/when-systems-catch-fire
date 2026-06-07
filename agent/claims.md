@@ -5,6 +5,7 @@
 - `extracted`: 从现有原文直接抽取或重述。
 - `structured`: 基于多个现有文件整理出来的结构化表达。
 - `working`: 来自 2026-06-06 事件框架笔记，已结构化但仍需案例校准。
+- `revision`: 来自 2026-06-07 用户确认的框架修正。
 - `placeholder`: 方向已出现，但证据仍待补。
 
 | ID | Status | Claim | Explanation | Evidence source | Related chapters | Possible counterexamples |
@@ -27,3 +28,5 @@
 | C16 | working | 多柱事件会遮蔽单柱退化信号。 | 王室、军方、宗教、文化编码等互相支撑时，退出念头本身可能被提前消解。 | `dianhuo/02-framework/event-framework-2026-06-06.md`, `dianhuo/02-framework/non-ignition-view-2026-06-06.md` | `book/05-limits.md` | 多柱稳定也可能是真认同而非遮蔽，需要区分。 |
 | C17 | working | 点火框架只覆盖“方案输出—承接”型事件。 | 纯外部冲击、收费站型结构、方案造假结构应作为边界案例处理。 | `dianhuo/02-framework/event-framework-2026-06-06.md`, `dianhuo/03-evidence/cases/all-cases-71.md` | `book/05-limits.md` | 有些外部冲击可能触发内部新事件，需要拆分阶段。 |
 | C18 | working | 8 格矩阵应被视为事件条件矩阵，而不是总矩阵。 | 8 格只处理提议者意识、提议者退出权、应约者退出权；它可以出现在任意参与者规模和持续时间上。 | `dianhuo/02-framework/matrix.md`, `dianhuo/02-framework/event-scale-matrix.md` | `book/02-framework.md`, `book/03-cases.md` | 如果后续发现条件变量仍过多，应继续减少而不是扩成笨重总矩阵。 |
+| C19 | revision | 提议者姿态是事件条件矩阵内的次级变量。 | 推方案 vs 备方案不应成为独立新维度；它主要决定退出权真假和事件走向，尤其解释格间滑动。 | `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md`, `dianhuo/02-framework/matrix.md` | `book/02-framework.md`, `book/03-cases.md` | 补充案例原文中“第四个关键变量”的说法已被本结论修正。 |
+| C20 | working | P1/P2 小尺度事件可用于验证“刻度不同，骨架相同”。 | 蒙台梭利、心理咨询治疗联盟、基布兹等案例补上旧四层分类遗漏的小尺度事件。 | `dianhuo/03-evidence/cases/supplemental-cases-event-condition-matrix-2026-06-07.md` | `book/03-cases.md` | 小尺度案例是否能与文明/国家尺度严格同构，仍需更多反例测试。 |

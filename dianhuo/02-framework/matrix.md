@@ -1,6 +1,7 @@
 # Event Condition Matrix
 
-Source: `dianhuo/02-framework/event-framework-2026-06-06.md`
+Source: `dianhuo/02-framework/event-framework-2026-06-06.md`;
+`dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md`
 Saved timestamp: 2026-06-07T01:11:36+08:00
 Status: working-draft
 
@@ -44,6 +45,17 @@ The 2026-06-06 event-framework note reduces the earlier placeholder matrix into 
 The cell does not by itself determine the outcome.
 
 The cell also does not determine the event scale.
+
+Proposer posture, such as 推方案 or 备方案, should not be treated as a new
+independent dimension. The 2026-06-07 revision classifies it as a secondary
+variable inside the event condition matrix.
+
+It mainly explains:
+
+- whether an apparent exit right is real, factual, psychological, or symbolic;
+- why one cell drifts into another over time;
+- why an event can begin as prepared proposal and later degrade into pushed
+  proposal.
 
 For example, 格1 can appear in:
 

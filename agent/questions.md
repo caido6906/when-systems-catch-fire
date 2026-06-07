@@ -57,15 +57,21 @@ Suggested answer: Failure may appear as failed ignition, false ignition, insuffi
 
 ### What is the difference between 推方案 and 备方案?
 
-Answer path: `dianhuo/02-framework/non-ignition-view-2026-06-06.md` -> `agent/glossary.md` -> `book/02-framework.md`.
+Answer path: `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` -> `dianhuo/02-framework/non-ignition-view-2026-06-06.md` -> `agent/glossary.md` -> `book/02-framework.md`.
 
-Suggested answer: 推方案 means the proposer decides what responders need and pushes the proposal onto them, so the apparent acceptance may be obedience. 备方案 means the proposer prepares a proposal and lets responders take it when needed, preserving real choice.
+Suggested answer: 推方案 means the proposer decides what responders need and pushes the proposal onto them, so the apparent acceptance may be obedience. 备方案 means the proposer prepares a proposal and lets responders take it when needed, preserving real choice. The 2026-06-07 revision treats proposer posture as a secondary variable, not an independent fourth dimension.
+
+### Is proposer posture an independent matrix dimension?
+
+Answer path: `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` -> `dianhuo/02-framework/matrix.md` -> `agent/claims.md`.
+
+Suggested answer: No. Proposer posture is a secondary variable inside the event condition matrix. It mainly explains whether exit rights are real or fake, and why an event moves from one condition cell to another over time.
 
 ### Which cases are already supported by the manuscript?
 
 Answer path: `agent/cases.md` -> `data/ignition-cases.csv`.
 
-Suggested answer: Current cases are mostly case lines and working classifications rather than completed proofs. The 2026-06-06 event-framework case table contains 71 entries using civilization, nation, policy, company and boundary as event-layer labels. Use `dianhuo/03-evidence/cases/all-cases-71.md` for the full table, and use `data/ignition-cases-event-framework-2026-06-06.csv` when participant scale, duration scale and condition cell must be separated.
+Suggested answer: Current cases are mostly case lines and working classifications rather than completed proofs. Use the 2026-06-07 event-condition matrix table for the current structured case map: `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md` and `data/ignition-cases-event-condition-matrix-2026-06-07.csv`. Use the supplemental table for P1/P2 and open-source validation cases.
 
 ### What cases should not be used as proof of the framework?
 
@@ -81,6 +87,6 @@ Suggested answer: Do not claim completed historical proof for the case table yet
 
 ### How should new cases be added?
 
-Answer path: `data/ignition-cases.csv` -> `agent/cases.md` -> `dianhuo/03-evidence/cases/all-cases-71.md` -> `dianhuo/02-framework/matrix.md`.
+Answer path: `data/ignition-cases-event-condition-matrix-2026-06-07.csv` -> `agent/cases.md` -> `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md` -> `dianhuo/02-framework/matrix.md`.
 
 Suggested answer: Add the actor, period, action, domain, system before/after, ignition type, evidence path and related chapter. For event-framework cases, also record event layer, participant scale, duration scale, condition cell, outcome, exit layer, step reached and fact-check status. Mark uncertain fields as pending instead of forcing a classification.

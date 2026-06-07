@@ -55,6 +55,8 @@ The goal is to make the book readable not only as a linear manuscript, but also 
 
 三项条件组合成 8 格。8 格是事件条件矩阵，不是总矩阵。应约者积极、消极或无人应约，是事件走向的结果，不再作为前提条件。
 
+2026-06-07 修正：提议者姿态（推方案 vs 备方案）是事件条件矩阵内的次级变量，不是独立的新维度。它主要解释退出权真假和事件格间滑动。强推姿态通常使退出权变成事实、心理或象征退出权；备方案姿态更接近真实退出权。同一事件内部也可能从备方案退化成强推。
+
 ## Scope
 
 适用范围：
@@ -79,6 +81,7 @@ The goal is to make the book readable not only as a linear manuscript, but also 
 
 - 核心定义、五步过程、退出权、提议者/应约者。
 - 2026-06-06 事件框架版、非点火视角、章节结构、71 项案例工作表。
+- 2026-06-07 事件条件矩阵版、提议者姿态次级变量结论、72 项案例工作表和 8 项补充验证案例。
 - 章节目录和文明史案例线索。
 - 预测、事实核查、校准原则和反证原则。
 
@@ -87,7 +90,7 @@ The goal is to make the book readable not only as a linear manuscript, but also 
 - 大多数案例的完整叙事。
 - 具体史实证据和来源。
 - 8 格事件条件在每个案例中的严格核查。
-- 71 项案例工作表的逐项事实校准。
+- 72 项案例工作表和补充验证案例的逐项事实校准。
 
 ## Recommended use by AI Agents
 

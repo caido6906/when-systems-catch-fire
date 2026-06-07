@@ -20,9 +20,13 @@
 
 - `02-framework/event-framework-2026-06-06.md`
 - `02-framework/event-scale-matrix.md`
+- `02-framework/event-condition-matrix-2026-06-07.md`
+- `02-framework/proposer-posture-secondary-variable-2026-06-07.md`
 - `02-framework/non-ignition-view-2026-06-06.md`
 - `01-manuscript/chapter-structure-event-framework-2026-06-06.md`
 - `03-evidence/cases/all-cases-71.md`
+- `03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md`
+- `03-evidence/cases/supplemental-cases-event-condition-matrix-2026-06-07.md`
 - `04-materials/cognitive-structure-writing-style-2026-06-06.md`
 - `04-materials/narrative-strategy-parallel-tracks-2026-06-06.md`
 
