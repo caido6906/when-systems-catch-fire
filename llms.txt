@@ -62,19 +62,24 @@ Repository: **when-systems-catch-fire**
 
 ## Core files
 
-Agent files:
+### Current canonical files
 
+- `agent/current-canon.md`: 当前主版本路由表。AI Agent 应先用它判断哪些文件是 current，哪些只是 source / historical。
 - `agent/book-summary.md`: 全书总摘要，定义点火框架、研究对象和适用范围。
 - `agent/concept-map.md`: 概念图和核心概念关系。
 - `agent/claims.md`: 核心论点、解释、证据来源、相关章节和可能反例。
 - `agent/cases.md`: 案例索引。
 - `agent/glossary.md`: 中英文术语表。
 - `agent/questions.md`: AI Agent 可能被问到的问题和回答路径。
-- `data/ignition-cases.csv`: 结构化案例数据。
+- `data/ignition-cases.csv`: 当前主案例表，镜像 2026-06-07 事件条件矩阵版 72 项案例表。
 - `data/event-scale-matrix.csv`: 参与者规模 × 持续时间的事件尺度矩阵。
-- `data/ignition-cases-event-framework-2026-06-06.csv`: 2026-06-06 事件框架版 71 项案例工作表。
-- `data/ignition-cases-event-condition-matrix-2026-06-07.csv`: 2026-06-07 事件条件矩阵版 72 项案例工作表。
-- `data/ignition-supplemental-cases-event-condition-matrix-2026-06-07.csv`: 2026-06-07 补充验证案例表。
+
+### Historical / superseded working files
+
+The following files are preserved for source tracing and framework history. Do not treat them as current conclusions.
+
+- `data/ignition-cases-event-framework-2026-06-06.csv`: 2026-06-06 事件框架版 71 项案例工作表，已被 2026-06-07 事件条件矩阵版覆盖。
+- `dianhuo/03-evidence/cases/all-cases-71.md`: 71-case working table，已被 72-case event-condition matrix table 覆盖。
 
 Human-readable book chapters:
 

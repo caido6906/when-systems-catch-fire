@@ -41,7 +41,7 @@ project: 点火 / When Systems Catch Fire
 
 以下文件只能作为来源追溯或思想演化材料，不得作为当前结论直接引用：
 
-- `dianhuo/02-framework/matrix.md` 中关于 24 格矩阵、67 案例无遗漏无冗余的旧段落。
+- `archive/framework/matrix-24cell-superseded-2026-06-07.md` 中的 24 格矩阵、67 案例无遗漏无冗余等旧结论。
 - `data/ignition-cases.csv` 的旧 16 行窄表版本。
 - `data/ignition-cases-event-framework-2026-06-06.csv`
 - `dianhuo/03-evidence/cases/all-cases-71.md`
