@@ -44,6 +44,125 @@ Do not treat a `dianhuo/` file as current unless it is explicitly listed in `age
 
 If an older file conflicts with a current file, preserve the older file as historical material and follow the current file.
 
+## Canon Migration Protocol
+
+Use this protocol whenever a task changes, replaces, archives, supersedes, renames, or re-routes any framework, data, book, or Agent-readable file.
+
+A canon migration is not complete until all routing surfaces have been checked.
+
+Required routing surfaces:
+
+1. `agent/current-canon.md`
+2. `README.md`
+3. `SUMMARY.md`
+4. `llms.txt`
+5. `llms-full.txt`
+6. `agent/book-summary.md`
+7. `agent/concept-map.md`
+8. `agent/claims.md`
+9. `data/README.md`
+10. current canonical CSV files under `data/`
+11. relevant archive files under `archive/`
+12. relevant source files under `dianhuo/`
+
+When a file is superseded:
+
+1. Preserve the old file or old content under `archive/`.
+2. Mark it with `canonical: false`, `archived_at`, `replaced_by`, and `use_rule`.
+3. Remove or redirect current-layer references to the old file.
+4. Update all Agent-readable entry points.
+5. Rebuild `llms-full.txt` if any Agent-readable routing changed.
+6. Add or update an audit note under `editor/`.
+
+Do not claim that a canon migration is complete until the verification checklist below has passed.
+
+## Post-change Verification Checklist
+
+Before claiming a repository update is complete, the Agent must verify the result.
+
+For every non-trivial update, check:
+
+1. Did `agent/current-canon.md` still point to the correct current files?
+2. Did `llms.txt` distinguish current files from historical or superseded files?
+3. Did `llms-full.txt` reflect the same routing as `llms.txt` and `agent/current-canon.md`?
+4. Did `README.md` and `SUMMARY.md` still guide human readers correctly?
+5. Did `agent/claims.md` and `agent/concept-map.md` still cite current framework files?
+6. Did any historical file remain in a current layer without `historical`, `superseded`, `legacy`, `source-only`, or `canonical: false`?
+7. Did any old conclusion remain in `book/`, `agent/`, `data/`, `README.md`, `llms.txt`, or `llms-full.txt` as if it were current?
+8. If a CSV was promoted or replaced, was the old CSV preserved under `archive/data/`?
+9. If a framework file was superseded, was the old version preserved under `archive/framework/`?
+10. If the task changed Agent-readable routing, was `llms-full.txt` rebuilt?
+
+For canon-routing tasks, search for known superseded terms and paths before completion.
+
+Example checks:
+
+- old matrix names
+- old case table names
+- old current file paths
+- old status labels
+- old claims that are now archived
+- references to files that were moved to `archive/`
+
+If any residue remains, fix it before reporting completion.
+
+## Completion Claim Rule
+
+Do not report "complete", "all fixed", "clean", or "stable" unless the Agent has performed a post-change verification pass.
+
+A completion report must include:
+
+1. commit range or commit SHA
+2. files changed
+3. current status label
+4. what was verified
+5. what remains uncertain
+6. whether cases are fact-checked or still working hypotheses
+
+Allowed status labels include:
+
+- `canon-routing-clean`
+- `current-main-chain-stable`
+- `cases-not-yet-fact-checked`
+- `case-fact-check-workflow-created`
+- `book-layer-draft-only`
+- `needs-human-review`
+- `historical-layer-preserved`
+- `llms-full-rebuilt`
+
+Never use `fact_checked`, `fully verified`, or `historically proven` unless the relevant evidence files support that claim.
+
+## Current Layer Protection Rule
+
+The current layer includes:
+
+- `book/`
+- `agent/`
+- `data/ignition-cases.csv`
+- `data/README.md`
+- `README.md`
+- `SUMMARY.md`
+- `llms.txt`
+- `llms-full.txt`
+
+The source / historical layer includes:
+
+- `dianhuo/`
+- `dianhuo/originals/`
+- old working tables
+- old framework notes
+- old manuscript drafts
+
+The archive layer includes:
+
+- `archive/`
+
+Historical material may exist and should be preserved, but it must not be allowed to override the current layer.
+
+If a historical file is useful, cite it as source history, not as current doctrine.
+
+If a historical file contradicts current canon, follow current canon and record the contradiction as a possible future revision, not as an automatic overwrite.
+
 ## Write Safety
 
 Before writing:

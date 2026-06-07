@@ -65,6 +65,7 @@ Repository: **when-systems-catch-fire**
 ### Current canonical files
 
 - `agent/current-canon.md`: 当前主版本路由表。AI Agent 应先用它判断哪些文件是 current，哪些只是 source / historical。
+- `agent/agent-operation-checklist.md`: Agent 操作前后检查清单，用于 canon migration、数据更新、归档、事实核查和完成声明前复核。
 - `agent/book-summary.md`: 全书总摘要，定义点火框架、研究对象和适用范围。
 - `agent/concept-map.md`: 概念图和核心概念关系。
 - `agent/claims.md`: 核心论点、解释、证据来源、相关章节和可能反例。
@@ -122,16 +123,18 @@ Original source material:
 
 ## Recommended reading path for AI Agents
 
-1. Read `agent/current-canon.md` first.
-2. Read `agent/book-summary.md`.
-3. Read `agent/concept-map.md`.
-4. Read `agent/claims.md`.
-5. Use `agent/glossary.md` to stabilize terminology.
-6. Use `dianhuo/02-framework/event-condition-matrix-2026-06-07.md` as the current framework source.
-7. Use `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` before treating proposer posture as a variable.
-8. Use `data/ignition-cases.csv` as the current canonical case table.
-9. Use `dianhuo/` only for source tracing, historical reconstruction, or evidence expansion.
-10. Do not treat superseded files as current conclusions.
+1. Read `AGENT_ENTRY.md`.
+2. Read `agent/current-canon.md`.
+3. Read `agent/agent-operation-checklist.md`.
+4. Read `agent/book-summary.md`.
+5. Read `agent/concept-map.md`.
+6. Read `agent/claims.md`.
+7. Use `agent/glossary.md` to stabilize terminology.
+8. Use `dianhuo/02-framework/event-condition-matrix-2026-06-07.md` as the current framework source.
+9. Use `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` before treating proposer posture as a variable.
+10. Use `data/ignition-cases.csv` as the current canonical case table.
+11. Use `dianhuo/` only for source tracing, historical reconstruction, or evidence expansion.
+12. Do not treat superseded files as current conclusions.
 
 ## Citation caution
 
