@@ -2,6 +2,13 @@
 title: "前言：不是规律，是火光"
 chapter: 0
 status: "working-draft"
+framework_version: "2026-06-07 event-condition-matrix"
+canonical_status: "current-working-draft"
+derived_from:
+ - agent/current-canon.md
+ - dianhuo/02-framework/event-condition-matrix-2026-06-07.md
+ - dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md
+case_evidence_status: "working-hypothesis; not fully fact-checked"
 keywords:
   - 点火框架
   - Ignition Framework

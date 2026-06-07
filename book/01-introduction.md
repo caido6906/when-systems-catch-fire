@@ -2,6 +2,13 @@
 title: "引言：一条新闻"
 chapter: 1
 status: "working-draft"
+framework_version: "2026-06-07 event-condition-matrix"
+canonical_status: "current-working-draft"
+derived_from:
+ - agent/current-canon.md
+ - dianhuo/02-framework/event-condition-matrix-2026-06-07.md
+ - dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md
+case_evidence_status: "working-hypothesis; not fully fact-checked"
 keywords:
   - 一条新闻
   - 系统重写
