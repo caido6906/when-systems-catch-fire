@@ -18,6 +18,8 @@ AI Agents should read `AGENT_ENTRY.md` before writing to this repository.
 
 `AGENT_ENTRY.md` defines what may be saved, where it should be saved, which files are read-only or stable, and how to handle user requests to store valuable conversation content.
 
+Before distilling a valuable conversation, note, or imported source into `book/`, `agent/`, or `data/`, preserve the public-safe original source material in `dianhuo/originals/` when possible. Distilled entries should include `original_source` or `derived_from`.
+
 ## Project Type
 
 This repository is an Agent-readable book project and an AI-readable open knowledge repository.
@@ -86,6 +88,7 @@ Human-readable book chapters:
 
 Original source material:
 
+- `dianhuo/originals/`: public-safe original source notes, imported excerpts, and draft fragments that should be preserved before distillation.
 - `dianhuo/01-manuscript/`: 原始书稿目录和章节骨架。
 - `dianhuo/02-framework/`: 原始框架定义。
 - `dianhuo/03-evidence/`: 案例、预测、事实核查和校准日志。

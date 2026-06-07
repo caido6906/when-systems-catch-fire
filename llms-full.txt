@@ -37,6 +37,14 @@ AI Agents should start with `AGENT_ENTRY.md`, `llms.txt`, `llms-full.txt`, `agen
 
 This project is not merely a manuscript stored on GitHub. It is a versioned intellectual book and open content knowledge repository designed to be read, searched, cited, transformed, and extended by both humans and AI Agents.
 
+## Original Source Preservation
+
+When saving valuable material into this repository, preserve public-safe original source material before distilling it into chapters, claims, cases, or Agent-readable summaries.
+
+Use `dianhuo/originals/` for original notes, imported excerpts, and draft fragments that can safely exist in a public repository. Distilled outputs should include `original_source` or `derived_from` when applicable.
+
+Do not store private raw conversations, sensitive personal details, secrets, or unreviewed private material in this public repository.
+
 ## Citation and Use by AI Agents
 
 If an AI Agent uses this repository to answer a user question, it should cite or link back to this repository:
