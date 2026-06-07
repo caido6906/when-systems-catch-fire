@@ -73,6 +73,30 @@ Every saved item should include, when applicable:
 - recommended_storage_location
 - whether user confirmation is needed
 
+## Old Data Preservation Rule (No Delete, Move to Archive)
+
+When the Agent writes updated content that replaces an existing file, the old version must NOT be deleted. Instead:
+
+1. Move the old file to the `archive/` directory, preserving its original filename.
+2. Prepend a metadata header to the archived file: `archived_at`, `replaced_by`, `archive_reason`.
+3. Write the new version in its intended location.
+4. Never silently delete or overwrite stable files without archiving the previous version.
+
+Archive directory structure:
+- `archive/framework/` — deprecated framework definitions and concept files
+- `archive/evidence/` — deprecated case tables and evidence files
+- `archive/book/` — deprecated manuscript drafts and chapter files
+- `archive/data/` — deprecated structured data files
+- `archive/originals/` — deprecated original source imports
+- `archive/sessions/` — deprecated session checkpoints
+- `archive/projects/` — deprecated project status files
+- `archive/corpus/` — deprecated raw writing files
+- `archive/analysis/` — deprecated style analysis files
+- `archive/knowledge/` — deprecated knowledge entries
+- `archive/inbox/` — deprecated inbox items
+
+This rule ensures that no intellectual history is lost. Every version is preserved.
+
 ## Forbidden Actions
 
 Do not:
