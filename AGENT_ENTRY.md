@@ -37,6 +37,17 @@ Before writing:
 7. Prefer proposals, checkpoints, inbox, or editor files before stable memory.
 8. Log important changes.
 
+## Content Classification Before Save
+
+Before saving any content into this repository, the Agent must first classify whether the content is:
+
+1. **内容更新 (Content Update)** — New content that advances the repository's purpose. This content should be merged into the main content layers (framework, book, agent, knowledge, corpus, etc.).
+2. **历史数据 (Historical Data)** — Early drafts, superseded versions, intermediate discussions, abandoned directions, or process records. This content should NOT be merged into the main content layers.
+
+For content updates: save to the primary storage layer.
+For historical data: save to an archive or originals layer with clear version and pedigree metadata.
+
+Do not mix historical process data into the main content. This prevents polluting the book, framework, or knowledge base with intermediate drafts and abandoned directions.
 ## Original Source Preservation Rule
 
 Do not save only distilled summaries when original source material can be safely preserved.
