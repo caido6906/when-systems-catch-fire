@@ -2,8 +2,11 @@
 
 Source: Get note `分轨并行：认知结构与写作风格的核心关联`  
 Status: writing-method note  
-Privacy level: public-ready  
-Use: style guidance for this book; not a stable style profile for the user's private writing vault
+canonical: false
+layer: book-writing-methodology
+use_rule: 只用于指导《点火》书稿写作，不得作为点火框架理论证据引用。
+Privacy level: public-ready
+Note: style guidance for this book; not a stable style profile for the user's private writing vault
 
 ## Core Finding
 

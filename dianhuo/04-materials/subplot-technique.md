@@ -1,5 +1,8 @@
 ---
 title: "下注者暗线埋法"
+canonical: false
+layer: book-writing-methodology
+use_rule: 只用于指导《点火》书稿叙事技术，不得作为点火框架理论证据引用。
 source: Get笔记/点火知识库
 status: material-draft
 privacy_level: public

@@ -1,3 +1,12 @@
+---
+canonical: false
+layer: book-writing-methodology
+use_rule: 只用于指导《点火》书稿写作，不得作为点火框架理论证据引用。
+source: Get笔记/点火知识库
+status: material-draft
+privacy_level: public
+---
+
 # Narrative Strategy: Parallel Tracks for Ignition
 
 Source: Get note `《点火》叙事策略：分轨并行写法`

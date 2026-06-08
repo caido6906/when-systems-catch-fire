@@ -1,5 +1,8 @@
 ---
 title: "对外表达姿态"
+canonical: false
+layer: book-writing-methodology
+use_rule: 只用于指导作者公开表达方式，不得作为点火框架理论证据引用。
 source: Get笔记/点火知识库
 status: material-draft
 privacy_level: public

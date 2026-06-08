@@ -1,6 +1,8 @@
 ---
 title: "《点火》书籍定位迭代记录"
-source: Get笔记/点火知识库
+canonical: false
+layer: book-writing-methodology
+use_rule: 只用于记录书稿定位演变，不得作为点火框架理论证据引用。
 status: material-draft
 privacy_level: public
 confidence: high

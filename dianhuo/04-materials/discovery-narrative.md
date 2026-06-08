@@ -1,5 +1,8 @@
 ---
 title: "为什么点火框架是我发现的——七个结构性原因"
+canonical: false
+layer: book-writing-methodology
+use_rule: 只用于记录发现过程和对外表达策略，不替代框架证明。
 source: Get笔记/点火知识库
 status: material-draft
 privacy_level: public
