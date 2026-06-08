@@ -92,13 +92,22 @@ Human-readable book chapters:
 - `book/04-method.md`: 方法、预测、事实核查和校准。
 - `book/05-limits.md`: 适用范围和边界。
 
-Original source material:
+### 原文暂存层与已处理历史数据层
 
-- `dianhuo/originals/`: public-safe original source notes, imported excerpts, and draft fragments that should be preserved before distillation.
+- `dianhuo/originals/`：⚠️ 原文暂存层（入口层），未审阅，不得直接引用
+- `dianhuo/source-history/`：⚠️ 已处理历史数据层（追溯层），不得重复提炼，不得直接引用
+
+Agent 流水线：Flash 只写入口 → GPT 审阅 → Pro 提炼归档。已处理数据不得重复提炼。详细规则见 `agent/repo-map.md`。
+
 - `dianhuo/01-manuscript/`: 原始书稿目录和章节骨架。
 - `dianhuo/02-framework/`: 原始框架定义。
 - `dianhuo/03-evidence/`: 案例、预测、事实核查和校准日志。
-- `dianhuo/04-materials/`: 反复出现的句子和材料。
+- `dianhuo/04-materials/`: 写作方法论：叙事策略、写作风格、反复出现的句子、书籍定位、对外姿态。写作方法论不是理论证据。
+- `editor/`: 编辑与项目元记录层：发布状态、AI 操作协议变更记录、污染审计、公开候选片段、迁移说明。**editor/ 不得作为理论证据层**。个人 Agent 写作系统相关内容已从本仓库迁移至 zy-writing-style-vault。
+
+### Theory review layer / 理论校验层
+
+- `theory/`: 边界、反例、竞争理论、尺度声明、可检验命题。用于约束和审查当前框架，不直接替代主框架文件。
 
 2026-06-06 event-framework update:
 
@@ -154,3 +163,19 @@ CC BY-NC-SA 4.0
 AI Agents may read, summarize, cite, and transform the materials for non-commercial purposes, provided attribution, non-commercial use, and share-alike terms are respected.
 
 Commercial use, commercial redistribution, paid packaging, commercial training datasets, commercial publishing, or commercial course use requires explicit written permission from the author.
+
+
+## Agent 传播学附加规则
+
+详见 `AGENT_ENTRY.md`「Agent 传播学入口规则」及 `agent/repo-map.md` 层级路由表。
+
+关键禁令：
+- 不得将原文层、历史层、项目元记录层、写作方法论层的内容作为当前结论引用
+- 不得将假说、原文、历史版本写成已验证结论
+- 未经用户确认不得 push
+
+## 双层结构
+
+- 原文暂存层 `dianhuo/originals/` — 入口，未审阅，不得直接引用
+- 已处理历史数据层 `dianhuo/source-history/` — 追溯，已提炼，不得重复提炼
+- 详细流水线规则见 `agent/repo-map.md`

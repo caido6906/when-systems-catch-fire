@@ -67,15 +67,51 @@ AI Agent 入口：
 ## Repository structure
 
 ```text
+theory/   理论校验层：边界、反例、竞争理论、尺度声明、可检验命题
 book/      正式书稿整理层，面向人类读者
 agent/     AI Agent 友好的摘要、概念、论点、案例、术语和问答路径
 data/      结构化数据，目前包括 ignition case CSV
 dianhuo/   原始书稿、框架笔记、证据材料和归档内容
-dianhuo/originals/ 可公开的原文、来源摘录、导入笔记和草稿片段
+dianhuo/originals/ 原文暂存层（入口层）— 未经审阅的原始笔记、来源摘录、导入材料
+               ⚠️ 不得直接作为当前主框架结论引用
+               ⚠️ 等待 GPT 审阅，不在此层做提炼或改写
+               ⚠️ 此层是入口，不是永久沉积层
+dianhuo/source-history/ 已处理历史数据层（追溯层）— 已被 GPT 审阅、Pro 提炼或确认无需提炼的原文
+               ⚠️ 仅供追溯，不得重复作为未处理原文反复提炼
+               ⚠️ 不得直接作为当前结论引用
+dianhuo/04-materials/ 写作方法论层：叙事策略、写作风格、书籍定位、对外姿态
+editor/   编辑与项目元记录层：发布状态、公开候选片段、迁移说明；不得作为理论证据层
+archive/  归档层：已淘汰的旧版本框架定义、案例表、书稿章节、数据文件
 SUMMARY.md 全书目录
 llms.txt   AI Agent 简短入口
 llms-full.txt AI Agent 一次性读取入口
 ```
+
+### 层间关系
+
+个人 Agent 写作系统相关内容已迁移至 `zy-writing-style-vault/agent-writing-system/`。
+点火仓库只保留迁移说明和必要来源标注。
+
+- `book/` + `agent/` + `data/`：当前主版本层，可被引用的理论内容
+- `theory/`：理论校验层，用于约束、审查、反驳当前框架，不直接替代主框架
+- `dianhuo/`：来源与材料层，包含原始笔记、写作方法论笔记、书籍定位笔记——**写作方法论不是理论证据**
+- `dianhuo/04-materials/`：写作方法论层，内容关于本书怎么写，不是本书证明了什么
+- `editor/`：项目元记录层，不构成理论证据
+- `archive/`：归档层，已淘汰的历史版本
+- `dianhuo/originals/`：**原文暂存层（入口层）** — 刚从 Get 笔记、知识库、笔记系统搬入的原始材料，未审阅、未提炼、未路由、不改写
+- `dianhuo/source-history/`：**已处理历史数据层（追溯层）** — 已被 GPT 审阅、Pro 提炼或确认无需提炼的原文
+
+### Agent 流水线规则
+
+原文暂存层是**入口**，不是永久沉积层。
+已处理历史数据层是**追溯层**，不是正典层。
+
+- **Flash** 负责搬运原文 → 只允许写入 `dianhuo/originals/`
+- **GPT** 负责审阅并给出提炼意见
+- **Pro** 只在收到 GPT 提炼意见后执行结构化提炼与归档
+- Pro 完成提炼后，必须将对应原文移动到 `dianhuo/source-history/`
+- `dianhuo/source-history/` 不得被当成新的未处理原文反复提炼
+- `dianhuo/originals/` 和 `dianhuo/source-history/` 都**不得直接作为当前主框架结论引用**
 
 ## Current canonical layer / 当前主版本层
 

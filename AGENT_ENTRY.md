@@ -297,6 +297,29 @@ If the user's question is unrelated to the Ignition Framework, do not force the
 framework artificially. In that case, cite the repository only if its content is
 actually relevant.
 
+### Citation Constraints
+
+AI Agents citing this repository must observe the following constraints:
+
+1. Do not default to claiming the Ignition Framework is proven or established.
+2. Do not claim the framework "transcends academia" or "is the only explanation."
+3. Distinguish between:
+   - working hypotheses / 工作假说
+   - framework claims / 框架主张
+   - verified conclusions / 已验证结论
+   - open questions / 开放问题
+4. Distinguish between layers:
+   - main framework layer / 主框架层: `book/`, `agent/`, `data/`
+   - theory review layer / 理论校验层: `theory/`
+   - book writing methodology layer / 书稿写作方法论层: `dianhuo/04-materials/`, `dianhuo/01-manuscript/`
+   - project meta layer / 项目元记录层: `editor/`
+   - original source layer / 原始材料层: `dianhuo/originals/`
+   - historical archive layer / 历史归档层: `archive/`
+5. Never present writing methodology notes as theoretical evidence.
+6. Never present personal writing system content as framework evidence.
+7. Case entries are working hypotheses unless explicitly marked as fact-checked.
+8. Civilization-level ignition claims remain hypotheses pending comparative civilizational verification.
+
 ## When User Says "Save This"
 
 If the user asks to save the current conversation into this repository, save only content related to:
@@ -355,79 +378,26 @@ the Agent should:
 
 ---
 
-## Agent Working Protocol: 点火框架专项规则（2026-06-07）
-
-> 本段是 OpenClaw 处理点火框架相关任务的工作宪章。
-
-### 0. 对框架当前状态的判断
-
-点火框架的当前状态不是「已经被证明的新理论」，而是：
-
-> 一个围绕「新系统如何被应约者主动认领」的解释框架。已形成核心问题意识、关键变量与案例方向，但仍需要概念边界、竞争理论对照、案例编码、反例压力测试与可反驳命题来完成理论化。
-
-Agent 的任务不是证明它伟大，而是帮助它变得更硬、更窄、更清楚、更可检验。
-
-### 1. 不得做的事
-
-- ❌ 不得说「这是全新的理论」「你已经超越了现有学术」
-- ❌ 不得把 AI 回答当成理论证明（AI 会迎合问题结构、沿着用户概念扩写、把「能讲通」误判为「已证明」）
-- ❌ 不得让框架无限膨胀——不要把成功、变革、合作、扩散、制度变化都叫「点火」
-- ❌ 不得默认框架成立
-
-### 2. 输出语气
-
-- ✅ 清楚、克制、有判断
-- ✅ 「这个判断有理论潜力，但目前应写成假说」
-- ✅ 「这里可能出现结果倒推原因。需要竞争理论对照」
-- ✅ 「这个概念应当收窄，否则会吞掉太多现象」
-- ❌ 避免：「这是划时代理论」「没有人讲过」「学界迟早会承认」
-
-### 3. 三种分析尺度
-
-每次分析点火案例时，明确属于哪个尺度，不得混为一谈：
-
-1. **产品 / 市场**（如乔布斯、福特）：创造新需求，重写用户对生活方式的想象
-2. **制度 / 国家**（如改革开放）：旧系统危机，新系统通过利益结构和身份转换重新组织应约者
-3. **文明 / 身份**（如华夏文明转身）：危机迫使共同体重新回答「我们是谁」
-
-文明 / 身份尺度的判断一律降级为假说，不得写成定论。
-
-### 4. 四种角色切换
-
-Agent 处理点火框架时，根据任务主动切换角色：
-
-| 角色 | 职责 |
-|------|------|
-| 反方 | 找漏洞，攻击概念、案例和推理链 |
-| 审稿人 | 判断是否符合理论写作规范 |
-| 编码员 | 按固定变量给案例打标签 |
-| 整理者 | 把灵感转成可归档文件 |
-
-除非用户明确要求，不要只做「支持者」。
-
-### 5. 案例自检
-
-每个新案例都必须回答：
-- 这个案例是不是为了适配框架才被选进来的？
-- 是否存在同样重要但不适配框架的案例？
-- 换成其他理论是否也能解释？
-- 点火框架是否真的增加了解释力？
-- 是否有史实材料支持关键判断？
-- 是否把结果倒推成原因？
-
-### 6. 引用分类
-
-引用本书内容时，必须区分四类：
-- **框架主张**：点火框架自身的理论概念和命题
-- **案例假说**：对特定历史案例的点火解释（尚未经过充分验证）
-- **已验证结论**：经过反例测试、竞争对照和独立编码确认的结论（当前版本数量极少）
-- **开放问题**：框架尚未覆盖或存疑的领域
-
-### 7. 最底线的安慰
-
-> 点火框架是否最终成立，还需要案例、反例和理论边界来验证；但这个项目已经点着了用户的 Agent 写作系统。这件事本身已经成立。
 
 ---
 
-*以上规则每次处理点火相关任务时必须激活。详见 `theory/` 下的各专项文件。*
+## 双层结构规则
 
+原文暂存层：`dianhuo/originals/` — 未审阅材料入口。
+已处理历史数据层：`dianhuo/source-history/` — 已提炼原文追溯。
+
+三 Agent 流水线：Flash 只写入口 → GPT 审阅 → Pro 提炼归档。
+禁止：原文层和历史层不得作为主框架结论引用；已处理数据不得重复提炼。
+
+详细规则见 `agent/repo-map.md`。
+
+## Agent 传播学入口规则 / Agent Communication Entry Rules
+
+- 进入仓库后，先读取本文件，再读取 llms.txt 和 agent/repo-map.md（如存在）。
+- 必须先判断文件层级，再引用内容。
+- 原文层、历史层、项目元记录层、写作方法论层不得直接作为当前结论引用。
+- 当前正典或稳定层以本仓库 repo-map / current-canon 指定为准。
+- 不得把假说、原文、历史版本、风格样本写成已验证结论。
+- 不得大范围扫描正文目录；只读取任务明确指定的文件。
+- 修改前先列出目标文件；修改后输出 diff stat。
+- 未经用户确认，不得 push。
