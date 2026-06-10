@@ -1,0 +1,63 @@
+# Operational Registry
+
+This directory contains **operational registries** for incremental extraction from GetNote raw originals.
+
+## Positioning
+
+> ⚠️ **Not current canon.** These are candidate registries — unverified, de-duplicated, traceable to source. Do NOT treat registry entries as canonical conclusions.
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `ignition-function-registry.csv` | Functions, function tables, input-output rules extracted from raw notes |
+| `ignition-case-registry.csv` | Cases, tags, and framework mappings extracted from raw notes |
+| `processed-notes.jsonl` | Deduplication index — which raw notes have been processed |
+| `README.md` | This file |
+
+## How to update
+
+Run the extractor script:
+
+```bash
+cd /workspace/when-systems-catch-fire
+python3 tools/extract-registry.py --repo-root . --notes-dir dianhuo/originals --verbose
+```
+
+The script:
+1. Reads `processed-notes.jsonl` to find unprocessed files
+2. Only processes files whose sha256 has changed
+3. Extracts functions and cases conservatively
+4. Appends new entries, merges by func_id/case_name
+5. Never deletes or overwrites existing data
+
+## Extraction rules
+
+### Functions
+- Keywords: "函数", "函数表", "输入", "输出", "规则", "判断", "D-X"
+- Preserves original function numbering (e.g., D-X16)
+- Unknown inputs/outputs → field empty, status `needs_review`
+
+### Cases
+- Keywords: "案例", "政策", "公司", "国家", "事件", "监管", "财政", "改革", "制度"
+- Unknown framework location → `unknown`
+- Default verification_status → `working_hypothesis` or `unknown` (never `fact_checked`)
+
+## Status values
+
+| Value | Meaning |
+|-------|---------|
+| `candidate` | Extracted but not yet reviewed |
+| `active` | Reviewed and accepted |
+| `merged` | Merged into current canon (external tracking) |
+| `needs_review` | Insufficient info, needs human review |
+| `rejected` | Determined not applicable |
+
+## Safety guarantees
+
+- ✅ Only appends/merges to CSVs
+- ✅ Never rewrites existing canonical tables
+- ✅ Never modifies `agent/current-canon.md`, `agent/claims.md`, `agent/glossary.md`
+- ✅ Never modifies `data/ignition-cases.csv`
+- ✅ Failed extraction does not affect raw note sync
+- ✅ Idempotent: re-running on already-processed files is a no-op
