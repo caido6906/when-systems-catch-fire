@@ -586,6 +586,8 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Show what would be extracted without writing")
     parser.add_argument("--since-unprocessed", action="store_true", help="Only process unprocessed files")
     parser.add_argument("--verbose", action="store_true", help="Verbose output")
+    parser.add_argument("--files-from", default=None, help="Path to manifest file (one relative path per line)")
+    parser.add_argument("--file", action="append", default=None, help="Relative file path to process (repeatable)")
     args = parser.parse_args()
 
     repo_root = os.path.abspath(args.repo_root)
@@ -596,6 +598,11 @@ def main():
     processed_file = os.path.join(data_dir, "processed-notes.jsonl")
 
     # Validate
+    if args.notes_dir:
+        notes_dir = os.path.join(repo_root, args.notes_dir)
+    else:
+        notes_dir = os.path.join(repo_root, DEFAULT_NOTES_DIR)
+
     if not os.path.isdir(notes_dir):
         print(f"❌ Notes directory not found: {notes_dir}", file=sys.stderr)
         sys.exit(1)
@@ -612,16 +619,67 @@ def main():
     existing_funcs = load_existing_csv(func_csv, FUNC_HEADER)
     existing_cases = load_existing_csv(case_csv, CASE_HEADER)
 
-    # Discover files — sort by mtime (newest first) so --limit targets recent notes
-    all_files = []
-    for fname in os.listdir(notes_dir):
-        if fname.endswith((".md", ".txt")):
-            all_files.append(os.path.join(notes_dir, fname))
-    all_files.sort(key=lambda p: os.path.getmtime(p), reverse=True)
+    # Resolve file list
+    if args.files_from or args.file:
+        # Explicit file list mode — skip directory scan
+        allowed_ext = (".md", ".txt")
+        all_files = []
 
-    if not all_files:
-        print("⚠️  No files found in notes directory")
-        sys.exit(0)
+        # Read from manifest file if specified
+        if args.files_from:
+            manifest_path = os.path.join(repo_root, args.files_from) if not os.path.isabs(args.files_from) else args.files_from
+            if not os.path.isfile(manifest_path):
+                print(f"⚠️  Manifest file not found: {manifest_path}", file=sys.stderr)
+                sys.exit(1)
+            with open(manifest_path, "r", encoding="utf-8") as mf:
+                for line in mf:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    all_files.append(line)
+
+        # Add individual --file entries
+        if args.file:
+            all_files.extend(args.file)
+
+        # Validate paths
+        valid_files = []
+        for rel in all_files:
+            # Strip leading ./
+            rel = rel.lstrip("./")
+            # Check extension
+            if not rel.endswith(allowed_ext):
+                if args.verbose:
+                    print(f"  ⚠️  Skipping non-markdown/txt: {rel}", file=sys.stderr)
+                continue
+            full_path = os.path.join(repo_root, rel)
+            if not os.path.isfile(full_path):
+                if args.verbose:
+                    print(f"  ⚠️  File not found, skipping: {rel}", file=sys.stderr)
+                continue
+            # Ensure file is inside notes_dir
+            rel_from_notes = os.path.relpath(full_path, notes_dir)
+            if rel_from_notes.startswith(".."):
+                if args.verbose:
+                    print(f"  ⚠️  File outside notes_dir, skipping: {rel}", file=sys.stderr)
+                continue
+            valid_files.append(full_path)
+
+        all_files = valid_files
+        if not all_files:
+            print("⚠️  No valid files from manifest/file list")
+            sys.exit(0)
+    else:
+        # Default: discover files from notes directory
+        all_files = []
+        for fname in os.listdir(notes_dir):
+            if fname.endswith((".md", ".txt")):
+                all_files.append(os.path.join(notes_dir, fname))
+        all_files.sort(key=lambda p: os.path.getmtime(p), reverse=True)
+
+        if not all_files:
+            print("⚠️  No files found in notes directory")
+            sys.exit(0)
 
     # Filter: only unprocessed if --since-unprocessed
     if args.since_unprocessed:
