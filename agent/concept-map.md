@@ -1,5 +1,13 @@
 # Concept map
 
+> **Important: Status分层说明**
+> 本文件包含 current core concepts、secondary concepts、pending concepts 和 writing-method terms。AI Agent 不得把 `pending_concept` 或 `writing_method` 直接写成当前理论结论。
+>
+> - `core_current`: 已进入当前正典的核心概念。
+> - `current_secondary`: 已进入当前框架但属于次级变量/辅助解释的概念。
+> - `pending_concept`: 已出现但未完成正典确认的概念。
+> - `writing_method`: 只用于书稿写法，不用于理论证明。
+
 ## Core chain
 
 旧事件失灵 -> 提议者提出方案 -> 应约者接或不接 -> 关键人物 / Key Person 做出关键动作 / Key Action -> 退出权和叙事权结构改变 -> 燃烧条件 / Combustion Conditions 改变 -> 点对了、点不足、点歪了、点反了或负时间差
