@@ -92,6 +92,10 @@ llms-full.txt AI Agent 一次性读取入口
 个人 Agent 写作系统相关内容已迁移至 `zy-writing-style-vault/agent-writing-system/`。
 点火仓库只保留迁移说明和必要来源标注。
 
+**Cross-repo boundary:** `zy-writing-style-vault` is a private writing style repository. It may inform writing style, narrative strategy, and Agent editing workflow for this book, but it must not be used as theoretical evidence for the Ignition Framework. Do not import private corpus content into this public repository unless the user has explicitly marked it public-ready.
+
+**跨仓库边界：** `zy-writing-style-vault` 是私有写作风格库。它可以为《点火》的写作风格、叙事策略和 Agent 编辑流程提供参考，但不得作为点火框架的理论证据。未经用户明确标记 public-ready，不得把私有语料导入本公开仓库。
+
 - `book/` + `agent/` + `data/`：当前主版本层，可被引用的理论内容
 - `theory/`：理论校验层，用于约束、审查、反驳当前框架，不直接替代主框架
 - `dianhuo/`：来源与材料层，包含原始笔记、写作方法论笔记、书籍定位笔记——**写作方法论不是理论证据**
