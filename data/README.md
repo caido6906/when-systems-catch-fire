@@ -25,6 +25,8 @@ Valid status values:
 - `boundary`
 - `fact_checked`
 
+Note: `fact_checked` is a reserved/promoted status. Do not assume the current table contains fact-checked cases unless the specific row is marked `fact_checked` and links to evidence.
+
 No case should be cited as completed proof unless its status is `fact_checked`.
 
 ## Deprecated data
