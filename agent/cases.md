@@ -2,7 +2,9 @@
 
 ## Case index
 
-本文件整理 AI Agent 可快速检索的案例入口。当前事件条件矩阵版工作表见 `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md`；对应 CSV 见 `data/ignition-cases-event-condition-matrix-2026-06-07.csv`。完整 71 项旧工作表仍保留在 `dianhuo/03-evidence/cases/all-cases-71.md`；早期结构化索引见 `data/ignition-cases.csv`。
+本文件整理 AI Agent 可快速检索的案例入口。当前事件条件矩阵版工作表见 `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md`；对应 CSV 见 `data/ignition-cases-event-condition-matrix-2026-06-07.csv`。完整 71 项旧工作表仍保留在 `dianhuo/03-evidence/cases/all-cases-71.md`。
+
+**当前主案例表镜像文件见 `data/ignition-cases.csv`**。其来源表为 `data/ignition-cases-event-condition-matrix-2026-06-07.csv` 与 `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md`。旧 71 项工作表仅作来源追溯。
 
 没有完整证据的条目用“工作假设”标明，不视为已完成事实论证。
 

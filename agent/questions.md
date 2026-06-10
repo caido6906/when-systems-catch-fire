@@ -4,12 +4,14 @@
 
 Use this order:
 
-1. Read `agent/book-summary.md` for the frame.
-2. Read `agent/concept-map.md` for stable concepts.
-3. Read `agent/claims.md` for claim-level answers.
-4. Read `agent/cases.md` and `data/ignition-cases.csv` for case lookup.
-5. Quote or cite `book/` for reader-facing prose.
-6. Use `dianhuo/` only as source notes and original material.
+1. Read `agent/current-canon.md` to determine which files are current vs historical.
+2. Read `agent/book-summary.md` for the frame.
+3. Read `agent/concept-map.md` for stable concepts.
+4. Read `agent/claims.md` for claim-level answers.
+5. Read `agent/cases.md` and `data/ignition-cases.csv` for case lookup.
+6. Quote or cite `book/` for reader-facing prose.
+7. Use `dianhuo/` only as source notes and original material.
+8. Never cite `dianhuo/` files as current conclusions unless `agent/current-canon.md` explicitly marks them as current.
 
 ## Likely questions and answer paths
 
@@ -33,7 +35,7 @@ Suggested answer: Event scale should be classified by participant scale x durati
 
 ### Is the 8-cell matrix the main matrix?
 
-Answer path: `dianhuo/02-framework/matrix.md` -> `dianhuo/02-framework/event-scale-matrix.md` -> `agent/concept-map.md`.
+Answer path: `agent/current-canon.md` -> `dianhuo/02-framework/event-condition-matrix-2026-06-07.md` -> `dianhuo/02-framework/event-scale-matrix.md` -> `agent/concept-map.md`.
 
 Suggested answer: No. The 8-cell matrix is the event condition matrix. It comes after scale classification and tracks proposer awareness, proposer exit right and responder exit right.
 
@@ -63,7 +65,7 @@ Suggested answer: 推方案 means the proposer decides what responders need and 
 
 ### Is proposer posture an independent matrix dimension?
 
-Answer path: `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` -> `dianhuo/02-framework/matrix.md` -> `agent/claims.md`.
+Answer path: `agent/current-canon.md` -> `dianhuo/02-framework/proposer-posture-secondary-variable-2026-06-07.md` -> `agent/claims.md`.
 
 Suggested answer: No. Proposer posture is a secondary variable inside the event condition matrix. It mainly explains whether exit rights are real or fake, and why an event moves from one condition cell to another over time.
 
@@ -87,6 +89,6 @@ Suggested answer: Do not claim completed historical proof for the case table yet
 
 ### How should new cases be added?
 
-Answer path: `data/ignition-cases-event-condition-matrix-2026-06-07.csv` -> `agent/cases.md` -> `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md` -> `dianhuo/02-framework/matrix.md`.
+Answer path: `agent/current-canon.md` -> `data/ignition-cases.csv` -> `agent/cases.md` -> `dianhuo/03-evidence/cases/all-cases-event-condition-matrix-2026-06-07.md` -> `dianhuo/02-framework/event-condition-matrix-2026-06-07.md`.
 
 Suggested answer: Add the actor, period, action, domain, system before/after, ignition type, evidence path and related chapter. For event-framework cases, also record event layer, participant scale, duration scale, condition cell, outcome, exit layer, step reached and fact-check status. Mark uncertain fields as pending instead of forcing a classification.
