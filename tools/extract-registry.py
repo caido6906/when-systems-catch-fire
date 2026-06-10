@@ -253,30 +253,78 @@ def detect_collisions(existing_funcs, new_func):
 # ── CSV I/O ─────────────────────────────────────────────────────────────────
 
 def load_existing_csv(filepath, header):
-    """Load existing CSV entries into a list of dicts."""
+    """Load existing CSV entries into a list of dicts.
+
+    Handles headerless CSVs: when the first row contains data (not standard
+    header names), csv.DictReader uses data as fieldnames.  We detect that
+    condition and remap columns by position using *header*.
+    """
     entries = []
     if not os.path.exists(filepath):
         return entries
     try:
         with open(filepath, "r", encoding="utf-8-sig") as f:
-            reader = csv.DictReader(f)
-            if reader.fieldnames:
+            sample = f.read(4096)
+        f2 = io.StringIO(sample)
+        first_line = f2.readline().strip()
+        is_headerless = not any(h in first_line for h in header)
+
+        with open(filepath, "r", encoding="utf-8") as f:
+            if is_headerless:
+                reader = csv.reader(f)
                 for row in reader:
-                    entries.append(row)
+                    entry = {}
+                    for idx, col_name in enumerate(header):
+                        if idx < len(row):
+                            entry[col_name] = row[idx]
+                        else:
+                            entry[col_name] = ""
+                    entries.append(entry)
+            else:
+                f.seek(0)
+                reader = csv.DictReader(f)
+                if reader.fieldnames:
+                    for row in reader:
+                        entries.append(row)
     except (OSError, csv.Error) as e:
         print(f"  ⚠️  Warning: could not read {filepath}: {e}", file=sys.stderr)
     return entries
 
 
 def save_csv(filepath, header, entries):
-    """Append entries to CSV file, creating it with header if needed."""
-    write_header = not os.path.exists(filepath)
-    with open(filepath, "a", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=header, lineterminator="\n")
-        if write_header:
+    """Append entries to CSV file, creating it with header if needed.
+
+    If the file already exists but is headerless (first line does not contain
+    standard header names), prepend the header before appending.
+    """
+    needs_header = not os.path.exists(filepath)
+    if not needs_header:
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                first_line = f.readline().strip()
+            if not any(h in first_line for h in header):
+                needs_header = True
+        except OSError:
+            pass
+
+    if needs_header and entries:
+        # Rewrite file with header prepended
+        with open(filepath, "r", encoding="utf-8") as f:
+            existing_content = f.read()
+        with open(filepath, "w", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=header, lineterminator="\n")
             writer.writeheader()
-        for entry in entries:
-            writer.writerow({h: entry.get(h, "") for h in header})
+            f.write(existing_content)
+        # Now append new entries using append mode
+        with open(filepath, "a", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=header, lineterminator="\n")
+            for entry in entries:
+                writer.writerow({h: entry.get(h, "") for h in header})
+    elif entries:
+        with open(filepath, "a", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=header, lineterminator="\n")
+            for entry in entries:
+                writer.writerow({h: entry.get(h, "") for h in header})
 
 
 def load_processed_index(filepath):
@@ -697,7 +745,14 @@ def main():
                     filtered.append(f)
                 elif args.verbose:
                     print(f"  ⏭️  Skip (unchanged): {rel}")
-        all_files = filtered or all_files  # fallback to all if none changed
+        # Do NOT fall back: if all files are unchanged, skip entirely
+        if not filtered:
+            if args.dry_run:
+                print(f"🔍 DRY RUN: 0 files to process (all unchanged or already processed)")
+            else:
+                print("✅ Nothing to process (all files unchanged or already processed)")
+            sys.exit(0)
+        all_files = filtered
 
     # Limit
     if args.limit > 0:
@@ -708,7 +763,7 @@ def main():
         sys.exit(0)
 
     if args.dry_run:
-        print(f"🔍 DRY RUN: would process {len(all_files)} files")
+        print(f"🔍 DRY RUN: would process {len(all_files)} file(s)")
         print("=" * 60)
 
     total_funcs = 0
