@@ -69,6 +69,114 @@ CASE_HEADER = [
 ]
 
 
+# --- Chinese unified table constants ---
+DEFAULT_UNIFIED_FUNC_CSV = os.path.join(DEFAULT_DATA_DIR, "统一函数总表.csv")
+DEFAULT_UNIFIED_CASE_CSV = os.path.join(DEFAULT_DATA_DIR, "统一案例总表.csv")
+
+UNIFIED_FUNC_HEADER = [
+    "函数ID", "函数名称", "函数类型", "输入变量", "输出判断", "规则摘要", "操作用途", "关联案例",
+    "来源笔记ID", "来源文件", "来源哈希", "首次发现时间", "最后更新时间", "状态", "置信度", "备注",
+]
+
+UNIFIED_CASE_HEADER = [
+    "案例ID", "案例名称", "案例类型", "框架位置", "关联函数ID", "事件层级", "参与者规模",
+    "验证状态", "状态", "交叉引用", "摘要", "来源笔记ID", "来源文件", "来源哈希",
+    "首次发现时间", "最后更新时间", "备注",
+]
+
+# Header mapping from old-style keys to Chinese header names
+# Keys are source field names; values are Chinese header names.
+# Only include keys that actually appear in extracted entries.
+_FUNC_TO_CHINESE = {
+    "func_id": "函数ID",
+    "func_label": "函数名称",
+    "func_type": "函数类型",
+    "inputs": "输入变量",
+    "output": "输出判断",
+    "rule_summary": "规则摘要",
+    "operational_use": "操作用途",
+    "status": "状态",
+    "confidence": "置信度",
+    "source_note_id": "来源笔记ID",
+    "source_file": "来源文件",
+    "sha256": "来源哈希",
+    "created_at": "首次发现时间",
+    "updated_at": "最后更新时间",
+    "cross_refs": "关联案例",
+}
+
+_CASE_TO_CHINESE = {
+    "case_id": "案例ID",
+    "case_name": "案例名称",
+    "case_type": "案例类型",
+    "framework_location": "框架位置",
+    "function_ref": "关联函数ID",
+    "event_layer": "事件层级",
+    "participant_scale": "参与者规模",
+    "verification_status": "验证状态",
+    "status": "状态",
+    "summary": "摘要",
+    "cross_refs": "交叉引用",
+    "source_note_id": "来源笔记ID",
+    "source_file": "来源文件",
+    "sha256": "来源哈希",
+    "created_at": "首次发现时间",
+    "updated_at": "最后更新时间",
+    "note": "备注",
+}
+
+
+# ── Route detector ──────────────────────────────────────────────────────────
+
+def detect_unified_route(filepath):
+    """Detect routing based on filename (and first 5 lines of content if readable).
+
+    Returns: "unified_function_table" | "unified_case_table" | "raw_only"
+    """
+    name = os.path.basename(filepath)
+    first_lines = ""
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            first_lines = "\n".join(f.readlines()[:5])
+    except (OSError, UnicodeDecodeError):
+        pass
+    haystack = f"{name}\n{first_lines}"
+    if "统一函数总表" in haystack:
+        return "unified_function_table"
+    if "统一案例总表" in haystack:
+        return "unified_case_table"
+    return "raw_only"
+
+
+def map_entry_to_chinese(entry, header_map, default_key, default_name_prefix):
+    """Map an old-style dict entry to a Chinese-header dict.
+
+    Uses the provided key-function for dedup. If the entry has no ID, generates
+    a default one from source_note_id.
+    """
+    now = datetime.now(timezone.utc).isoformat()
+    mapped = {}
+    for old_key, ch_name in header_map.items():
+        mapped[ch_name] = entry.get(old_key, "")
+
+    # Ensure ID is set
+    entry_id = mapped.get("函数ID", "") if default_key == "函数ID" else mapped.get("案例ID", "")
+    if not entry_id:
+        note_id = entry.get("source_note_id", "unknown")
+        idx = str(int(now[-2:]) % 100).zfill(2) if "函数ID" in header_map else "01"
+        mapped["函数ID" if default_key == "函数ID" else "案例ID"] = f"{default_name_prefix}-{note_id}-{idx}"
+
+    # Ensure status and created_at/updated_at are set
+    if "状态" not in mapped:
+        mapped["状态"] = "candidate"
+    if "首次发现时间" not in mapped:
+        mapped["首次发现时间"] = now
+    if "最后更新时间" not in mapped:
+        mapped["最后更新时间"] = now
+
+    return mapped
+
+
 # ── Helpers ─────────────────────────────────────────────────────────────────
 
 def sha256_file(filepath):
@@ -357,6 +465,228 @@ def append_processed_entry(filepath, entry):
 
 # ── Extraction ──────────────────────────────────────────────────────────────
 
+# ── Markdown table parser (GRS-6a) ───────────────────────────────────────
+
+def parse_markdown_tables(text):
+    """
+    Return list[list[list[str]]]. Parse simple markdown tables:
+    | A | B |
+    |---|---|
+    | x | y |
+    Each table is represented as a list of rows, each row is a list of cell strings.
+    Multiple tables are returned in document order.
+    """
+    tables = []
+    # Match a table: starts with a header row, has at least one separator row, then data rows
+    # We look for lines matching the pattern: optional leading |, cell separated by |
+    lines = text.split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        # Detect header row: must start and end with | (or be a cell list)
+        if "|" in line and not line.startswith("|-") and not line.startswith("-|"):
+            header_cells = [c.strip() for c in line.split("|")[1:-1]]
+            if header_cells and len(header_cells) >= 2:  # must have at least 2 columns
+                rows = [header_cells]
+                i += 1
+                # Look for separator row and data rows
+                while i < len(lines):
+                    sep = lines[i].strip()
+                    # Check for separator row: all dashes, pipes, and spaces
+                    if re.match(r'^\|?[\s:|-]+\|?$', sep) and "---" in sep.replace(" ", "").replace(":", ""):
+                        i += 1
+                        continue
+                    # Check if this is a data row (contains |)
+                    if "|" in sep:
+                        data_cells = [c.strip() for c in sep.split("|")[1:-1]]
+                        # Pad or truncate to header length
+                        if len(data_cells) < len(header_cells):
+                            data_cells += [""] * (len(header_cells) - len(data_cells))
+                        elif len(data_cells) > len(header_cells):
+                            data_cells = data_cells[:len(header_cells)]
+                        rows.append(data_cells)
+                        i += 1
+                    else:
+                        break
+                if len(rows) > 1:  # must have at least header + 1 data row
+                    tables.append(rows)
+            else:
+                i += 1
+        else:
+            i += 1
+    return tables
+
+
+# ── Field alias maps for unified function table ───────────────────────────
+
+_FUNC_ALIASES = {
+    "函数ID": ["函数ID", "编号", "func_id", "ID"],
+    "函数名称": ["函数名称", "名称", "函数名", "func_label", "label"],
+    "函数类型": ["函数类型", "类型", "func_type"],
+    "输入变量": ["输入变量", "输入", "inputs", "input"],
+    "输出判断": ["输出判断", "输出", "output"],
+    "规则摘要": ["规则摘要", "规则", "判断逻辑", "规则", "rule_summary", "rule"],
+    "操作用途": ["操作用途", "用途", "operational_use"],
+    "关联案例": ["关联案例", "关联函数", "related_case", "cross_refs"],
+    "状态": ["状态", "status"],
+    "置信度": ["置信度", "confidence"],
+    "备注": ["备注", "note"],
+}
+
+_CASE_ALIASES = {
+    "案例ID": ["案例ID", "编号", "case_id", "ID"],
+    "案例名称": ["案例名称", "名称", "case_name", "label"],
+    "案例类型": ["案例类型", "类型", "case_type"],
+    "框架位置": ["框架位置", "框架", "framework_location", "location"],
+    "关联函数ID": ["关联函数ID", "关联函数", "function_ref", "func_ref"],
+    "事件层级": ["事件层级", "层级", "event_layer"],
+    "参与者规模": ["参与者规模", "规模", "participant_scale", "scale"],
+    "验证状态": ["验证状态", "验证", "verification_status", "vstatus"],
+    "状态": ["状态", "status"],
+    "交叉引用": ["交叉引用", "cross_refs", "refs"],
+    "摘要": ["摘要", "summary", "desc"],
+    "备注": ["备注", "note"],
+}
+
+
+def _build_col_map(header_cells, aliases):
+    """
+    Given a list of header cell strings and the aliases dict,
+    return {target_header: column_index} for matched columns.
+    """
+    col_map = {}
+    for target, aliases_list in aliases.items():
+        lower_aliases = [a.lower() for a in aliases_list]
+        for idx, cell in enumerate(header_cells):
+            if cell.lower() in lower_aliases:
+                col_map[target] = idx
+                break
+    return col_map
+
+
+def _row_to_dict(row_cells, col_map):
+    """Map a row's cell values into a dict using the column map."""
+    d = {}
+    for target, idx in col_map.items():
+        if idx < len(row_cells):
+            d[target] = row_cells[idx].strip()
+        else:
+            d[target] = ""
+    return d
+
+
+def _extract_from_table_rows(table_rows, aliases, default_status, now, note_id, source_file, source_hash):
+    """
+    Parse a list of table rows (from parse_markdown_tables) into a list of entry dicts.
+    Each dict gets source metadata fields appended.
+    """
+    if not table_rows or len(table_rows) < 2:
+        return []
+
+    header_cells = table_rows[0]
+    col_map = _build_col_map(header_cells, aliases)
+
+    entries = []
+    for row in table_rows[1:]:
+        d = _row_to_dict(row, col_map)
+        # Skip rows that are essentially empty
+        if not any(d.values()):
+            continue
+
+        # Ensure required fields
+        if "状态" not in d or not d["状态"]:
+            d["状态"] = default_status
+        d["首次发现时间"] = now
+        d["最后更新时间"] = now
+        d["来源笔记ID"] = note_id
+        d["来源文件"] = source_file
+        d["来源哈希"] = source_hash
+        entries.append(d)
+
+    return entries
+
+
+def extract_unified_function_rows(text, source_note_id, source_file, source_hash, now):
+    """
+    Parse Markdown tables from unified function table notes.
+    Returns list[dict] conforming to UNIFIED_FUNC_HEADER.
+    """
+    tables = parse_markdown_tables(text)
+    all_entries = []
+
+    for table_rows in tables:
+        entries = _extract_from_table_rows(
+            table_rows, _FUNC_ALIASES,
+            default_status="candidate", now=now,
+            note_id=source_note_id, source_file=source_file, source_hash=source_hash,
+        )
+        all_entries.extend(entries)
+
+    # If no rows parsed, produce a needs_review candidate
+    if not all_entries:
+        all_entries.append({
+            "函数ID": "",
+            "函数名称": "parse_fail_no_rows",
+            "函数类型": "",
+            "输入变量": "",
+            "输出判断": "",
+            "规则摘要": "",
+            "操作用途": "",
+            "关联案例": "",
+            "来源笔记ID": source_note_id,
+            "来源文件": source_file,
+            "来源哈希": source_hash,
+            "首次发现时间": now,
+            "最后更新时间": now,
+            "状态": "needs_review",
+            "置信度": "low",
+            "备注": "markdown table parsed but yielded no rows",
+        })
+
+    return all_entries
+
+
+def extract_unified_case_rows(text, source_note_id, source_file, source_hash, now):
+    """
+    Parse Markdown tables from unified case table notes.
+    Returns list[dict] conforming to UNIFIED_CASE_HEADER.
+    """
+    tables = parse_markdown_tables(text)
+    all_entries = []
+
+    for table_rows in tables:
+        entries = _extract_from_table_rows(
+            table_rows, _CASE_ALIASES,
+            default_status="candidate", now=now,
+            note_id=source_note_id, source_file=source_file, source_hash=source_hash,
+        )
+        all_entries.extend(entries)
+
+    # If no rows parsed, produce a needs_review candidate
+    if not all_entries:
+        all_entries.append({
+            "案例ID": "",
+            "案例名称": "parse_fail_no_rows",
+            "案例类型": "",
+            "框架位置": "",
+            "关联函数ID": "",
+            "事件层级": "",
+            "参与者规模": "",
+            "验证状态": "working_hypothesis",
+            "状态": "needs_review",
+            "交叉引用": "",
+            "摘要": "",
+            "来源笔记ID": source_note_id,
+            "来源文件": source_file,
+            "来源哈希": source_hash,
+            "首次发现时间": now,
+            "最后更新时间": now,
+            "备注": "markdown table parsed but yielded no rows",
+        })
+
+    return all_entries
+
+
 def extract_functions_from_text(text, note_id, source_file):
     """Extract function candidates from raw note text."""
     functions = []
@@ -572,7 +902,7 @@ def merge_entries(existing, new_entries, key_fn):
 # ── Main Logic ──────────────────────────────────────────────────────────────
 
 def process_file(filepath, notes_dir, dry_run, verbose):
-    """Process a single raw note file."""
+    """Process a single raw note file with title-based routing."""
     rel_path = os.path.relpath(filepath, notes_dir)
     note_id = extract_note_id(filepath)
     file_sha = sha256_file(filepath)
@@ -590,38 +920,75 @@ def process_file(filepath, notes_dir, dry_run, verbose):
         print(f"  ⚠️  Cannot read {rel_path}: {e}", file=sys.stderr)
         return rel_path, 0, 0
 
-    # Extract (always extract, even in dry-run — just don't write in dry-run)
-    functions = extract_functions_from_text(text, note_id, rel_path)
-    cases = extract_cases_from_text(text, note_id, rel_path)
+    # ── Route detection ──
+    route = detect_unified_route(filepath)
 
+    if route == "raw_only":
+        # Non-unified-table note: skip extraction entirely for performance
+        processed_entry = {
+            "source_file": rel_path,
+            "source_note_id": note_id,
+            "sha256": file_sha,
+            "processed_at": datetime.now(timezone.utc).isoformat(),
+            "functions_added": 0,
+            "cases_added": 0,
+            "route": "raw_only_skipped",
+            "status": "processed_raw_only",
+        }
+        if verbose:
+            print(f"  ⏭️  {rel_path}: Skip registry route: raw-only note")
+        # Return empty results but include processed_entry
+        return rel_path, 0, 0, processed_entry, None, None
+
+    # ── Unified table route ──
+    now_utc = datetime.now(timezone.utc).isoformat()
+    unified_funcs = []
+    unified_cases = []
+
+    if route == "unified_function_table":
+        unified_funcs = extract_unified_function_rows(text, note_id, rel_path, file_sha, now_utc)
+        unified_cases = []
+    elif route == "unified_case_table":
+        unified_funcs = []
+        unified_cases = extract_unified_case_rows(text, note_id, rel_path, file_sha, now_utc)
+
+    n_funcs = len(unified_funcs)
+    n_cases = len(unified_cases)
     if verbose:
-        n_funcs = len(functions)
-        n_cases = len(cases)
-        print(f"  📄 {rel_path}")
+        route_label = route.replace("_", " ").title()
+        print(f"  📄 {rel_path} [{route_label}]")
         if n_funcs:
-            print(f"    → {n_funcs} function(s) extracted:")
-            for fn in functions:
-                fid = fn['func_id'] or "(unnamed)"
-                print(f"      {fid}: {fn['func_label'][:60]}")
+            print(f"    → {n_funcs} function(s) extracted from markdown table:")
+            for fn in unified_funcs:
+                fid = fn.get("函数ID", "") or "(unnamed)"
+                fname = fn.get("函数名称", "")
+                print(f"      {fid}: {fname[:60] if fname else ''}")
         if n_cases:
-            print(f"    → {n_cases} case(s) extracted:")
-            for cs in cases:
-                print(f"      {cs['case_name'][:60]}")
+            print(f"    → {n_cases} case(s) extracted from markdown table:")
+            for cs in unified_cases:
+                cname = cs.get("案例名称", "")
+                print(f"      {cname[:60] if cname else ''}")
 
     # Update processed index entry
     processed_entry = {
         "source_file": rel_path,
         "source_note_id": note_id,
         "sha256": file_sha,
-        "processed_at": datetime.now(timezone.utc).isoformat(),
-        "functions_added": len(functions),
-        "cases_added": len(cases),
-        "status": "processed",
+        "processed_at": now_utc,
+        "functions_added": n_funcs,
+        "cases_added": n_cases,
+        "route": route,
+        "status": f"processed_{route}",
     }
 
-    # Always return a consistent 6-tuple:
-    # (rel_path, n_functions, n_cases, processed_entry_or_None, functions_or_None, cases_or_None)
-    return rel_path, len(functions), len(cases), processed_entry, functions, cases
+    # For unified routes, return the new-style entry dicts (they already have _route tag via route param)
+    # Tag with route for main()-side routing
+    for fn in unified_funcs:
+        fn["_route"] = route
+    for cs in unified_cases:
+        cs["_route"] = route
+
+    return rel_path, n_funcs, n_cases, processed_entry, unified_funcs or None, unified_cases or None
 
 
 def main():
@@ -643,6 +1010,8 @@ def main():
     data_dir = os.path.join(repo_root, DEFAULT_DATA_DIR)
     func_csv = os.path.join(data_dir, "ignition-function-registry.csv")
     case_csv = os.path.join(data_dir, "ignition-case-registry.csv")
+    unified_func_csv = os.path.join(data_dir, "统一函数总表.csv")
+    unified_case_csv = os.path.join(data_dir, "统一案例总表.csv")
     processed_file = os.path.join(data_dir, "processed-notes.jsonl")
 
     # Validate
@@ -787,7 +1156,8 @@ def main():
         # Only update index if we extracted something
         if nf > 0 or nc > 0:
             processed_entry = result[3]
-            new_entries.append((rel_path, nf, nc, processed_entry))
+            # Store full result for unified routes (need result[4], result[5])
+            new_entries.append((rel_path, nf, nc, processed_entry, result[4], result[5]))
             total_funcs += nf
             total_cases += nc
 
@@ -801,37 +1171,132 @@ def main():
         print(f"✅ Processed {len(all_files)} files, 0 new functions and 0 new cases")
         return
 
-    # Merge functions
-    new_funcs = []
-    for item in new_entries:
-        # We need the actual extracted functions; re-read isn't possible from result
-        # So we store them during process_file. Let's adjust: re-extract for merging
-        pass
-
-    # Actually, let's restructure: re-extract from files that had new entries
-    # This is simpler and ensures we have the full data for merging
-    files_to_merge = [item[0] for item in new_entries]  # rel_path list
-
+    # Re-extract from files that had new entries.
+    # For unified routes, process_file already returns new-style dicts.
+    # For legacy routes, we still need to re-call old extractors.
     all_new_funcs = []
     all_new_cases = []
     all_processed = []
 
-    for rel_path, nf, nc, processed_entry in new_entries:
-        full_path = os.path.join(notes_dir, rel_path)
-        note_id = extract_note_id(full_path)
-        funcs = extract_functions_from_text(open(full_path, "r", encoding="utf-8").read(), note_id, rel_path)
-        cases = extract_cases_from_text(open(full_path, "r", encoding="utf-8").read(), note_id, rel_path)
-        all_new_funcs.extend(funcs)
-        all_new_cases.extend(cases)
+    for rel_path, nf, nc, processed_entry, funcs_data, cases_data in new_entries:
+        route = processed_entry.get("route", "")
+
+        if route in ("unified_function_table", "unified_case_table"):
+            # process_file already returned the new-style dicts in result[4] and result[5]
+            if funcs_data:
+                for fn in funcs_data:
+                    fn["_route"] = route
+                all_new_funcs.extend(funcs_data)
+            if cases_data:
+                for cs in cases_data:
+                    cs["_route"] = route
+                all_new_cases.extend(cases_data)
+        else:
+            # Legacy route: re-call old extractors
+            full_path = os.path.join(notes_dir, rel_path)
+            note_id = extract_note_id(full_path)
+            with open(full_path, "r", encoding="utf-8") as fh:
+                ftext = fh.read()
+            funcs = extract_functions_from_text(ftext, note_id, rel_path)
+            cases = extract_cases_from_text(ftext, note_id, rel_path)
+            for fn in funcs:
+                fn["_route"] = route
+            for cs in cases:
+                cs["_route"] = route
+            all_new_funcs.extend(funcs)
+            all_new_cases.extend(cases)
         all_processed.append(processed_entry)
 
-    # Dedup and merge
-    merged_funcs, just_new_funcs = merge_entries(existing_funcs, all_new_funcs, func_key)
-    merged_cases, just_new_cases = merge_entries(existing_cases, all_new_cases, case_key)
+    # ── Split by route ──
+    # English registry: only entries with no route (legacy)
+    english_funcs = [e for e in all_new_funcs if not e.get("_route")]
+    english_cases = [e for e in all_new_cases if not e.get("_route")]
 
-    # Save
-    save_csv(func_csv, FUNC_HEADER, just_new_funcs)
-    save_csv(case_csv, CASE_HEADER, just_new_cases)
+    # Unified function table: entries routed to unified_function_table
+    unified_func_entries = [e for e in all_new_funcs if e.get("_route") == "unified_function_table"]
+    unified_case_entries = [e for e in all_new_cases if e.get("_route") == "unified_case_table"]
+
+    # ── Save English registries (only legacy entries) ──
+    if english_funcs:
+        merged_funcs, just_new_funcs = merge_entries(existing_funcs, english_funcs, func_key)
+        save_csv(func_csv, FUNC_HEADER, just_new_funcs)
+    else:
+        just_new_funcs = []
+
+    if english_cases:
+        merged_cases, just_new_cases = merge_entries(existing_cases, english_cases, case_key)
+        save_csv(case_csv, CASE_HEADER, just_new_cases)
+    else:
+        just_new_cases = []
+
+    # ── Save Chinese unified tables ──
+    chinese_func_new = []
+    chinese_case_new = []
+    english_only_funcs = []
+    english_only_cases = []
+
+    if unified_func_entries:
+        # Entries from new extractors are already Chinese-header format.
+        # Entries from old extractors need mapping.
+        for entry in unified_func_entries:
+            if "函数ID" in entry and entry["函数ID"]:
+                # Already in Chinese format (from new extractors)
+                chinese_func_new.append(entry)
+            else:
+                # Old-style entry, needs mapping
+                mapped = map_entry_to_chinese(entry, _FUNC_TO_CHINESE, "函数ID", "F")
+                chinese_func_new.append(mapped)
+
+        # Load existing Chinese table entries
+        existing_chinese_funcs = load_existing_csv(unified_func_csv, UNIFIED_FUNC_HEADER)
+
+        # Dedup key for Chinese function table
+        def _cf_key(entry):
+            fid = entry.get("函数ID", "")
+            if fid:
+                return f"id:{fid}"
+            src = entry.get("来源笔记ID", "")
+            name = entry.get("函数名称", "")
+            return f"label:{name}|src:{src}"
+
+        if chinese_func_new:
+            merged_chinese_funcs, just_new_chinese_funcs = merge_entries(
+                existing_chinese_funcs, chinese_func_new, _cf_key)
+            # English-only functions (no route) were already handled above
+            if just_new_chinese_funcs:
+                save_csv(unified_func_csv, UNIFIED_FUNC_HEADER, just_new_chinese_funcs)
+
+    if unified_case_entries:
+        # Entries from new extractors are already Chinese-header format.
+        # Entries from old extractors need mapping.
+        for entry in unified_case_entries:
+            if "案例ID" in entry and entry["案例ID"]:
+                # Already in Chinese format (from new extractors)
+                chinese_case_new.append(entry)
+            else:
+                # Old-style entry, needs mapping
+                mapped = map_entry_to_chinese(entry, _CASE_TO_CHINESE, "案例ID", "C")
+                chinese_case_new.append(mapped)
+
+        # Load existing Chinese table entries
+        existing_chinese_cases = load_existing_csv(unified_case_csv, UNIFIED_CASE_HEADER)
+
+        # Dedup key for Chinese case table
+        def _cc_key(entry):
+            cid = entry.get("案例ID", "")
+            if cid:
+                return f"id:{cid}"
+            name = entry.get("案例名称", "")
+            src = entry.get("来源笔记ID", "")
+            return f"name:{name}|src:{src}"
+
+        if chinese_case_new:
+            merged_chinese_cases, just_new_chinese_cases = merge_entries(
+                existing_chinese_cases, chinese_case_new, _cc_key)
+            if just_new_chinese_cases:
+                save_csv(unified_case_csv, UNIFIED_CASE_HEADER, just_new_chinese_cases)
+    else:
+        just_new_chinese_cases = []
 
     # Update processed index
     for pe in all_processed:
@@ -839,22 +1304,43 @@ def main():
         processed_index = [e for e in processed_index if e.get("source_file") != pe["source_file"]]
         append_processed_entry(processed_file, pe)
 
+    # Summary
+    chinese_func_count = len(chinese_func_new)
+    chinese_case_count = len(chinese_case_new)
     print(f"✅ Done: {len(all_files)} files processed")
-    print(f"   Functions: {total_funcs} extracted, {len(just_new_funcs)} new entries added")
-    print(f"   Cases:     {total_cases} extracted, {len(just_new_cases)} new entries added")
+    print(f"   Functions: {total_funcs} extracted")
+    if english_funcs:
+        print(f"     → English registry: {len(just_new_funcs)} new entries")
+    if chinese_func_new:
+        print(f"     → Unified function table: {chinese_func_count} entries mapped, {len(chinese_func_new) - len(english_only_funcs)} new")
+    if chinese_case_new:
+        print(f"     → Unified case table: {chinese_case_count} entries mapped, {len(chinese_case_new) - len(english_only_cases)} new")
+    print(f"   Cases: {total_cases} extracted")
+    if english_cases:
+        print(f"     → English registry: {len(just_new_cases)} new entries")
     print(f"   Registries: {func_csv}, {case_csv}")
+    if chinese_func_new or chinese_case_new:
+        print(f"   Unified: {unified_func_csv}, {unified_case_csv}")
     print(f"   Index: {processed_file}")
 
     if args.verbose:
         print()
         if just_new_funcs:
-            print("New functions:")
+            print("New functions (English):")
             for f in just_new_funcs:
                 print(f"  {f['func_id'] or '(unnamed)'}: {f['func_label'][:50]}")
         if just_new_cases:
-            print("New cases:")
+            print("New cases (English):")
             for c in just_new_cases:
                 print(f"  {c['case_name'][:50]}")
+        if chinese_func_new:
+            print("New entries (Unified function table):")
+            for f in chinese_func_new:
+                print(f"  {f.get('函数ID', '(unnamed)')}: {f.get('函数名称', '')[:50]}")
+        if chinese_case_new:
+            print("New entries (Unified case table):")
+            for c in chinese_case_new:
+                print(f"  {c.get('案例ID', '(unnamed)')}: {c.get('案例名称', '')[:50]}")
 
 
 if __name__ == "__main__":

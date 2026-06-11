@@ -10,10 +10,24 @@ This directory contains **operational registries** for incremental extraction fr
 
 | File | Purpose |
 |------|---------|
-| `ignition-function-registry.csv` | Functions, function tables, input-output rules extracted from raw notes |
-| `ignition-case-registry.csv` | Cases, tags, and framework mappings extracted from raw notes |
+| `ignition-function-registry.csv` | Functions, function tables, input-output rules extracted from raw notes (legacy/compatibility) |
+| `ignition-case-registry.csv` | Cases, tags, and framework mappings extracted from raw notes (legacy/compatibility) |
+| `统一函数总表.csv` | High-frequency unified function table — notes titled "统一函数总表" only |
+| `统一案例总表.csv` | High-frequency unified case table — notes titled "统一案例总表" only |
 | `processed-notes.jsonl` | Deduplication index — which raw notes have been processed |
 | `README.md` | This file |
+
+## High-frequency sync path: Unified function/case tables
+
+The high-frequency heartbeat task only routes notes whose title explicitly contains `统一函数总表` or `统一案例总表` into structured tables.
+
+- `统一函数总表` → `data/registry/统一函数总表.csv`
+- `统一案例总表` → `data/registry/统一案例总表.csv`
+- All other notes → raw-only sync, no registry extraction
+
+This design supports 5–15 minute high-frequency sync: GetNote brain generates dedicated unified table notes, OpenClaw handles local incremental merge, dedup, source tracing, and pushes to GitHub.
+
+The old English registry files are retained as a historical compatibility layer and are NOT the high-frequency sync primary path.
 
 ## How to update
 
