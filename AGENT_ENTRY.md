@@ -18,12 +18,14 @@ Before writing anything, read in this order:
 
 1. `AGENT_ENTRY.md`
 2. `agent/current-canon.md`
-3. `README.md`
-4. `llms.txt`
-5. `AGENTS.md` if present
-6. repository-specific protocol files if present
-7. `agent/reading-path.md` if present
-8. relevant files under `agent/`, `book/`, `data/`, `dianhuo/`, `dianhuo/originals/`, or `editor/`
+3. `data/registry/统一函数总表.csv` — 当前 D-X 函数层入口
+4. `data/registry/统一案例总表.csv` — 当前案例层入口
+5. `README.md`
+6. `llms.txt`
+7. `AGENTS.md` if present
+8. repository-specific protocol files if present
+9. `agent/reading-path.md` if present
+10. relevant files under `agent/`, `book/`, `data/`, `dianhuo/`, `dianhuo/originals/`, or `editor/`
 
 ## Current Canon Rule
 
@@ -32,13 +34,22 @@ Before answering, saving, editing, or restructuring this repository, identify th
 Start from:
 
 1. `agent/current-canon.md`
-2. `llms.txt`
-3. `agent/book-summary.md`
-4. `agent/concept-map.md`
-5. `agent/claims.md`
-6. `data/ignition-cases.csv`
+2. `data/registry/统一函数总表.csv` — D-X 函数层（operational registry，不等于全部 canon）
+3. `data/registry/统一案例总表.csv` — 案例层（operational registry，不等于全部 canon）
+4. `llms.txt`
+5. `agent/book-summary.md`
+6. `agent/concept-map.md`
+7. `agent/claims.md`
+8. `data/ignition-cases.csv`
 
 Files under `dianhuo/` may contain original notes, old drafts, historical framework versions, and superseded conclusions.
+
+### Registry 层规则
+
+- `data/registry/统一函数总表.csv` 和 `统一案例总表.csv` 是 operational registries，用于增量提取和快速查询。
+- 它们**不等于**全部 canonical。状态字段为 `candidate` / `working_hypothesis` / `needs_review` / `fact_checked` 等。
+- 不得默认把 `candidate` 当事实核验完成。
+- 引用函数或案例时，优先引用 canonical 层文件（`agent/current-canon.md`、`data/ignition-cases.csv`），然后可引用 registry 作为补充。
 
 Do not treat a `dianhuo/` file as current unless it is explicitly listed in `agent/current-canon.md`.
 

@@ -4,7 +4,13 @@ This directory contains **operational registries** for incremental extraction fr
 
 ## Positioning
 
-> ⚠️ **Not current canon.** These are candidate registries — unverified, de-duplicated, traceable to source. Do NOT treat registry entries as canonical conclusions.
+> ⚠️ **Not current canon.** These are **operational registries** — extracted from raw notes, de-duplicated, traceable to source. Do NOT treat registry entries as canonical conclusions.
+
+`统一函数总表.csv` 是当前 D-X 函数层入口。
+`统一案例总表.csv` 是当前案例层入口。
+它们是 operational registry，不等于全部 canonical。
+状态字段为 `candidate` / `working_hypothesis` / `needs_review` / `fact_checked` 等。
+不得默认把 `candidate` 当事实核验完成。
 
 ## Files
 

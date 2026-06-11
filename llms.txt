@@ -6,11 +6,18 @@
 
 ## 简短说明
 
+《点火》不是单纯的理论札记，而是一套**函数化、案例化、可增量运行的事件条件与碰撞动力学框架**。
+
 本书研究关键人物在关键时期通过关键动作改变系统燃烧条件的历史结构。
 
 核心定义：系统 = 协作系统（搭房） + 认同系统（点火）。
 
 点火不是新系统被建成，而是应约者在退出权压力下仍愿意把自己放进新系统，并主动认领它。
+
+三层架构：
+1. **理论正典层**：事件条件矩阵、提议者姿态、回应者状态、退出层
+2. **函数层**：D-X 系列函数（犹豫域、退化链、内部驱动力、叙事冲击、种子爆发、二次窗口等）
+3. **案例层**：统一案例总表（355+ 案例，检验和映射函数适用条件）
 
 ## Agent Entry
 
@@ -65,6 +72,8 @@ Repository: **when-systems-catch-fire**
 ### Current canonical files
 
 - `agent/current-canon.md`: 当前主版本路由表。AI Agent 应先用它判断哪些文件是 current，哪些只是 source / historical。
+- `data/registry/统一函数总表.csv`: 当前 D-X 函数层入口（50+ 函数）。operational registry，不等于全部 canonical。状态为 candidate/working_hypothesis/needs_review 等。
+- `data/registry/统一案例总表.csv`: 当前案例层入口（355+ 案例）。operational registry，不等于全部 canonical。
 - `agent/agent-operation-checklist.md`: Agent 操作前后检查清单，用于 canon migration、数据更新、归档、事实核查和完成声明前复核。
 - `agent/book-summary.md`: 全书总摘要，定义点火框架、研究对象和适用范围。
 - `agent/concept-map.md`: 概念图和核心概念关系。
