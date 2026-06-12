@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Arvin-liu/when-systems-catch-fire/data/schemas/discovery.schema.json",
+  "title": "Discovery",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "status",
+    "title",
+    "summary",
+    "related_functions",
+    "related_cases",
+    "source_notes",
+    "human_explanation_path",
+    "license"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "type": { "const": "discovery" },
+    "status": { "type": "string", "minLength": 1 },
+    "title": { "$ref": "#/$defs/bilingualNullableText" },
+    "summary": { "$ref": "#/$defs/bilingualNullableText" },
+    "related_functions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relation" }
+    },
+    "related_cases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/caseRelation" }
+    },
+    "source_notes": { "type": "array" },
+    "human_explanation_path": { "type": ["string", "null"] },
+    "license": { "const": "CC-BY-NC-4.0" }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "bilingualNullableText": {
+      "type": "object",
+      "required": ["zh", "en"],
+      "properties": {
+        "zh": { "type": ["string", "null"] },
+        "en": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "relation": {
+      "type": "object",
+      "required": ["function_id", "path"],
+      "properties": {
+        "function_id": { "type": ["string", "null"] },
+        "path": { "type": ["string", "null"] },
+        "unresolved": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "caseRelation": {
+      "type": "object",
+      "required": ["case_id", "path"],
+      "properties": {
+        "case_id": { "type": ["string", "null"] },
+        "path": { "type": ["string", "null"] },
+        "unresolved": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

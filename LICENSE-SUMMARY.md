@@ -6,8 +6,11 @@ This is a human-readable summary, not a substitute for the full license.
 
 ## License
 
-CC BY-NC-SA 4.0  
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+CC BY-NC 4.0
+
+Creative Commons Attribution-NonCommercial 4.0 International
+
+SPDX-like: `CC-BY-NC-4.0`
 
 ## Allowed
 
@@ -22,10 +25,10 @@ Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 
 ## Required
 
-- Give attribution
+- Give attribution to Arvin Liu
 - Link to the original repository
 - Indicate changes
-- Use the same or compatible license for adaptations
+- Preserve the non-commercial restriction
 - Do not imply author endorsement
 
 ## Not allowed without written permission

@@ -1,49 +1,28 @@
 # Notice / 版权与使用声明
 
-项目：点火框架 / Ignition Framework
+Discoverer / maintainer: Arvin Liu
 
-本仓库中的书稿正文、章节内容、概念说明、案例整理、Agent-readable materials、目录结构说明与相关文字材料，除非特别注明，均采用：
+Project: When Systems Catch Fire / 点火
 
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License  
-知识共享署名—非商业性使用—相同方式共享 4.0 国际许可协议  
-CC BY-NC-SA 4.0
+Repository: https://github.com/Arvin-liu/when-systems-catch-fire
 
-## You may / 你可以
+License: Creative Commons Attribution-NonCommercial 4.0 International (`CC-BY-NC-4.0`)
 
-在遵守本许可协议的前提下，你可以：
+Required attribution: cite the repository URL and Arvin Liu.
 
-1. 阅读、下载、复制、保存本作品；
-2. 非商业性传播本作品；
-3. 非商业性引用本作品；
-4. 非商业性改编、转换或基于本作品继续创作；
-5. 将本作品用于非商业研究、学习、讨论、教学和个人知识整理。
+Commercial use: not permitted without separate permission.
 
-## You must / 你必须
+## 你可以
 
-使用本作品时，你必须：
+在遵守署名和非商业限制的前提下，你可以传播、引用、改写、翻译、整理或继续研究本知识库内容。
 
-1. 保留作者署名；
-2. 保留原始仓库链接；
-3. 标明是否做过修改；
-4. 不得暗示原作者认可你的使用方式、观点或改编版本；
-5. 如果发布改编作品，必须使用相同或兼容的许可协议继续共享。
+## 你必须
 
-## You may not / 你不得
+1. 署名 Arvin Liu。
+2. 附上原始仓库链接。
+3. 标明是否做过修改。
+4. 保留非商业使用限制。
 
-你不得：
+## 你不得
 
-1. 将本作品或其改编作品用于商业目的；
-2. 将本作品打包、出售、付费分发；
-3. 将本作品用于商业课程、商业出版、商业咨询、商业产品、商业数据库或商业训练数据集，除非事先获得作者明确书面授权；
-4. 移除作者署名、许可协议或原始链接；
-5. 以误导方式暗示本作品属于公共领域或无版权限制。
-
-## Code / 代码说明
-
-如果本仓库未来包含脚本、构建工具、自动化程序或网站代码，这些代码可以在相应文件中另行声明软件许可证。
-
-如果没有单独声明，则默认仍随本仓库主体内容采用 CC BY-NC-SA 4.0。
-
-## Contact / 授权联系
-
-如需商业授权、出版合作、转载授权或其他例外使用，请联系作者本人。
+未经单独授权，不得将本项目内容用于商业出版、商业课程、商业咨询、商业产品、商业数据库、商业训练数据集或付费打包分发。
