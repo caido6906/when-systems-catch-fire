@@ -1,0 +1,16 @@
+{
+  "scanned_files": 3975,
+  "changed_files": 1,
+  "tables_merged": 1,
+  "columns_removed": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "tables_merged": 1,
+      "columns_removed": 1,
+      "notes": [
+        "removed column: 入口 / Entry"
+      ]
+    }
+  ]
+}

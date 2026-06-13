@@ -857,6 +857,17 @@ def render_discoveries_list(items: list[dict], categories: list[dict] | None = N
     ]
 
     if categories is not None:
+        def sort_key(category: dict) -> tuple[int, int, int, str]:
+            coverage = category["coverage"]
+            curated = coverage.get("curated_discoveries_count", 0)
+            leads = coverage.get("discovery_leads_count", 0)
+            related_total = coverage.get("related_functions_count", 0) + coverage.get("related_cases_count", 0)
+            return (-curated, -leads, -related_total, category["category_id"])
+
+        sorted_categories = sorted(
+            [category for category in categories if category["category_id"] != "other"],
+            key=sort_key,
+        )
         lines.extend(
             [
                 "## 学科分类 / Categories",
@@ -865,24 +876,16 @@ def render_discoveries_list(items: list[dict], categories: list[dict] | None = N
                 "",
                 "English: The following categories are generated from a bootstrap scan of the current function and case tables. They are not empty shells, and each discovery may belong to one or more categories.",
                 "",
-                "| 分类 / Category | 入口 / Entry | 当前覆盖 / Current Coverage |",
-                "| --- | --- | --- |",
+                "| 学科分类 / Category | 正式发现 / Curated Discoveries | 待整理线索 / Discovery Leads | 当前覆盖 / Current Coverage |",
+                "| --- | --- | --- | --- |",
             ]
         )
-        for category in categories:
-            if category["category_id"] == "other":
-                continue
+        for category in sorted_categories:
             coverage = category["coverage"]
             lines.append(
-                f"| {category['title']['zh']} / {category['title']['en']} | [{category['title']['en']}]({category['page']}) | {coverage['related_functions_count']} related functions, {coverage['related_cases_count']} related cases |"
+                f"| [{category['title']['zh']} / {category['title']['en']}]({category['page']}) | {coverage.get('curated_discoveries_count', 0)} | {coverage.get('discovery_leads_count', 0)} | {coverage['related_functions_count']} related functions, {coverage['related_cases_count']} related cases |"
             )
-        zero_categories = [
-            category
-            for category in categories
-            if category["category_id"] != "other"
-            and category["coverage"]["related_functions_count"] == 0
-            and category["coverage"]["related_cases_count"] == 0
-        ]
+        zero_categories = [category for category in sorted_categories if category["coverage"]["related_functions_count"] == 0 and category["coverage"]["related_cases_count"] == 0]
         if zero_categories:
             lines.extend(["", "### 可扩展分类 / Expandable Categories", ""])
             for category in zero_categories:
@@ -918,18 +921,17 @@ def render_discovery_index_md(items: list[dict]) -> str:
         categories = ", ".join(cat["title"]["en"] for cat in item.get("categories", [])) or "other"
         rows.append(
             [
-                f"[{item['id']}]({item['links']['human_page']})",
-                f"{item['title']['zh']} / {item['title']['en']}",
+                item["id"],
+                f"[{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']})",
                 categories,
                 item["status"],
                 str(len(item.get("related_functions", []))),
                 str(len(item.get("related_cases", []))),
-                item["links"]["human_page"],
             ]
         )
     table = [
-        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases | 页面 / Page |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases |",
+        "| --- | --- | --- | --- | --- | --- |",
     ]
     table.extend("| " + " | ".join(row) + " |" for row in rows)
     if not rows:
@@ -1039,6 +1041,13 @@ def render_category_page(category: dict) -> str:
 
 
 def render_bootstrap_report(category_map: list[dict]) -> str:
+    def sort_key(category: dict) -> tuple[int, int, int, str]:
+        coverage = category["coverage"]
+        curated = coverage.get("curated_discoveries_count", 0)
+        leads = coverage.get("discovery_leads_count", 0)
+        related_total = coverage.get("related_functions_count", 0) + coverage.get("related_cases_count", 0)
+        return (-curated, -leads, -related_total, category["category_id"])
+
     lines = [
         "# 自举分类报告 / Bootstrap Category Report",
         "",
@@ -1055,9 +1064,7 @@ def render_bootstrap_report(category_map: list[dict]) -> str:
         "| 分类 / Category | 相关函数 / Related functions | 相关案例 / Related cases | 待整理线索 / Leads |",
         "| --- | --- | --- | --- |",
     ]
-    for entry in category_map:
-        if entry["category_id"] == "other":
-            continue
+    for entry in sorted([entry for entry in category_map if entry["category_id"] != "other"], key=sort_key):
         lines.append(
             f"| {entry['title']['zh']} / {entry['title']['en']} | {entry['coverage']['related_functions_count']} | {entry['coverage']['related_cases_count']} | {entry['coverage']['discovery_leads_count']} |"
         )

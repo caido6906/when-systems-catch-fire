@@ -18,25 +18,25 @@ English: Whenever a new discovery is produced, add it as a separate discovery en
 
 English: The following categories are generated from a bootstrap scan of the current function and case tables. They are not empty shells, and each discovery may belong to one or more categories.
 
-| 分类 / Category | 入口 / Entry | 当前覆盖 / Current Coverage |
-| --- | --- | --- |
-| 物理学 / Physics | [Physics](docs/zh/discoveries/categories/physics.md) | 133 related functions, 71 related cases |
-| 心理学 / Psychology | [Psychology](docs/zh/discoveries/categories/psychology.md) | 61 related functions, 72 related cases |
-| 化学 / Chemistry | [Chemistry](docs/zh/discoveries/categories/chemistry.md) | 21 related functions, 105 related cases |
-| 生物学 / Biology | [Biology](docs/zh/discoveries/categories/biology.md) | 12 related functions, 20 related cases |
-| 神经科学与意识 / Neuroscience and Consciousness | [Neuroscience and Consciousness](docs/zh/discoveries/categories/neuroscience-and-consciousness.md) | 46 related functions, 67 related cases |
-| 医学与健康 / Medicine and Health | [Medicine and Health](docs/zh/discoveries/categories/medicine-and-health.md) | 15 related functions, 13 related cases |
-| 哲学 / Philosophy | [Philosophy](docs/zh/discoveries/categories/philosophy.md) | 33 related functions, 9 related cases |
-| 历史与文明 / History and Civilization | [History and Civilization](docs/zh/discoveries/categories/history-and-civilization.md) | 67 related functions, 501 related cases |
-| 文学与叙事 / Literature and Narrative | [Literature and Narrative](docs/zh/discoveries/categories/literature-and-narrative.md) | 2 related functions, 0 related cases |
-| 艺术与摄影 / Art and Photography | [Art and Photography](docs/zh/discoveries/categories/art-and-photography.md) | 0 related functions, 1 related cases |
-| 经济与财富 / Economics and Wealth | [Economics and Wealth](docs/zh/discoveries/categories/economics-and-wealth.md) | 60 related functions, 70 related cases |
-| 法律与制度 / Law and Institutions | [Law and Institutions](docs/zh/discoveries/categories/law-and-institutions.md) | 6 related functions, 11 related cases |
-| 社会学与政治 / Sociology and Politics | [Sociology and Politics](docs/zh/discoveries/categories/sociology-and-politics.md) | 32 related functions, 42 related cases |
-| AI 与系统 / AI and Systems | [AI and Systems](docs/zh/discoveries/categories/ai-and-systems.md) | 135 related functions, 111 related cases |
-| 技术与工程 / Technology and Engineering | [Technology and Engineering](docs/zh/discoveries/categories/technology-and-engineering.md) | 28 related functions, 31 related cases |
-| 教育与学习 / Education and Learning | [Education and Learning](docs/zh/discoveries/categories/education-and-learning.md) | 14 related functions, 18 related cases |
-| 生态与环境 / Ecology and Environment | [Ecology and Environment](docs/zh/discoveries/categories/ecology-and-environment.md) | 31 related functions, 27 related cases |
+| 学科分类 / Category | 正式发现 / Curated Discoveries | 待整理线索 / Discovery Leads | 当前覆盖 / Current Coverage |
+| --- | --- | --- | --- |
+| [历史与文明 / History and Civilization](docs/zh/discoveries/categories/history-and-civilization.md) | 0 | 5 | 67 related functions, 501 related cases |
+| [AI 与系统 / AI and Systems](docs/zh/discoveries/categories/ai-and-systems.md) | 0 | 5 | 135 related functions, 111 related cases |
+| [物理学 / Physics](docs/zh/discoveries/categories/physics.md) | 0 | 5 | 133 related functions, 71 related cases |
+| [心理学 / Psychology](docs/zh/discoveries/categories/psychology.md) | 0 | 5 | 61 related functions, 72 related cases |
+| [经济与财富 / Economics and Wealth](docs/zh/discoveries/categories/economics-and-wealth.md) | 0 | 5 | 60 related functions, 70 related cases |
+| [化学 / Chemistry](docs/zh/discoveries/categories/chemistry.md) | 0 | 5 | 21 related functions, 105 related cases |
+| [神经科学与意识 / Neuroscience and Consciousness](docs/zh/discoveries/categories/neuroscience-and-consciousness.md) | 0 | 5 | 46 related functions, 67 related cases |
+| [社会学与政治 / Sociology and Politics](docs/zh/discoveries/categories/sociology-and-politics.md) | 0 | 5 | 32 related functions, 42 related cases |
+| [技术与工程 / Technology and Engineering](docs/zh/discoveries/categories/technology-and-engineering.md) | 0 | 5 | 28 related functions, 31 related cases |
+| [生态与环境 / Ecology and Environment](docs/zh/discoveries/categories/ecology-and-environment.md) | 0 | 5 | 31 related functions, 27 related cases |
+| [哲学 / Philosophy](docs/zh/discoveries/categories/philosophy.md) | 0 | 5 | 33 related functions, 9 related cases |
+| [生物学 / Biology](docs/zh/discoveries/categories/biology.md) | 0 | 5 | 12 related functions, 20 related cases |
+| [教育与学习 / Education and Learning](docs/zh/discoveries/categories/education-and-learning.md) | 0 | 5 | 14 related functions, 18 related cases |
+| [医学与健康 / Medicine and Health](docs/zh/discoveries/categories/medicine-and-health.md) | 0 | 5 | 15 related functions, 13 related cases |
+| [法律与制度 / Law and Institutions](docs/zh/discoveries/categories/law-and-institutions.md) | 0 | 5 | 6 related functions, 11 related cases |
+| [文学与叙事 / Literature and Narrative](docs/zh/discoveries/categories/literature-and-narrative.md) | 0 | 2 | 2 related functions, 0 related cases |
+| [艺术与摄影 / Art and Photography](docs/zh/discoveries/categories/art-and-photography.md) | 0 | 1 | 0 related functions, 1 related cases |
 
 ## 最近发现 / Recent Discoveries
 

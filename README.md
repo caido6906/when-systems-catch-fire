@@ -5,15 +5,15 @@ A discovery made by a human being, driven by curiosity and aided by AI.
 
 ## 入口 / Entrance
 
-| 区域 / Area | 入口 / Entry | 内容 / Content |
-|---|---|---|
-| 发现 / Discoveries | [发现总表 / Discovery Index](DISCOVERIES.md) | 从函数与案例的自举循环中产生的新发现。每条发现都可连接到相关函数、案例和来源。 / New discoveries generated from bootstrap cycles between functions and cases. Each discovery links to related functions, cases, and sources. |
-| 函数表 / Functions | [统一函数总表 / Unified Function Table](FUNCTIONS.md) | 470 条函数。每条函数都可查看定义、公式、来源与关联案例。 / 470 functions. Each function links to its definition, expression, source, and related cases. |
-| 案例表 / Cases | [统一案例总表 / Unified Case Table](CASES.md) | 578 个案例。每个案例都可查看内容、来源与关联函数。 / 578 cases. Each case links to its content, source, and related functions. |
+| 区域 / Area | 内容 / Content |
+| --- | --- |
+| [发现 / Discoveries](DISCOVERIES.md) | 从函数与案例的自举循环中产生的新发现。每条发现都可连接到相关函数、案例和来源。 / New discoveries generated from bootstrap cycles between functions and cases. Each discovery links to related functions, cases, and sources. |
+| [函数表 / Functions](FUNCTIONS.md) | 470 条函数。每条函数都可查看定义、公式、来源与关联案例。 / 470 functions. Each function links to its definition, expression, source, and related cases. |
+| [案例表 / Cases](CASES.md) | 578 个案例。每个案例都可查看内容、来源与关联函数。 / 578 cases. Each case links to its content, source, and related functions. |
 
 ## Current Structure / 当前结构
 
-| Layer | 中文说明 | Entry |
+| Layer | 中文说明 | 主要文件 / Files |
 | --- | --- | --- |
 | Functions | 点火函数层，保存 D-X 函数及其结构化字段 | `data/functions/unified-functions.json`, `data/functions/unified-functions.jsonl`, `data/functions/items/` |
 | Cases | 案例层，保存案例与函数关系 | `data/cases/unified-cases.json`, `data/cases/unified-cases.jsonl`, `data/cases/items/` |

@@ -25,6 +25,7 @@ Discovery rule:
 - Functions, cases, and discoveries are separate incremental entrances.
 - New discoveries must also be assigned to one or more disciplinary categories.
 - Category IDs come from data/discoveries/categories.json and docs/zh/discoveries/categories/.
+- Link-entry rule: if a label and an entry link refer to the same object, make the label itself the link and remove redundant Entry/Link/Page columns. Run scripts/merge_redundant_entry_links.py after generating or updating human-readable pages.
 
 Do not treat raw notes as canonical.
 Raw notes are sources. Canonical structured entries live under data/functions and data/cases.

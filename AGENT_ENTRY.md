@@ -65,6 +65,26 @@ English: Each discovery must belong to one or more disciplinary categories. Cate
 如果发现跨学科，可以多分类。
 If a discovery is cross-disciplinary, assign multiple categories.
 
+## 链接入口合并规则 / Link Entry Merge Rule
+
+中文：凡是“名称”和“入口链接”指向同一对象的地方，都应把名称本身做成链接，不要额外保留 `入口 / Entry / Link / Page` 这类重复列。
+
+English: Whenever a name and an entry link point to the same object, make the name itself the link. Do not keep redundant `Entry`, `Link`, or `Page` columns.
+
+适用对象 / Applies to：
+
+- `README.md`
+- `DISCOVERIES.md`
+- `FUNCTIONS.md`
+- `CASES.md`
+- `docs/**/*.md`
+- `data/**/*.md`
+
+自举要求 / Bootstrap requirement：
+
+- 每次新增或更新函数、案例、发现、分类页、索引页后，都必须运行链接入口合并检查。
+- 执行脚本：`scripts/merge_redundant_entry_links.py`
+
 ## Recommended Reading Order
 
 1. `llms.txt`

@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""Render discovery index pages and category entrances.
+
+This is the dedicated discovery rendering entrypoint used by the bootstrap
+maintenance loop. It keeps the human-facing discovery index, category pages,
+and bootstrap report in sync with the structured discovery data.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+from discovery_category_utils import (
+    BOOTSTRAP_REPORT_MD,
+    CATEGORY_DIR,
+    CATEGORIES_JSON,
+    CATEGORIES_JSONL,
+    CATEGORY_MAP_JSON,
+    CATEGORY_MAP_JSONL,
+    DISCOVERY_INDEX_MD,
+    DISCOVERY_LIST_MD,
+    CATEGORY_DEFINITIONS,
+    build_category_map,
+    classify_bootstrap_items,
+    read_json,
+    render_bootstrap_report,
+    render_category_page,
+    render_discovery_index_md,
+    render_discoveries_list,
+    write_text,
+)
+
+
+REPO_ROOT = Path("/workspace/when-systems-catch-fire")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--check", action="store_true", help="validate rendered outputs without writing")
+    args = parser.parse_args()
+
+    functions = read_json(REPO_ROOT / "data/functions/unified-functions.json", [])
+    cases = read_json(REPO_ROOT / "data/cases/unified-cases.json", [])
+    discoveries = read_json(REPO_ROOT / "data/discoveries/unified-discoveries.json", [])
+
+    classification = classify_bootstrap_items(functions, cases)
+    category_map = build_category_map(functions, cases, classification)
+
+    planned_writes = [
+        (CATEGORIES_JSON, json.dumps(CATEGORY_DEFINITIONS, ensure_ascii=False, indent=2) + "\n"),
+        (CATEGORIES_JSONL, "\n".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) for row in CATEGORY_DEFINITIONS) + "\n"),
+        (CATEGORY_MAP_JSON, json.dumps(category_map, ensure_ascii=False, indent=2) + "\n"),
+        (CATEGORY_MAP_JSONL, "\n".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) for row in category_map) + "\n"),
+        (DISCOVERY_LIST_MD, render_discoveries_list(discoveries, category_map)),
+        (DISCOVERY_INDEX_MD, render_discovery_index_md(discoveries)),
+        (BOOTSTRAP_REPORT_MD, render_bootstrap_report(category_map)),
+    ]
+
+    CATEGORY_DIR.mkdir(parents=True, exist_ok=True)
+    for category in category_map:
+        planned_writes.append((CATEGORY_DIR / f"{category['category_id']}.md", render_category_page(category)))
+
+    changed = []
+    for path, content in planned_writes:
+        current = path.read_text(encoding="utf-8") if path.exists() else None
+        if current != content:
+            changed.append(path.relative_to(REPO_ROOT).as_posix())
+            if not args.check:
+                write_text(path, content)
+
+    if args.check:
+        if changed:
+            print("Discovery render would change:")
+            for item in changed:
+                print(f"- {item}")
+            raise SystemExit(1)
+        print(f"render check passed for {len(category_map)} discovery categories")
+        return
+
+    print(f"rendered {len(category_map)} discovery categories")
+
+
+if __name__ == "__main__":
+    main()

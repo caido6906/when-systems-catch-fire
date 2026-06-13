@@ -4,7 +4,7 @@
 
 当前先建立目录和索引，不把尚未完成归纳的内容标成已确认发现。
 
-入口：
+索引：
 
 - `data/discoveries/index.md`
 - `data/discoveries/index.jsonl`
