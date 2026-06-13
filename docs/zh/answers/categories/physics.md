@@ -12,6 +12,7 @@
 - [ANS-0001｜大统一应该追求Φ极小而不是α相等 / Grand unification should minimize Phi rather than force equal couplings](../items/ANS-0001.md)
 - [ANS-0002｜引力的弱是层级间距的数学必然 / Gravity is weak because of hierarchy spacing](../items/ANS-0002.md)
 - [ANS-0003｜黑洞信息悖论更像部分保留而不是完全丢失 / The black-hole information paradox is partial retention, not total loss](../items/ANS-0003.md)
+- [ANS-0005｜物理学七团乌云共享同一容斥根因 / The physics seven clouds share one inclusion-exclusion root](../items/ANS-0005.md)
 
 ## 相关函数、案例、发现与预测 / Related Functions, Cases, Discoveries, and Predictions
 
@@ -21,6 +22,16 @@
 - [D157｜财富-认知耦合 / 财富-认知耦合](../../functions/items/D157.md)
 - [D164｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D164.md)
 - [D108｜三域熵统一函数（推论级） / 三域熵统一函数(推论级)](../../functions/items/D108.md)
+- [D260｜偏差敏感度阈值函数 / 偏差敏感度阈值函数](../../functions/items/D260.md)
+- [D272｜量子引力-新门控面预测 / 量子引力-新门控面预测](../../functions/items/D272.md)
+- [D287｜容斥主导实验签名函数 / 容斥主导实验签名函数](../../functions/items/D287.md)
+- [D373｜p*临界标度函数 / p*临界标度函数](../../functions/items/D373.md)
+- [D387｜容斥-耦合配分函数 / 容斥-耦合配分函数](../../functions/items/D387.md)
+- [D401｜自由能-Φ等价函数 / 自由能-Φ等价函数](../../functions/items/D401.md)
+- [D307｜σ_opt微观起源函数 / σ_opt微观起源函数](../../functions/items/D307.md)
+- [D412｜双切换同步函数 / 双切换同步函数](../../functions/items/D412.md)
+- [D413｜遗迹-复活代价联合函数 / 遗迹-复活代价联合函数](../../functions/items/D413.md)
+- [D295｜正反馈不可逆点函数 / 正反馈不可逆点函数](../../functions/items/D295.md)
 
 ### 相关案例 / Related Cases
 - [C-0554｜为什么3+1维 — d*=-1/ln⟨ε⟩≈4，数学优化不是人择 / 为什么3+1维 - d*=-1/ln⟨ε⟩≈4, 数学优化不是人择](../../cases/items/C-0554.md)

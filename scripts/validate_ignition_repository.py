@@ -165,6 +165,7 @@ def check_predictions(errors: list[str]) -> dict[str, int]:
 def check_answers(errors: list[str]) -> dict[str, int]:
     answers = read_answer_json(ANSWERS_JSON_PATH, [])
     category_map = read_answer_json(REPO_ROOT / "data/answers/category-map.json", [])
+    build_script = (REPO_ROOT / "scripts/build_answers_from_bootstrap.py").read_text(encoding="utf-8")
     expected_human = render_answer_index(answers, category_map)
     current_human = ANSWERS_LIST_MD.read_text(encoding="utf-8") if ANSWERS_LIST_MD.exists() else ""
     if expected_human != current_human:
@@ -176,6 +177,17 @@ def check_answers(errors: list[str]) -> dict[str, int]:
     template_ok = ANSWER_TEMPLATE_MD.exists()
     if not template_ok:
         errors.append("docs/zh/answers/ANSWER_TEMPLATE.md is missing")
+    required_keywords = [
+        "物理学七团乌云",
+        "七团乌云",
+        "七朵乌云",
+        "ANSWER_RECOVERY_KEYWORDS",
+        "LOW_PRIORITY_MISREAD_KEYWORDS",
+        "PhysicsSevenCloudsRecovery",
+    ]
+    for keyword in required_keywords:
+        if keyword not in build_script:
+            errors.append(f"build_answers_from_bootstrap.py missing recovery keyword or marker: {keyword}")
     for item in answers:
         if not re.match(r"^ANS-\d{4}$", item.get("id", "")):
             errors.append(f"bad answer id: {item.get('id')}")

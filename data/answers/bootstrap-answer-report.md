@@ -1,10 +1,10 @@
 # New Answers Bootstrap Report
 
 - curated_answers: 0
-- answer_leads: 4
+- answer_leads: 5
 - passed_novelty: 0
 - pending_novelty: 0
-- inconclusive_novelty: 4
+- inconclusive_novelty: 5
 - failed_novelty: 0
 
 ## Sources
@@ -21,4 +21,6 @@
 - bootstrap notes were scanned conservatively for explicit new-answer material
 - physics, grand-unification, gravity, black-hole information, and Qin-unification notes were promoted
 - no curated answer was marked active because novelty is not confirmed yet
-- air-mass / fog / cloud keyword search returned no direct local match
+- PhysicsSevenCloudsRecovery: corrected the prior misread and recovered 物理学七团乌云
+- physics seven clouds recovery: corrected the prior misread and searched for 物理学七团乌云 / 七团乌云 / 七朵乌云
+- low-priority misread keywords (气团 / 雾云) were downgraded and are no longer the main recovery target

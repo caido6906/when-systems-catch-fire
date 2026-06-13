@@ -53,6 +53,86 @@
           "en": "三域熵统一函数(推论级)"
         },
         "page": "docs/zh/functions/items/D108.md"
+      },
+      {
+        "id": "D260",
+        "title": {
+          "zh": "偏差敏感度阈值函数",
+          "en": "偏差敏感度阈值函数"
+        },
+        "page": "docs/zh/functions/items/D260.md"
+      },
+      {
+        "id": "D272",
+        "title": {
+          "zh": "量子引力-新门控面预测",
+          "en": "量子引力-新门控面预测"
+        },
+        "page": "docs/zh/functions/items/D272.md"
+      },
+      {
+        "id": "D287",
+        "title": {
+          "zh": "容斥主导实验签名函数",
+          "en": "容斥主导实验签名函数"
+        },
+        "page": "docs/zh/functions/items/D287.md"
+      },
+      {
+        "id": "D373",
+        "title": {
+          "zh": "p*临界标度函数",
+          "en": "p*临界标度函数"
+        },
+        "page": "docs/zh/functions/items/D373.md"
+      },
+      {
+        "id": "D387",
+        "title": {
+          "zh": "容斥-耦合配分函数",
+          "en": "容斥-耦合配分函数"
+        },
+        "page": "docs/zh/functions/items/D387.md"
+      },
+      {
+        "id": "D401",
+        "title": {
+          "zh": "自由能-Φ等价函数",
+          "en": "自由能-Φ等价函数"
+        },
+        "page": "docs/zh/functions/items/D401.md"
+      },
+      {
+        "id": "D307",
+        "title": {
+          "zh": "σ_opt微观起源函数",
+          "en": "σ_opt微观起源函数"
+        },
+        "page": "docs/zh/functions/items/D307.md"
+      },
+      {
+        "id": "D412",
+        "title": {
+          "zh": "双切换同步函数",
+          "en": "双切换同步函数"
+        },
+        "page": "docs/zh/functions/items/D412.md"
+      },
+      {
+        "id": "D413",
+        "title": {
+          "zh": "遗迹-复活代价联合函数",
+          "en": "遗迹-复活代价联合函数"
+        },
+        "page": "docs/zh/functions/items/D413.md"
+      },
+      {
+        "id": "D295",
+        "title": {
+          "zh": "正反馈不可逆点函数",
+          "en": "正反馈不可逆点函数"
+        },
+        "page": "docs/zh/functions/items/D295.md"
       }
     ],
     "related_cases": [
@@ -103,15 +183,24 @@
         },
         "page": "docs/zh/answers/items/ANS-0003.md",
         "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0005",
+        "title": {
+          "zh": "物理学七团乌云共享同一容斥根因",
+          "en": "The physics seven clouds share one inclusion-exclusion root"
+        },
+        "page": "docs/zh/answers/items/ANS-0005.md",
+        "status": "answer_pending_novelty_review"
       }
     ],
     "coverage": {
-      "related_functions_count": 5,
+      "related_functions_count": 15,
       "related_cases_count": 2,
       "related_discoveries_count": 0,
       "related_predictions_count": 0,
       "curated_answers_count": 0,
-      "answer_leads_count": 3
+      "answer_leads_count": 4
     }
   },
   {
