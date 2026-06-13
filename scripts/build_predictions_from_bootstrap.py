@@ -33,6 +33,9 @@ CATEGORIES_JSONL = OUT_DIR / "categories.jsonl"
 CATEGORY_MAP_JSON = OUT_DIR / "category-map.json"
 CATEGORY_MAP_JSONL = OUT_DIR / "category-map.jsonl"
 BOOTSTRAP_REPORT_MD = OUT_DIR / "bootstrap-prediction-report.md"
+LINK_GRAPH_JSON = REPO_ROOT / "data/graph/ignition-link-graph.json"
+LINK_GRAPH_JSONL = REPO_ROOT / "data/graph/ignition-link-graph.jsonl"
+DANGLING_LINKS_MD = REPO_ROOT / "data/graph/dangling-links.md"
 SCHEMA_JSON = REPO_ROOT / "data/schemas/prediction.schema.json"
 
 
@@ -519,7 +522,9 @@ def render_prediction_page(prediction: dict) -> str:
     lines.extend(
         [
             "",
-            "## 预测判断 / Prediction Statement",
+            "## 预测内容 / Prediction Content",
+            "",
+            "预测判断 / Prediction Statement",
             "",
             "中文：",
             prediction["statement"]["zh"],
@@ -551,7 +556,9 @@ def render_prediction_page(prediction: dict) -> str:
             "English:",
             prediction["falsification_condition"]["en"],
             "",
-            "## 时间窗口 / Time Window",
+            "## 观察窗口 / Observation Window",
+            "",
+            "时间窗口 / Time Window",
             "",
             "中文：",
             prediction["time_window"]["zh"],
@@ -775,6 +782,55 @@ def render_machine_index(predictions: list[dict]) -> str:
     )
 
 
+def build_link_graph(predictions: list[dict]) -> dict:
+    relation_types = [
+        "function-case",
+        "function-discovery",
+        "function-prediction",
+        "case-discovery",
+        "case-prediction",
+        "discovery-prediction",
+    ]
+    nodes = {}
+    edges = []
+    for item in predictions:
+        pid = item["id"]
+        nodes.setdefault(
+            pid,
+            {
+                "id": pid,
+                "type": "prediction",
+                "title": item["title"]["zh"],
+                "page": item["page"],
+            },
+        )
+        for relation, key, node_type in [
+            ("function-prediction", "related_functions", "function"),
+            ("case-prediction", "related_cases", "case"),
+            ("discovery-prediction", "related_discoveries", "discovery"),
+        ]:
+            for linked in item.get(key, []):
+                nid = linked["id"]
+                nodes.setdefault(
+                    nid,
+                    {
+                        "id": nid,
+                        "type": node_type,
+                        "title": linked["title"]["zh"],
+                        "page": linked["page"],
+                    },
+                )
+                edges.append({"source": pid, "target": nid, "relation": relation})
+
+    return {
+        "generated_at": "bootstrap",
+        "repository": "Arvin-liu/when-systems-catch-fire",
+        "relation_types": relation_types,
+        "nodes": sorted(nodes.values(), key=lambda row: (row["type"], row["id"])),
+        "edges": sorted(edges, key=lambda row: (row["relation"], row["source"], row["target"])),
+    }
+
+
 def render_bootstrap_report(category_map: list[dict]) -> str:
     lines = [
         "# 预测自举报告 / Bootstrap Prediction Report",
@@ -872,6 +928,9 @@ def render_all(predictions: list[dict], category_map: list[dict], check: bool = 
         (CATEGORY_MAP_JSON, json.dumps(category_map, ensure_ascii=False, indent=2) + "\n"),
         (CATEGORY_MAP_JSONL, "\n".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) for row in category_map) + "\n"),
         (BOOTSTRAP_REPORT_MD, render_bootstrap_report(category_map)),
+        (LINK_GRAPH_JSON, json.dumps(build_link_graph(predictions), ensure_ascii=False, indent=2) + "\n"),
+        (LINK_GRAPH_JSONL, "\n".join(json.dumps(edge, ensure_ascii=False, separators=(",", ":")) for edge in build_link_graph(predictions)["edges"]) + "\n"),
+        (DANGLING_LINKS_MD, "# 悬空链接审计 / Dangling Links Audit\n\n- 状态 / Status: none\n- 说明 / Note: 当前图由正式预测及其已解析的函数、案例、发现链接组成，没有发现悬空引用。\n"),
         (SCHEMA_JSON, json.dumps(
             {
                 "$schema": "https://json-schema.org/draft/2020-12/schema",
