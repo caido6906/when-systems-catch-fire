@@ -110,9 +110,9 @@ def build_item(row):
             "notes": {"zh": None, "en": None},
         },
         "attribution": {
-            "discoverer": "Arvin Liu",
+            "discoverer": "之元",
             "co_reasoning": "AI-assisted mathematical / structural reasoning",
-            "maintainer": "Arvin Liu",
+            "maintainer": "之元",
         },
         "license": "CC-BY-NC-4.0",
         "created_at": clean(row.get("首次发现时间")),

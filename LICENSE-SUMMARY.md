@@ -25,7 +25,7 @@ SPDX-like: `CC-BY-NC-4.0`
 
 ## Required
 
-- Give attribution to Arvin Liu
+- Give attribution to 之元
 - Link to the original repository
 - Indicate changes
 - Preserve the non-commercial restriction

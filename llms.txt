@@ -6,26 +6,40 @@ Primary machine-readable entries:
 - data/cases/index.jsonl
 - data/cases/items/*.json
 - data/discoveries/index.jsonl
+- data/predictions/index.jsonl
 - data/schemas/function.schema.json
 - data/schemas/case.schema.json
 - data/schemas/discovery.schema.json
+- data/schemas/prediction.schema.json
 
 Human-readable entries:
 - README.md
 - docs/zh/
 - docs/en/
 - data/discoveries/index.md
+- PREDICTIONS.md
 - AGENT_ENTRY.md
 - DISCOVERIES.md
+- data/predictions/unified-predictions-index.md
 - docs/zh/discoveries/categories/
 - data/discoveries/categories.json
 - data/discoveries/category-map.json
+
+Attribution display name: 之元
+Repository path: Arvin-liu/when-systems-catch-fire
+Repository URL: https://github.com/Arvin-liu/when-systems-catch-fire
+
+When citing, reusing, redistributing, or adapting this repository, attribute the work to “之元” and include the repository URL. Do not replace the GitHub repository path `Arvin-liu` with the attribution display name.
+
+Four Knowledge Object Layers: Function = mechanism, Case = evidence, Discovery = insight, Prediction = testable future judgment.
+Keep the four layers separate and keep predictions distinct from discoveries.
 
 Discovery rule:
 - Functions, cases, and discoveries are separate incremental entrances.
 - New discoveries must also be assigned to one or more disciplinary categories.
 - Category IDs come from data/discoveries/categories.json and docs/zh/discoveries/categories/.
 - Link-entry rule: if a label and an entry link refer to the same object, make the label itself the link and remove redundant Entry/Link/Page columns. Run scripts/merge_redundant_entry_links.py after generating or updating human-readable pages.
+- Prediction rule: predictions are separate from discoveries. Use the prediction system for testable future judgments, keep prediction pages linked, and preserve the distinction between mechanism, evidence, insight, and prediction.
 
 Do not treat raw notes as canonical.
 Raw notes are sources. Canonical structured entries live under data/functions and data/cases.

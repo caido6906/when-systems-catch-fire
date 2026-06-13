@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Prediction",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "statement",
+    "basis",
+    "test_condition",
+    "falsification_condition",
+    "time_window",
+    "categories",
+    "related_functions",
+    "related_cases",
+    "related_discoveries",
+    "source_refs",
+    "confidence",
+    "status",
+    "created_at",
+    "updated_at",
+    "page"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "object"
+    },
+    "statement": {
+      "type": "object"
+    },
+    "basis": {
+      "type": "object"
+    },
+    "test_condition": {
+      "type": "object"
+    },
+    "falsification_condition": {
+      "type": "object"
+    },
+    "time_window": {
+      "type": "object"
+    },
+    "categories": {
+      "type": "array"
+    },
+    "related_functions": {
+      "type": "array"
+    },
+    "related_cases": {
+      "type": "array"
+    },
+    "related_discoveries": {
+      "type": "array"
+    },
+    "source_refs": {
+      "type": "array"
+    },
+    "confidence": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "page": {
+      "type": "string"
+    }
+  }
+}

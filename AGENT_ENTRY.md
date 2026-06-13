@@ -19,7 +19,7 @@ This is the primary entry file for AI Agents working with When Systems Catch Fir
 3. `raw originals` 只是来源，不是正典；不要把 `dianhuo/originals/` 当作当前结构化结论引用。
 4. `candidate` 不等于 `fact_checked`；缺失字段不等于反证。
 5. 如果引用本项目，必须附仓库链接：https://github.com/Arvin-liu/when-systems-catch-fire
-6. 如果使用本项目内容传播或改写，必须署名 Arvin Liu，并遵守 `CC-BY-NC-4.0` 非商用限制。
+6. 如果使用本项目内容传播或改写，必须署名 之元，并遵守 `CC-BY-NC-4.0` 非商用限制。
 7. 不要把旧 `archive/book-legacy/` 当作当前主结构。
 8. 不要把链接笔记、私有写作风格库、同步脚本配置或未公开材料混入本公开知识库。
 
@@ -65,6 +65,43 @@ English: Each discovery must belong to one or more disciplinary categories. Cate
 如果发现跨学科，可以多分类。
 If a discovery is cross-disciplinary, assign multiple categories.
 
+## 预测写入规则 / Prediction Writing Rule
+
+中文：如果内容是在函数、案例、发现之外对未来可检验结果做出的判断，必须写入预测系统，而不是发现表或案例表。
+
+English: If the content is a testable future judgment beyond functions, cases, and discoveries, write it into the prediction system instead of the discovery table or case table.
+
+写入入口 / Writing entry：
+
+- `PREDICTIONS.md`
+- `data/predictions/unified-predictions.json`
+- `data/predictions/unified-predictions.jsonl`
+- `docs/zh/predictions/items/`
+- `scripts/add_prediction.py`
+
+判断原则 / Decision rule：
+
+- 函数 = 机制 / Function = mechanism
+- 案例 = 证据 / Case = evidence
+- 发现 = 洞见 / Discovery = insight
+- 预测 = 可检验未来判断 / Prediction = testable future judgment
+
+预测与发现的区别 / Discovery vs Prediction：
+
+- 发现回答：我们已经看见了什么。 / Discovery answers: what have we already seen.
+- 预测回答：由此可以预期什么，并且未来如何验证或证伪。 / Prediction answers: what can be expected and how it will be tested or falsified.
+
+## 四层知识对象 / Four Knowledge Object Layers
+
+中文：点火仓库的四层知识对象分别是函数、案例、发现与预测。不要把四层写混，也不要把发现与预测混为一层。
+
+English: The four knowledge object layers in the Ignition repository are function, case, discovery, and prediction. Do not mix the four layers, and do not collapse discovery into prediction or prediction into discovery.
+
+- 函数 / Function = 机制 / mechanism
+- 案例 / Case = 证据 / evidence
+- 发现 / Discovery = 洞见 / insight
+- 预测 / Prediction = 可检验未来判断 / testable future judgment
+
 ## 链接入口合并规则 / Link Entry Merge Rule
 
 中文：凡是“名称”和“入口链接”指向同一对象的地方，都应把名称本身做成链接，不要额外保留 `入口 / Entry / Link / Page` 这类重复列。
@@ -84,6 +121,19 @@ English: Whenever a name and an entry link point to the same object, make the na
 
 - 每次新增或更新函数、案例、发现、分类页、索引页后，都必须运行链接入口合并检查。
 - 执行脚本：`scripts/merge_redundant_entry_links.py`
+
+## 署名显示名规则 / Attribution Display Name Rule
+
+中文：本仓库公开署名显示名统一使用“之元”。不要把 GitHub 仓库路径中的 `Arvin-liu` 当作公开署名。
+
+English: The public attribution display name for this repository is “之元”. Do not treat `Arvin-liu` in the GitHub repository path as the public attribution name.
+
+- 公开署名 / Public attribution：之元
+- 发现者 / Discoverer：之元
+- 维护者 / Maintainer：之元
+- 作者 / Author：之元
+- GitHub 仓库路径 / GitHub repository path：`Arvin-liu/when-systems-catch-fire`
+- 仓库 URL / Repository URL：`https://github.com/Arvin-liu/when-systems-catch-fire`
 
 ## Recommended Reading Order
 
