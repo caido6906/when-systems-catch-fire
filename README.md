@@ -1,13 +1,14 @@
 # When Systems Catch Fire / 点火
 
-《点火》不是一本固定成书，而是一个开放维护的函数与案例知识库。它收集“点火函数”、函数之间的推导关系、案例证据和由此产生的新发现。
+《点火》不是一本固定成书，而是一个开放维护的函数与案例知识库。
+When Systems Catch Fire is not a fixed book, but an open and maintained knowledge base of functions and cases.
 
-## 入口
+## 入口 / Entrance
 
-| 区域 | 入口 | 内容 |
+| 区域 / Area | 入口 / Entry | 内容 / Content |
 |---|---|---|
-| 函数表 | [统一函数总表](FUNCTIONS.md) | 470 条函数，可跳转详情页与关联案例 |
-| 案例表 | [统一案例总表](CASES.md) | 578 个案例，可跳转详情页与关联函数 |
+| 函数表 / Functions | [统一函数总表 / Unified Function Table](FUNCTIONS.md) | 470 条函数。每条函数都可查看定义、公式、来源与关联案例。 / 470 functions. Each function links to its definition, expression, source, and related cases. |
+| 案例表 / Cases | [统一案例总表 / Unified Case Table](CASES.md) | 578 个案例。每个案例都可查看内容、来源与关联函数。 / 578 cases. Each case links to its content, source, and related functions. |
 ## Current Structure / 当前结构
 
 | Layer | 中文说明 | Entry |
@@ -32,13 +33,11 @@ Do not treat raw notes as canonical. Raw notes are sources. Current structured e
 
 ## Human Reading / 人类阅读入口
 
-- 中文函数入口：`docs/zh/functions.md`
-- 中文案例入口：`docs/zh/cases.md`
-- 中文新发现入口：`docs/zh/discoveries.md`
+- 中文函数入口 / Chinese functions: `FUNCTIONS.md`, `docs/zh/functions.md`
+- 中文案例入口 / Chinese cases: `CASES.md`, `docs/zh/cases.md`
 - English functions: `docs/en/functions.md`
 - English cases: `docs/en/cases.md`
 - English discoveries: `docs/en/discoveries.md`
-- Project origin / 项目由来：`docs/zh/project-origin.md`, `docs/en/project-origin.md`
 
 ## Data Policy / 数据原则
 
