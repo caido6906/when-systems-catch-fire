@@ -44,3 +44,8 @@
 
 English text was rule-generated and needs later human review.
 英文为规则翻译，后续仍需人工校订。
+
+## English Status / 英文状态
+
+中文：当前英文层为规则翻译，已去除明显中英混杂句，但仍需要后续人工校订。
+English: The current English layer is rule-generated. Obvious Chinese-English mixed sentences have been removed, but later human review is still required.

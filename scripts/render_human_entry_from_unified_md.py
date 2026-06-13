@@ -47,10 +47,16 @@ OUT_REPORT = REPO_ROOT / "data/rebuild/human-entry-render-report.md"
 README = REPO_ROOT / "README.md"
 ROOT_FUNCTIONS = REPO_ROOT / "FUNCTIONS.md"
 ROOT_CASES = REPO_ROOT / "CASES.md"
+ROOT_DISCOVERIES = REPO_ROOT / "DISCOVERIES.md"
 DOC_FUNC_INDEX = REPO_ROOT / "docs/zh/functions.md"
 DOC_CASE_INDEX = REPO_ROOT / "docs/zh/cases.md"
 DOC_FUNC_DIR = REPO_ROOT / "docs/zh/functions/items"
 DOC_CASE_DIR = REPO_ROOT / "docs/zh/cases/items"
+DOC_DISC_DIR = REPO_ROOT / "docs/zh/discoveries/items"
+
+OUT_DISC_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
+OUT_DISC_JSONL = REPO_ROOT / "data/discoveries/unified-discoveries.jsonl"
+OUT_DISC_INDEX_MD = REPO_ROOT / "data/discoveries/unified-discoveries-index.md"
 
 
 STATUS_TRANSLATIONS = {
@@ -134,6 +140,8 @@ COMMON_TRANSLATIONS: list[tuple[str, str]] = [
     ("应约者退出的成本", "responder exit cost"),
     ("认知规范破缺函数", "cognitive norm-breaking function"),
 ]
+
+CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 
 
 def ensure_dir(path: Path) -> None:
@@ -263,6 +271,15 @@ def translate_text(text: str) -> str:
     result = re.sub(r"\s+", " ", result)
     result = result.replace(" ,", ",").replace(" .", ".").replace(" :", ":")
     return result.strip()
+
+
+def safe_english(text: str) -> str:
+    """Return a conservative English rendering with no Chinese characters."""
+    if not text:
+        return ""
+    if CJK_RE.search(text):
+        return "Rule-based English rendering pending human review."
+    return text
 
 
 def translate_level(level: str) -> str:
@@ -737,9 +754,9 @@ def render_function_card(func: dict, current_path: Path, related_limit: int = 5)
     title = format_bilingual_title(func["title"]["zh"], func["title"]["en"])
     detail_link = rel_link(current_path, REPO_ROOT / func["links"]["human_page"])
     content = func["content"]["zh"] or "暂无内容 / No content"
-    content_en = func["content"]["en"] or translate_text(content)
+    content_en = safe_english(func["content"]["en"] or translate_text(content))
     explanation = func["explanation"]["zh"]
-    explanation_en = func["explanation"]["en"]
+    explanation_en = safe_english(func["explanation"]["en"] or translate_text(explanation))
     related_block = render_related_cases_block(func, current_path, limit=related_limit)
     more_line = ""
     if len(func.get("related_cases", [])) > related_limit:
@@ -747,7 +764,7 @@ def render_function_card(func: dict, current_path: Path, related_limit: int = 5)
 
     return "\n".join(
         [
-            f"### [{title}]({detail_link})",
+            f"### [{func['id']}｜{title}]({detail_link})",
             "",
             "**函数内容 / Function Content**",
             f"中文：{content}",
@@ -769,9 +786,9 @@ def render_case_card(case: dict, current_path: Path, related_limit: int = 5) -> 
     title = format_bilingual_title(case["title"]["zh"], case["title"]["en"])
     detail_link = rel_link(current_path, REPO_ROOT / case["links"]["human_page"])
     content = case["content"]["zh"] or "暂无内容 / No content"
-    content_en = case["content"]["en"] or translate_text(content)
+    content_en = safe_english(case["content"]["en"] or translate_text(content))
     explanation = case["explanation"]["zh"]
-    explanation_en = case["explanation"]["en"]
+    explanation_en = safe_english(case["explanation"]["en"] or translate_text(explanation))
     related_block = render_related_functions_block(case, current_path, limit=related_limit)
     more_line = ""
     if len(case.get("related_functions", [])) > related_limit:
@@ -779,7 +796,7 @@ def render_case_card(case: dict, current_path: Path, related_limit: int = 5) -> 
 
     return "\n".join(
         [
-            f"### [{title}]({detail_link})",
+            f"### [{case['id']}｜{title}]({detail_link})",
             "",
             "**案例内容 / Case Content**",
             f"中文：{content}",
@@ -822,7 +839,7 @@ def render_detail_function_page(func: dict) -> str:
 
     return "\n".join(
         [
-            f"# {func['id']} {title}",
+            f"# {func['id']}｜{title}",
             "",
             f"[← 返回函数表 / Back to Functions]({back_to_list})",
             f"[返回仓库首页 / Back to Repository Home]({back_to_root})",
@@ -833,7 +850,7 @@ def render_detail_function_page(func: dict) -> str:
             func["content"]["zh"] or "—",
             "",
             "English:",
-            func["content"]["en"] or translate_text(func["content"]["zh"]),
+            safe_english(func["content"]["en"] or translate_text(func["content"]["zh"])),
             "",
             "## 它解决的问题 / Problem It Addresses",
             "",
@@ -841,12 +858,7 @@ def render_detail_function_page(func: dict) -> str:
             func["explanation"]["zh"],
             "",
             "English:",
-            func["explanation"]["en"],
-            "",
-            "## 层级与状态 / Level and Status",
-            "",
-            f"- 层级 / Level：{func['level']['zh']} / {func['level']['en']}",
-            f"- 状态 / Status：{func['status']} / {func['status_text']}",
+            safe_english(func["explanation"]["en"] or translate_text(func["explanation"]["zh"])),
             "",
             "## 关联案例 / Related Cases",
             "",
@@ -858,10 +870,6 @@ def render_detail_function_page(func: dict) -> str:
             f"- 源行 / Source line：{func['source']['source_line']}",
             f"- 来源笔记ID / Source note ID：`{func['source']['source_note_id']}`",
             f"- 来源文件 / Source file：`{func['source']['source_file']}`",
-            "",
-            "## 源文片段 / Source Excerpt",
-            "",
-            f"> {func['source']['raw_excerpt']}",
             "",
         ]
     )
@@ -903,7 +911,7 @@ def render_detail_case_page(case: dict) -> str:
 
     return "\n".join(
         [
-            f"# {case['id']} {title}",
+            f"# {case['normalized_id']}｜{title}",
             "",
             f"[← 返回案例表 / Back to Cases]({back_to_list})",
             f"[返回仓库首页 / Back to Repository Home]({back_to_root})",
@@ -914,7 +922,7 @@ def render_detail_case_page(case: dict) -> str:
             case["content"]["zh"] or "—",
             "",
             "English:",
-            case["content"]["en"] or translate_text(case["content"]["zh"]),
+            safe_english(case["content"]["en"] or translate_text(case["content"]["zh"])),
             "",
             "## 它说明了什么 / What It Shows",
             "",
@@ -922,16 +930,11 @@ def render_detail_case_page(case: dict) -> str:
             case["explanation"]["zh"],
             "",
             "English:",
-            case["explanation"]["en"],
+            safe_english(case["explanation"]["en"] or translate_text(case["explanation"]["zh"])),
             "",
             "## 关联函数 / Related Functions",
             "",
             *related_lines,
-            "",
-            "## 层级与状态 / Level and Status",
-            "",
-            f"- 层级 / Level：{case['level']['zh']} / {case['level']['en']}",
-            f"- 状态 / Status：{case['status']} / {case['status_text']}",
             "",
             "## 来源回指 / Source Reference",
             "",
@@ -939,10 +942,6 @@ def render_detail_case_page(case: dict) -> str:
             f"- 源行 / Source line：{case['source']['source_line']}",
             f"- 来源笔记ID / Source note ID：`{case['source']['source_note_id']}`",
             f"- 来源文件 / Source file：`{case['source']['source_file']}`",
-            "",
-            "## 源文片段 / Source Excerpt",
-            "",
-            f"> {case['source']['raw_excerpt']}",
             "",
         ]
     )
@@ -975,9 +974,9 @@ def group_cases(cases: List[dict]) -> list[tuple[str, list[dict], bool]]:
 
 def render_functions_collection(functions: List[dict], current_path: Path) -> str:
     quick_lines = [
-        f"- 公理层 / Axioms：{sum(1 for f in functions if f['level']['zh'] == '公理')} 条 / entries",
-        f"- 定理层 / Theorems：{sum(1 for f in functions if f['level']['zh'] == '定理')} 条 / entries",
-        f"- 推论层 / Derived functions：{sum(1 for f in functions if f['level']['zh'] == '推论')} 条 / entries",
+        f"- 公理层 / Axioms：{sum(1 for f in functions if f['level']['zh'] == '公理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '公理')} entries",
+        f"- 定理层 / Theorems：{sum(1 for f in functions if f['level']['zh'] == '定理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '定理')} entries",
+        f"- 推论层 / Derived functions：{sum(1 for f in functions if f['level']['zh'] == '推论')} 条 / {sum(1 for f in functions if f['level']['zh'] == '推论')} entries",
         f"- 机器数据 / Machine data：[`data/functions/unified-functions.json`](data/functions/unified-functions.json)",
         f"- JSONL：[`data/functions/unified-functions.jsonl`](data/functions/unified-functions.jsonl)",
         f"- 重建审计 / Rebuild audit：[`data/rebuild/human-entry-render-report.md`](data/rebuild/human-entry-render-report.md)",
@@ -1078,32 +1077,64 @@ def update_readme() -> None:
             "",
             "| 区域 / Area | 入口 / Entry | 内容 / Content |",
             "|---|---|---|",
+            "| 发现 / Discoveries | [发现总表 / Discovery Index](DISCOVERIES.md) | 从函数与案例的自举循环中产生的新发现。每条发现都可连接到相关函数、案例和来源。 / New discoveries generated from bootstrap cycles between functions and cases. Each discovery links to related functions, cases, and sources. |",
             "| 函数表 / Functions | [统一函数总表 / Unified Function Table](FUNCTIONS.md) | 470 条函数。每条函数都可查看定义、公式、来源与关联案例。 / 470 functions. Each function links to its definition, expression, source, and related cases. |",
             "| 案例表 / Cases | [统一案例总表 / Unified Case Table](CASES.md) | 578 个案例。每个案例都可查看内容、来源与关联函数。 / 578 cases. Each case links to its content, source, and related functions. |",
             "",
         ]
     )
 
-    current_idx = text.find("## Current Structure / 当前结构")
-    if current_idx != -1:
-        suffix = text[current_idx:]
-    else:
-        suffix = text
-
-    # Refresh the human reading section if present.
-    suffix = re.sub(
-        r"## Human Reading / 人类阅读入口\n(?:.*?\n)*?(?=## Data Policy / 数据原则)",
-        "## Human Reading / 人类阅读入口\n\n"
-        "- 中文函数入口 / Chinese functions: `FUNCTIONS.md`, `docs/zh/functions.md`\n"
-        "- 中文案例入口 / Chinese cases: `CASES.md`, `docs/zh/cases.md`\n"
-        "- English functions: `docs/en/functions.md`\n"
-        "- English cases: `docs/en/cases.md`\n"
-        "- English discoveries: `docs/en/discoveries.md`\n\n",
-        suffix,
-        flags=re.S,
+    current_block = "\n".join(
+        [
+            "## Current Structure / 当前结构",
+            "",
+            "| Layer | 中文说明 | Entry |",
+            "| --- | --- | --- |",
+            "| Functions | 点火函数层，保存 D-X 函数及其结构化字段 | `data/functions/unified-functions.json`, `data/functions/unified-functions.jsonl`, `data/functions/items/` |",
+            "| Cases | 案例层，保存案例与函数关系 | `data/cases/unified-cases.json`, `data/cases/unified-cases.jsonl`, `data/cases/items/` |",
+            "| Discoveries | 新发现说明层，面向人类阅读和传播 | `DISCOVERIES.md`, `data/discoveries/unified-discoveries.json`, `data/discoveries/unified-discoveries.jsonl`, `docs/zh/discoveries/items/` |",
+            "| Registry | 原始统一总表，作为生成 JSON 的来源 | `data/registry/统一函数总表.csv`, `data/registry/统一案例总表.csv` |",
+            "| Legacy Book | 旧书籍结构，保留为历史材料 | `archive/book-legacy/` |",
+            "| Raw Notes | 原始笔记与来源材料，不作为 canonical item | `dianhuo/originals/` |",
+            "",
+        ]
     )
 
-    write_text(README, top_intro + suffix)
+    agents_block = "\n".join(
+        [
+            "## For AI Agents / 给 AI Agent",
+            "",
+            "1. Read `llms.txt`.",
+            "2. Read `AGENT_ENTRY.md`.",
+            "3. Use `data/functions/unified-functions.jsonl` for function lookup.",
+            "4. Use `data/cases/unified-cases.jsonl` for case lookup.",
+            "5. Use `data/discoveries/unified-discoveries.jsonl` for structured discovery entries.",
+            "6. Use `data/functions/items/*.json` and `data/cases/items/*.json` as canonical machine-readable records.",
+            "",
+            "Do not treat raw notes as canonical. Raw notes are sources. Current structured entries live under `data/functions/`, `data/cases/`, and `data/discoveries/`.",
+            "",
+        ]
+    )
+
+    human_block = "\n".join(
+        [
+            "## Human Reading / 人类阅读入口",
+            "",
+            "- 中文函数入口 / Chinese functions: `FUNCTIONS.md`, `docs/zh/functions.md`",
+            "- 中文案例入口 / Chinese cases: `CASES.md`, `docs/zh/cases.md`",
+            "- 中文发现入口 / Chinese discoveries: `DISCOVERIES.md`, `docs/zh/discoveries/items/`",
+            "",
+        ]
+    )
+
+    current_idx = text.find("## Current Structure / 当前结构")
+    data_policy_idx = text.find("## Data Policy / 数据原则")
+    if current_idx == -1 or data_policy_idx == -1:
+        write_text(README, top_intro + text)
+        return
+
+    tail = text[data_policy_idx:]
+    write_text(README, top_intro + "\n" + current_block + "\n" + agents_block + "\n" + human_block + tail)
 
 
 def make_report(functions: List[dict], cases: List[dict], dangling: List[dict]) -> str:
@@ -1143,6 +1174,11 @@ def make_report(functions: List[dict], cases: List[dict], dangling: List[dict]) 
             "",
             "English text was rule-generated and needs later human review.",
             "英文为规则翻译，后续仍需人工校订。",
+            "",
+            "## English Status / 英文状态",
+            "",
+            "中文：当前英文层为规则翻译，已去除明显中英混杂句，但仍需要后续人工校订。",
+            "English: The current English layer is rule-generated. Obvious Chinese-English mixed sentences have been removed, but later human review is still required.",
             "",
         ]
     )
