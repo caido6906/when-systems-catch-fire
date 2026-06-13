@@ -14,26 +14,26 @@ English: This page collects discovery entrances formed by the Ignition framework
 
 ## 相关函数 / Related Functions
 
-- [D23｜法治度 / 法治度](../../functions/items/D23.md)
-- [D172｜自举激活的乘法条件 / 自举激活的乘法条件](../../functions/items/D172.md)
-- [D20｜法条净效应函数 / 法条净效应函数](../../functions/items/D20.md)
+- [D23｜法治度](../../functions/items/D23.md)
 - [D22｜民事保护，各维度退出权的乘积 / 民事保护, 各维度exit right的乘积](../../functions/items/D22.md)
-- [D9｜主权函数 / 主权函数](../../functions/items/D9.md)
 - [A7｜退出权信号 / exit-right signal](../../functions/items/A7.md)
+- [D172｜自举激活的乘法条件](../../functions/items/D172.md)
+- [D20｜法条净效应函数](../../functions/items/D20.md)
+- [D9｜主权函数](../../functions/items/D9.md)
 
 ## 相关案例 / Related Cases
 
-- [C-0317｜权力层级信息失真 — d=层级距，λ=信息失真率，μ=制度效率。制度效率低时指令传到基层面目全非 / 权力层级信息失真 - d=层级距, λ=信息失真率, μ=制度效率. 制度效率低时指令传到基层面目全非](../../cases/items/C-0317.md)
-- [C-0170｜七层主权最低门槛（验证A7财富维度） / 七层主权最低门槛(验证A7财富维度)](../../cases/items/C-0170.md)
-- [C-0172｜自举激活的乘法条件 / 自举激活的乘法条件](../../cases/items/C-0172.md)
-- [C-0368｜革命的门控面交叉——法国大革命发生在旧制度松动期而非最黑暗期，A型门控崩溃与B型门控松弛的共振窗口 / 革命的门控面交叉 - - 法国大革命发生在旧制度松动期而非最黑暗期, A型门控崩溃与B型门控松弛的共振窗口](../../cases/items/C-0368.md)
-- [C-0066｜印度种姓制度 / 印度种姓制度](../../cases/items/C-0066.md)
-- [C-0241｜制度默认设置 / 制度默认设置](../../cases/items/C-0241.md)
-- [C-0273｜D23法治度归零验证 / D23法治度归零验证](../../cases/items/C-0273.md)
-- [C-0567｜科举制度幽灵 / 科举制度幽灵](../../cases/items/C-0567.md)
-- [C-0006｜元朝 / 元朝](../../cases/items/C-0006.md)
-- [C-0010｜阿育王皈依 / 阿育王皈依](../../cases/items/C-0010.md)
-- [C-0018｜笈多王朝 / 笈多王朝](../../cases/items/C-0018.md)
+- [C-0317｜权力层级信息失真 — d=层级距，λ=信息失真率，μ=制度效率。制度效率低时指令传到基层面目全非](../../cases/items/C-0317.md)
+- [C-0170｜七层主权最低门槛（验证A7财富维度）](../../cases/items/C-0170.md)
+- [C-0172｜自举激活的乘法条件](../../cases/items/C-0172.md)
+- [C-0368｜革命的门控面交叉——法国大革命发生在旧制度松动期而非最黑暗期，A型门控崩溃与B型门控松弛的共振窗口](../../cases/items/C-0368.md)
+- [C-0066｜印度种姓制度](../../cases/items/C-0066.md)
+- [C-0241｜制度默认设置](../../cases/items/C-0241.md)
+- [C-0273｜D23法治度归零验证](../../cases/items/C-0273.md)
+- [C-0006｜元朝](../../cases/items/C-0006.md)
+- [C-0010｜阿育王皈依](../../cases/items/C-0010.md)
+- [C-0018｜笈多王朝](../../cases/items/C-0018.md)
+- [C-0567｜科举制度幽灵](../../cases/items/C-0567.md)
 
 ## 已整理发现 / Curated Discoveries
 
@@ -49,15 +49,15 @@ No curated discoveries yet.
 English: The following leads come from bootstrap classification between functions and cases. They are not yet published discoveries and need later curation into independent discovery entries.
 
 - 中文：D23｜法治度 仍可继续整理为 法律与制度 方向的独立发现。
-  English: D23 | 法治度 remains a curation lead in Law and Institutions.
-- 中文：D172｜自举激活的乘法条件 仍可继续整理为 法律与制度 方向的独立发现。
-  English: D172 | 自举激活的乘法条件 remains a curation lead in Law and Institutions.
-- 中文：D20｜法条净效应函数 仍可继续整理为 法律与制度 方向的独立发现。
-  English: D20 | 法条净效应函数 remains a curation lead in Law and Institutions.
+  English: D23 |  remains a curation lead in Law and Institutions.
+- 中文：D22｜民事保护，各维度退出权的乘积 仍可继续整理为 法律与制度 方向的独立发现。
+  English: D22 | 民事保护, 各维度exit right的乘积 remains a curation lead in Law and Institutions.
+- 中文：A7｜退出权信号 仍可继续整理为 法律与制度 方向的独立发现。
+  English: A7 | exit-right signal remains a curation lead in Law and Institutions.
 - 中文：C-0317｜权力层级信息失真 — d=层级距，λ=信息失真率，μ=制度效率。制度效率低时指令传到基层面目全非 仍可继续整理为 法律与制度 方向的独立发现。
-  English: C-0317 | 权力层级信息失真 - d=层级距, λ=信息失真率, μ=制度效率. 制度效率低时指令传到基层面目全非 remains a curation lead in Law and Institutions.
+  English: C-0317 |  remains a curation lead in Law and Institutions.
 - 中文：C-0170｜七层主权最低门槛（验证A7财富维度） 仍可继续整理为 法律与制度 方向的独立发现。
-  English: C-0170 | 七层主权最低门槛(验证A7财富维度) remains a curation lead in Law and Institutions.
+  English: C-0170 |  remains a curation lead in Law and Institutions.
 
 ## 覆盖统计 / Coverage
 

@@ -1,0 +1,11 @@
+# Bilingual Label Cleanup Report
+
+- files_scanned: 4488
+- markdown_files_changed: 0
+- json_files_changed: 0
+- bilingual_pairs_cleared: 0
+- duplicate_labels_removed: 0
+
+## Touched Files
+
+- none

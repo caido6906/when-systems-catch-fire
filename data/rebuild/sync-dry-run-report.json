@@ -1,7 +1,46 @@
 {
-  "generated_at": "2026-06-13T11:42:40.022437+00:00",
+  "generated_at": "2026-06-13T12:40:01.869710+00:00",
   "dry_run": true,
   "results": [
+    {
+      "cmd": [
+        "python3",
+        "scripts/build_answers_from_function_projection.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "Function projection answer report is up to date\n",
+      "stderr": "",
+      "ok": true,
+      "timed_out": false,
+      "duration_s": 0.173
+    },
+    {
+      "cmd": [
+        "python3",
+        "scripts/normalize_bilingual_labels.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "Bilingual label cleanup check passed\n",
+      "stderr": "",
+      "ok": true,
+      "timed_out": false,
+      "duration_s": 4.15
+    },
+    {
+      "cmd": [
+        "python3",
+        "scripts/detect_repetitive_text.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "Repetitive text check passed\n",
+      "stderr": "",
+      "ok": true,
+      "timed_out": false,
+      "duration_s": 25.703
+    },
     {
       "cmd": [
         "python3",
@@ -13,7 +52,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.377
+      "duration_s": 0.233
     },
     {
       "cmd": [
@@ -26,7 +65,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.269
+      "duration_s": 0.14
     },
     {
       "cmd": [
@@ -39,7 +78,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.123
+      "duration_s": 0.092
     },
     {
       "cmd": [
@@ -48,11 +87,11 @@
         "--check"
       ],
       "returncode": 0,
-      "stdout": "# Link Entry Merge Report / 链接入口合并报告\n\n- Scanned files / 扫描文件：4051\n- Changed files / 变更文件：0\n- Tables merged / 合并表格：0\n- Columns removed / 删除列：0\n\nNo redundant entry/link columns found.\n\n",
+      "stdout": "# Link Entry Merge Report / 链接入口合并报告\n\n- Scanned files / 扫描文件：4055\n- Changed files / 变更文件：0\n- Tables merged / 合并表格：0\n- Columns removed / 删除列：0\n\nNo redundant entry/link columns found.\n\n",
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 1.32
+      "duration_s": 0.831
     },
     {
       "cmd": [
@@ -65,7 +104,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.135
+      "duration_s": 0.066
     }
   ]
 }

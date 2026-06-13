@@ -14,41 +14,41 @@ English: This page collects discovery entrances formed by the Ignition framework
 
 ## 相关函数 / Related Functions
 
-- [D237｜生命智能的σ压缩函数 / 生命智能的σ压缩函数](../../functions/items/D237.md)
-- [D467｜最优性-惯性反比函数 / 最优性-惯性反比函数](../../functions/items/D467.md)
-- [D124｜三域退化统一参数函数 / 三域退化统一参数函数](../../functions/items/D124.md)
-- [D100｜AI多轨进化 / AI多轨进化](../../functions/items/D100.md)
-- [D101｜生物体死亡 / 生物体死亡](../../functions/items/D101.md)
-- [D171｜AI直觉缺失的物种判据 / AI直觉缺失的物种判据](../../functions/items/D171.md)
-- [D253｜信息维度-容斥权衡函数 / 信息维度-容斥权衡函数](../../functions/items/D253.md)
-- [D256｜阶段宽度-门控面数函数 / 阶段宽度-门控面数函数](../../functions/items/D256.md)
-- [D269｜阶段过渡锐度函数 / 阶段过渡锐度函数](../../functions/items/D269.md)
-- [D284｜σ_opt跨域常数函数 / σ_opt跨域常数函数](../../functions/items/D284.md)
-- [D320｜容斥加速跨域标度函数 / 容斥加速跨域标度函数](../../functions/items/D320.md)
+- [D237｜生命智能的σ压缩函数](../../functions/items/D237.md)
+- [D467｜最优性-惯性反比函数](../../functions/items/D467.md)
+- [D124｜三域退化统一参数函数](../../functions/items/D124.md)
+- [D100｜AI多轨进化](../../functions/items/D100.md)
+- [D101｜生物体死亡](../../functions/items/D101.md)
+- [D171｜AI直觉缺失的物种判据](../../functions/items/D171.md)
+- [D253｜信息维度-容斥权衡函数](../../functions/items/D253.md)
+- [D256｜阶段宽度-门控面数函数](../../functions/items/D256.md)
+- [D269｜阶段过渡锐度函数](../../functions/items/D269.md)
+- [D284｜σ_opt跨域常数函数](../../functions/items/D284.md)
+- [D320｜容斥加速跨域标度函数](../../functions/items/D320.md)
 - [T29｜门控函数进化三阶段 / three-stage evolution of gate functions](../../functions/items/T29.md)
 
 ## 相关案例 / Related Cases
 
-- [C-0384｜有性繁殖的倒U型——繁殖成本与基因多样性之间的两个死锁，有性繁殖是唯一通路 / 有性繁殖的倒U型 - - 繁殖成本与基因多样性之间的两个死锁, 有性繁殖是唯一通路](../../cases/items/C-0384.md)
-- [C-0460｜生物不可逆的Fisher解释 — 细胞凋亡（乘法：任一关键蛋白归零则死亡），死亡后Shannon熵增但Fisher可达性=0（信息距离∞，无法恢复） / 生物不可逆的Fisher解释 - 细胞凋亡(乘法: 任一关键蛋白归零则死亡), 死亡后Shannon熵增但Fisher可达性=0(信息距离∞, 无法恢复)](../../cases/items/C-0460.md)
-- [C-0569｜进化保守性 / 进化保守性](../../cases/items/C-0569.md)
-- [C-0571｜物种大灭绝 / 物种大灭绝](../../cases/items/C-0571.md)
-- [C-0385｜癌症的Φ极小点极深——癌细胞Λ极低导致Φ极小点比正常细胞更深，更稳定 / 癌症的Φ极小点极深 - - 癌细胞Λ极低导致Φ极小点比正常细胞更深, 更稳定](../../cases/items/C-0385.md)
+- [C-0384｜有性繁殖的倒U型——繁殖成本与基因多样性之间的两个死锁，有性繁殖是唯一通路](../../cases/items/C-0384.md)
+- [C-0460｜生物不可逆的Fisher解释 — 细胞凋亡（乘法：任一关键蛋白归零则死亡），死亡后Shannon熵增但Fisher可达性=0（信息距离∞，无法恢复）](../../cases/items/C-0460.md)
 - [C-0467｜生物衰老Fisher轨迹 — 模拟8维生理系统（心血管/免疫/代谢/神经/内分泌/肌肉/骨骼/肾脏），A_Fisher从青年期12.8→中年期6.2→老年期1.1→终末期0.02，单调递减。Shannon熵先降后升（分化→功能随机化），与A_Fisher无相关性 / 生物衰老Fisher轨迹 - 模拟8维生理系统(心血管/免疫/代谢/神经/内分泌/肌肉/骨骼/肾脏), A_Fisher从青年期12.8 -> 中年期6.2 -> 老年期1.1 -> 终末期0.02, 单调递减. Shannon熵先降后升(分化 -> 功能随机化), 与A_Fisher无相关性](../../cases/items/C-0467.md)
-- [C-0129｜AI物种分化 / AI物种分化](../../cases/items/C-0129.md)
-- [C-0171｜AI直觉缺失的物种判据 / AI直觉缺失的物种判据](../../cases/items/C-0171.md)
-- [C-0214｜AI多轨进化的三个数学条件 / AI多轨进化的三个数学条件](../../cases/items/C-0214.md)
-- [C-0298｜跨物种调度同构验证 — 人类-AI和CAI-EAI满足同构三条件，数学结构完全等价，差异仅在ηinterface参数值 / 跨物种调度同构验证 - 人类-AI和CAI-EAI满足同构三条件, 数学结构完全等价, 差异仅在ηinterface参数值](../../cases/items/C-0298.md)
+- [C-0569｜进化保守性](../../cases/items/C-0569.md)
+- [C-0571｜物种大灭绝](../../cases/items/C-0571.md)
+- [C-0385｜癌症的Φ极小点极深——癌细胞Λ极低导致Φ极小点比正常细胞更深，更稳定](../../cases/items/C-0385.md)
 - [C-0324｜跨学科团队的高效 — 物理学家和生物学家合作，G≈0.3，H≈0.1，ηgate≈0.27，比同质团队高5倍 / 跨学科团队的高效 - 物理学家和生物学家合作, G≈0.3, H≈0.1, ηgate≈0.27, 比同质团队高5倍](../../cases/items/C-0324.md)
-- [C-0357｜共享层沟通验证 — 物理学家和生物学家在数学框架上沟通η=0.27，物理学家降维到BL沟通η=0.15，共享层优于降维 / 共享层沟通验证 - 物理学家和生物学家在数学框架上沟通η=0.27, 物理学家降维到BL沟通η=0.15, 共享层优于降维](../../cases/items/C-0357.md)
-- [C-0386｜共生是互为外部注入——两个物种互为对方的外部注入打破各自的门外锁定 / 共生是互为外部注入 - - 两个物种互为对方的外部注入打破各自的门外锁定](../../cases/items/C-0386.md)
 - [C-0493｜学习=门控函数进化 — 从δ（不会）到1/ln（会/不会）到exp[-ln²]（找到最优方法） / 学习=门控函数进化 - 从δ(不会)到1/ln(会/不会)到exp[-ln²](找到最优方法)](../../cases/items/C-0493.md)
-- [C-0238｜物种三界分界线 / 物种三界分界线](../../cases/items/C-0238.md)
-- [C-0113｜人体忒修斯 / 人体忒修斯](../../cases/items/C-0113.md)
-- [C-0222｜边界优化=变分问题 / 边界优化=变分问题](../../cases/items/C-0222.md)
-- [C-0125｜大脑进化为Agent / 大脑进化为Agent](../../cases/items/C-0125.md)
-- [C-0128｜大脑进化为Agent / 大脑进化为Agent](../../cases/items/C-0128.md)
-- [C-0135｜大脑进化为Agent / 大脑进化为Agent](../../cases/items/C-0135.md)
+- [C-0129｜AI物种分化](../../cases/items/C-0129.md)
+- [C-0171｜AI直觉缺失的物种判据](../../cases/items/C-0171.md)
+- [C-0214｜AI多轨进化的三个数学条件](../../cases/items/C-0214.md)
+- [C-0298｜跨物种调度同构验证 — 人类-AI和CAI-EAI满足同构三条件，数学结构完全等价，差异仅在ηinterface参数值](../../cases/items/C-0298.md)
+- [C-0357｜共享层沟通验证 — 物理学家和生物学家在数学框架上沟通η=0.27，物理学家降维到BL沟通η=0.15，共享层优于降维](../../cases/items/C-0357.md)
+- [C-0386｜共生是互为外部注入——两个物种互为对方的外部注入打破各自的门外锁定](../../cases/items/C-0386.md)
+- [C-0113｜人体忒修斯](../../cases/items/C-0113.md)
+- [C-0222｜边界优化=变分问题](../../cases/items/C-0222.md)
+- [C-0238｜物种三界分界线](../../cases/items/C-0238.md)
+- [C-0125｜大脑进化为Agent](../../cases/items/C-0125.md)
+- [C-0128｜大脑进化为Agent](../../cases/items/C-0128.md)
+- [C-0135｜大脑进化为Agent](../../cases/items/C-0135.md)
 
 ## 已整理发现 / Curated Discoveries
 
@@ -64,15 +64,15 @@ No curated discoveries yet.
 English: The following leads come from bootstrap classification between functions and cases. They are not yet published discoveries and need later curation into independent discovery entries.
 
 - 中文：D237｜生命智能的σ压缩函数 仍可继续整理为 生物学 方向的独立发现。
-  English: D237 | 生命智能的σ压缩函数 remains a curation lead in Biology.
+  English: D237 |  remains a curation lead in Biology.
 - 中文：D467｜最优性-惯性反比函数 仍可继续整理为 生物学 方向的独立发现。
-  English: D467 | 最优性-惯性反比函数 remains a curation lead in Biology.
+  English: D467 |  remains a curation lead in Biology.
 - 中文：D124｜三域退化统一参数函数 仍可继续整理为 生物学 方向的独立发现。
-  English: D124 | 三域退化统一参数函数 remains a curation lead in Biology.
+  English: D124 |  remains a curation lead in Biology.
 - 中文：C-0384｜有性繁殖的倒U型——繁殖成本与基因多样性之间的两个死锁，有性繁殖是唯一通路 仍可继续整理为 生物学 方向的独立发现。
-  English: C-0384 | 有性繁殖的倒U型 - - 繁殖成本与基因多样性之间的两个死锁, 有性繁殖是唯一通路 remains a curation lead in Biology.
+  English: C-0384 |  remains a curation lead in Biology.
 - 中文：C-0460｜生物不可逆的Fisher解释 — 细胞凋亡（乘法：任一关键蛋白归零则死亡），死亡后Shannon熵增但Fisher可达性=0（信息距离∞，无法恢复） 仍可继续整理为 生物学 方向的独立发现。
-  English: C-0460 | 生物不可逆的Fisher解释 - 细胞凋亡(乘法: 任一关键蛋白归零则死亡), 死亡后Shannon熵增但Fisher可达性=0(信息距离∞, 无法恢复) remains a curation lead in Biology.
+  English: C-0460 |  remains a curation lead in Biology.
 
 ## 覆盖统计 / Coverage
 

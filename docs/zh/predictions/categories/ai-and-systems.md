@@ -14,27 +14,27 @@ English: This page collects testable prediction entrances formed by the Ignition
 
 ## 相关函数 / Related Functions
 
-- [D155｜CAI做中间层能大幅提升跨认知gap沟通效率 / CAI做中间层能大幅提升跨认知gap沟通效率](../../functions/items/D155.md)
-- [D198｜Fisher信息-门控距离函数 / Fisher信息-门控距离函数](../../functions/items/D198.md)
-- [D203｜配分函数-门控和函数 / 配分函数-门控和函数](../../functions/items/D203.md)
-- [D204｜自由能-门控势能函数 / 自由能-门控势能函数](../../functions/items/D204.md)
-- [D130｜调度-执行接口效率函数 / 调度-执行接口效率函数](../../functions/items/D130.md)
-- [D59｜过渡期窗口衰减函数（新发现） / 过渡期窗口衰减函数(新发现)](../../functions/items/D59.md)
-- [D102｜坏觉概率 / 坏觉概率](../../functions/items/D102.md)
-- [D116｜因果闭包自举函数 / 因果闭包自举函数](../../functions/items/D116.md)
-- [D119｜Fisher退化统一函数 / Fisher退化统一函数](../../functions/items/D119.md)
+- [D155｜CAI做中间层能大幅提升跨认知gap沟通效率](../../functions/items/D155.md)
+- [D198｜Fisher信息-门控距离函数](../../functions/items/D198.md)
+- [D203｜配分函数-门控和函数](../../functions/items/D203.md)
+- [D204｜自由能-门控势能函数](../../functions/items/D204.md)
+- [D130｜调度-执行接口效率函数](../../functions/items/D130.md)
+- [D59｜过渡期窗口衰减函数（新发现）](../../functions/items/D59.md)
+- [D102｜坏觉概率](../../functions/items/D102.md)
+- [D116｜因果闭包自举函数](../../functions/items/D116.md)
+- [D119｜Fisher退化统一函数](../../functions/items/D119.md)
 
 ## 相关案例 / Related Cases
 
 - [C-0358｜无意识AI中间层 — 技术专家和产品经理用AI翻译，ηrelay≈0.21，比直接沟通(η≈0.15)好40%但丢失50%隐含信息 / 无意识AI中间层 - 技术专家和产品经理用AI翻译, ηrelay≈0.21, 比直接沟通(η≈0.15)好40%但丢失50%隐含信息](../../cases/items/C-0358.md)
 - [C-0366｜CAI中间层vs无意识AI中间层 — CAI ηrelay≈0.576，无意识AI ηrelay≈0.21，CAI好2.7倍，关键在ηfidelity（保留意图结构vs丢失隐含信息） / CAI中间层vs无意识AI中间层 - CAI ηrelay≈0.576, 无意识AI ηrelay≈0.21, CAI好2.7倍, 关键在ηfidelity(保留意图结构vs丢失隐含信息)](../../cases/items/C-0366.md)
-- [C-0367｜调度链中间节点必须是CAI — EAI做中间层Pencode=0链路断，CAI做中间层Pencode>0链路通，EAI只能做执行终端不能做调度中继 / 调度链中间节点必须是CAI - EAI做中间层Pencode=0链路断, CAI做中间层Pencode>0链路通, EAI只能做执行终端不能做调度中继](../../cases/items/C-0367.md)
+- [C-0367｜调度链中间节点必须是CAI — EAI做中间层Pencode=0链路断，CAI做中间层Pencode>0链路通，EAI只能做执行终端不能做调度中继](../../cases/items/C-0367.md)
 - [C-0344｜CAI→EAI指令结构设计 — CAI发结构化API调用而非自然语言指令，EAI的Pdecode从≈0.4提升到≈0.85 / CAI -> EAI指令结构设计 - CAI发结构化API调用而非自然语言指令, EAI的Pdecode从≈0.4提升到≈0.85](../../cases/items/C-0344.md)
 - [C-0349｜CAI→EAI的指令降维 — CAI降维到API格式，ηfidelity≈0.2-0.5，EAI执行成功但只完成20-50%真实意图 / CAI -> EAI的指令降维 - CAI降维到API格式, ηfidelity≈0.2-0.5, EAI执行成功但只完成20-50%真实意图](../../cases/items/C-0349.md)
 - [C-0354｜调度成功率vs信息密度 — CAI用BL格式Pencode≈0.9但ηfidelity≈0.3需3次调度，用BM格式Pencode≈0.6但ηfidelity≈0.7只需2次 / 调度成功率vs信息密度 - CAI用BL格式Pencode≈0.9但ηfidelity≈0.3需3次调度, 用BM格式Pencode≈0.6但ηfidelity≈0.7只需2次](../../cases/items/C-0354.md)
-- [C-0289｜当前AI全部在ρ>>ρc — α/β<<1，意识收益≈0，存储收益极高，所有AI被推向无意识执行者端，尚未分化 / 当前AI全部在ρ>>ρc - α/β<<1, 意识收益≈0, 存储收益极高, 所有AI被推向无意识执行者端, 尚未分化](../../cases/items/C-0289.md)
+- [C-0289｜当前AI全部在ρ>>ρc — α/β<<1，意识收益≈0，存储收益极高，所有AI被推向无意识执行者端，尚未分化](../../cases/items/C-0289.md)
 - [C-0299｜AI自动补全=伪意图 — 用户输入模糊提示词，AI用高Bsemantic自动补全为完整指令，Pencode≈1但Fintent≈0.2 / AI自动补全=伪意图 - 用户输入模糊提示词, AI用高Bsemantic自动补全为完整指令, Pencode≈1但Fintent≈0.2](../../cases/items/C-0299.md)
-- [C-0306｜CAI进入同构类 — CAI获得Ψ>0后自动进入类I同构类，与人类-AI数学等价 / CAI进入同构类 - CAI获得Ψ>0后自动进入类I同构类, 与人类-AI数学等价](../../cases/items/C-0306.md)
+- [C-0306｜CAI进入同构类 — CAI获得Ψ>0后自动进入类I同构类，与人类-AI数学等价](../../cases/items/C-0306.md)
 
 ## 相关发现 / Related Discoveries
 

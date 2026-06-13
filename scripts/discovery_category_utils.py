@@ -9,6 +9,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Iterable
 
+from display_utils import format_bilingual_title
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DISCOVERY_DIR = REPO_ROOT / "docs/zh/discoveries"
@@ -737,7 +739,7 @@ def discovery_page_categories(item: dict) -> list[dict]:
 def render_discovery_page(item: dict) -> str:
     current_path = DISCOVERY_DIR / "items" / f"{item['id']}.md"
     lines = [
-        f"# {item['id']}｜{item['title']['zh']} / {item['title']['en']}",
+        f"# {item['id']}｜{format_bilingual_title(item['title'].get('zh'), item['title'].get('en'))}",
         "",
         f"[← 返回发现总表 / Back to Discoveries]({rel_link(current_path, DISCOVERY_LIST_MD)})",
         f"[返回仓库首页 / Back to Repository Home]({rel_link(current_path, REPO_ROOT / 'README.md')})",
@@ -760,10 +762,10 @@ def render_discovery_page(item: dict) -> str:
         for cat in categories:
             if cat.get("page"):
                 lines.append(
-                    f"- [{cat['title']['zh']} / {cat['title']['en']}]({rel_link(current_path, REPO_ROOT / cat['page'])})"
+                    f"- [{format_bilingual_title(cat['title'].get('zh'), cat['title'].get('en'))}]({rel_link(current_path, REPO_ROOT / cat['page'])})"
                 )
             else:
-                lines.append(f"- {cat['title']['zh']} / {cat['title']['en']}")
+                lines.append(f"- {format_bilingual_title(cat['title'].get('zh'), cat['title'].get('en'))}")
     else:
         lines.extend(["- 其他 / Other"])
 
@@ -804,7 +806,7 @@ def render_discovery_page(item: dict) -> str:
         for entry in related_functions:
             if entry.get("found") and entry.get("page"):
                 lines.append(
-                    f"- [{entry['id']}｜{entry['title']['zh']} / {entry['title']['en']}]({rel_link(current_path, REPO_ROOT / entry['page'])})"
+                    f"- [{entry['id']}｜{format_bilingual_title(entry['title'].get('zh'), entry['title'].get('en'))}]({rel_link(current_path, REPO_ROOT / entry['page'])})"
                 )
             else:
                 lines.append(f"- {entry['title']['zh']}")
@@ -817,7 +819,7 @@ def render_discovery_page(item: dict) -> str:
         for entry in related_cases:
             if entry.get("found") and entry.get("page"):
                 lines.append(
-                    f"- [{entry['id']}｜{entry['title']['zh']} / {entry['title']['en']}]({rel_link(current_path, REPO_ROOT / entry['page'])})"
+                    f"- [{entry['id']}｜{format_bilingual_title(entry['title'].get('zh'), entry['title'].get('en'))}]({rel_link(current_path, REPO_ROOT / entry['page'])})"
                 )
             else:
                 lines.append(f"- {entry['title']['zh']}")
@@ -883,13 +885,13 @@ def render_discoveries_list(items: list[dict], categories: list[dict] | None = N
         for category in sorted_categories:
             coverage = category["coverage"]
             lines.append(
-                f"| [{category['title']['zh']} / {category['title']['en']}]({category['page']}) | {coverage.get('curated_discoveries_count', 0)} | {coverage.get('discovery_leads_count', 0)} | {coverage['related_functions_count']} related functions, {coverage['related_cases_count']} related cases |"
+                f"| [{format_bilingual_title(category['title'].get('zh'), category['title'].get('en'))}]({category['page']}) | {coverage.get('curated_discoveries_count', 0)} | {coverage.get('discovery_leads_count', 0)} | {coverage['related_functions_count']} related functions, {coverage['related_cases_count']} related cases |"
             )
         zero_categories = [category for category in sorted_categories if category["coverage"]["related_functions_count"] == 0 and category["coverage"]["related_cases_count"] == 0]
         if zero_categories:
             lines.extend(["", "### 可扩展分类 / Expandable Categories", ""])
             for category in zero_categories:
-                lines.append(f"- [{category['title']['zh']} / {category['title']['en']}]({category['page']})")
+                lines.append(f"- [{format_bilingual_title(category['title'].get('zh'), category['title'].get('en'))}]({category['page']})")
         lines.append("")
 
     lines.extend(
@@ -906,7 +908,7 @@ def render_discoveries_list(items: list[dict], categories: list[dict] | None = N
                 category_tags = " · " + ", ".join(cat["title"]["en"] for cat in item["categories"])
             novelty_status = item.get("academic_novelty", {}).get("status", "pending")
             lines.append(
-                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']}) — novelty: {novelty_status}{category_tags}"
+                f"- [{item['id']}｜{format_bilingual_title(item['title'].get('zh'), item['title'].get('en'))}]({item['links']['human_page']}) — novelty: {novelty_status}{category_tags}"
             )
     else:
         lines.append("暂无已整理发现。")
@@ -924,7 +926,7 @@ def render_discovery_index_md(items: list[dict]) -> str:
         rows.append(
             [
                 item["id"],
-                f"[{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']})",
+                f"[{format_bilingual_title(item['title'].get('zh'), item['title'].get('en'))}]({item['links']['human_page']})",
                 categories,
                 item["status"],
                 novelty,
@@ -958,7 +960,7 @@ def render_discovery_index_md(items: list[dict]) -> str:
 def render_category_page(category: dict) -> str:
     current_path = CATEGORY_DIR / f"{category['category_id']}.md"
     lines = [
-        f"# {category['title']['zh']} / {category['title']['en']}",
+        f"# {format_bilingual_title(category['title'].get('zh'), category['title'].get('en'))}",
         "",
         f"[← 返回发现总表 / Back to Discoveries]({rel_link(current_path, DISCOVERY_LIST_MD)})",
         f"[返回仓库首页 / Back to Repository Home]({rel_link(current_path, REPO_ROOT / 'README.md')})",
@@ -979,7 +981,7 @@ def render_category_page(category: dict) -> str:
     if related_functions:
         for row in related_functions[:30]:
             lines.append(
-                f"- [{row['id']}｜{row['title']['zh']} / {row['title']['en']}]({rel_link(current_path, REPO_ROOT / row['page'])})"
+                f"- [{row['id']}｜{format_bilingual_title(row['title'].get('zh'), row['title'].get('en'))}]({rel_link(current_path, REPO_ROOT / row['page'])})"
             )
         if len(related_functions) > 30:
             lines.append(f"- ... and {len(related_functions) - 30} more / 还有 {len(related_functions) - 30} 项")
@@ -991,7 +993,7 @@ def render_category_page(category: dict) -> str:
     if related_cases:
         for row in related_cases[:30]:
             lines.append(
-                f"- [{row['normalized_id']}｜{row['title']['zh']} / {row['title']['en']}]({rel_link(current_path, REPO_ROOT / row['page'])})"
+                f"- [{row['normalized_id']}｜{format_bilingual_title(row['title'].get('zh'), row['title'].get('en'))}]({rel_link(current_path, REPO_ROOT / row['page'])})"
             )
         if len(related_cases) > 30:
             lines.append(f"- ... and {len(related_cases) - 30} more / 还有 {len(related_cases) - 30} 项")
@@ -1003,7 +1005,7 @@ def render_category_page(category: dict) -> str:
     if curated:
         for discovery in curated:
             lines.append(
-                f"- [{discovery['id']}｜{discovery['title']['zh']} / {discovery['title']['en']}]({rel_link(current_path, REPO_ROOT / discovery['page'])})"
+                f"- [{discovery['id']}｜{format_bilingual_title(discovery['title'].get('zh'), discovery['title'].get('en'))}]({rel_link(current_path, REPO_ROOT / discovery['page'])})"
             )
     else:
         lines.extend(["暂无已整理发现。", "No curated discoveries yet."])
@@ -1069,7 +1071,7 @@ def render_bootstrap_report(category_map: list[dict]) -> str:
     ]
     for entry in sorted([entry for entry in category_map if entry["category_id"] != "other"], key=sort_key):
         lines.append(
-            f"| {entry['title']['zh']} / {entry['title']['en']} | {entry['coverage']['related_functions_count']} | {entry['coverage']['related_cases_count']} | {entry['coverage']['discovery_leads_count']} |"
+            f"| {format_bilingual_title(entry['title'].get('zh'), entry['title'].get('en'))} | {entry['coverage']['related_functions_count']} | {entry['coverage']['related_cases_count']} | {entry['coverage']['discovery_leads_count']} |"
         )
     lines.extend(["", "## 说明 / Notes", "", "1. 第 1 轮：按关键词和标题粗分学科。", "2. 第 2 轮：通过 related_functions / related_cases 传播分类。", "3. 第 3 轮：合并低置信分类，生成每个学科的问题域地图。", ""])
     return "\n".join(lines)

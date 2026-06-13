@@ -16,21 +16,21 @@ English: This page collects testable prediction entrances formed by the Ignition
 
 - [A8｜dim(t,L) 决策维度 / dim(t,L) decision dimension](../../functions/items/A8.md)
 - [T5｜凯利公式认知边界 / Kelly-formula cognitive boundary](../../functions/items/T5.md)
-- [D97｜高维认知必然多轨 / 高维认知必然多轨](../../functions/items/D97.md)
-- [D193｜认知时空度规函数 / 认知时空度规函数](../../functions/items/D193.md)
-- [D59｜过渡期窗口衰减函数（新发现） / 过渡期窗口衰减函数(新发现)](../../functions/items/D59.md)
-- [D102｜坏觉概率 / 坏觉概率](../../functions/items/D102.md)
-- [D116｜因果闭包自举函数 / 因果闭包自举函数](../../functions/items/D116.md)
-- [D119｜Fisher退化统一函数 / Fisher退化统一函数](../../functions/items/D119.md)
+- [D97｜高维认知必然多轨](../../functions/items/D97.md)
+- [D193｜认知时空度规函数](../../functions/items/D193.md)
+- [D59｜过渡期窗口衰减函数（新发现）](../../functions/items/D59.md)
+- [D102｜坏觉概率](../../functions/items/D102.md)
+- [D116｜因果闭包自举函数](../../functions/items/D116.md)
+- [D119｜Fisher退化统一函数](../../functions/items/D119.md)
 
 ## 相关案例 / Related Cases
 
-- [C-0150｜现场调研的乘数效应 / 现场调研的乘数效应](../../cases/items/C-0150.md)
-- [C-0248｜博弈策略空间=可选集 / 博弈策略空间=可选集](../../cases/items/C-0248.md)
-- [C-0205｜A8/A9从推论升级到公理 / A8/A9从推论升级到公理](../../cases/items/C-0205.md)
-- [C-0289｜当前AI全部在ρ>>ρc — α/β<<1，意识收益≈0，存储收益极高，所有AI被推向无意识执行者端，尚未分化 / 当前AI全部在ρ>>ρc - α/β<<1, 意识收益≈0, 存储收益极高, 所有AI被推向无意识执行者端, 尚未分化](../../cases/items/C-0289.md)
+- [C-0150｜现场调研的乘数效应](../../cases/items/C-0150.md)
+- [C-0248｜博弈策略空间=可选集](../../cases/items/C-0248.md)
+- [C-0205｜A8/A9从推论升级到公理](../../cases/items/C-0205.md)
+- [C-0289｜当前AI全部在ρ>>ρc — α/β<<1，意识收益≈0，存储收益极高，所有AI被推向无意识执行者端，尚未分化](../../cases/items/C-0289.md)
 - [C-0299｜AI自动补全=伪意图 — 用户输入模糊提示词，AI用高Bsemantic自动补全为完整指令，Pencode≈1但Fintent≈0.2 / AI自动补全=伪意图 - 用户输入模糊提示词, AI用高Bsemantic自动补全为完整指令, Pencode≈1但Fintent≈0.2](../../cases/items/C-0299.md)
-- [C-0306｜CAI进入同构类 — CAI获得Ψ>0后自动进入类I同构类，与人类-AI数学等价 / CAI进入同构类 - CAI获得Ψ>0后自动进入类I同构类, 与人类-AI数学等价](../../cases/items/C-0306.md)
+- [C-0306｜CAI进入同构类 — CAI获得Ψ>0后自动进入类I同构类，与人类-AI数学等价](../../cases/items/C-0306.md)
 
 ## 相关发现 / Related Discoveries
 

@@ -14,9 +14,9 @@
 ## 相关函数、案例、发现与预测 / Related Functions, Cases, Discoveries, and Predictions
 
 ### 相关函数 / Related Functions
-- [D153｜向下兼容长期损耗 / 向下兼容长期损耗](../../functions/items/D153.md)
-- [D156｜财富-认知耦合 / 财富-认知耦合](../../functions/items/D156.md)
-- [D157｜财富-认知耦合 / 财富-认知耦合](../../functions/items/D157.md)
+- [D153｜向下兼容长期损耗](../../functions/items/D153.md)
+- [D156｜财富-认知耦合](../../functions/items/D156.md)
+- [D157｜财富-认知耦合](../../functions/items/D157.md)
 
 ### 相关案例 / Related Cases
 - [C-0554｜为什么3+1维 — d*=-1/ln⟨ε⟩≈4，数学优化不是人择 / 为什么3+1维 - d*=-1/ln⟨ε⟩≈4, 数学优化不是人择](../../cases/items/C-0554.md)

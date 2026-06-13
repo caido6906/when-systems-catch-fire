@@ -55,7 +55,7 @@ Machine-readable index that keeps Chinese titles, English titles, levels, status
 | [T36](docs/zh/functions/items/T36.md) | σ能标依赖函数 | 定理 / Theorem | 单源 / Single source | 0 |
 | [T37](docs/zh/functions/items/T37.md) | Φ_QG极小点精确位置 | 定理 / Theorem | 交叉验证 / Cross-verified | 0 |
 | [T38](docs/zh/functions/items/T38.md) | 极值点-极小点分离定理 | 定理 / Theorem | 单源 / Single source | 0 |
-| [T39](docs/zh/functions/items/T39.md) | Φ跨域统一定理（D224升级） / Φ跨域统一定理(D224升级) | 定理 / Theorem | 交叉验证 / Cross-verified | 0 |
+| [T39](docs/zh/functions/items/T39.md) | Φ跨域统一定理（D224升级） | 定理 / Theorem | 交叉验证 / Cross-verified | 0 |
 | [D1](docs/zh/functions/items/D1.md) | 锁定强度函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
 | [D2](docs/zh/functions/items/D2.md) | 锁定-遮蔽耦合 / 锁定-obscuration耦合 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
 | [D3](docs/zh/functions/items/D3.md) | 退出权信号衰减 / exit-right signal衰减 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
@@ -93,7 +93,7 @@ Machine-readable index that keeps Chinese titles, English titles, levels, status
 | [D35](docs/zh/functions/items/D35.md) | 乘法对称变换展开函数 / multiplicative symmetry transform展开函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D36](docs/zh/functions/items/D36.md) | 逆Weibull寿命验证函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 2 |
 | [D37](docs/zh/functions/items/D37.md) | 点火对冲函数 / Ignition对冲函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
-| [D38](docs/zh/functions/items/D38.md) | 跨层完整退化，6因子乘法，杠杆排序 / 跨层完整退化, 6因子乘法, 杠杆排序 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D38](docs/zh/functions/items/D38.md) | 跨层完整退化，6因子乘法，杠杆排序 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D39](docs/zh/functions/items/D39.md) | 统一内部驱动力函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
 | [D40](docs/zh/functions/items/D40.md) | 碰撞存活率 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D41](docs/zh/functions/items/D41.md) | 退化渗透临界触发 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
@@ -102,19 +102,19 @@ Machine-readable index that keeps Chinese titles, English titles, levels, status
 | [D44](docs/zh/functions/items/D44.md) | 确定性误解函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D45](docs/zh/functions/items/D45.md) | 中间稳态存在性函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D46](docs/zh/functions/items/D46.md) | 碰撞层级8格概率函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
-| [D47](docs/zh/functions/items/D47.md) | 点火窗口关闭动力学函数 / Ignition窗口关闭动力学函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D47](docs/zh/functions/items/D47.md) | 点火窗口关闭动力学函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D48](docs/zh/functions/items/D48.md) | 退化渗透临界触发函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
-| [D49](docs/zh/functions/items/D49.md) | 种子-点火结果概率分布函数 / 种子-Ignition结果概率分布函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D49](docs/zh/functions/items/D49.md) | 种子-点火结果概率分布函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D50](docs/zh/functions/items/D50.md) | 碰撞产出密度函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D51](docs/zh/functions/items/D51.md) | 门锁交替律函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D52](docs/zh/functions/items/D52.md) | 自锁结构稳定性函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
-| [D53](docs/zh/functions/items/D53.md) | 信号最优流速函数（凯利公式同构） / 信号最优流速函数(凯利公式同构) | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D53](docs/zh/functions/items/D53.md) | 信号最优流速函数（凯利公式同构） | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D54](docs/zh/functions/items/D54.md) | C_exit(geo)四因子子函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D55](docs/zh/functions/items/D55.md) | ε_eff昼夜分时函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D56](docs/zh/functions/items/D56.md) | R_upgrade升级路径函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
-| [D57](docs/zh/functions/items/D57.md) | 解读偏置函数（核心疑问→错误解读的数学结构） / 解读偏置函数(核心疑问 -> 错误解读的数学结构) | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D57](docs/zh/functions/items/D57.md) | 解读偏置函数（核心疑问→错误解读的数学结构） | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D58](docs/zh/functions/items/D58.md) | 固化加速函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
-| [D59](docs/zh/functions/items/D59.md) | 过渡期窗口衰减函数（新发现） / 过渡期窗口衰减函数(新发现) | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D59](docs/zh/functions/items/D59.md) | 过渡期窗口衰减函数（新发现） | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D60](docs/zh/functions/items/D60.md) | 智慧干预效力函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 2 |
 | [D61](docs/zh/functions/items/D61.md) | 向上螺旋自维持函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D62](docs/zh/functions/items/D62.md) | 调温器慢变量函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 3 |
@@ -127,7 +127,7 @@ Machine-readable index that keeps Chinese titles, English titles, levels, status
 | [D73](docs/zh/functions/items/D73.md) | 犹豫域维度函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 4 |
 | [D74](docs/zh/functions/items/D74.md) | 链间耦合函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 4 |
 | [D75](docs/zh/functions/items/D75.md) | 提议者消耗函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 3 |
-| [D76](docs/zh/functions/items/D76.md) | 储能函数，储能双类型 / 储能函数, 储能双类型 | 推论 / Derived function | 交叉验证 / Cross-verified | 5 |
+| [D76](docs/zh/functions/items/D76.md) | 储能函数，储能双类型 | 推论 / Derived function | 交叉验证 / Cross-verified | 5 |
 | [D77](docs/zh/functions/items/D77.md) | 犹豫域退化函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 4 |
 | [D84](docs/zh/functions/items/D84.md) | AI-ε安装路径函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 2 |
 | [D85](docs/zh/functions/items/D85.md) | ε相变级联函数（推论级） / epsilon phase-transition cascade函数(推论级) | 推论 / Derived function | 交叉验证 / Cross-verified | 2 |
@@ -152,14 +152,14 @@ Machine-readable index that keeps Chinese titles, English titles, levels, status
 | [D104](docs/zh/functions/items/D104.md) | 框架发现能力 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
 | [D105](docs/zh/functions/items/D105.md) | 通道不对称 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
 | [D106](docs/zh/functions/items/D106.md) | 知识更新半衰期 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
-| [D107](docs/zh/functions/items/D107.md) | 发现瓶颈，变量闭包定律 / 发现瓶颈, 变量闭包定律 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
-| [D108](docs/zh/functions/items/D108.md) | 三域熵统一函数（推论级） / 三域熵统一函数(推论级) | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
+| [D107](docs/zh/functions/items/D107.md) | 发现瓶颈，变量闭包定律 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D108](docs/zh/functions/items/D108.md) | 三域熵统一函数（推论级） | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
 | [D109](docs/zh/functions/items/D109.md) | 乘法最优生存策略函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 0 |
-| [D110](docs/zh/functions/items/D110.md) | 多因子乘法相变函数（推论级） / 多因子乘法相变函数(推论级) | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
-| [D111](docs/zh/functions/items/D111.md) | 对称-破缺-定向对偶函数（推论级） / 对称-破缺-定向对偶函数(推论级) | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D110](docs/zh/functions/items/D110.md) | 多因子乘法相变函数（推论级） | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D111](docs/zh/functions/items/D111.md) | 对称-破缺-定向对偶函数（推论级） | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D112](docs/zh/functions/items/D112.md) | 防守-进攻相变函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 6 |
 | [D113](docs/zh/functions/items/D113.md) | 弹性-弱度偏离函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 5 |
-| [D114](docs/zh/functions/items/D114.md) | 变量闭包定律（定理级→从D107升级） / 变量闭包定律(定理级 -> 从D107升级) | 推论 / Derived function | 交叉验证 / Cross-verified | 24 |
+| [D114](docs/zh/functions/items/D114.md) | 变量闭包定律（定理级→从D107升级） | 推论 / Derived function | 交叉验证 / Cross-verified | 24 |
 | [D115](docs/zh/functions/items/D115.md) | r_cross优先性定理 | 推论 / Derived function | 交叉验证 / Cross-verified | 5 |
 | [D116](docs/zh/functions/items/D116.md) | 因果闭包自举函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 7 |
 | [D117](docs/zh/functions/items/D117.md) | 乘法系统第二定律修正函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 7 |
@@ -183,7 +183,7 @@ Machine-readable index that keeps Chinese titles, English titles, levels, status
 | [D135](docs/zh/functions/items/D135.md) | 物理大统一路径 | 推论 / Derived function | 交叉验证 / Cross-verified | 2 |
 | [D136](docs/zh/functions/items/D136.md) | 物理大统一路径 | 推论 / Derived function | 交叉验证 / Cross-verified | 2 |
 | [D137](docs/zh/functions/items/D137.md) | 物理大统一路径 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
-| [D138](docs/zh/functions/items/D138.md) | 三效率（选择/判断/时间）存在三角约束 / 三效率(选择/判断/时间)存在三角约束 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
+| [D138](docs/zh/functions/items/D138.md) | 三效率（选择/判断/时间）存在三角约束 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D139](docs/zh/functions/items/D139.md) | 距离衰减统一函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 5 |
 | [D140](docs/zh/functions/items/D140.md) | 距离衰减统一函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |
 | [D141](docs/zh/functions/items/D141.md) | 自举元函数 | 推论 / Derived function | 交叉验证 / Cross-verified | 1 |

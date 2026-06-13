@@ -19,5 +19,5 @@
 - [A9｜P_exit(t,L,C) 退出概率 / P_exit(t,L,C) exit probability](../../functions/items/A9.md)
 
 ### 相关案例 / Related Cases
-- [C-0003｜秦统一 / 秦统一](../../cases/items/C-0003.md)
-- [C-0162｜定投指数基金 / 定投指数基金](../../cases/items/C-0162.md)
+- [C-0003｜秦统一](../../cases/items/C-0003.md)
+- [C-0162｜定投指数基金](../../cases/items/C-0162.md)

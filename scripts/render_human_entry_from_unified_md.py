@@ -28,6 +28,7 @@ from pathlib import Path
 from typing import Iterable, List, Sequence
 
 from repository_overview_utils import count_repository_objects, render_repository_overview_block
+from display_utils import format_bilingual_title, normalize_bilingual_text
 
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
@@ -302,12 +303,6 @@ def render_bilingual(zh: str, en: str, label_zh: str = "中文", label_en: str =
     return "\n".join(lines)
 
 
-def format_bilingual_title(zh: str, en: str) -> str:
-    if en and en != zh:
-        return f"{zh} / {en}"
-    return zh
-
-
 def parse_function_middle(middle_parts: List[str]) -> tuple[str, str]:
     blob = " | ".join(middle_parts).strip()
     blob = restore_pipe_literals(blob)
@@ -416,23 +411,23 @@ def parse_function_table(path: Path) -> List[dict]:
             "normalized_id": fid,
             "title": {
                 "zh": title_zh,
-                "en": translate_text(title_zh),
+                "en": normalize_bilingual_text(title_zh, translate_text(title_zh)),
             },
             "title_text": title_zh,
             "level": {
                 "zh": level_zh,
-                "en": translate_level(level_zh),
+                "en": normalize_bilingual_text(level_zh, translate_level(level_zh)),
             },
             "level_text": level_zh,
             "status": status,
             "status_text": translate_status(status),
             "content": {
                 "zh": content_zh,
-                "en": translate_text(content_zh) if content_zh else "",
+                "en": normalize_bilingual_text(content_zh, translate_text(content_zh)) if content_zh else "",
             },
             "explanation": {
                 "zh": explanation_zh,
-                "en": translate_text(explanation_zh),
+                "en": normalize_bilingual_text(explanation_zh, translate_text(explanation_zh)),
             },
             "source": {
                 "source_table": str(path.relative_to(REPO_ROOT)),
@@ -519,23 +514,23 @@ def parse_case_table(path: Path) -> List[dict]:
             "normalized_id": normalized,
             "title": {
                 "zh": title_zh,
-                "en": translate_text(title_zh),
+                "en": normalize_bilingual_text(title_zh, translate_text(title_zh)),
             },
             "title_text": title_zh,
             "level": {
                 "zh": level_zh,
-                "en": translate_level(level_zh),
+                "en": normalize_bilingual_text(level_zh, translate_level(level_zh)),
             },
             "level_text": level_zh,
             "status": status,
             "status_text": translate_status(status),
             "content": {
                 "zh": content_zh,
-                "en": content_en,
+                "en": normalize_bilingual_text(content_zh, content_en),
             },
             "explanation": {
                 "zh": explanation_zh,
-                "en": explanation_en,
+                "en": normalize_bilingual_text(explanation_zh, explanation_en),
             },
             "source": {
                 "source_table": str(path.relative_to(REPO_ROOT)),

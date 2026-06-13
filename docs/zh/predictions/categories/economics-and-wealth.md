@@ -14,18 +14,18 @@ English: This page collects testable prediction entrances formed by the Ignition
 
 ## 相关函数 / Related Functions
 
-- [D160｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D160.md)
-- [D163｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D163.md)
-- [D164｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D164.md)
-- [D165｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D165.md)
-- [D166｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D166.md)
-- [D167｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D167.md)
-- [D168｜定投凯利保守性 / 定投凯利保守性](../../functions/items/D168.md)
-- [D181｜定投跨域验证函数 / 定投跨域验证函数](../../functions/items/D181.md)
+- [D160｜定投凯利保守性](../../functions/items/D160.md)
+- [D163｜定投凯利保守性](../../functions/items/D163.md)
+- [D164｜定投凯利保守性](../../functions/items/D164.md)
+- [D165｜定投凯利保守性](../../functions/items/D165.md)
+- [D166｜定投凯利保守性](../../functions/items/D166.md)
+- [D167｜定投凯利保守性](../../functions/items/D167.md)
+- [D168｜定投凯利保守性](../../functions/items/D168.md)
+- [D181｜定投跨域验证函数](../../functions/items/D181.md)
 
 ## 相关案例 / Related Cases
 
-- [C-0162｜定投指数基金 / 定投指数基金](../../cases/items/C-0162.md)
+- [C-0162｜定投指数基金](../../cases/items/C-0162.md)
 - [C-0263｜缓存倒U型验证 / cache inverted-U curve验证](../../cases/items/C-0263.md)
 - [C-0554｜为什么3+1维 — d*=-1/ln⟨ε⟩≈4，数学优化不是人择 / 为什么3+1维 - d*=-1/ln⟨ε⟩≈4, 数学优化不是人择](../../cases/items/C-0554.md)
 

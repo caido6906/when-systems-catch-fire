@@ -18,7 +18,7 @@
         "id": "D153",
         "title": {
           "zh": "向下兼容长期损耗",
-          "en": "向下兼容长期损耗"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D153.md"
       },
@@ -26,7 +26,7 @@
         "id": "D156",
         "title": {
           "zh": "财富-认知耦合",
-          "en": "财富-认知耦合"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D156.md"
       },
@@ -34,7 +34,7 @@
         "id": "D157",
         "title": {
           "zh": "财富-认知耦合",
-          "en": "财富-认知耦合"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D157.md"
       },
@@ -42,7 +42,7 @@
         "id": "D164",
         "title": {
           "zh": "定投凯利保守性",
-          "en": "定投凯利保守性"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D164.md"
       },
@@ -50,7 +50,7 @@
         "id": "D108",
         "title": {
           "zh": "三域熵统一函数（推论级）",
-          "en": "三域熵统一函数(推论级)"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D108.md"
       },
@@ -58,7 +58,7 @@
         "id": "D260",
         "title": {
           "zh": "偏差敏感度阈值函数",
-          "en": "偏差敏感度阈值函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D260.md"
       },
@@ -66,7 +66,7 @@
         "id": "D272",
         "title": {
           "zh": "量子引力-新门控面预测",
-          "en": "量子引力-新门控面预测"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D272.md"
       },
@@ -74,7 +74,7 @@
         "id": "D287",
         "title": {
           "zh": "容斥主导实验签名函数",
-          "en": "容斥主导实验签名函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D287.md"
       },
@@ -82,7 +82,7 @@
         "id": "D373",
         "title": {
           "zh": "p*临界标度函数",
-          "en": "p*临界标度函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D373.md"
       },
@@ -90,7 +90,7 @@
         "id": "D387",
         "title": {
           "zh": "容斥-耦合配分函数",
-          "en": "容斥-耦合配分函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D387.md"
       },
@@ -98,7 +98,7 @@
         "id": "D401",
         "title": {
           "zh": "自由能-Φ等价函数",
-          "en": "自由能-Φ等价函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D401.md"
       },
@@ -106,7 +106,7 @@
         "id": "D307",
         "title": {
           "zh": "σ_opt微观起源函数",
-          "en": "σ_opt微观起源函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D307.md"
       },
@@ -114,7 +114,7 @@
         "id": "D412",
         "title": {
           "zh": "双切换同步函数",
-          "en": "双切换同步函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D412.md"
       },
@@ -122,7 +122,7 @@
         "id": "D413",
         "title": {
           "zh": "遗迹-复活代价联合函数",
-          "en": "遗迹-复活代价联合函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D413.md"
       },
@@ -130,7 +130,7 @@
         "id": "D295",
         "title": {
           "zh": "正反馈不可逆点函数",
-          "en": "正反馈不可逆点函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D295.md"
       },
@@ -138,7 +138,7 @@
         "id": "D423",
         "title": {
           "zh": "不可逆体积参数归约函数",
-          "en": "不可逆体积参数归约函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D423.md"
       },
@@ -154,7 +154,7 @@
         "id": "D266",
         "title": {
           "zh": "容斥偏差加速函数",
-          "en": "容斥偏差加速函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D266.md"
       },
@@ -162,7 +162,7 @@
         "id": "D397",
         "title": {
           "zh": "两步策略最优性证明函数",
-          "en": "两步策略最优性证明函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D397.md"
       },
@@ -170,7 +170,7 @@
         "id": "D410",
         "title": {
           "zh": "不可逆线完整分类函数",
-          "en": "不可逆线完整分类函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D410.md"
       },
@@ -178,7 +178,7 @@
         "id": "D335",
         "title": {
           "zh": "d_opt-σ_opt平衡稳定性函数",
-          "en": "d_opt-σ_opt平衡稳定性函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D335.md"
       },
@@ -186,7 +186,7 @@
         "id": "D384",
         "title": {
           "zh": "双重打击-双重加速同构函数",
-          "en": "双重打击-双重加速同构函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D384.md"
       },
@@ -194,7 +194,7 @@
         "id": "D297",
         "title": {
           "zh": "基本常数-容斥约束函数",
-          "en": "基本常数-容斥约束函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D297.md"
       },
@@ -202,7 +202,7 @@
         "id": "D325",
         "title": {
           "zh": "僵尸态自修复函数",
-          "en": "僵尸态自修复函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D325.md"
       },
@@ -218,7 +218,7 @@
         "id": "D96",
         "title": {
           "zh": "三层结构必然性",
-          "en": "三层结构必然性"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D96.md"
       },
@@ -244,7 +244,7 @@
         "id": "C-0457",
         "title": {
           "zh": "乘法系统Shannon熵反常 — 3维乘法系统门控区微观态数=2维积分 vs 存活区=3维积分，门控区熵更低但系统趋向门控。dS/dt≥0预测错误",
-          "en": "乘法系统Shannon熵反常 - 3维乘法系统门控区微观态数=2维积分 vs 存活区=3维积分, 门控区熵更低但系统趋向门控. dS/dt≥0预测错误"
+          "en": ""
         },
         "page": "docs/zh/cases/items/C-0457.md"
       }
@@ -526,7 +526,7 @@
         "id": "D156",
         "title": {
           "zh": "财富-认知耦合",
-          "en": "财富-认知耦合"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D156.md"
       },
@@ -534,7 +534,7 @@
         "id": "D157",
         "title": {
           "zh": "财富-认知耦合",
-          "en": "财富-认知耦合"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D157.md"
       },
@@ -542,7 +542,7 @@
         "id": "D108",
         "title": {
           "zh": "三域熵统一函数（推论级）",
-          "en": "三域熵统一函数(推论级)"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D108.md"
       },
@@ -558,7 +558,7 @@
         "id": "D96",
         "title": {
           "zh": "三层结构必然性",
-          "en": "三层结构必然性"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D96.md"
       },
@@ -574,7 +574,7 @@
         "id": "D307",
         "title": {
           "zh": "σ_opt微观起源函数",
-          "en": "σ_opt微观起源函数"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D307.md"
       }
@@ -584,7 +584,7 @@
         "id": "C-0457",
         "title": {
           "zh": "乘法系统Shannon熵反常 — 3维乘法系统门控区微观态数=2维积分 vs 存活区=3维积分，门控区熵更低但系统趋向门控。dS/dt≥0预测错误",
-          "en": "乘法系统Shannon熵反常 - 3维乘法系统门控区微观态数=2维积分 vs 存活区=3维积分, 门控区熵更低但系统趋向门控. dS/dt≥0预测错误"
+          "en": ""
         },
         "page": "docs/zh/cases/items/C-0457.md"
       }
@@ -666,7 +666,7 @@
         "id": "C-0003",
         "title": {
           "zh": "秦统一",
-          "en": "秦统一"
+          "en": ""
         },
         "page": "docs/zh/cases/items/C-0003.md"
       },
@@ -674,7 +674,7 @@
         "id": "C-0162",
         "title": {
           "zh": "定投指数基金",
-          "en": "定投指数基金"
+          "en": ""
         },
         "page": "docs/zh/cases/items/C-0162.md"
       }
@@ -863,7 +863,7 @@
         "id": "C-0003",
         "title": {
           "zh": "秦统一",
-          "en": "秦统一"
+          "en": ""
         },
         "page": "docs/zh/cases/items/C-0003.md"
       },
@@ -871,7 +871,7 @@
         "id": "C-0162",
         "title": {
           "zh": "定投指数基金",
-          "en": "定投指数基金"
+          "en": ""
         },
         "page": "docs/zh/cases/items/C-0162.md"
       }
@@ -947,7 +947,7 @@
         "id": "D153",
         "title": {
           "zh": "向下兼容长期损耗",
-          "en": "向下兼容长期损耗"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D153.md"
       },
@@ -955,7 +955,7 @@
         "id": "D156",
         "title": {
           "zh": "财富-认知耦合",
-          "en": "财富-认知耦合"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D156.md"
       },
@@ -963,7 +963,7 @@
         "id": "D157",
         "title": {
           "zh": "财富-认知耦合",
-          "en": "财富-认知耦合"
+          "en": ""
         },
         "page": "docs/zh/functions/items/D157.md"
       }

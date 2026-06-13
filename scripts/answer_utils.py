@@ -9,6 +9,8 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from display_utils import format_bilingual_title
+
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
 ANSWER_DIR = REPO_ROOT / "docs/zh/answers"
@@ -413,7 +415,7 @@ def render_link_list(entries: list[dict], current_path: Path) -> str:
         return "-\n"
     lines = []
     for entry in entries:
-        label = f"{entry['id']}｜{entry['title']['zh']} / {entry['title']['en']}"
+        label = f"{entry['id']}｜{format_bilingual_title(entry['title'].get('zh'), entry['title'].get('en'))}"
         if entry.get("page"):
             lines.append(f"- [{label}]({rel_link(current_path, REPO_ROOT / entry['page'])})")
         else:
@@ -424,7 +426,7 @@ def render_link_list(entries: list[dict], current_path: Path) -> str:
 def render_answer_page(item: dict) -> str:
     current_path = ITEM_DIR / f"{item['id']}.md"
     lines = [
-        f"# {item['id']} {item['title']['zh']} / {item['title']['en']}",
+        f"# {item['id']} {format_bilingual_title(item['title'].get('zh'), item['title'].get('en'))}",
         "",
         f"[← 返回新答案总表 / Back to New Answers]({rel_link(current_path, ANSWERS_LIST_MD)})",
         f"[返回仓库首页 / Back to Repository Home]({rel_link(current_path, REPO_ROOT / 'README.md')})",
@@ -520,7 +522,7 @@ def render_answer_page(item: dict) -> str:
 def render_category_page(category: dict) -> str:
     current_path = CATEGORY_DIR / f"{category['id']}.md"
     lines = [
-        f"# {category['title']['zh']} / {category['title']['en']}",
+        f"# {format_bilingual_title(category['title'].get('zh'), category['title'].get('en'))}",
         "",
         f"[← 返回新答案总表 / Back to New Answers]({rel_link(current_path, ANSWERS_LIST_MD)})",
         f"[返回仓库首页 / Back to Repository Home]({rel_link(current_path, REPO_ROOT / 'README.md')})",
@@ -591,7 +593,7 @@ def render_answers_index(answers: list[dict], category_map: list[dict]) -> str:
             f"{cov['related_functions_count']} functions, {cov['related_cases_count']} cases, "
             f"{cov['related_discoveries_count']} discoveries, {cov['related_predictions_count']} predictions"
         )
-        label = f"[{category['title']['zh']} / {category['title']['en']}]({page})"
+        label = f"[{format_bilingual_title(category['title'].get('zh'), category['title'].get('en'))}]({page})"
         lines.append(
             f"| {label} | {cov['curated_answers_count']} | {cov['answer_leads_count']} | {coverage} |"
         )
@@ -608,7 +610,7 @@ def render_answers_index(answers: list[dict], category_map: list[dict]) -> str:
         for item in recent[:20]:
             categories = ", ".join(item.get("categories", [])) or "other"
             lines.append(
-                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['page']}) "
+                f"- [{item['id']}｜{format_bilingual_title(item['title'].get('zh'), item['title'].get('en'))}]({item['page']}) "
                 f"({categories}; novelty: {item['academic_novelty']['status']})"
             )
     else:

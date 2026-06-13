@@ -272,6 +272,10 @@ def check_presence(errors: list[str]) -> None:
         ANSWERS_LIST_MD,
         ANSWERS_INDEX_MD,
         ANSWER_TEMPLATE_MD,
+        REPO_ROOT / "scripts/display_utils.py",
+        REPO_ROOT / "scripts/build_answers_from_function_projection.py",
+        REPO_ROOT / "scripts/normalize_bilingual_labels.py",
+        REPO_ROOT / "scripts/detect_repetitive_text.py",
         REPO_ROOT / "data/answers/unified-answers.json",
         REPO_ROOT / "data/answers/unified-answers.jsonl",
         REPO_ROOT / "data/answers/unified-answers-index.md",
@@ -282,6 +286,12 @@ def check_presence(errors: list[str]) -> None:
         BOOTSTRAP_REPORT_MD,
         REPO_ROOT / "data/rebuild/answer-leads-quality-report.md",
         REPO_ROOT / "data/rebuild/answer-leads-quality-report.json",
+        REPO_ROOT / "data/rebuild/function-projection-answer-report.md",
+        REPO_ROOT / "data/rebuild/function-projection-answer-report.json",
+        REPO_ROOT / "data/rebuild/bilingual-label-cleanup-report.md",
+        REPO_ROOT / "data/rebuild/bilingual-label-cleanup-report.json",
+        REPO_ROOT / "data/rebuild/repetitive-text-report.md",
+        REPO_ROOT / "data/rebuild/repetitive-text-report.json",
     ]
     for path in expected:
         if not path.exists():
