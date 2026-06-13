@@ -114,6 +114,27 @@ English: The four knowledge object layers in the Ignition repository are functio
 - 发现 / Discovery = 洞见 / insight
 - 预测 / Prediction = 可检验未来判断 / testable future judgment
 
+## 动态数字与排序规则 / Dynamic Counts and Sorting Rule
+
+中文：仓库中所有数量都必须由脚本从数据源动态统计，不得手写固定数。凡是带数量且可排序的表，都必须按数量动态排序。README 的四入口保持语义顺序，但数量必须动态渲染。
+
+English: All counts in the repository must be dynamically generated from data sources. Any count-bearing table that can be sorted must be dynamically sorted. The README four-entry table keeps the semantic order, but its counts must be rendered dynamically.
+
+- README.md 四入口数量
+- DISCOVERIES.md 分类表
+- PREDICTIONS.md 分类表
+- FUNCTIONS.md 统计
+- CASES.md 统计
+- data/**/*.md 索引
+- docs/zh/**/categories/*.md 分类页
+
+默认规则 / Default rules:
+
+- 主入口保持语义顺序：发现、预测、函数表、案例表，但数量动态。
+- 分类表按正式条目数、待整理线索数、覆盖量降序排序。
+- Recent 列表按 updated_at / created_at 降序排序。
+- 统计表按数量降序排序。
+
 ## 链接入口合并规则 / Link Entry Merge Rule
 
 中文：凡是“名称”和“入口链接”指向同一对象的地方，都应把名称本身做成链接，不要额外保留 `入口 / Entry / Link / Page` 这类重复列。

@@ -364,7 +364,14 @@ def build_category_defs():
     return predictions_defs
 
 
-def enrich_prediction(blueprint: dict, func_map: dict, case_map: dict, disc_map: dict, category_defs: list[dict]):
+def enrich_prediction(
+    blueprint: dict,
+    func_map: dict,
+    case_map: dict,
+    disc_map: dict,
+    category_defs: list[dict],
+    existing_prediction: dict | None = None,
+):
     related_functions = []
     for function_id in blueprint.get("function_ids", []):
         item = func_map.get(function_id.upper())
@@ -437,6 +444,12 @@ def enrich_prediction(blueprint: dict, func_map: dict, case_map: dict, disc_map:
             ensure_ascii=False,
         )
     )
+    if isinstance(existing_prediction, dict):
+        existing_novelty = existing_prediction.get("academic_novelty")
+        if isinstance(existing_novelty, dict):
+            merged = dict(novelty)
+            merged.update({k: v for k, v in existing_novelty.items() if v is not None})
+            novelty = merged
     novelty.setdefault("status", "pending")
     novelty.setdefault("checked_at", "2026-06-13")
     novelty.setdefault("query_terms", [])
@@ -1081,9 +1094,20 @@ def main() -> int:
     functions = read_json(REPO_ROOT / "data/functions/unified-functions.json", [])
     cases = read_json(REPO_ROOT / "data/cases/unified-cases.json", [])
     discoveries = read_json(REPO_ROOT / "data/discoveries/unified-discoveries.json", [])
+    existing_predictions = {item["id"]: item for item in read_json(PREDICTIONS_JSON, [])}
     category_defs = build_category_defs()
     func_map, case_map, disc_map = build_maps(functions, cases, discoveries)
-    predictions = [enrich_prediction(blueprint, func_map, case_map, disc_map, category_defs) for blueprint in PREDICTION_BLUEPRINTS]
+    predictions = [
+        enrich_prediction(
+            blueprint,
+            func_map,
+            case_map,
+            disc_map,
+            category_defs,
+            existing_predictions.get(blueprint["id"]),
+        )
+        for blueprint in PREDICTION_BLUEPRINTS
+    ]
     category_map = build_category_map(predictions, category_defs)
 
     changed = render_all(predictions, category_map, check=args.check)

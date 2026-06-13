@@ -27,6 +27,8 @@ import re
 from pathlib import Path
 from typing import Iterable, List, Sequence
 
+from repository_overview_utils import count_repository_objects, render_repository_overview_block
+
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
 FUNC_SOURCE = REPO_ROOT / "data/functions/统一函数总表_470条_源文交叉重建版_v4.md"
@@ -964,8 +966,9 @@ def group_functions(functions: List[dict]) -> list[tuple[str, list[dict], bool]]
 
 def group_cases(cases: List[dict]) -> list[tuple[str, list[dict], bool]]:
     grouped: list[tuple[str, list[dict], bool]] = []
-    for start in range(1, 579, 100):
-        end = min(start + 99, 578)
+    total = len(cases)
+    for start in range(1, total + 1, 100):
+        end = min(start + 99, total)
         items = [c for c in cases if start <= c["_seq"] <= end]
         if items:
             grouped.append((f"#{start}–#{end}", items, start == 1))
@@ -973,6 +976,7 @@ def group_cases(cases: List[dict]) -> list[tuple[str, list[dict], bool]]:
 
 
 def render_functions_collection(functions: List[dict], current_path: Path) -> str:
+    total = len(functions)
     quick_lines = [
         f"- 公理层 / Axioms：{sum(1 for f in functions if f['level']['zh'] == '公理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '公理')} entries",
         f"- 定理层 / Theorems：{sum(1 for f in functions if f['level']['zh'] == '定理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '定理')} entries",
@@ -985,8 +989,8 @@ def render_functions_collection(functions: List[dict], current_path: Path) -> st
         render_root_intro(
             "统一函数总表",
             "Unified Function Table",
-            "本表收录 470 条点火函数。每条函数都包含编号、名称、函数内容、关联案例和来源回指。",
-            "This table contains 470 ignition functions. Each function includes its ID, title, content, related cases, and source reference.",
+            f"本表收录 {total} 条点火函数。每条函数都包含编号、名称、函数内容、关联案例和来源回指。",
+            f"This table contains {total} ignition functions. Each function includes its ID, title, content, related cases, and source reference.",
             quick_lines,
         ),
     ]
@@ -1006,13 +1010,9 @@ def render_functions_collection(functions: List[dict], current_path: Path) -> st
 
 
 def render_cases_collection(cases: List[dict], current_path: Path) -> str:
+    total = len(cases)
     quick_lines = [
-        f"- #1–#100",
-        f"- #101–#200",
-        f"- #201–#300",
-        f"- #301–#400",
-        f"- #401–#500",
-        f"- #501–#578",
+        *[f"- #{start}–#{min(start + 99, total)}" for start in range(1, total + 1, 100)],
         f"- 机器数据 / Machine data：[`data/cases/unified-cases.json`](data/cases/unified-cases.json)",
         f"- JSONL：[`data/cases/unified-cases.jsonl`](data/cases/unified-cases.jsonl)",
         f"- 重建审计 / Rebuild audit：[`data/rebuild/human-entry-render-report.md`](data/rebuild/human-entry-render-report.md)",
@@ -1021,8 +1021,8 @@ def render_cases_collection(cases: List[dict], current_path: Path) -> str:
         render_root_intro(
             "统一案例总表",
             "Unified Case Table",
-            "本表收录 578 个点火案例。每个案例都包含编号、案例内容、关联函数和来源回指。",
-            "This table contains 578 ignition cases. Each case includes its ID, content, related functions, and source reference.",
+            f"本表收录 {total} 个点火案例。每个案例都包含编号、案例内容、关联函数和来源回指。",
+            f"This table contains {total} ignition cases. Each case includes its ID, content, related functions, and source reference.",
             quick_lines,
         ),
     ]
@@ -1070,17 +1070,12 @@ def update_readme() -> None:
         [
             "# When Systems Catch Fire / 点火",
             "",
-            "《点火》不是一本固定成书，而是一个开放维护的函数与案例知识库。",
-            "When Systems Catch Fire is not a fixed book, but an open and maintained knowledge base of functions and cases.",
+            "《点火》不是一本固定成书，而是一个开放维护的函数、案例、发现与预测知识库。",
+            "When Systems Catch Fire is not a fixed book, but an open and maintained knowledge base of functions, cases, discoveries, and predictions.",
             "",
             "## 入口 / Entrance",
             "",
-            "| 区域 / Area | 内容 / Content |",
-            "|---|---|",
-            "| [发现 / Discoveries](DISCOVERIES.md) | 从函数与案例的自举循环中产生的新发现。每条发现都可连接到相关函数、案例和来源。 / New discoveries generated from bootstrap cycles between functions and cases. Each discovery links to related functions, cases, and sources. |",
-            "| [预测 / Predictions](PREDICTIONS.md) | 由函数、案例、发现与自举循环推出的可检验未来判断。 / Testable future judgments derived from functions, cases, discoveries, and bootstrap cycles. |",
-            "| [函数表 / Functions](FUNCTIONS.md) | 470 条函数。每条函数都可查看定义、公式、来源与关联案例。 / 470 functions. Each function links to its definition, expression, source, and related cases. |",
-            "| [案例表 / Cases](CASES.md) | 578 个案例。每个案例都可查看内容、来源与关联函数。 / 578 cases. Each case links to its content, source, and related functions. |",
+            render_repository_overview_block(count_repository_objects()),
             "",
         ]
     )

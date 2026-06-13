@@ -1,6 +1,6 @@
 # Sync Dry Run Report
 
-- generated_at: 2026-06-13T09:54:34.287849+00:00
+- generated_at: 2026-06-13T10:34:20.802099+00:00
 - dry_run: True
 
 ## python3 scripts/render_discovery_index.py --check

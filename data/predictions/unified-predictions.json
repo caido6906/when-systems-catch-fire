@@ -207,16 +207,59 @@
     "confidence": "medium",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "CAI 中间层会持续提高意图中继保真度",
+        "CAI middle layer will keep improving intent relay fidelity",
+        "cai middle layer will keep improving intent relay",
+        "cai middle layer will keep",
+        "在同一任务、同一上下文和同一 token 预算下，加入结构化 CAI 中间层后，意图中继保真度将高于直接 EAI 路径，且返工轮次更少。",
+        "在同一任务 同一上下文和同一 token 预算下 加入结构化 cai 中间层后 意图中继保真度将高于直接",
+        "在同一任务 同一上下文和同一 token 预算下 加入结构化",
+        "Under the same task, context, and token budget, adding a structured CAI middle layer will produce higher intent relay fidelity than a direct EAI path and require fewer correction rounds."
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Relay Selection for Improving Physical-Layer Security in Hybrid Satellite-Terrestrial Relay Networks",
+          "url": "https://doi.org/10.1109/access.2018.2877709",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Improving Physical Layer Security in Two-Way Relay Systems",
+          "url": "https://doi.org/10.1109/ict.2018.8464893",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Keep Improving",
+          "url": "https://doi.org/10.4324/9781003186038-10",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "OpenAlex",
+          "title": "劳动力转移对农户保护性耕作技术持续采纳的影响——基于农业社会化服务的调节效应",
+          "url": "https://openalex.org/W7163927649",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "OpenAlex",
+          "title": "应力保持时间对SrAl2O4∶Eu2+应力卸载发光行为的影响",
+          "url": "https://openalex.org/W7163129932",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
@@ -399,16 +442,59 @@
     "confidence": "medium",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "结构化 API 提示在 token 紧张时更准但更窄",
+        "Structured API prompts will be narrower but more accurate under token pressure",
+        "structured api prompts will narrower but more accurate",
+        "structured api prompts will narrower",
+        "当 token 窗口紧张时，结构化 API 风格提示会提高执行成功率，但会压低语义保真度；如果 token 充足，保真度差距会缩小。",
+        "当 token 窗口紧张时 结构化 api 风格提示会提高执行成功率 但会压低语义保真度 如果",
+        "当 token 窗口紧张时 结构化 api",
+        "When the token window is tight, structured API-style prompts will improve execution success but lower semantic fidelity; with enough tokens, the fidelity gap will shrink."
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Towards more accurate content categorization of API discussions",
+          "url": "https://doi.org/10.1145/2597008.2597142",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Characteristics of accurate token and all token diadochokinesis in\n                        patients with normal pressure hydrocephalus*",
+          "url": "https://doi.org/10.13064/ksss.2024.16.1.057",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Narrower Focus May Be More Efficient",
+          "url": "https://doi.org/10.1126/science.323.5910.36b",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Structured Prompts for Interior Generation",
+          "url": "https://doi.org/10.7467/ksae.2026.34.2.249",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "OpenAlex",
+          "title": "ADMETlab 3.0: an updated comprehensive online ADMET prediction platform enhanced with broader coverage, improved performance, API functionality and decision support",
+          "url": "https://openalex.org/W4393936599",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
@@ -591,16 +677,59 @@
     "confidence": "high",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "身份与社会退出成本比单纯经济补贴更能推动制度采纳",
+        "Identity and social exit costs will matter more than economic subsidies for adoption",
+        "identity and social exit costs will matter more",
+        "identity and social exit costs",
+        "在改革或新系统采纳场景里，单纯降低经济成本不会显著改变采纳速度；只有身份和社会退出成本下降时，系统才会明显进入第 5 步或接近第 5 步。",
+        "在改革或新系统采纳场景里 单纯降低经济成本不会显著改变采纳速度 只有身份和社会退出成本下降时 系统才会明显进入第 步或接近第 步",
+        "在改革或新系统采纳场景里 单纯降低经济成本不会显著改变采纳速度 只有身份和社会退出成本下降时 系统才会明显进入第 步或接近第",
+        "In reform or adoption settings, lowering economic cost alone will not materially change adoption speed; only when identity and social exit costs fall will the system move into Step 5 or near it."
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Calculating on Identity? The Costs and Benefits of the Costs-of-Exit Debate",
+          "url": "https://doi.org/10.1515/9783110270860.57",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Identity and Exit",
+          "url": "https://doi.org/10.1057/9781137404626.0010",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Wind costs more than you think due to massive federal subsidies",
+          "url": "https://doi.org/10.64628/aai.7c65twrt7",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "OpenAlex",
+          "title": "Toward an integrative social identity model of collective action: A quantitative research synthesis of three socio-psychological perspectives.",
+          "url": "https://openalex.org/W2170298027",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "OpenAlex",
+          "title": "Individual and Corporate Social Responsibility",
+          "url": "https://openalex.org/W3121550950",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
@@ -766,16 +895,59 @@
     "confidence": "medium",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "部分退出通道会先于稳定制度转型出现",
+        "Partial exit channels will appear before durable institutional transition",
+        "partial exit channels will appear before durable institutional",
+        "partial exit channels will appear",
+        "当旧制度出现松动时，最先出现的不是完整新秩序，而是部分退出通道、临时协调机制与短命的中间型认同；真正稳定的转型会晚于这些结构。",
+        "当旧制度出现松动时 最先出现的不是完整新秩序 而是部分退出通道 临时协调机制与短命的中间型认同 真正稳定的转型会晚于这些结构",
+        "When an old regime loosens, the first signs will not be a complete new order but partial exit channels, temporary coordination mechanisms, and short-lived hybrid identities; durable transition will come later.",
+        "when old regime loosens the first signs will"
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Mesenchymal-Epithelial Transition Regulates Initiation of Pluripotency Exit before Gastrulation",
+          "url": "https://doi.org/10.1101/655654",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Durable proteins appear to protect ovaries",
+          "url": "https://doi.org/10.1126/science.adr4536",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Spokesmen appear before jury",
+          "url": "https://doi.org/10.1002/ncr.4100500103",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "To Appear Before You",
+          "url": "https://doi.org/10.2307/j.ctt1j2n922.58",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "OpenAlex",
+          "title": "Biogas Production and Applications in the Sustainable Energy Transition",
+          "url": "https://openalex.org/W4284962245",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
@@ -958,16 +1130,59 @@
     "confidence": "medium",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "高不确定下的决策系统会更久保留三轨结构",
+        "Decision systems under high uncertainty will retain tri-track structure longer",
+        "decision systems under high uncertainty will retain tri",
+        "decision systems under high uncertainty",
+        "在不确定性高但反馈仍然有效的环境里，系统会比预期更久地保留三轨或多轨决策结构；真正坍缩为二轨或单轨，通常发生在反馈被切断之后。",
+        "在不确定性高但反馈仍然有效的环境里 系统会比预期更久地保留三轨或多轨决策结构 真正坍缩为二轨或单轨 通常发生在反馈被切断之后",
+        "In high-uncertainty environments where feedback remains informative, the system will preserve tri-track or multi-track decision structure longer than expected; collapse to two-track or single-track typically happens only after feedback is cut off.",
+        "high uncertainty environments where feedback remains informative the"
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Decision-making Under Uncertainty and High Risk",
+          "url": "https://doi.org/10.1515/9780773570597-011",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Decision-making Under Uncertainty and High Risk",
+          "url": "https://doi.org/10.2307/j.ctt818jj.13",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "MODELING FUZZY SYSTEMS FOR DECISION-MAKING UNDER UNCERTAINTY",
+          "url": "https://doi.org/10.36871/ek.up.p.r.2025.02.10.002",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Relearn Faster and Retain Longer",
+          "url": "https://doi.org/10.1177/0956797616659930",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "OpenAlex",
+          "title": "Jaguar: A high‐performance quantum chemistry software program with strengths in life and materials sciences",
+          "url": "https://openalex.org/W2000815209",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
@@ -1218,16 +1433,59 @@
     "confidence": "medium",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "分批投入在多次 regime shift 中会比一次性投入更稳",
+        "Incremental investing will stay more robust than lump-sum investing across regime shifts",
+        "incremental investing will stay more robust than lump",
+        "incremental investing will stay more",
+        "在多次 regime shift 的市场窗口里，保守的分批投入族会在回撤调整后的结果上继续优于一次性重仓；当 regime shift 越频繁时，这种优势越明显。",
+        "在多次 regime shift 的市场窗口里 保守的分批投入族会在回撤调整后的结果上继续优于一次性重仓 当 regime shift",
+        "在多次 regime shift 的市场窗口里 保守的分批投入族会在回撤调整后的结果上继续优于一次性重仓",
+        "Across market windows with repeated regime shifts, the conservative incremental-investment family will continue to beat lump-sum allocation on drawdown-adjusted results, and the advantage will grow as regime shifts become more frequent."
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Investing in more than Ofsted",
+          "url": "https://doi.org/10.12968/eyed.2013.15.4.8",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "When a groin lump is more than a simple groin lump",
+          "url": "https://doi.org/10.1136/bcr.12.2010.3607",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Family Investing Is More Sense Than Dollars",
+          "url": "https://doi.org/10.1057/9781137487872.0014",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Lump-Sum Investing versus Dollar-Averaging",
+          "url": "https://doi.org/10.3905/jpm.1994.409474",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Dollar-Cost Averaging, Asset Allocation, and Lump Sum Investing",
+          "url": "https://doi.org/10.3905/jwm.2016.18.4.075",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
@@ -1427,16 +1685,59 @@
     "confidence": "medium",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "跨领域门控问题会逼迫模型拆成多种门控族",
+        "Cross-domain gate problems will force models to split into multiple gate families",
+        "cross domain gate problems will force models split",
+        "cross domain gate problems will",
+        "当模型尝试同时覆盖物理、系统、认知和工程问题时，单一门控函数的泛化精度会下降；把问题拆成两类或更多门控族后，预测会更稳定。",
+        "当模型尝试同时覆盖物理 系统 认知和工程问题时 单一门控函数的泛化精度会下降 把问题拆成两类或更多门控族后 预测会更稳定",
+        "当模型尝试同时覆盖物理 系统 认知和工程问题时 单一门控函数的泛化精度会下降 把问题拆成两类或更多门控族后",
+        "When a model tries to cover physical, systems, cognitive, and engineering problems at once, the generalization accuracy of a single gate function will drop; splitting the problem into two or more gate families will produce more stable predictions."
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Force domain models for multifingered grasp control",
+          "url": "https://doi.org/10.1109/robot.1991.131613",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Non-Convex Split Feasibility Problems: Models, Algorithms and Theory",
+          "url": "https://doi.org/10.5802/ojmo.1",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Novel dual-gate HEMT utilising multiple split gates",
+          "url": "https://doi.org/10.1016/s0167-9317(98)00106-3",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Novel split-gate MOSFET",
+          "url": "https://doi.org/10.1109/t-ed.1985.21982",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Planar split dual gate MOSFET",
+          "url": "https://doi.org/10.1007/s11432-008-0027-z",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
@@ -1627,16 +1928,59 @@
     "confidence": "medium",
     "status": "active_pending_novelty_review",
     "academic_novelty": {
-      "status": "pending",
+      "status": "inconclusive",
       "checked_at": "2026-06-13",
-      "query_terms": [],
-      "sources_checked": [],
-      "nearest_matches": [],
+      "query_terms": [
+        "显式反馈回路会把预测误差转成更高层意识信号",
+        "Explicit feedback loops will convert prediction error into higher-order awareness signals",
+        "explicit feedback loops will convert prediction error into",
+        "explicit feedback loops will convert",
+        "当系统把 prediction error 直接写回状态空间时，它不再只是“预测得更准”，而会更容易出现自我模型、自我纠错和更稳定的多轨意识结构。",
+        "当系统把 prediction error 直接写回状态空间时 它不再只是 预测得更准 而会更容易出现自我模型 自我纠错和更稳定的多轨意识结构",
+        "当系统把 prediction error 直接写回状态空间时 它不再只是",
+        "When a system writes prediction error back into its state space, it will not merely predict better; it will more readily develop self-modeling, self-correction, and more stable multi-track awareness."
+      ],
+      "sources_checked": [
+        "Crossref",
+        "OpenAlex"
+      ],
+      "nearest_matches": [
+        {
+          "source": "Crossref",
+          "title": "Error feedback loops linearize direct digital synthesizers",
+          "url": "https://doi.org/10.1049/cp:19940560",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Error Prediction with Partial Feedback",
+          "url": "https://doi.org/10.1007/978-3-642-40991-2_6",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Higher-Order Feedback Computation",
+          "url": "https://doi.org/10.1007/978-3-031-64309-5_24",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Memorizing environmental signals through feedback and feedforward loops",
+          "url": "https://doi.org/10.1016/j.ceb.2020.11.008",
+          "reason_not_same": "title overlap only"
+        },
+        {
+          "source": "Crossref",
+          "title": "Feedback Loops",
+          "url": "https://doi.org/10.1126/scisignal.592000tw10",
+          "reason_not_same": "title overlap only"
+        }
+      ],
       "novelty_claim": {
-        "zh": "学术搜索独有性检查尚未完成。",
-        "en": "Academic novelty check is pending."
+        "zh": "现有学术搜索未发现相同解释 / 相同预测。",
+        "en": "No identical explanation or prediction was found in the academic search."
       },
-      "reviewer_note": "academic search unavailable in current build pipeline"
+      "reviewer_note": "academic search returned nearby results but no exact match"
     },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",

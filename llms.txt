@@ -41,6 +41,8 @@ Discovery / prediction gate:
 - Active curated discoveries and predictions must carry `academic_novelty.status = passed`.
 - If academic search cannot confirm novelty, keep the item pending or inconclusive rather than pretending it is passed.
 
+Dynamic counts rule: all counts must be generated from source data, not manually fixed. Count-bearing sortable tables must be dynamically sorted. The README four-entry table keeps the semantic order Discoveries, Predictions, Functions, Cases, but its counts are rendered dynamically.
+
 Discovery rule:
 - Functions, cases, and discoveries are separate incremental entrances.
 - New discoveries must also be assigned to one or more disciplinary categories.

@@ -1,16 +1,18 @@
 # When Systems Catch Fire / 点火
 
-一个人类在好奇心的驱动下，借助 AI 做出的发现。
-A discovery made by a human being, driven by curiosity and aided by AI.
+《点火》不是一本固定成书，而是一个开放维护的函数、案例、发现与预测知识库。
+When Systems Catch Fire is not a fixed book, but an open and maintained knowledge base of functions, cases, discoveries, and predictions.
 
 ## 入口 / Entrance
 
-| 区域 / Area | 内容 / Content |
-| --- | --- |
-| [发现 / Discoveries](DISCOVERIES.md) | 从函数与案例的自举循环中产生的新发现。每条发现都可连接到相关函数、案例和来源。 / New discoveries generated from bootstrap cycles between functions and cases. Each discovery links to related functions, cases, and sources. |
-| [预测 / Predictions](PREDICTIONS.md) | 由函数、案例、发现与自举循环推出的可检验未来判断。 / Testable future judgments derived from functions, cases, discoveries, and bootstrap cycles. |
-| [函数表 / Functions](FUNCTIONS.md) | 470 条函数。每条函数都可查看定义、公式、来源与关联案例。 / 470 functions. Each function links to its definition, expression, source, and related cases. |
-| [案例表 / Cases](CASES.md) | 578 个案例。每个案例都可查看内容、来源与关联函数。 / 578 cases. Each case links to its content, source, and related functions. |
+<!-- REPOSITORY_OVERVIEW_START -->
+| 区域 / Area | 当前数量 / Current Count | 说明 / Description |
+| --- | ---: | --- |
+| [发现 / Discoveries](DISCOVERIES.md) | 0 curated discoveries, 83 leads | 从函数、案例与自举循环中产生的新发现。 / New discoveries generated from bootstrap cycles between functions and cases. |
+| [预测 / Predictions](PREDICTIONS.md) | 8 predictions, 8 inconclusive novelty | 由函数、案例、发现与自举循环推出的可检验未来判断。 / Testable future judgments derived from functions, cases, discoveries, and bootstrap cycles. |
+| [函数表 / Functions](FUNCTIONS.md) | 470 functions | 函数、机制、结构与公式。 / Functions, mechanisms, structures, and formulas. |
+| [案例表 / Cases](CASES.md) | 578 cases | 案例、证据、历史对象与验证材料。 / Cases, evidence, historical objects, and verification materials. |
+<!-- REPOSITORY_OVERVIEW_END -->
 
 ## Current Structure / 当前结构
 

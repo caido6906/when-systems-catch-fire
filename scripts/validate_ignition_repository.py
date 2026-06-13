@@ -1,35 +1,59 @@
 #!/usr/bin/env python3
-"""Validate the Ignition repository's numbered discovery/prediction gate."""
+"""Validate the Ignition repository's dynamic counts, sorting, and gates."""
 
 from __future__ import annotations
 
 import argparse
 import json
-import re
 from pathlib import Path
+
+from build_predictions_from_bootstrap import (
+    PREDICTIONS_HUMAN_MD,
+    PREDICTION_BLUEPRINTS,
+    build_category_defs,
+    build_maps,
+    build_category_map,
+    enrich_prediction,
+    render_index as render_prediction_index,
+    render_machine_index,
+)
+from discovery_category_utils import (
+    BOOTSTRAP_REPORT_MD,
+    CATEGORY_MAP_JSON,
+    DISCOVERY_INDEX_MD,
+    DISCOVERY_LIST_MD,
+    read_json as read_discovery_json,
+    render_bootstrap_report,
+    render_discoveries_list,
+    render_discovery_index_md,
+)
+from repository_overview_utils import (
+    README,
+    count_repository_objects,
+    readme_overview_matches,
+)
+from render_human_entry_from_unified_md import (
+    CASE_SOURCE,
+    DOC_CASE_INDEX,
+    DOC_CASE_DIR,
+    DOC_FUNC_INDEX,
+    DOC_FUNC_DIR,
+    FUNC_SOURCE,
+    ROOT_CASES,
+    ROOT_FUNCTIONS,
+    build_relationships,
+    parse_case_table,
+    parse_function_table,
+    render_cases_collection,
+    render_functions_collection,
+)
 
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
-READMES = {
-    "root": REPO_ROOT / "README.md",
-    "discoveries": REPO_ROOT / "DISCOVERIES.md",
-    "predictions": REPO_ROOT / "PREDICTIONS.md",
-}
-DATA = {
-    "discoveries": REPO_ROOT / "data/discoveries/unified-discoveries.json",
-    "predictions": REPO_ROOT / "data/predictions/unified-predictions.json",
-}
-ID_RE = {
-    "discoveries": re.compile(r"^DISC-\d{4}$"),
-    "predictions": re.compile(r"^PRED-\d{4}$"),
-}
-
-
-def read_json(path: Path, default):
-    if not path.exists():
-        return default
-    text = path.read_text(encoding="utf-8").strip()
-    return json.loads(text) if text else default
+DISCOVERIES_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
+DISCOVERIES_INDEX_JSON = REPO_ROOT / "data/discoveries/unified-discoveries-index.md"
+PREDICTIONS_JSON = REPO_ROOT / "data/predictions/unified-predictions.json"
+PREDICTIONS_INDEX_JSON = REPO_ROOT / "data/predictions/unified-predictions-index.md"
 
 
 def fail(errors: list[str]) -> int:
@@ -38,96 +62,146 @@ def fail(errors: list[str]) -> int:
     return 1 if errors else 0
 
 
-def check_readme_order(errors: list[str]) -> None:
-    text = READMES["root"].read_text(encoding="utf-8")
-    markers = [
-        "[发现 / Discoveries]",
-        "[预测 / Predictions]",
-        "[函数表 / Functions]",
-        "[案例表 / Cases]",
+def check_readme(errors: list[str]) -> None:
+    text = README.read_text(encoding="utf-8")
+    required = [
+        "[发现 / Discoveries](DISCOVERIES.md)",
+        "[预测 / Predictions](PREDICTIONS.md)",
+        "[函数表 / Functions](FUNCTIONS.md)",
+        "[案例表 / Cases](CASES.md)",
     ]
     positions = []
-    for marker in markers:
+    for marker in required:
         pos = text.find(marker)
         if pos < 0:
             errors.append(f"README.md missing entrance marker {marker}")
         positions.append(pos)
     if all(pos >= 0 for pos in positions) and positions != sorted(positions):
         errors.append("README.md entrance order is incorrect")
+    if not readme_overview_matches(README):
+        errors.append("README.md repository overview block is out of date")
 
 
-def check_layer(layer: str, errors: list[str]) -> dict[str, int]:
-    path = DATA[layer]
-    items = read_json(path, [])
-    stats = {"total": len(items), "novelty_pending": 0, "novelty_passed": 0}
+def check_discoveries(errors: list[str]) -> dict[str, int]:
+    discoveries = read_discovery_json(DISCOVERIES_JSON, [])
+    category_map = read_discovery_json(CATEGORY_MAP_JSON, [])
+    expected_index = render_discoveries_list(discoveries, category_map)
+    current_index = DISCOVERY_LIST_MD.read_text(encoding="utf-8")
+    if expected_index != current_index:
+        errors.append("DISCOVERIES.md does not match generated discovery index")
 
-    for item in items:
-        item_id = item.get("id", "")
-        if not ID_RE[layer].match(item_id):
-            errors.append(f"{path.relative_to(REPO_ROOT)} has invalid id format: {item_id}")
+    machine_index = render_discovery_index_md(discoveries)
+    machine_path = REPO_ROOT / "data/discoveries/unified-discoveries-index.md"
+    if machine_index != machine_path.read_text(encoding="utf-8"):
+        errors.append("data/discoveries/unified-discoveries-index.md is out of date")
 
-        page = item.get("page") or item.get("links", {}).get("human_page")
-        if not page:
-            errors.append(f"{item_id} missing page reference")
-        else:
-            page_path = REPO_ROOT / page
-            if not page_path.exists():
-                errors.append(f"{item_id} page missing: {page}")
-            else:
-                page_text = page_path.read_text(encoding="utf-8")
-                novelty = item.get("academic_novelty")
-                if not isinstance(novelty, dict):
-                    errors.append(f"{item_id} missing academic_novelty object")
-                    continue
-                novelty_status = novelty.get("status")
-                if not novelty_status:
-                    errors.append(f"{item_id} missing academic_novelty.status")
-                elif novelty_status == "passed":
-                    stats["novelty_passed"] += 1
-                else:
-                    stats["novelty_pending"] += 1
-                if item.get("status") == "active" and novelty_status != "passed":
-                    errors.append(f"{item_id} is active but academic_novelty.status is not passed")
-                if item.get("status", "").startswith("active") and novelty_status != "passed":
-                    page_lower = page_text.lower()
-                    if "academic novelty" not in page_lower or "passed" in page_lower:
-                        if "pending" not in page_lower and "inconclusive" not in page_lower:
-                            errors.append(f"{item_id} page does not reflect pending novelty status")
-                if "Academic Novelty Check" not in page_text:
-                    errors.append(f"{item_id} page missing Academic Novelty Check section")
+    bootstrap_report = render_bootstrap_report(category_map)
+    if bootstrap_report != (REPO_ROOT / "data/discoveries/bootstrap-category-report.md").read_text(encoding="utf-8"):
+        errors.append("data/discoveries/bootstrap-category-report.md is out of date")
 
-    return stats
+    return {
+        "curated": len(discoveries),
+        "leads": sum(len(entry.get("discovery_leads", [])) for entry in category_map),
+    }
 
 
-def check_public_indexes(errors: list[str]) -> None:
+def check_predictions(errors: list[str]) -> dict[str, int]:
+    predictions = read_discovery_json(PREDICTIONS_JSON, [])
+    existing_predictions = {item["id"]: item for item in predictions}
+    category_defs = build_category_defs()
+    functions = read_discovery_json(REPO_ROOT / "data/functions/unified-functions.json", [])
+    cases = read_discovery_json(REPO_ROOT / "data/cases/unified-cases.json", [])
+    discoveries = read_discovery_json(DISCOVERIES_JSON, [])
+    func_map, case_map, disc_map = build_maps(functions, cases, discoveries)
+    enriched = [
+        enrich_prediction(
+            blueprint,
+            func_map,
+            case_map,
+            disc_map,
+            category_defs,
+            existing_predictions.get(blueprint["id"]),
+        )
+        for blueprint in PREDICTION_BLUEPRINTS
+    ]
+    category_map = build_category_map(enriched, category_defs)
+
+    expected_human = render_prediction_index(enriched, category_map)
+    current_human = PREDICTIONS_HUMAN_MD.read_text(encoding="utf-8")
+    if expected_human != current_human:
+        errors.append("PREDICTIONS.md does not match generated prediction index")
+
+    machine_index = render_machine_index(enriched)
+    current_machine = (REPO_ROOT / "data/predictions/unified-predictions-index.md").read_text(encoding="utf-8")
+    if machine_index != current_machine:
+        errors.append("data/predictions/unified-predictions-index.md is out of date")
+
+    return {
+        "curated": len(predictions),
+        "passed_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "passed"),
+        "pending_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "pending"),
+        "failed_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "failed"),
+    }
+
+
+def check_functions_cases(errors: list[str]) -> dict[str, int]:
+    functions = parse_function_table(FUNC_SOURCE)
+    cases = parse_case_table(CASE_SOURCE)
+    rel = build_relationships(functions, cases)
+    dangling = rel["dangling"]
+
+    function_render = render_functions_collection(functions, ROOT_FUNCTIONS)
+    if function_render != ROOT_FUNCTIONS.read_text(encoding="utf-8"):
+        errors.append("FUNCTIONS.md does not match generated function collection")
+
+    case_render = render_cases_collection(cases, ROOT_CASES)
+    if case_render != ROOT_CASES.read_text(encoding="utf-8"):
+        errors.append("CASES.md does not match generated case collection")
+
+    return {
+        "functions": len(functions),
+        "cases": len(cases),
+        "dangling_references": len(dangling),
+    }
+
+
+def check_presence(errors: list[str]) -> None:
     expected = [
-        REPO_ROOT / "data/discoveries/index.md",
-        REPO_ROOT / "data/discoveries/index.jsonl",
-        REPO_ROOT / "data/predictions/index.md",
-        REPO_ROOT / "data/predictions/index.jsonl",
+        DOC_FUNC_INDEX,
+        DOC_CASE_INDEX,
+        DISCOVERY_INDEX_MD,
+        REPO_ROOT / "data/functions/unified-functions-index.md",
+        REPO_ROOT / "data/cases/unified-cases-index.md",
+        PREDICTIONS_INDEX_JSON,
         REPO_ROOT / "data/predictions/unified-predictions-index.md",
+        REPO_ROOT / "data/discoveries/unified-discoveries-index.md",
+        REPO_ROOT / "data/discoveries/bootstrap-category-report.md",
+        BOOTSTRAP_REPORT_MD,
     ]
     for path in expected:
         if not path.exists():
-            errors.append(f"missing generated index: {path.relative_to(REPO_ROOT)}")
+            errors.append(f"missing generated file: {path.relative_to(REPO_ROOT)}")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--repo", default=".")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
     errors: list[str] = []
-    check_readme_order(errors)
-    stats_discoveries = check_layer("discoveries", errors)
-    stats_predictions = check_layer("predictions", errors)
-    check_public_indexes(errors)
+    check_readme(errors)
+    discovery_stats = check_discoveries(errors)
+    prediction_stats = check_predictions(errors)
+    function_stats = check_functions_cases(errors)
+    check_presence(errors)
 
+    counts = count_repository_objects()
     report = {
-        "readme_order_ok": not any("README.md" in error for error in errors),
-        "discoveries": stats_discoveries,
-        "predictions": stats_predictions,
+        "readme_ok": readme_overview_matches(README),
+        "counts": counts,
+        "discoveries": discovery_stats,
+        "predictions": prediction_stats,
+        "functions": function_stats,
         "errors": errors,
     }
     print(json.dumps(report, ensure_ascii=False, indent=2))
