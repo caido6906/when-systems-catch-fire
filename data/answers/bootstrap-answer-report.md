@@ -1,10 +1,10 @@
 # New Answers Bootstrap Report
 
 - curated_answers: 0
-- answer_leads: 5
+- answer_leads: 12
 - passed_novelty: 0
 - pending_novelty: 0
-- inconclusive_novelty: 5
+- inconclusive_novelty: 12
 - failed_novelty: 0
 
 ## Sources

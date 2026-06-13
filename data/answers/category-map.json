@@ -133,6 +133,102 @@
           "en": "正反馈不可逆点函数"
         },
         "page": "docs/zh/functions/items/D295.md"
+      },
+      {
+        "id": "D423",
+        "title": {
+          "zh": "不可逆体积参数归约函数",
+          "en": "不可逆体积参数归约函数"
+        },
+        "page": "docs/zh/functions/items/D423.md"
+      },
+      {
+        "id": "D8",
+        "title": {
+          "zh": "退出权八维展开",
+          "en": "exit right八维展开"
+        },
+        "page": "docs/zh/functions/items/D8.md"
+      },
+      {
+        "id": "D266",
+        "title": {
+          "zh": "容斥偏差加速函数",
+          "en": "容斥偏差加速函数"
+        },
+        "page": "docs/zh/functions/items/D266.md"
+      },
+      {
+        "id": "D397",
+        "title": {
+          "zh": "两步策略最优性证明函数",
+          "en": "两步策略最优性证明函数"
+        },
+        "page": "docs/zh/functions/items/D397.md"
+      },
+      {
+        "id": "D410",
+        "title": {
+          "zh": "不可逆线完整分类函数",
+          "en": "不可逆线完整分类函数"
+        },
+        "page": "docs/zh/functions/items/D410.md"
+      },
+      {
+        "id": "D335",
+        "title": {
+          "zh": "d_opt-σ_opt平衡稳定性函数",
+          "en": "d_opt-σ_opt平衡稳定性函数"
+        },
+        "page": "docs/zh/functions/items/D335.md"
+      },
+      {
+        "id": "D384",
+        "title": {
+          "zh": "双重打击-双重加速同构函数",
+          "en": "双重打击-双重加速同构函数"
+        },
+        "page": "docs/zh/functions/items/D384.md"
+      },
+      {
+        "id": "D297",
+        "title": {
+          "zh": "基本常数-容斥约束函数",
+          "en": "基本常数-容斥约束函数"
+        },
+        "page": "docs/zh/functions/items/D297.md"
+      },
+      {
+        "id": "D325",
+        "title": {
+          "zh": "僵尸态自修复函数",
+          "en": "僵尸态自修复函数"
+        },
+        "page": "docs/zh/functions/items/D325.md"
+      },
+      {
+        "id": "D86",
+        "title": {
+          "zh": "自主意识函数",
+          "en": "autonomous consciousness function"
+        },
+        "page": "docs/zh/functions/items/D86.md"
+      },
+      {
+        "id": "D96",
+        "title": {
+          "zh": "三层结构必然性",
+          "en": "三层结构必然性"
+        },
+        "page": "docs/zh/functions/items/D96.md"
+      },
+      {
+        "id": "A4",
+        "title": {
+          "zh": "R_perceived(t,L,C) 应约者感知退出权",
+          "en": "R_perceived(t,L,C) perceived responder exit right"
+        },
+        "page": "docs/zh/functions/items/A4.md"
       }
     ],
     "related_cases": [
@@ -192,15 +288,78 @@
         },
         "page": "docs/zh/answers/items/ANS-0005.md",
         "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0006",
+        "title": {
+          "zh": "量子引力是同一势能面在过渡区的统一描述",
+          "en": "Quantum gravity is the unified description of one potential surface in the transition zone"
+        },
+        "page": "docs/zh/answers/items/ANS-0006.md",
+        "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0007",
+        "title": {
+          "zh": "暗物质更像容斥交叉项的宏观表现",
+          "en": "Dark matter is more like a macroscopic manifestation of inclusion-exclusion cross terms"
+        },
+        "page": "docs/zh/answers/items/ANS-0007.md",
+        "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0008",
+        "title": {
+          "zh": "暗能量灾变是容斥对消后的净值问题",
+          "en": "The dark-energy catastrophe is a question of the net value after inclusion-exclusion cancellation"
+        },
+        "page": "docs/zh/answers/items/ANS-0008.md",
+        "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0009",
+        "title": {
+          "zh": "哈勃常数危机是不同截面的幽灵效应差异",
+          "en": "The Hubble crisis is a difference in ghost effects across different cross-sections"
+        },
+        "page": "docs/zh/answers/items/ANS-0009.md",
+        "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0010",
+        "title": {
+          "zh": "层级问题是 d=4 稳定性约束的解析解",
+          "en": "The hierarchy problem is the analytic solution of the d=4 stability constraint"
+        },
+        "page": "docs/zh/answers/items/ANS-0010.md",
+        "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0011",
+        "title": {
+          "zh": "黑洞信息在极小点遗迹中以相变方式释放",
+          "en": "Black-hole information is released as a phase transition in the remnant of a vanished minimum"
+        },
+        "page": "docs/zh/answers/items/ANS-0011.md",
+        "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0012",
+        "title": {
+          "zh": "宇宙波函数不可知是子系统门控限制的结果",
+          "en": "Cosmic wavefunction unknowability follows from subsystem gating limits"
+        },
+        "page": "docs/zh/answers/items/ANS-0012.md",
+        "status": "answer_pending_novelty_review"
       }
     ],
     "coverage": {
-      "related_functions_count": 15,
+      "related_functions_count": 27,
       "related_cases_count": 2,
       "related_discoveries_count": 0,
       "related_predictions_count": 0,
       "curated_answers_count": 0,
-      "answer_leads_count": 4
+      "answer_leads_count": 11
     }
   },
   {
@@ -386,6 +545,38 @@
           "en": "三域熵统一函数(推论级)"
         },
         "page": "docs/zh/functions/items/D108.md"
+      },
+      {
+        "id": "D86",
+        "title": {
+          "zh": "自主意识函数",
+          "en": "autonomous consciousness function"
+        },
+        "page": "docs/zh/functions/items/D86.md"
+      },
+      {
+        "id": "D96",
+        "title": {
+          "zh": "三层结构必然性",
+          "en": "三层结构必然性"
+        },
+        "page": "docs/zh/functions/items/D96.md"
+      },
+      {
+        "id": "A4",
+        "title": {
+          "zh": "R_perceived(t,L,C) 应约者感知退出权",
+          "en": "R_perceived(t,L,C) perceived responder exit right"
+        },
+        "page": "docs/zh/functions/items/A4.md"
+      },
+      {
+        "id": "D307",
+        "title": {
+          "zh": "σ_opt微观起源函数",
+          "en": "σ_opt微观起源函数"
+        },
+        "page": "docs/zh/functions/items/D307.md"
       }
     ],
     "related_cases": [
@@ -410,15 +601,24 @@
         },
         "page": "docs/zh/answers/items/ANS-0003.md",
         "status": "answer_pending_novelty_review"
+      },
+      {
+        "id": "ANS-0012",
+        "title": {
+          "zh": "宇宙波函数不可知是子系统门控限制的结果",
+          "en": "Cosmic wavefunction unknowability follows from subsystem gating limits"
+        },
+        "page": "docs/zh/answers/items/ANS-0012.md",
+        "status": "answer_pending_novelty_review"
       }
     ],
     "coverage": {
-      "related_functions_count": 3,
+      "related_functions_count": 7,
       "related_cases_count": 1,
       "related_discoveries_count": 0,
       "related_predictions_count": 0,
       "curated_answers_count": 0,
-      "answer_leads_count": 1
+      "answer_leads_count": 2
     }
   },
   {

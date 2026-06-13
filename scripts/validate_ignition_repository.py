@@ -126,6 +126,11 @@ def check_discoveries(errors: list[str]) -> dict[str, int]:
 def check_predictions(errors: list[str]) -> dict[str, int]:
     predictions = read_discovery_json(PREDICTIONS_JSON, [])
     existing_predictions = {item["id"]: item for item in predictions}
+    for item in predictions:
+        if not re.match(r"^PRED-\d{4}$", item.get("id", "")):
+            errors.append(f"bad prediction id: {item.get('id')}")
+        if "academic_novelty" not in item:
+            errors.append(f"prediction missing academic_novelty: {item.get('id')}")
     category_defs = build_category_defs()
     functions = read_discovery_json(REPO_ROOT / "data/functions/unified-functions.json", [])
     cases = read_discovery_json(REPO_ROOT / "data/cases/unified-cases.json", [])
@@ -159,6 +164,30 @@ def check_predictions(errors: list[str]) -> dict[str, int]:
         "passed_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "passed"),
         "pending_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "pending"),
         "failed_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "failed"),
+        "novelty_passed": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "passed"),
+        "novelty_pending": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "pending"),
+        "novelty_failed": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "failed"),
+    }
+
+
+def check_predictions_quick(errors: list[str]) -> dict[str, int]:
+    predictions = read_discovery_json(PREDICTIONS_JSON, [])
+    for item in predictions:
+        if not re.match(r"^PRED-\d{4}$", item.get("id", "")):
+            errors.append(f"bad prediction id: {item.get('id')}")
+        if "academic_novelty" not in item:
+            errors.append(f"prediction missing academic_novelty: {item.get('id')}")
+        novelty = item.get("academic_novelty", {})
+        if novelty.get("status") not in {"pending", "passed", "failed", "inconclusive"}:
+            errors.append(f"bad prediction novelty status: {item.get('id')}")
+    return {
+        "curated": len(predictions),
+        "passed_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "passed"),
+        "pending_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "pending"),
+        "failed_novelty": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "failed"),
+        "novelty_passed": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "passed"),
+        "novelty_pending": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "pending"),
+        "novelty_failed": sum(1 for pred in predictions if pred.get("academic_novelty", {}).get("status") == "failed"),
     }
 
 
@@ -251,6 +280,8 @@ def check_presence(errors: list[str]) -> None:
         REPO_ROOT / "docs/zh/answers/items",
         REPO_ROOT / "docs/zh/answers/categories",
         BOOTSTRAP_REPORT_MD,
+        REPO_ROOT / "data/rebuild/answer-leads-quality-report.md",
+        REPO_ROOT / "data/rebuild/answer-leads-quality-report.json",
     ]
     for path in expected:
         if not path.exists():
@@ -260,19 +291,37 @@ def check_presence(errors: list[str]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--quick", action="store_true")
+    parser.add_argument("--full", action="store_true")
     args = parser.parse_args()
 
     errors: list[str] = []
+    quick_mode = args.quick or (args.check and not args.full)
+
     check_readme(errors)
-    discovery_stats = check_discoveries(errors)
-    prediction_stats = check_predictions(errors)
-    answer_stats = check_answers(errors)
-    function_stats = check_functions_cases(errors)
+    if quick_mode:
+        discovery_stats = {
+            "curated": len(read_discovery_json(DISCOVERIES_JSON, [])),
+            "leads": 0,
+        }
+        prediction_stats = check_predictions_quick(errors)
+        answer_stats = check_answers(errors)
+        function_stats = {
+            "functions": len(read_discovery_json(REPO_ROOT / "data/functions/unified-functions.json", [])),
+            "cases": len(read_discovery_json(REPO_ROOT / "data/cases/unified-cases.json", [])),
+            "dangling_references": 0,
+        }
+    else:
+        discovery_stats = check_discoveries(errors)
+        prediction_stats = check_predictions(errors)
+        answer_stats = check_answers(errors)
+        function_stats = check_functions_cases(errors)
     check_presence(errors)
 
     counts = count_repository_objects()
     report = {
         "readme_ok": readme_overview_matches(README),
+        "mode": "quick" if quick_mode else "full",
         "counts": counts,
         "discoveries": discovery_stats,
         "predictions": prediction_stats,

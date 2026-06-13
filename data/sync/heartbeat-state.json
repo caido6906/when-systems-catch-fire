@@ -1,5 +1,6 @@
 {
-  "last_run_at": "2026-06-13T11:07:06.705079+00:00",
+  "last_run_at": "2026-06-13T11:42:40.040957+00:00",
   "last_run_mode": "dry-run",
-  "validate_ok": true
+  "validate_ok": true,
+  "quick": true
 }

@@ -8,6 +8,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 import subprocess
+from time import perf_counter
 
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
@@ -15,6 +16,8 @@ LOCK_FILE = REPO_ROOT / "data/sync/.ignition-maintenance.lock"
 STATE_FILE = REPO_ROOT / "data/sync/heartbeat-state.json"
 REPORT_MD = REPO_ROOT / "data/sync/heartbeat-dry-run-report.md"
 REPORT_JSON = REPO_ROOT / "data/sync/heartbeat-dry-run-report.json"
+PERF_REPORT_MD = REPO_ROOT / "data/rebuild/sync-heartbeat-performance-report.md"
+PERF_REPORT_JSON = REPO_ROOT / "data/rebuild/sync-heartbeat-performance-report.json"
 
 
 def read_json(path: Path, default):
@@ -29,9 +32,29 @@ def write_json(path: Path, value) -> None:
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
-def run(cmd: list[str]) -> dict:
-    proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
-    return {"cmd": cmd, "returncode": proc.returncode, "stdout": proc.stdout, "stderr": proc.stderr, "ok": proc.returncode == 0}
+def run(cmd: list[str], timeout: int | None = None) -> dict:
+    started = perf_counter()
+    try:
+        proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True, timeout=timeout)
+        return {
+            "cmd": cmd,
+            "returncode": proc.returncode,
+            "stdout": proc.stdout,
+            "stderr": proc.stderr,
+            "ok": proc.returncode == 0,
+            "timed_out": False,
+            "duration_s": round(perf_counter() - started, 3),
+        }
+    except subprocess.TimeoutExpired as exc:
+        return {
+            "cmd": cmd,
+            "returncode": None,
+            "stdout": exc.stdout or "",
+            "stderr": (exc.stderr or "") + f"\nTIMEOUT after {timeout}s" if timeout else "\nTIMEOUT",
+            "ok": False,
+            "timed_out": True,
+            "duration_s": round(perf_counter() - started, 3),
+        }
 
 
 def write_reports(payload: dict) -> None:
@@ -48,9 +71,34 @@ def write_reports(payload: dict) -> None:
     lines.append("## Commands")
     lines.append("")
     for result in payload["commands"]:
-        lines.append(f"- {' '.join(result['cmd'])}: {result['returncode']}")
+        lines.append(f"- {' '.join(result['cmd'])}: {result['returncode']} ({result.get('duration_s', 0)}s, timed_out={result.get('timed_out', False)})")
     lines.append("")
     REPORT_MD.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+
+
+def write_performance_report(payload: dict) -> None:
+    PERF_REPORT_MD.parent.mkdir(parents=True, exist_ok=True)
+    PERF_REPORT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    lines = [
+        "# Sync / Heartbeat Performance Report",
+        "",
+        f"- generated_at: {payload['generated_at']}",
+        f"- sync_dry_run_total_s: {payload['sync_dry_run_total_s']}",
+        f"- heartbeat_once_dry_run_total_s: {payload['heartbeat_once_dry_run_total_s']}",
+        f"- validate_quick_duration_s: {payload['validate_quick_duration_s']}",
+        f"- within_60s: {payload['within_60s']}",
+        f"- recommended_long_heartbeat: {payload['recommended_long_heartbeat']}",
+        "",
+        "## Skipped Steps",
+        "",
+    ]
+    for step in payload["skipped_steps"]:
+        lines.append(f"- {step}")
+    lines.extend(["", "## Core Steps", ""])
+    for step in payload["core_steps"]:
+        lines.append(f"- {step}")
+    lines.append("")
+    PERF_REPORT_MD.write_text("\n".join(lines), encoding="utf-8", newline="\n")
 
 
 def main() -> int:
@@ -58,6 +106,8 @@ def main() -> int:
     parser.add_argument("--status", action="store_true")
     parser.add_argument("--once", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--quick", action="store_true")
+    parser.add_argument("--timeout", type=int, default=45)
     args = parser.parse_args()
 
     state = read_json(STATE_FILE, {})
@@ -71,11 +121,33 @@ def main() -> int:
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 0
 
-    commands = []
     if args.once and args.dry_run:
-        commands.append(run(["python3", "scripts/sync_ignition_knowledge_base.py", "--dry-run"]))
-        commands.append(run(["python3", "scripts/validate_ignition_repository.py", "--check"]))
-        commands.append(run(["python3", "scripts/render_answer_index.py", "--check"]))
+        started = perf_counter()
+        commands = [
+            run(
+                [
+                    "python3",
+                    "scripts/sync_ignition_knowledge_base.py",
+                    "--dry-run",
+                    "--quick",
+                    "--timeout",
+                    str(args.timeout),
+                    "--no-network",
+                    "--no-academic-search",
+                    "--no-raw-scan",
+                ],
+                timeout=args.timeout,
+            )
+        ]
+        heartbeat_total = round(perf_counter() - started, 3)
+        sync_report = read_json(REPO_ROOT / "data/rebuild/sync-dry-run-report.json", {})
+        sync_command_durations = [result.get("duration_s", 0) for result in sync_report.get("results", [])]
+        validate_quick_duration = 0
+        for result in sync_report.get("results", []):
+            cmd = result.get("cmd", [])
+            if len(cmd) >= 2 and str(cmd[1]).endswith("validate_ignition_repository.py"):
+                validate_quick_duration = result.get("duration_s", 0)
+                break
         payload = {
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "lock_present": LOCK_FILE.exists(),
@@ -83,12 +155,33 @@ def main() -> int:
                 "last_run_at": datetime.now(timezone.utc).isoformat(),
                 "last_run_mode": "dry-run",
                 "validate_ok": all(result["ok"] for result in commands),
+                "quick": True,
             },
             "commands": commands,
             "validate_ok": all(result["ok"] for result in commands),
         }
         write_json(STATE_FILE, payload["state"])
         write_reports(payload)
+        write_performance_report(
+            {
+                "generated_at": payload["generated_at"],
+                "sync_dry_run_total_s": round(sum(sync_command_durations), 3),
+                "heartbeat_once_dry_run_total_s": heartbeat_total,
+                "validate_quick_duration_s": validate_quick_duration,
+                "within_60s": heartbeat_total <= 60 and sum(sync_command_durations) <= 60,
+                "recommended_long_heartbeat": False,
+                "skipped_steps": [
+                    "academic_novelty_check.py --all-answers --dry-run",
+                    "render_discovery_index.py --check",
+                    "render_prediction_index.py --check",
+                ],
+                "core_steps": [
+                    "sync_ignition_knowledge_base.py --dry-run --quick",
+                    "validate_ignition_repository.py --quick",
+                    "render_answer_index.py --check",
+                ],
+            }
+        )
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 0 if payload["validate_ok"] else 1
 

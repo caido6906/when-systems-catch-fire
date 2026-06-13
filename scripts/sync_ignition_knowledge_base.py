@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+from time import perf_counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -19,14 +20,29 @@ IMPLEMENTATION_REPORT_MD = REPO_ROOT / "data/rebuild/sync-script-implementation-
 IMPLEMENTATION_REPORT_JSON = REPO_ROOT / "data/rebuild/sync-script-implementation-report.json"
 
 
-def run(cmd: list[str]) -> dict:
-    proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
+def run(cmd: list[str], timeout: int | None = None) -> dict:
+    started = perf_counter()
+    try:
+        proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True, timeout=timeout)
+        timed_out = False
+    except subprocess.TimeoutExpired as exc:
+        return {
+            "cmd": cmd,
+            "returncode": None,
+            "stdout": exc.stdout or "",
+            "stderr": (exc.stderr or "") + f"\nTIMEOUT after {timeout}s" if timeout else "\nTIMEOUT",
+            "ok": False,
+            "timed_out": True,
+            "duration_s": round(perf_counter() - started, 3),
+        }
     return {
         "cmd": cmd,
         "returncode": proc.returncode,
         "stdout": proc.stdout,
         "stderr": proc.stderr,
         "ok": proc.returncode == 0,
+        "timed_out": timed_out,
+        "duration_s": round(perf_counter() - started, 3),
     }
 
 
@@ -43,7 +59,10 @@ def write_reports(results: list[dict]) -> None:
     validate_stdout = {}
     if validate_result:
         try:
-            validate_stdout = json.loads(validate_result["stdout"])
+            raw_stdout = validate_result["stdout"].strip()
+            if "\nERROR:" in raw_stdout:
+                raw_stdout = raw_stdout.split("\nERROR:", 1)[0].strip()
+            validate_stdout = json.loads(raw_stdout)
         except Exception:
             validate_stdout = {}
     report = {
@@ -63,6 +82,8 @@ def write_reports(results: list[dict]) -> None:
         lines.append(f"## {' '.join(result['cmd'])}")
         lines.append(f"- returncode: {result['returncode']}")
         lines.append(f"- ok: {result['ok']}")
+        lines.append(f"- timed_out: {result.get('timed_out', False)}")
+        lines.append(f"- duration_s: {result.get('duration_s', 0)}")
         if result["stderr"].strip():
             lines.append(f"- stderr: {result['stderr'].strip()[:500]}")
         lines.append("")
@@ -141,22 +162,54 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--quick", action="store_true")
+    parser.add_argument("--timeout", type=int, default=45)
+    parser.add_argument("--no-network", action="store_true")
+    parser.add_argument("--no-academic-search", action="store_true")
+    parser.add_argument("--no-raw-scan", action="store_true")
     args = parser.parse_args()
 
-    commands = [
-        ["python3", "scripts/render_discovery_index.py", "--check"],
-        ["python3", "scripts/render_prediction_index.py", "--check"],
-        ["python3", "scripts/render_answer_index.py", "--check"],
-        ["python3", "scripts/academic_novelty_check.py", "--all-answers", "--dry-run"],
-        ["python3", "scripts/merge_redundant_entry_links.py", "--check"],
-        ["python3", "scripts/normalize_attribution_display_name.py", "--check"],
-        ["python3", "scripts/validate_ignition_repository.py", "--check"],
-    ]
-    results = [run(cmd) for cmd in commands]
+    quick_mode = args.quick or args.dry_run
+    commands = []
+    if quick_mode:
+        commands = [
+            ["python3", "scripts/validate_ignition_repository.py", "--quick"],
+            ["python3", "scripts/render_answer_index.py", "--check"],
+            ["python3", "scripts/render_repository_overview.py", "--check"],
+            ["python3", "scripts/merge_redundant_entry_links.py", "--check"],
+            ["python3", "scripts/normalize_attribution_display_name.py", "--check"],
+        ]
+    else:
+        commands = [
+            ["python3", "scripts/render_discovery_index.py", "--check"],
+            ["python3", "scripts/render_prediction_index.py", "--check"],
+            ["python3", "scripts/render_answer_index.py", "--check"],
+            ["python3", "scripts/academic_novelty_check.py", "--all-answers", "--dry-run"],
+            ["python3", "scripts/merge_redundant_entry_links.py", "--check"],
+            ["python3", "scripts/normalize_attribution_display_name.py", "--check"],
+            ["python3", "scripts/validate_ignition_repository.py", "--full"],
+        ]
+
+    results = [run(cmd, timeout=args.timeout) for cmd in commands]
     write_reports(results)
     failed = [result for result in results if not result["ok"]]
-    print(json.dumps({"results": results, "report_md": str(REPORT_MD.relative_to(REPO_ROOT)), "report_json": str(REPORT_JSON.relative_to(REPO_ROOT))}, ensure_ascii=False, indent=2))
-    return 1 if failed and args.check else 0
+    print(
+        json.dumps(
+            {
+                "quick_mode": quick_mode,
+                "timeout": args.timeout,
+                "no_network": args.no_network,
+                "no_academic_search": args.no_academic_search,
+                "no_raw_scan": args.no_raw_scan,
+                "results": results,
+                "report_md": str(REPORT_MD.relative_to(REPO_ROOT)),
+                "report_json": str(REPORT_JSON.relative_to(REPO_ROOT)),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
