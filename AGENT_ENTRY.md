@@ -86,6 +86,18 @@ English: If the content is a testable future judgment beyond functions, cases, a
 - 发现 = 洞见 / Discovery = insight
 - 预测 = 可检验未来判断 / Prediction = testable future judgment
 
+## 发现 / 预测 正式入库门槛 / Discovery-Prediction Gate
+
+中文：正式发现与正式预测都必须先通过学术搜索独有性检查，再进入正式列表。发现和预测都必须编号，且 active 状态的正式条目必须有 `academic_novelty.status = passed`。
+
+English: Curated discoveries and curated predictions must pass an academic novelty check before entering the formal list. Both discoveries and predictions must be numbered, and active curated entries must have `academic_novelty.status = passed`.
+
+- 发现编号 / Discovery ID：`DISC-0001`, `DISC-0002`, ...
+- 预测编号 / Prediction ID：`PRED-0001`, `PRED-0002`, ...
+- 如果学术搜索找不到相同发现、相同解释或相同预测，才可进入正式列表。
+- 如果是对已有答案的新解释，必须明确写出新增解释链条，而不是把旧答案改名。
+- 如果 novelty 只查到相似项但无法确认，状态必须保留为 `pending` / `inconclusive`，不能伪装成 `passed`。
+
 预测与发现的区别 / Discovery vs Prediction：
 
 - 发现回答：我们已经看见了什么。 / Discovery answers: what have we already seen.

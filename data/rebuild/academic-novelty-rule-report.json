@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-06-13T09:54:34.287849+00:00",
+  "discovery_id_rule_written": true,
+  "prediction_id_rule_written": true,
+  "prediction_novelty_pending_count": 8,
+  "prediction_novelty_passed_count": 0,
+  "pending_novelty_review_present": true,
+  "academic_novelty_check_script": true,
+  "validate_script": true,
+  "sync_script": true,
+  "heartbeat_script": true,
+  "dry_run_passed": true,
+  "long_heartbeat_started": false
+}

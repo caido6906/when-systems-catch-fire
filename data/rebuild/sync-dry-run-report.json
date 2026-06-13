@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-06-13T09:54:34.287849+00:00",
+  "dry_run": true,
+  "results": [
+    {
+      "cmd": [
+        "python3",
+        "scripts/render_discovery_index.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "render check passed for 18 discovery categories\n",
+      "stderr": "",
+      "ok": true
+    },
+    {
+      "cmd": [
+        "python3",
+        "scripts/render_prediction_index.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "render check passed for 18 prediction categories and 8 predictions\n",
+      "stderr": "",
+      "ok": true
+    },
+    {
+      "cmd": [
+        "python3",
+        "scripts/merge_redundant_entry_links.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "# Link Entry Merge Report / 链接入口合并报告\n\n- Scanned files / 扫描文件：4014\n- Changed files / 变更文件：0\n- Tables merged / 合并表格：0\n- Columns removed / 删除列：0\n\nNo redundant entry/link columns found.\n\n",
+      "stderr": "",
+      "ok": true
+    },
+    {
+      "cmd": [
+        "python3",
+        "scripts/normalize_attribution_display_name.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "Attribution normalization check passed\n",
+      "stderr": "",
+      "ok": true
+    },
+    {
+      "cmd": [
+        "python3",
+        "scripts/validate_ignition_repository.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"readme_order_ok\": true,\n  \"discoveries\": {\n    \"total\": 0,\n    \"novelty_pending\": 0,\n    \"novelty_passed\": 0\n  },\n  \"predictions\": {\n    \"total\": 8,\n    \"novelty_pending\": 8,\n    \"novelty_passed\": 0\n  },\n  \"errors\": []\n}\n",
+      "stderr": "",
+      "ok": true
+    }
+  ]
+}

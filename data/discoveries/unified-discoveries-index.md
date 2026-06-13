@@ -6,8 +6,8 @@ Machine-readable index that keeps Chinese titles, English titles, categories, st
 - [`data/discoveries/unified-discoveries.json`](unified-discoveries.json)
 - [`data/discoveries/unified-discoveries.jsonl`](unified-discoveries.jsonl)
 
-| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases |
-| --- | --- | --- | --- | --- | --- |
+| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 学术独有性 / Academic novelty | 相关函数 / Related functions | 相关案例 / Related cases |
+| --- | --- | --- | --- | --- | --- | --- |
 
 暂无条目 / No entries yet.
 

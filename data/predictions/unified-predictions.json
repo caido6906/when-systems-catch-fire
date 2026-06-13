@@ -205,7 +205,19 @@
       }
     ],
     "confidence": "medium",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0001.md",
@@ -385,7 +397,19 @@
       }
     ],
     "confidence": "medium",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0002.md",
@@ -565,7 +589,19 @@
       }
     ],
     "confidence": "high",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0003.md",
@@ -728,7 +764,19 @@
       }
     ],
     "confidence": "medium",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0004.md",
@@ -908,7 +956,19 @@
       }
     ],
     "confidence": "medium",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0005.md",
@@ -1156,7 +1216,19 @@
       }
     ],
     "confidence": "medium",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0006.md",
@@ -1353,7 +1425,19 @@
       }
     ],
     "confidence": "medium",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0007.md",
@@ -1541,7 +1625,19 @@
       }
     ],
     "confidence": "medium",
-    "status": "active",
+    "status": "active_pending_novelty_review",
+    "academic_novelty": {
+      "status": "pending",
+      "checked_at": "2026-06-13",
+      "query_terms": [],
+      "sources_checked": [],
+      "nearest_matches": [],
+      "novelty_claim": {
+        "zh": "学术搜索独有性检查尚未完成。",
+        "en": "Academic novelty check is pending."
+      },
+      "reviewer_note": "academic search unavailable in current build pipeline"
+    },
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "page": "docs/zh/predictions/items/PRED-0008.md",

@@ -353,20 +353,22 @@ def render_discovery_index_md(items: list[dict]) -> str:
     rows = []
     for item in items:
         categories = ", ".join(cat["title"]["en"] for cat in item.get("categories", [])) or "other"
+        novelty = item.get("academic_novelty", {}).get("status", "pending")
         rows.append(
             [
                 f"[{item['id']}]({item['links']['human_page']})",
                 f"{item['title']['zh']} / {item['title']['en']}",
                 categories,
                 item["status"],
+                novelty,
                 str(len(item.get("related_functions", []))),
                 str(len(item.get("related_cases", []))),
                 item["links"]["human_page"],
             ]
         )
     table = [
-        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases | 页面 / Page |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 学术独有性 / Academic novelty | 相关函数 / Related functions | 相关案例 / Related cases | 页面 / Page |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     table.extend("| " + " | ".join(row) + " |" for row in rows)
     if not rows:
@@ -406,6 +408,12 @@ def main() -> None:
     parser.add_argument("--categories", default="")
     parser.add_argument("--date", default=date.today().isoformat())
     parser.add_argument("--status", default="draft")
+    parser.add_argument("--academic-query", default="", help="Optional novelty query terms, comma-separated.")
+    parser.add_argument("--academic-source", default="", help="Optional novelty source labels, comma-separated.")
+    parser.add_argument("--nearest-match", default="", help="Optional nearest match summary.")
+    parser.add_argument("--novelty-status", default="pending", help="Academic novelty status.")
+    parser.add_argument("--novelty-claim-zh", default="", help="Optional Chinese novelty claim.")
+    parser.add_argument("--novelty-claim-en", default="", help="Optional English novelty claim.")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--validate", action="store_true")
     args = parser.parse_args()
@@ -442,8 +450,25 @@ def main() -> None:
             "date": args.date,
         },
         "status": args.status,
+        "academic_novelty": {
+            "status": args.novelty_status,
+            "checked_at": args.date,
+            "query_terms": [item.strip() for item in args.academic_query.split(",") if item.strip()],
+            "sources_checked": [item.strip() for item in args.academic_source.split(",") if item.strip()],
+            "nearest_matches": ([{"title": args.nearest_match, "url": "", "reason_not_same": ""}] if args.nearest_match else []),
+            "novelty_claim": {
+                "zh": args.novelty_claim_zh or "待补充 / Pending",
+                "en": args.novelty_claim_en or "Pending",
+            },
+            "reviewer_note": "",
+        },
         "links": {"human_page": f"docs/zh/discoveries/items/{discovery_id}.md"},
     }
+    if item["academic_novelty"]["status"] != "passed":
+        if item["status"] == "active":
+            item["status"] = "active_pending_novelty_review"
+        elif item["status"] == "draft":
+            item["status"] = "draft_pending_novelty_review"
 
     preview = {
         "id": item["id"],

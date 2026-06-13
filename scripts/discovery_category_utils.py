@@ -904,8 +904,9 @@ def render_discoveries_list(items: list[dict], categories: list[dict] | None = N
             category_tags = ""
             if item.get("categories"):
                 category_tags = " · " + ", ".join(cat["title"]["en"] for cat in item["categories"])
+            novelty_status = item.get("academic_novelty", {}).get("status", "pending")
             lines.append(
-                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']}){category_tags}"
+                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']}) — novelty: {novelty_status}{category_tags}"
             )
     else:
         lines.append("暂无已整理发现。")
@@ -919,19 +920,21 @@ def render_discovery_index_md(items: list[dict]) -> str:
     rows = []
     for item in items:
         categories = ", ".join(cat["title"]["en"] for cat in item.get("categories", [])) or "other"
+        novelty = item.get("academic_novelty", {}).get("status", "pending")
         rows.append(
             [
                 item["id"],
                 f"[{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']})",
                 categories,
                 item["status"],
+                novelty,
                 str(len(item.get("related_functions", []))),
                 str(len(item.get("related_cases", []))),
             ]
         )
     table = [
-        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases |",
-        "| --- | --- | --- | --- | --- | --- |",
+        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 学术独有性 / Academic novelty | 相关函数 / Related functions | 相关案例 / Related cases |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     table.extend("| " + " | ".join(row) + " |" for row in rows)
     if not rows:

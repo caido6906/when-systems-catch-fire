@@ -38,6 +38,8 @@ LINK_GRAPH_JSONL = REPO_ROOT / "data/graph/ignition-link-graph.jsonl"
 DANGLING_LINKS_MD = REPO_ROOT / "data/graph/dangling-links.md"
 SCHEMA_JSON = REPO_ROOT / "data/schemas/prediction.schema.json"
 
+PENDING_NOVELTY_STATUSES = {"pending", "inconclusive"}
+
 
 PREDICTION_BLUEPRINTS = [
     {
@@ -415,6 +417,41 @@ def enrich_prediction(blueprint: dict, func_map: dict, case_map: dict, disc_map:
         source_refs.append({"type": "discovery", "id": item["id"], "title": item["title"], "page": item["page"]})
     source_refs = flatten(source_refs)
 
+    novelty = json.loads(
+        json.dumps(
+            blueprint.get(
+                "academic_novelty",
+                {
+                    "status": "pending",
+                    "checked_at": "2026-06-13",
+                    "query_terms": [],
+                    "sources_checked": [],
+                    "nearest_matches": [],
+                    "novelty_claim": {
+                        "zh": "学术搜索独有性检查尚未完成。",
+                        "en": "Academic novelty check is pending.",
+                    },
+                    "reviewer_note": "academic search unavailable in current build pipeline",
+                },
+            ),
+            ensure_ascii=False,
+        )
+    )
+    novelty.setdefault("status", "pending")
+    novelty.setdefault("checked_at", "2026-06-13")
+    novelty.setdefault("query_terms", [])
+    novelty.setdefault("sources_checked", [])
+    novelty.setdefault("nearest_matches", [])
+    novelty.setdefault("novelty_claim", {"zh": "", "en": ""})
+    novelty.setdefault("reviewer_note", "")
+
+    status = blueprint["status"]
+    if novelty.get("status") != "passed":
+        if status == "active":
+            status = "active_pending_novelty_review"
+        elif status == "draft":
+            status = "draft_pending_novelty_review"
+
     return {
         "id": blueprint["id"],
         "slug": blueprint["id"].lower().replace("_", "-"),
@@ -430,7 +467,8 @@ def enrich_prediction(blueprint: dict, func_map: dict, case_map: dict, disc_map:
         "related_discoveries": related_discoveries,
         "source_refs": source_refs,
         "confidence": blueprint["confidence"],
-        "status": blueprint["status"],
+        "status": status,
+        "academic_novelty": novelty,
         "created_at": "2026-06-13",
         "updated_at": "2026-06-13",
         "page": f"docs/zh/predictions/items/{blueprint['id']}.md",
@@ -508,11 +546,35 @@ def render_prediction_page(prediction: dict) -> str:
         f"- English title：{prediction['title']['en']}",
         f"- 状态 / Status：{prediction['status']}",
         f"- 置信度 / Confidence：{prediction['confidence']}",
+        f"- 学术独有性 / Academic novelty：{prediction.get('academic_novelty', {}).get('status', 'pending')}",
         f"- 页面 / Page：{prediction['page']}",
         "",
-        "## 分类 / Categories",
+        "## 学术搜索独有性检查 / Academic Novelty Check",
+        "",
+        f"- 状态 / Status：{prediction.get('academic_novelty', {}).get('status', 'pending')}",
+        f"- 检查时间 / Checked at：{prediction.get('academic_novelty', {}).get('checked_at', '2026-06-13')}",
+        f"- 搜索词 / Query terms：{', '.join(prediction.get('academic_novelty', {}).get('query_terms', [])) or '—'}",
+        f"- 检查来源 / Sources checked：{', '.join(prediction.get('academic_novelty', {}).get('sources_checked', [])) or '—'}",
+        f"- 独有性声明 / Novelty claim：{prediction.get('academic_novelty', {}).get('novelty_claim', {}).get('zh', '') or '—'}",
         "",
     ]
+    nearest_matches = prediction.get("academic_novelty", {}).get("nearest_matches", [])
+    if nearest_matches:
+        lines.append("### 最近相似结果 / Nearest Matches")
+        for match in nearest_matches:
+            title = match.get("title", "")
+            url = match.get("url", "")
+            reason = match.get("reason_not_same", "")
+            if url:
+                lines.append(f"- [{title}]({url}) — {reason}")
+            else:
+                lines.append(f"- {title} — {reason}")
+        lines.append("")
+
+    lines.extend([
+        "## 分类 / Categories",
+        "",
+    ])
     if prediction.get("categories"):
         for cat in prediction["categories"]:
             lines.append(f"- [{cat['title']['zh']} / {cat['title']['en']}]({rel_link(current_path, REPO_ROOT / cat['page'])})")
@@ -733,8 +795,9 @@ def render_index(predictions: list[dict], categories: list[dict]) -> str:
             category_tags = ""
             if item.get("categories"):
                 category_tags = " · " + ", ".join(cat["title"]["en"] for cat in item["categories"])
+            novelty_status = item.get("academic_novelty", {}).get("status", "pending")
             lines.append(
-                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['page']}){category_tags}"
+                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['page']}) — novelty: {novelty_status}{category_tags}"
             )
     else:
         lines.append("暂无已整理预测。")
@@ -754,14 +817,15 @@ def render_machine_index(predictions: list[dict]) -> str:
                 f"[{item['title']['zh']} / {item['title']['en']}]({item['page']})",
                 categories,
                 item["status"],
+                item.get("academic_novelty", {}).get("status", "pending"),
                 str(len(item.get("related_functions", []))),
                 str(len(item.get("related_cases", []))),
                 str(len(item.get("related_discoveries", []))),
             ]
         )
     table = [
-        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases | 相关发现 / Related discoveries |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 学术独有性 / Academic novelty | 相关函数 / Related functions | 相关案例 / Related cases | 相关发现 / Related discoveries |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     table.extend("| " + " | ".join(row) + " |" for row in rows)
     if not rows:
@@ -843,6 +907,7 @@ def render_bootstrap_report(category_map: list[dict]) -> str:
         "",
         f"- 分类总数 / Total categories：{len(category_map)}",
         f"- 预测总数 / Total predictions：{sum(item['coverage']['curated_predictions_count'] for item in category_map)}",
+        f"- 学术独有性待审 / Novelty pending：{sum(1 for item in read_json(PREDICTIONS_JSON, []) if item.get('academic_novelty', {}).get('status') != 'passed')}",
         "",
         "| 预测分类 / Prediction Category | 相关函数 / Related functions | 相关案例 / Related cases | 相关发现 / Related discoveries | 正式预测 / Curated predictions |",
         "| --- | ---: | ---: | ---: | ---: |",
@@ -887,7 +952,8 @@ def build_prediction_template() -> str:
             '  "related_discoveries": [],',
             '  "source_refs": [],',
             '  "confidence": "low / medium / high",',
-            '  "status": "draft / active / verified / falsified / deprecated",',
+            '  "status": "draft / active / active_pending_novelty_review / draft_pending_novelty_review / verified / falsified / deprecated / merged",',
+            '  "academic_novelty": {"status": "pending / passed / failed / inconclusive", "checked_at": "YYYY-MM-DD", "query_terms": [], "sources_checked": [], "nearest_matches": [], "novelty_claim": {"zh": "", "en": ""}, "reviewer_note": ""},',
             '  "created_at": "YYYY-MM-DD",',
             '  "updated_at": "YYYY-MM-DD",',
             '  "page": "docs/zh/predictions/items/PRED-0001.md"',
@@ -895,6 +961,7 @@ def build_prediction_template() -> str:
             "```",
             "",
             "每条正式预测必须有可验证条件、可证伪条件、时间窗口、来源回指、相关对象、分类、状态与置信度。",
+            "每条正式预测还必须有 academic_novelty 字段；active 条目只有在 academic_novelty.status = passed 时才可保持 active。",
             "",
         ]
     )
@@ -949,12 +1016,13 @@ def render_all(predictions: list[dict], category_map: list[dict], check: bool = 
                     "related_cases",
                     "related_discoveries",
                     "source_refs",
-                    "confidence",
-                    "status",
-                    "created_at",
-                    "updated_at",
-                    "page",
-                ],
+                "confidence",
+                "status",
+                "academic_novelty",
+                "created_at",
+                "updated_at",
+                "page",
+            ],
                 "properties": {
                     "id": {"type": "string"},
                     "title": {"type": "object"},
@@ -970,6 +1038,7 @@ def render_all(predictions: list[dict], category_map: list[dict], check: bool = 
                     "source_refs": {"type": "array"},
                     "confidence": {"type": "string"},
                     "status": {"type": "string"},
+                    "academic_novelty": {"type": "object"},
                     "created_at": {"type": "string"},
                     "updated_at": {"type": "string"},
                     "page": {"type": "string"},

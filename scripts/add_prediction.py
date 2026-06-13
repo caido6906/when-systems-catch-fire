@@ -32,6 +32,7 @@ REQUIRED_FIELDS = [
     "created_at",
     "updated_at",
     "page",
+    "academic_novelty",
 ]
 
 
@@ -50,6 +51,11 @@ def normalize_prediction(payload: dict) -> dict:
     normalized = dict(payload)
     normalized.setdefault("slug", normalized["id"].lower())
     normalized.setdefault("links", {"human_page": normalized["page"]})
+    novelty = normalized.get("academic_novelty")
+    if not isinstance(novelty, dict):
+        raise ValueError("academic_novelty must be a JSON object")
+    if "status" not in novelty:
+        raise ValueError("academic_novelty.status is required")
     return normalized
 
 
@@ -58,9 +64,36 @@ def main() -> int:
     parser.add_argument("--input", "-i", help="JSON file to read; use '-' or omit to read from stdin.", default="-")
     parser.add_argument("--output", "-o", help="Write the normalized JSON to this file instead of stdout.")
     parser.add_argument("--check", action="store_true", help="Validate the input and exit without writing.")
+    parser.add_argument("--academic-query", default="", help="Optional novelty query terms, comma-separated.")
+    parser.add_argument("--academic-source", default="", help="Optional novelty source labels, comma-separated.")
+    parser.add_argument("--nearest-match", default="", help="Optional nearest match summary.")
+    parser.add_argument("--novelty-status", default="", help="Optional novelty status override.")
+    parser.add_argument("--novelty-claim-zh", default="", help="Optional Chinese novelty claim.")
+    parser.add_argument("--novelty-claim-en", default="", help="Optional English novelty claim.")
     args = parser.parse_args()
 
     payload = normalize_prediction(load_payload(args.input))
+    if args.academic_query or args.academic_source or args.nearest_match or args.novelty_status or args.novelty_claim_zh or args.novelty_claim_en:
+        novelty = dict(payload["academic_novelty"])
+        if args.academic_query:
+            novelty["query_terms"] = [item.strip() for item in args.academic_query.split(",") if item.strip()]
+        if args.academic_source:
+            novelty["sources_checked"] = [item.strip() for item in args.academic_source.split(",") if item.strip()]
+        if args.nearest_match:
+            novelty["nearest_matches"] = [{"title": args.nearest_match, "url": "", "reason_not_same": ""}]
+        if args.novelty_status:
+            novelty["status"] = args.novelty_status
+        if args.novelty_claim_zh or args.novelty_claim_en:
+            novelty["novelty_claim"] = {
+                "zh": args.novelty_claim_zh or payload["academic_novelty"].get("novelty_claim", {}).get("zh", ""),
+                "en": args.novelty_claim_en or payload["academic_novelty"].get("novelty_claim", {}).get("en", ""),
+            }
+        payload["academic_novelty"] = novelty
+    if payload.get("academic_novelty", {}).get("status") != "passed":
+        if payload.get("status") == "active":
+            payload["status"] = "active_pending_novelty_review"
+        elif payload.get("status") == "draft":
+            payload["status"] = "draft_pending_novelty_review"
     serialized = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
 
     if args.check:

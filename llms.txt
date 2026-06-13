@@ -34,6 +34,13 @@ When citing, reusing, redistributing, or adapting this repository, attribute the
 Four Knowledge Object Layers: Function = mechanism, Case = evidence, Discovery = insight, Prediction = testable future judgment.
 Keep the four layers separate and keep predictions distinct from discoveries.
 
+Discovery / prediction gate:
+- Curated discoveries and curated predictions must pass an academic novelty check before entry.
+- Curated discovery IDs must use `DISC-0001` style numbering.
+- Curated prediction IDs must use `PRED-0001` style numbering.
+- Active curated discoveries and predictions must carry `academic_novelty.status = passed`.
+- If academic search cannot confirm novelty, keep the item pending or inconclusive rather than pretending it is passed.
+
 Discovery rule:
 - Functions, cases, and discoveries are separate incremental entrances.
 - New discoveries must also be assigned to one or more disciplinary categories.

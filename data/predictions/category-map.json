@@ -258,7 +258,7 @@
           "en": "CAI middle layer will keep improving intent relay fidelity"
         },
         "page": "docs/zh/predictions/items/PRED-0001.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0002",
@@ -267,7 +267,7 @@
           "en": "Structured API prompts will be narrower but more accurate under token pressure"
         },
         "page": "docs/zh/predictions/items/PRED-0002.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0006",
@@ -276,7 +276,7 @@
           "en": "Incremental investing will stay more robust than lump-sum investing across regime shifts"
         },
         "page": "docs/zh/predictions/items/PRED-0006.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0007",
@@ -285,7 +285,7 @@
           "en": "Cross-domain gate problems will force models to split into multiple gate families"
         },
         "page": "docs/zh/predictions/items/PRED-0007.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],
@@ -468,7 +468,7 @@
           "en": "CAI middle layer will keep improving intent relay fidelity"
         },
         "page": "docs/zh/predictions/items/PRED-0001.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0002",
@@ -477,7 +477,7 @@
           "en": "Structured API prompts will be narrower but more accurate under token pressure"
         },
         "page": "docs/zh/predictions/items/PRED-0002.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0008",
@@ -486,7 +486,7 @@
           "en": "Explicit feedback loops will convert prediction error into higher-order awareness signals"
         },
         "page": "docs/zh/predictions/items/PRED-0008.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],
@@ -637,7 +637,7 @@
           "en": "Decision systems under high uncertainty will retain tri-track structure longer"
         },
         "page": "docs/zh/predictions/items/PRED-0005.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0008",
@@ -646,7 +646,7 @@
           "en": "Explicit feedback loops will convert prediction error into higher-order awareness signals"
         },
         "page": "docs/zh/predictions/items/PRED-0008.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],
@@ -797,7 +797,7 @@
           "en": "Decision systems under high uncertainty will retain tri-track structure longer"
         },
         "page": "docs/zh/predictions/items/PRED-0005.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0008",
@@ -806,7 +806,7 @@
           "en": "Explicit feedback loops will convert prediction error into higher-order awareness signals"
         },
         "page": "docs/zh/predictions/items/PRED-0008.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],
@@ -917,7 +917,7 @@
           "en": "Identity and social exit costs will matter more than economic subsidies for adoption"
         },
         "page": "docs/zh/predictions/items/PRED-0003.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0004",
@@ -926,7 +926,7 @@
           "en": "Partial exit channels will appear before durable institutional transition"
         },
         "page": "docs/zh/predictions/items/PRED-0004.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],
@@ -1037,7 +1037,7 @@
           "en": "Identity and social exit costs will matter more than economic subsidies for adoption"
         },
         "page": "docs/zh/predictions/items/PRED-0003.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       },
       {
         "id": "PRED-0004",
@@ -1046,7 +1046,7 @@
           "en": "Partial exit channels will appear before durable institutional transition"
         },
         "page": "docs/zh/predictions/items/PRED-0004.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],
@@ -1173,7 +1173,7 @@
           "en": "Incremental investing will stay more robust than lump-sum investing across regime shifts"
         },
         "page": "docs/zh/predictions/items/PRED-0006.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],
@@ -1276,7 +1276,7 @@
           "en": "Cross-domain gate problems will force models to split into multiple gate families"
         },
         "page": "docs/zh/predictions/items/PRED-0007.md",
-        "status": "active"
+        "status": "active_pending_novelty_review"
       }
     ],
     "prediction_leads": [],

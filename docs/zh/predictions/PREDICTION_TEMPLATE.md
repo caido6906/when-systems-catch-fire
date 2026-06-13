@@ -15,7 +15,8 @@
   "related_discoveries": [],
   "source_refs": [],
   "confidence": "low / medium / high",
-  "status": "draft / active / verified / falsified / deprecated",
+  "status": "draft / active / active_pending_novelty_review / draft_pending_novelty_review / verified / falsified / deprecated / merged",
+  "academic_novelty": {"status": "pending / passed / failed / inconclusive", "checked_at": "YYYY-MM-DD", "query_terms": [], "sources_checked": [], "nearest_matches": [], "novelty_claim": {"zh": "", "en": ""}, "reviewer_note": ""},
   "created_at": "YYYY-MM-DD",
   "updated_at": "YYYY-MM-DD",
   "page": "docs/zh/predictions/items/PRED-0001.md"
@@ -23,3 +24,4 @@
 ```
 
 每条正式预测必须有可验证条件、可证伪条件、时间窗口、来源回指、相关对象、分类、状态与置信度。
+每条正式预测还必须有 academic_novelty 字段；active 条目只有在 academic_novelty.status = passed 时才可保持 active。

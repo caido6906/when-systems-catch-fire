@@ -17,6 +17,7 @@
     "source_refs",
     "confidence",
     "status",
+    "academic_novelty",
     "created_at",
     "updated_at",
     "page"
@@ -63,6 +64,9 @@
     },
     "status": {
       "type": "string"
+    },
+    "academic_novelty": {
+      "type": "object"
     },
     "created_at": {
       "type": "string"

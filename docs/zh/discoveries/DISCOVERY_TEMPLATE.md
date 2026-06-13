@@ -1,69 +1,33 @@
-# 发现模板 / Discovery Template
+# DISC-____ 发现标题 / Discovery Title
 
-中文：每一条发现都应该单独成条。发现不是函数，也不是案例；函数保存机制，案例保存证据，发现保存由机制和证据共同推出的新洞见。
+## 发现内容 / Discovery Statement
 
-English: Each discovery should be recorded as an independent entry. A discovery is neither a function nor a case. Functions store mechanisms, cases store evidence, and discoveries store new insights derived from mechanisms and evidence.
+## 新解释说明 / New Explanation Claim
 
----
+中文：如果本发现是对已有答案的新解释，请说明已有答案是什么，我们的新解释新增在哪里。
 
-## 基本信息 / Basic Information
-
-- 发现编号 / Discovery ID：DISC-____
-- 中文标题 / Chinese title：
-- English title：
-- 状态 / Status：draft / checked / published
-- 日期 / Date：YYYY-MM-DD
-- 来源 / Source：
-- 分类 / Categories：physics, psychology, other
-
----
-
-## 发现内容 / Discovery
-
-中文：
-
-English:
-
----
-
-## 它为什么重要 / Why It Matters
-
-中文：
-
-English:
-
----
+English: If this discovery is a new explanation of an existing answer, explain what the existing answer is and what the new explanation adds.
 
 ## 推论链条 / Inference Chain
 
-中文：
-
-English:
-
----
-
 ## 相关函数 / Related Functions
-
--
-
----
 
 ## 相关案例 / Related Cases
 
--
+## 相关预测 / Related Predictions
 
----
+## 来源回指 / Source References
 
-## 来源回指 / Source Reference
+## 学术搜索独有性检查 / Academic Novelty Check
 
-- 对话来源 / Conversation source：
-- 笔记来源 / Source note：
-- 相关提交 / Related commit：
+- 状态 / Status：pending / passed / failed / inconclusive
+- 检查时间 / Checked at：
+- 搜索词 / Query terms：
+- 检查来源 / Sources checked：
+- 最近相似结果 / Nearest matches：
+- 为什么不是同一发现 / Why not identical：
+- 独有性声明 / Novelty claim：
 
----
+## 状态 / Status
 
-## 分类说明 / Category Notes
-
-中文：一条发现可以属于一个或多个分类。分类 ID 来自 `data/discoveries/categories.json`。如果无法判断，先使用 `other`，后续再归类。
-
-English: A discovery may belong to one or more categories. Category IDs come from `data/discoveries/categories.json`. If uncertain, use `other` first and reclassify later.
+draft / active / deprecated / merged

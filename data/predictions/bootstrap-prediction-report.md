@@ -8,6 +8,7 @@ English: This report records the bootstrap scan of the function-case-discovery-p
 
 - 分类总数 / Total categories：18
 - 预测总数 / Total predictions：17
+- 学术独有性待审 / Novelty pending：8
 
 | 预测分类 / Prediction Category | 相关函数 / Related functions | 相关案例 / Related cases | 相关发现 / Related discoveries | 正式预测 / Curated predictions |
 | --- | ---: | ---: | ---: | ---: |
