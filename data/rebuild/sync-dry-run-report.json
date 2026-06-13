@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T12:40:01.869710+00:00",
+  "generated_at": "2026-06-13T13:16:30.119793+00:00",
   "dry_run": true,
   "results": [
     {
@@ -13,7 +13,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.173
+      "duration_s": 0.172
     },
     {
       "cmd": [
@@ -26,7 +26,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 4.15
+      "duration_s": 3.537
     },
     {
       "cmd": [
@@ -39,7 +39,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 25.703
+      "duration_s": 26.025
     },
     {
       "cmd": [
@@ -48,11 +48,11 @@
         "--quick"
       ],
       "returncode": 0,
-      "stdout": "{\n  \"readme_ok\": true,\n  \"mode\": \"quick\",\n  \"counts\": {\n    \"discoveries\": {\n      \"curated\": 0,\n      \"leads\": 83,\n      \"passed_novelty\": 0,\n      \"pending_novelty\": 0,\n      \"inconclusive_novelty\": 0,\n      \"failed_novelty\": 0\n    },\n    \"predictions\": {\n      \"curated\": 8,\n      \"leads\": 0,\n      \"passed_novelty\": 0,\n      \"pending_novelty\": 0,\n      \"inconclusive_novelty\": 8,\n      \"failed_novelty\": 0\n    },\n    \"answers\": {\n      \"curated\": 0,\n      \"leads\": 12,\n      \"passed_novelty\": 0,\n      \"pending_novelty\": 0,\n      \"inconclusive_novelty\": 12,\n      \"failed_novelty\": 0\n    },\n    \"functions\": {\n      \"total\": 470\n    },\n    \"cases\": {\n      \"total\": 578\n    }\n  },\n  \"discoveries\": {\n    \"curated\": 0,\n    \"leads\": 0\n  },\n  \"predictions\": {\n    \"curated\": 8,\n    \"passed_novelty\": 0,\n    \"pending_novelty\": 0,\n    \"failed_novelty\": 0,\n    \"novelty_passed\": 0,\n    \"novelty_pending\": 0,\n    \"novelty_failed\": 0\n  },\n  \"answers\": {\n    \"curated\": 0,\n    \"leads\": 12,\n    \"passed_novelty\": 0,\n    \"pending_novelty\": 0,\n    \"inconclusive_novelty\": 12,\n    \"failed_novelty\": 0\n  },\n  \"functions\": {\n    \"functions\": 470,\n    \"cases\": 578,\n    \"dangling_references\": 0\n  },\n  \"errors\": []\n}\n",
+      "stdout": "{\n  \"readme_ok\": true,\n  \"mode\": \"quick\",\n  \"counts\": {\n    \"discoveries\": {\n      \"curated\": 0,\n      \"leads\": 83,\n      \"passed_novelty\": 0,\n      \"pending_novelty\": 0,\n      \"inconclusive_novelty\": 0,\n      \"failed_novelty\": 0\n    },\n    \"predictions\": {\n      \"curated\": 8,\n      \"leads\": 0,\n      \"passed_novelty\": 0,\n      \"pending_novelty\": 0,\n      \"inconclusive_novelty\": 8,\n      \"failed_novelty\": 0\n    },\n    \"answers\": {\n      \"curated\": 0,\n      \"leads\": 12,\n      \"passed_novelty\": 0,\n      \"pending_novelty\": 0,\n      \"inconclusive_novelty\": 12,\n      \"failed_novelty\": 0\n    },\n    \"functions\": {\n      \"meta\": 1,\n      \"ordinary\": 470,\n      \"total\": 471,\n      \"display\": \"1 meta-function, 470 ordinary functions\"\n    },\n    \"cases\": {\n      \"total\": 578\n    }\n  },\n  \"meta_functions\": {\n    \"meta\": 1,\n    \"ordinary\": 470\n  },\n  \"discoveries\": {\n    \"curated\": 0,\n    \"leads\": 0\n  },\n  \"predictions\": {\n    \"curated\": 8,\n    \"passed_novelty\": 0,\n    \"pending_novelty\": 0,\n    \"failed_novelty\": 0,\n    \"novelty_passed\": 0,\n    \"novelty_pending\": 0,\n    \"novelty_failed\": 0\n  },\n  \"answers\": {\n    \"curated\": 0,\n    \"leads\": 12,\n    \"passed_novelty\": 0,\n    \"pending_novelty\": 0,\n    \"inconclusive_novelty\": 12,\n    \"failed_novelty\": 0\n  },\n  \"functions\": {\n    \"functions\": 470,\n    \"cases\": 578,\n    \"dangling_references\": 0\n  },\n  \"errors\": []\n}\n",
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.233
+      "duration_s": 0.261
     },
     {
       "cmd": [
@@ -87,11 +87,11 @@
         "--check"
       ],
       "returncode": 0,
-      "stdout": "# Link Entry Merge Report / 链接入口合并报告\n\n- Scanned files / 扫描文件：4055\n- Changed files / 变更文件：0\n- Tables merged / 合并表格：0\n- Columns removed / 删除列：0\n\nNo redundant entry/link columns found.\n\n",
+      "stdout": "# Link Entry Merge Report / 链接入口合并报告\n\n- Scanned files / 扫描文件：4057\n- Changed files / 变更文件：0\n- Tables merged / 合并表格：0\n- Columns removed / 删除列：0\n\nNo redundant entry/link columns found.\n\n",
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.831
+      "duration_s": 0.828
     },
     {
       "cmd": [
@@ -104,7 +104,7 @@
       "stderr": "",
       "ok": true,
       "timed_out": false,
-      "duration_s": 0.066
+      "duration_s": 0.067
     }
   ]
 }

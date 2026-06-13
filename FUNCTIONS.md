@@ -1,16 +1,64 @@
 # 统一函数总表 / Unified Function Table
 
-本表收录 470 条点火函数。每条函数都包含编号、名称、函数内容、关联案例和来源回指。
-This table contains 470 ignition functions. Each function includes its ID, title, content, related cases, and source reference.
+本表收录 1 条第 0 节元函数和 470 条普通函数。每条条目都包含编号、名称、函数内容、关联对象和来源回指。
+This table contains 1 Section 0 meta-function and 470 ordinary functions. Each entry includes its ID, title, content, related objects, and source reference.
 
 ## 快速入口 / Quick Entry
 
+- 第 0 节 / Section 0：1 条元函数 / 1 meta-function
 - 公理层 / Axioms：9 条 / 9 entries
 - 定理层 / Theorems：39 条 / 39 entries
 - 推论层 / Derived functions：422 条 / 422 entries
-- 机器数据 / Machine data：[`data/functions/unified-functions.json`](data/functions/unified-functions.json)
-- JSONL：[`data/functions/unified-functions.jsonl`](data/functions/unified-functions.jsonl)
+- 普通函数 / Ordinary functions：470 条 / 470 entries
+- 机器数据 / Machine data：[`data/functions/meta-functions.json`](data/functions/meta-functions.json), [`data/functions/unified-functions.json`](data/functions/unified-functions.json)
+- JSONL：[`data/functions/meta-functions.jsonl`](data/functions/meta-functions.jsonl), [`data/functions/unified-functions.jsonl`](data/functions/unified-functions.jsonl)
 - 重建审计 / Rebuild audit：[`data/rebuild/human-entry-render-report.md`](data/rebuild/human-entry-render-report.md)
+
+<details open>
+<summary>第 0 节：自举元函数 / Section 0: Bootstrap Meta-Function (1)</summary>
+
+### [MF-0000｜自举元函数 / Bootstrap Meta-Function](docs/zh/functions/meta/MF-0000.md)
+
+**位置 / Position**
+中文：本条属于函数总表第 0 节，不计入普通函数 470 条。
+English: This entry belongs to Section 0 of the function table and is not counted among the 470 ordinary functions.
+
+**定义 / Definition**
+中文：自举元函数是驱动点火知识库自我生成、自我校验、自我修正的元层函数。
+English: The bootstrap meta-function is the meta-level function that drives the Ignition knowledge base to generate, verify, and revise itself.
+
+**数学表达 / Mathematical Expression**
+中文：M_boot = ε_sense × P_track × d(ΔK)/dt
+English: M_boot = ε_sense x P_track x d(ΔK)/dt
+
+**当前五层状态 / Current Five-Layer State**
+中文：B_n = (F_n, C_n, D_n, P_n, A_n, L_n)
+English: B_n = (F_n, C_n, D_n, P_n, A_n, L_n)
+
+**自举循环 / Bootstrap Cycle**
+中文：B_(n+1) = B_n ⊕ ΔB_n
+English: B_(n+1) = B_n merge DeltaB_n
+
+**收敛判据 / Convergence Criteria**
+中文：Converged(B_n) ⇔ ||ΔB_n|| = 0 ∧ ||ΔB_(n+1)|| = 0
+English: Converged(B_n) ⇔ ||DeltaB_n|| = 0 ∧ ||DeltaB_(n+1)|| = 0
+
+**三个因子 / Three Factors**
+- ε_sense：结构感知信号 / structural signal sensing
+- P_track：分轨并行能力 / parallel track capacity
+- d(ΔK)/dt：知识增量速率 / knowledge increment rate
+
+**关联对象 / Related Objects**
+- [自举元函数层级 / bootstrap meta-function hierarchy](docs/zh/functions/items/T14.md)
+- [自举元函数](docs/zh/functions/items/D141.md)
+- [好奇心是退出的前哨](docs/zh/cases/items/C-0237.md)
+
+**来源 / Source**
+- `dianhuo/originals/1912597766393864312_点火｜自举循环操作手册（2026.06.12更新）.md`
+- `dianhuo/originals/20260610_1912361255428213848_点火-八函数总表（2026.06.10·71案例重跑更新版·含第零节）.md`
+- source_status: `found`
+
+</details>
 
 <details open>
 <summary>公理 / Axiom (9)</summary>

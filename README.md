@@ -11,7 +11,7 @@ When Systems Catch Fire is not a fixed book, but an open and maintained knowledg
 | [发现 / Discoveries](DISCOVERIES.md) | 0 curated discoveries, 83 leads | 从函数、案例与自举循环中产生的新发现。 / New discoveries generated from bootstrap cycles between functions and cases. |
 | [预测 / Predictions](PREDICTIONS.md) | 8 predictions, 8 inconclusive novelty | 由函数、案例、发现与自举循环推出的可检验未来判断。 / Testable future judgments derived from functions, cases, discoveries, and bootstrap cycles. |
 | [新答案 / New Answers](ANSWERS.md) | 0 answers, 12 leads, 12 inconclusive novelty | 对既有问题、经典问题、未解问题或已有答案的新回答。 / New answers to existing, classic, unresolved, or previously answered questions. |
-| [函数表 / Functions](FUNCTIONS.md) | 470 functions | 函数、机制、结构与公式。 / Functions, mechanisms, structures, and formulas. |
+| [函数表 / Functions](FUNCTIONS.md) | 1 meta-function, 470 ordinary functions | 函数、机制、结构与公式。 / Functions, mechanisms, structures, and formulas. |
 | [案例表 / Cases](CASES.md) | 578 cases | 案例、证据、历史对象与验证材料。 / Cases, evidence, historical objects, and verification materials. |
 <!-- REPOSITORY_OVERVIEW_END -->
 
@@ -19,7 +19,7 @@ When Systems Catch Fire is not a fixed book, but an open and maintained knowledg
 
 | Layer | 中文说明 | 主要文件 / Files |
 | --- | --- | --- |
-| Functions | 点火函数层，保存 D-X 函数及其结构化字段 | `data/functions/unified-functions.json`, `data/functions/unified-functions.jsonl`, `data/functions/items/` |
+| Functions | 点火函数层，保存第 0 节元函数与 D-X 普通函数及其结构化字段 | `data/functions/meta-functions.json`, `data/functions/meta-functions.jsonl`, `data/functions/meta-functions-index.md`, `data/functions/unified-functions.json`, `data/functions/unified-functions.jsonl`, `data/functions/items/` |
 | Cases | 案例层，保存案例与函数关系 | `data/cases/unified-cases.json`, `data/cases/unified-cases.jsonl`, `data/cases/items/` |
 | Discoveries | 新发现说明层，面向人类阅读和传播 | `DISCOVERIES.md`, `data/discoveries/unified-discoveries.json`, `data/discoveries/unified-discoveries.jsonl`, `docs/zh/discoveries/items/` |
 | Predictions | 预测说明层，面向人类阅读和验证 | `PREDICTIONS.md`, `data/predictions/unified-predictions.json`, `data/predictions/unified-predictions.jsonl`, `docs/zh/predictions/items/` |
@@ -31,11 +31,12 @@ When Systems Catch Fire is not a fixed book, but an open and maintained knowledg
 
 1. Read `llms.txt`.
 2. Read `AGENT_ENTRY.md`.
-3. Use `data/functions/unified-functions.jsonl` for function lookup.
-4. Use `data/cases/unified-cases.jsonl` for case lookup.
-5. Use `data/discoveries/unified-discoveries.jsonl` for structured discovery entries.
-6. Use `data/predictions/unified-predictions.jsonl` for structured prediction entries.
-7. Use `data/functions/items/*.json` and `data/cases/items/*.json` as canonical machine-readable records.
+3. Use `data/functions/meta-functions.jsonl` for Section 0 meta-function lookup.
+4. Use `data/functions/unified-functions.jsonl` for ordinary function lookup.
+5. Use `data/cases/unified-cases.jsonl` for case lookup.
+6. Use `data/discoveries/unified-discoveries.jsonl` for structured discovery entries.
+7. Use `data/predictions/unified-predictions.jsonl` for structured prediction entries.
+8. Use `data/functions/items/*.json` and `data/cases/items/*.json` as canonical machine-readable records.
 
 Do not treat raw notes as canonical. Raw notes are sources. Current structured entries live under `data/functions/`, `data/cases/`, `data/discoveries/`, and `data/predictions/`.
 

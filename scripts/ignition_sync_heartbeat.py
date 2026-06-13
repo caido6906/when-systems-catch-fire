@@ -92,6 +92,11 @@ def write_performance_report(payload: dict) -> None:
         "## Skipped Steps",
         "",
     ]
+    if "section_0_guard_present" in payload:
+        lines.insert(7, f"- section_0_guard_present: {payload['section_0_guard_present']}")
+    if "ordinary_function_count_preserved" in payload:
+        insert_at = 8 if "section_0_guard_present" in payload else 7
+        lines.insert(insert_at, f"- ordinary_function_count_preserved: {payload['ordinary_function_count_preserved']}")
     for step in payload["skipped_steps"]:
         lines.append(f"- {step}")
     lines.extend(["", "## Core Steps", ""])
@@ -143,10 +148,18 @@ def main() -> int:
         sync_report = read_json(REPO_ROOT / "data/rebuild/sync-dry-run-report.json", {})
         sync_command_durations = [result.get("duration_s", 0) for result in sync_report.get("results", [])]
         validate_quick_duration = 0
+        validate_stdout = {}
         for result in sync_report.get("results", []):
             cmd = result.get("cmd", [])
             if len(cmd) >= 2 and str(cmd[1]).endswith("validate_ignition_repository.py"):
                 validate_quick_duration = result.get("duration_s", 0)
+                try:
+                    raw_stdout = (result.get("stdout") or "").strip()
+                    if "\nERROR:" in raw_stdout:
+                        raw_stdout = raw_stdout.split("\nERROR:", 1)[0].strip()
+                    validate_stdout = json.loads(raw_stdout) if raw_stdout else {}
+                except Exception:
+                    validate_stdout = {}
                 break
         payload = {
             "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -159,6 +172,8 @@ def main() -> int:
             },
             "commands": commands,
             "validate_ok": all(result["ok"] for result in commands),
+            "section_0_guard_present": validate_stdout.get("meta_functions", {}).get("meta", 0) == 1,
+            "ordinary_function_count_preserved": validate_stdout.get("meta_functions", {}).get("ordinary", 0) == 470,
         }
         write_json(STATE_FILE, payload["state"])
         write_reports(payload)

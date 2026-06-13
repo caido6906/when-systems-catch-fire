@@ -39,6 +39,9 @@ OUT_FUNC_JSON = REPO_ROOT / "data/functions/unified-functions.json"
 OUT_FUNC_JSONL = REPO_ROOT / "data/functions/unified-functions.jsonl"
 OUT_FUNC_MIN_JSON = REPO_ROOT / "data/functions/unified-functions.min.json"
 OUT_FUNC_INDEX_MD = REPO_ROOT / "data/functions/unified-functions-index.md"
+OUT_FUNC_META_JSON = REPO_ROOT / "data/functions/meta-functions.json"
+OUT_FUNC_META_JSONL = REPO_ROOT / "data/functions/meta-functions.jsonl"
+OUT_FUNC_META_INDEX_MD = REPO_ROOT / "data/functions/meta-functions-index.md"
 
 OUT_CASE_JSON = REPO_ROOT / "data/cases/unified-cases.json"
 OUT_CASE_JSONL = REPO_ROOT / "data/cases/unified-cases.jsonl"
@@ -52,6 +55,7 @@ ROOT_FUNCTIONS = REPO_ROOT / "FUNCTIONS.md"
 ROOT_CASES = REPO_ROOT / "CASES.md"
 ROOT_DISCOVERIES = REPO_ROOT / "DISCOVERIES.md"
 DOC_FUNC_INDEX = REPO_ROOT / "docs/zh/functions.md"
+DOC_FUNC_META_DIR = REPO_ROOT / "docs/zh/functions/meta"
 DOC_CASE_INDEX = REPO_ROOT / "docs/zh/cases.md"
 DOC_FUNC_DIR = REPO_ROOT / "docs/zh/functions/items"
 DOC_CASE_DIR = REPO_ROOT / "docs/zh/cases/items"
@@ -811,6 +815,184 @@ def render_case_card(case: dict, current_path: Path, related_limit: int = 5) -> 
     )
 
 
+def load_meta_functions(path: Path = OUT_FUNC_META_JSON) -> List[dict]:
+    if not path.exists():
+        raise FileNotFoundError(f"Missing meta function file: {path}")
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        return []
+    data = json.loads(text)
+    if not isinstance(data, list):
+        raise RuntimeError(f"Meta function file must contain a list: {path}")
+    return data
+
+
+def meta_text(value) -> str:
+    if isinstance(value, dict):
+        return str(value.get("text") or value.get("math") or "").strip()
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def render_meta_function_related_block(meta: dict, current_path: Path) -> str:
+    lines: list[str] = []
+    for item in meta.get("related_objects", []):
+        page = item.get("page")
+        if not page:
+            continue
+        link = rel_link(current_path, REPO_ROOT / page)
+        label = format_bilingual_title(item.get("title", {}).get("zh", item["id"]), item.get("title", {}).get("en", ""))
+        lines.append(f"- [{label}]({link})")
+    if not lines:
+        lines.append("- 暂无明确关联对象 / No explicit related objects yet.")
+    return "\n".join(lines)
+
+
+def render_meta_function_card(meta: dict, current_path: Path) -> str:
+    title = format_bilingual_title(meta["title"]["zh"], meta["title"]["en"])
+    detail_link = rel_link(current_path, REPO_ROOT / meta["page"])
+    expression = meta_text(meta.get("expression"))
+    state_expression = meta_text(meta.get("state_expression"))
+    bootstrap_cycle = meta_text(meta.get("bootstrap_cycle"))
+    convergence = meta_text(meta.get("convergence"))
+    related_block = render_meta_function_related_block(meta, current_path)
+    source_refs = meta.get("source_refs", [])
+    source_status = meta.get("source_status", "found")
+
+    source_lines = [f"- `{ref}`" for ref in source_refs] or ["- `source_pending`"]
+
+    return "\n".join(
+        [
+            f"### [{meta['id']}｜{title}]({detail_link})",
+            "",
+            "**位置 / Position**",
+            "中文：本条属于函数总表第 0 节，不计入普通函数 470 条。",
+            "English: This entry belongs to Section 0 of the function table and is not counted among the 470 ordinary functions.",
+            "",
+            "**定义 / Definition**",
+            "中文：自举元函数是驱动点火知识库自我生成、自我校验、自我修正的元层函数。",
+            "English: The bootstrap meta-function is the meta-level function that drives the Ignition knowledge base to generate, verify, and revise itself.",
+            "",
+            "**数学表达 / Mathematical Expression**",
+            f"中文：{expression}",
+            f"English: {expression.replace('×', 'x')}",
+            "",
+            "**当前五层状态 / Current Five-Layer State**",
+            f"中文：{state_expression}",
+            f"English: {state_expression.replace('×', 'x')}",
+            "",
+            "**自举循环 / Bootstrap Cycle**",
+            f"中文：{bootstrap_cycle or 'B(n+1) = B(n) ⊕ ΔB(n)'}",
+            f"English: {(bootstrap_cycle or 'B(n+1) = B(n) ⊕ ΔB(n)').replace('⊕', 'merge').replace('Δ', 'Delta')}",
+            "",
+            "**收敛判据 / Convergence Criteria**",
+            f"中文：{convergence or '||ΔB_n|| = 0 且 ||ΔB_{n+1}|| = 0'}",
+            f"English: {(convergence or '||DeltaB_n|| = 0 and ||DeltaB_n+1|| = 0').replace('Δ', 'Delta')}",
+            "",
+            "**三个因子 / Three Factors**",
+            "- ε_sense：结构感知信号 / structural signal sensing",
+            "- P_track：分轨并行能力 / parallel track capacity",
+            "- d(ΔK)/dt：知识增量速率 / knowledge increment rate",
+            "",
+            "**关联对象 / Related Objects**",
+            related_block,
+            "",
+            "**来源 / Source**",
+            *source_lines,
+            f"- source_status: `{source_status}`",
+            "",
+        ]
+    )
+
+
+def render_meta_function_page(meta: dict) -> str:
+    current_path = DOC_FUNC_META_DIR / f"{meta['id']}.md"
+    back_to_list = rel_link(current_path, DOC_FUNC_INDEX)
+    back_to_root = rel_link(current_path, README)
+    title = format_bilingual_title(meta["title"]["zh"], meta["title"]["en"])
+    expression = meta_text(meta.get("expression"))
+    state_expression = meta_text(meta.get("state_expression"))
+    bootstrap_cycle = meta_text(meta.get("bootstrap_cycle"))
+    convergence = meta_text(meta.get("convergence"))
+    source_refs = meta.get("source_refs", [])
+    source_status = meta.get("source_status", "found")
+
+    related_lines: list[str] = []
+    for item in meta.get("related_objects", []):
+        page = item.get("page")
+        if not page:
+            continue
+        link = rel_link(current_path, REPO_ROOT / page)
+        title_zh = item.get("title", {}).get("zh") or item["id"]
+        title_en = item.get("title", {}).get("en", "")
+        related_lines.append(f"- [{format_bilingual_title(title_zh, title_en)}]({link})")
+    if not related_lines:
+        related_lines.append("- 暂无明确关联对象 / No explicit related objects yet.")
+
+    source_lines = [f"- `{ref}`" for ref in source_refs] or ["- `source_pending`"]
+
+    return "\n".join(
+        [
+            f"# {meta['id']}｜{title}",
+            "",
+            f"[← 返回函数表 / Back to Functions]({back_to_list})",
+            f"[返回仓库首页 / Back to Repository Home]({back_to_root})",
+            "",
+            "## 位置 / Position",
+            "",
+            "中文：本条属于函数总表第 0 节，不计入普通函数 470 条。",
+            "English: This entry belongs to Section 0 of the function table and is not counted among the 470 ordinary functions.",
+            "",
+            "## 定义 / Definition",
+            "",
+            "中文：自举元函数是驱动点火知识库自我生成、自我校验、自我修正的元层函数。",
+            "English: The bootstrap meta-function is the meta-level function that drives the Ignition knowledge base to generate, verify, and revise itself.",
+            "",
+            "## 数学表达 / Mathematical Expression",
+            "",
+            f"中文：{expression}",
+            f"English: {expression.replace('×', 'x')}",
+            "",
+            "## 三个因子 / Three Factors",
+            "",
+            "- ε_sense：结构感知信号 / structural signal sensing",
+            "- P_track：分轨并行能力 / parallel track capacity",
+            "- d(ΔK)/dt：知识增量速率 / knowledge increment rate",
+            "",
+            "## 自举循环 / Bootstrap Cycle",
+            "",
+            f"中文：{bootstrap_cycle or 'B(n+1) = B(n) ⊕ ΔB(n)'}",
+            f"English: {(bootstrap_cycle or 'B(n+1) = B(n) ⊕ ΔB(n)').replace('⊕', 'merge').replace('Δ', 'Delta')}",
+            "",
+            "## 当前五层状态 / Current Five-Layer State",
+            "",
+            f"中文：{state_expression}",
+            f"English: {state_expression.replace('×', 'x')}",
+            "",
+            "## 收敛判据 / Convergence Criteria",
+            "",
+            f"中文：{convergence or '||ΔB_n|| = 0 且 ||ΔB_{n+1}|| = 0'}",
+            f"English: {(convergence or '||DeltaB_n|| = 0 and ||DeltaB_n+1|| = 0').replace('Δ', 'Delta')}",
+            "",
+            "## 与普通函数的区别 / Difference from Ordinary Functions",
+            "",
+            "中文：普通函数解释对象世界中的机制；自举元函数解释知识库自身如何继续生成函数、案例、发现、预测和新答案。",
+            "English: Ordinary functions explain mechanisms in the object world; the bootstrap meta-function explains how the knowledge base itself continues to generate functions, cases, discoveries, predictions, and new answers.",
+            "",
+            "## 关联对象 / Related Objects",
+            "",
+            *related_lines,
+            "",
+            "## 来源 / Source",
+            "",
+            *source_lines,
+            f"- source_status: `{source_status}`",
+            "",
+        ]
+    )
+
+
 def render_detail_function_page(func: dict) -> str:
     current_path = DOC_FUNC_DIR / f"{func['id']}.md"
     back_to_list = rel_link(current_path, DOC_FUNC_INDEX)
@@ -970,25 +1152,46 @@ def group_cases(cases: List[dict]) -> list[tuple[str, list[dict], bool]]:
     return grouped
 
 
+def render_meta_functions_section(meta_functions: List[dict], current_path: Path) -> list[str]:
+    if not meta_functions:
+        return []
+    parts = [
+        "<details open>",
+        f"<summary>第 0 节：自举元函数 / Section 0: Bootstrap Meta-Function ({len(meta_functions)})</summary>",
+        "",
+    ]
+    for meta in meta_functions:
+        parts.append(render_meta_function_card(meta, current_path))
+    parts.append("</details>")
+    parts.append("")
+    return parts
+
+
 def render_functions_collection(functions: List[dict], current_path: Path) -> str:
+    meta_functions = load_meta_functions()
     total = len(functions)
+    meta_count = len(meta_functions)
+    meta_label = "meta-function" if meta_count == 1 else "meta-functions"
     quick_lines = [
+        f"- 第 0 节 / Section 0：{meta_count} 条元函数 / {meta_count} meta-function{'s' if meta_count != 1 else ''}",
         f"- 公理层 / Axioms：{sum(1 for f in functions if f['level']['zh'] == '公理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '公理')} entries",
         f"- 定理层 / Theorems：{sum(1 for f in functions if f['level']['zh'] == '定理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '定理')} entries",
         f"- 推论层 / Derived functions：{sum(1 for f in functions if f['level']['zh'] == '推论')} 条 / {sum(1 for f in functions if f['level']['zh'] == '推论')} entries",
-        f"- 机器数据 / Machine data：[`data/functions/unified-functions.json`](data/functions/unified-functions.json)",
-        f"- JSONL：[`data/functions/unified-functions.jsonl`](data/functions/unified-functions.jsonl)",
+        f"- 普通函数 / Ordinary functions：{total} 条 / {total} entries",
+        f"- 机器数据 / Machine data：[`data/functions/meta-functions.json`](data/functions/meta-functions.json), [`data/functions/unified-functions.json`](data/functions/unified-functions.json)",
+        f"- JSONL：[`data/functions/meta-functions.jsonl`](data/functions/meta-functions.jsonl), [`data/functions/unified-functions.jsonl`](data/functions/unified-functions.jsonl)",
         f"- 重建审计 / Rebuild audit：[`data/rebuild/human-entry-render-report.md`](data/rebuild/human-entry-render-report.md)",
     ]
     parts = [
         render_root_intro(
             "统一函数总表",
             "Unified Function Table",
-            f"本表收录 {total} 条点火函数。每条函数都包含编号、名称、函数内容、关联案例和来源回指。",
-            f"This table contains {total} ignition functions. Each function includes its ID, title, content, related cases, and source reference.",
+            f"本表收录 {meta_count} 条第 0 节元函数和 {total} 条普通函数。每条条目都包含编号、名称、函数内容、关联对象和来源回指。",
+            f"This table contains {meta_count} Section 0 {meta_label} and {total} ordinary functions. Each entry includes its ID, title, content, related objects, and source reference.",
             quick_lines,
         ),
     ]
+    parts.extend(render_meta_functions_section(meta_functions, current_path))
     for level, items, open_flag in group_functions(functions):
         parts.extend(
             [
@@ -1081,7 +1284,7 @@ def update_readme() -> None:
             "",
             "| Layer | 中文说明 | 主要文件 / Files |",
             "| --- | --- | --- |",
-            "| Functions | 点火函数层，保存 D-X 函数及其结构化字段 | `data/functions/unified-functions.json`, `data/functions/unified-functions.jsonl`, `data/functions/items/` |",
+            "| Functions | 点火函数层，保存第 0 节元函数与 D-X 普通函数及其结构化字段 | `data/functions/meta-functions.json`, `data/functions/meta-functions.jsonl`, `data/functions/meta-functions-index.md`, `data/functions/unified-functions.json`, `data/functions/unified-functions.jsonl`, `data/functions/items/` |",
             "| Cases | 案例层，保存案例与函数关系 | `data/cases/unified-cases.json`, `data/cases/unified-cases.jsonl`, `data/cases/items/` |",
             "| Discoveries | 新发现说明层，面向人类阅读和传播 | `DISCOVERIES.md`, `data/discoveries/unified-discoveries.json`, `data/discoveries/unified-discoveries.jsonl`, `docs/zh/discoveries/items/` |",
             "| Predictions | 预测说明层，面向人类阅读和验证 | `PREDICTIONS.md`, `data/predictions/unified-predictions.json`, `data/predictions/unified-predictions.jsonl`, `docs/zh/predictions/items/` |",
@@ -1098,11 +1301,12 @@ def update_readme() -> None:
             "",
             "1. Read `llms.txt`.",
             "2. Read `AGENT_ENTRY.md`.",
-            "3. Use `data/functions/unified-functions.jsonl` for function lookup.",
-            "4. Use `data/cases/unified-cases.jsonl` for case lookup.",
-            "5. Use `data/discoveries/unified-discoveries.jsonl` for structured discovery entries.",
-            "6. Use `data/predictions/unified-predictions.jsonl` for structured prediction entries.",
-            "7. Use `data/functions/items/*.json` and `data/cases/items/*.json` as canonical machine-readable records.",
+            "3. Use `data/functions/meta-functions.jsonl` for Section 0 meta-function lookup.",
+            "4. Use `data/functions/unified-functions.jsonl` for ordinary function lookup.",
+            "5. Use `data/cases/unified-cases.jsonl` for case lookup.",
+            "6. Use `data/discoveries/unified-discoveries.jsonl` for structured discovery entries.",
+            "7. Use `data/predictions/unified-predictions.jsonl` for structured prediction entries.",
+            "8. Use `data/functions/items/*.json` and `data/cases/items/*.json` as canonical machine-readable records.",
             "",
             "Do not treat raw notes as canonical. Raw notes are sources. Current structured entries live under `data/functions/`, `data/cases/`, `data/discoveries/`, and `data/predictions/`.",
             "",
@@ -1155,6 +1359,7 @@ def make_report(functions: List[dict], cases: List[dict], dangling: List[dict]) 
             "## Counts / 数量",
             "",
             f"- 函数 / Functions：{len(functions)}",
+            f"- 第 0 节元函数 / Section 0 meta-functions：{len(load_meta_functions())}",
             f"- 案例 / Cases：{len(cases)}",
             f"- 函数关联案例总数 / Function-related cases：{func_cases}",
             f"- 案例关联函数总数 / Case-related functions：{case_funcs}",
@@ -1179,10 +1384,14 @@ def make_report(functions: List[dict], cases: List[dict], dangling: List[dict]) 
 
 
 def write_outputs(functions: List[dict], cases: List[dict], dangling: List[dict]) -> None:
+    meta_functions = load_meta_functions()
     ensure_dir(DOC_FUNC_DIR)
+    ensure_dir(DOC_FUNC_META_DIR)
     ensure_dir(DOC_CASE_DIR)
     ensure_dir(OUT_REPORT.parent)
 
+    for meta in meta_functions:
+        write_text(DOC_FUNC_META_DIR / f"{meta['id']}.md", render_meta_function_page(meta))
     for func in functions:
         write_text(DOC_FUNC_DIR / f"{func['id']}.md", render_detail_function_page(func))
     for case in cases:
@@ -1193,8 +1402,38 @@ def write_outputs(functions: List[dict], cases: List[dict], dangling: List[dict]
     write_text(DOC_FUNC_INDEX, render_functions_collection(functions, DOC_FUNC_INDEX))
     write_text(DOC_CASE_INDEX, render_cases_collection(cases, DOC_CASE_INDEX))
 
+    meta_public = [{k: v for k, v in m.items() if not k.startswith("_")} for m in meta_functions]
     func_public = [{k: v for k, v in f.items() if not k.startswith("_")} for f in functions]
     case_public = [{k: v for k, v in c.items() if not k.startswith("_")} for c in cases]
+
+    write_json(OUT_FUNC_META_JSON, meta_public)
+    write_jsonl(OUT_FUNC_META_JSONL, meta_public)
+
+    meta_rows = [
+        [
+            f"[{m['id']}]({rel_link(OUT_FUNC_META_INDEX_MD, REPO_ROOT / m['page'])})",
+            format_bilingual_title(m["title"]["zh"], m["title"]["en"]),
+            f"Section 0 / 第 0 节",
+            m["status"],
+            "no",
+        ]
+        for m in meta_public
+    ]
+    write_text(
+        OUT_FUNC_META_INDEX_MD,
+        render_index_page(
+            "元函数机器索引",
+            "Meta Function Machine Index",
+            "机器可读索引，保留第 0 节元函数的中英标题、状态和是否计入普通函数。",
+            "Machine-readable index that keeps Section 0 meta-function titles, status, and whether the entry counts as an ordinary function.",
+            [
+                "- [`data/functions/meta-functions.json`](meta-functions.json)",
+                "- [`data/functions/meta-functions.jsonl`](meta-functions.jsonl)",
+            ],
+            ["编号 / ID", "名称 / Title", "位置 / Position", "状态 / Status", "计入普通函数 / Counted as ordinary"],
+            meta_rows,
+        ),
+    )
 
     write_json(OUT_FUNC_JSON, func_public)
     write_jsonl(OUT_FUNC_JSONL, func_public)
@@ -1284,13 +1523,28 @@ def validate_outputs(functions: List[dict], cases: List[dict]) -> None:
     assert all(c["source"]["source_table"] and c["source"]["source_line"] for c in cases)
 
 
+def validate_meta_outputs(meta_functions: List[dict]) -> None:
+    assert len(meta_functions) == 1, len(meta_functions)
+    meta = meta_functions[0]
+    assert meta["id"] == "MF-0000", meta["id"]
+    assert meta["section"] == 0, meta.get("section")
+    assert meta["ordinary_function_counted"] is False, meta.get("ordinary_function_counted")
+    assert meta["title"]["zh"].strip() == "自举元函数", meta["title"]["zh"]
+    assert meta["title"]["en"].strip() == "Bootstrap Meta-Function", meta["title"]["en"]
+    assert meta.get("page") == "docs/zh/functions/meta/MF-0000.md", meta.get("page")
+    assert meta.get("source_status") in {"found", "source_pending"}, meta.get("source_status")
+    assert meta.get("source_refs"), "Section 0 meta-function must have source references"
+
+
 def main() -> None:
+    meta_functions = load_meta_functions()
     functions = parse_function_table(FUNC_SOURCE)
     cases = parse_case_table(CASE_SOURCE)
     rel = build_relationships(functions, cases)
     dangling = rel["dangling"]
 
     validate_outputs(functions, cases)
+    validate_meta_outputs(meta_functions)
     write_outputs(functions, cases, dangling)
 
     # Lightweight post-write checks.

@@ -25,6 +25,22 @@ This is the primary entry file for AI Agents working with When Systems Catch Fir
 7. 不要把旧 `archive/book-legacy/` 当作当前主结构。
 8. 不要把链接笔记、私有写作风格库、同步脚本配置或未公开材料混入本公开知识库。
 
+## 第 0 节自举元函数 / Section 0 Bootstrap Meta-Function
+
+中文：原函数总表第 0 节是“自举元函数”。它是驱动点火知识库持续生成、校验、修正函数、案例、发现、预测与新答案的元层函数，不计入普通函数总数。
+English: Section 0 of the original function table is the Bootstrap Meta-Function. It is the meta-level function that drives the Ignition knowledge base to continuously generate, verify, and revise functions, cases, discoveries, predictions, and new answers. It is not counted among the ordinary function total.
+
+入口 / Entry:
+
+- [MF-0000｜自举元函数 / Bootstrap Meta-Function](docs/zh/functions/meta/MF-0000.md)
+
+规则 / Rule:
+
+- 不得删除第 0 节。
+- 不得把 MF-0000 混入普通 Dxxx / Axxx 函数编号。
+- 普通函数数与元函数数分开统计。
+- 所有同步、重建、渲染、校验流程都必须保留第 0 节入口。
+
 ## 发现写入规则 / Discovery Writing Rule
 
 中文：如果用户说“这是一个新发现”“把这个发现存进点火仓库”“新增一条发现”，Agent 必须写入发现系统，而不是写入函数表或案例表。

@@ -8,6 +8,7 @@
 ## Counts / 数量
 
 - 函数 / Functions：470
+- 第 0 节元函数 / Section 0 meta-functions：1
 - 案例 / Cases：578
 - 函数关联案例总数 / Function-related cases：434
 - 案例关联函数总数 / Case-related functions：458

@@ -15,6 +15,7 @@ from answer_utils import (
 
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
+FUNCTIONS_META_JSON = REPO_ROOT / "data/functions/meta-functions.json"
 DISCOVERIES_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
 DISCOVERIES_CATEGORY_MAP = REPO_ROOT / "data/discoveries/category-map.json"
 PREDICTIONS_JSON = REPO_ROOT / "data/predictions/unified-predictions.json"
@@ -49,6 +50,7 @@ def novelty_counts(items: list[dict]) -> dict[str, int]:
 
 
 def count_repository_objects(repo_root: Path = REPO_ROOT) -> dict[str, dict[str, int]]:
+    meta_functions = read_json(repo_root / "data/functions/meta-functions.json", [])
     discoveries = read_json(repo_root / "data/discoveries/unified-discoveries.json", [])
     predictions = read_json(repo_root / "data/predictions/unified-predictions.json", [])
     answers = read_json(repo_root / "data/answers/unified-answers.json", [])
@@ -88,12 +90,23 @@ def count_repository_objects(repo_root: Path = REPO_ROOT) -> dict[str, dict[str,
             "failed_novelty": answer_novelty["failed"],
         },
         "functions": {
-            "total": len(functions),
+            "meta": len(meta_functions),
+            "ordinary": len(functions),
+            "total": len(meta_functions) + len(functions),
+            "display": format_function_summary(len(meta_functions), len(functions)),
         },
         "cases": {
             "total": len(cases),
         },
     }
+
+
+def format_function_summary(meta_count: int, ordinary_count: int) -> str:
+    if meta_count <= 0:
+        return f"{ordinary_count} functions"
+    meta_label = "meta-function" if meta_count == 1 else "meta-functions"
+    ordinary_label = "ordinary function" if ordinary_count == 1 else "ordinary functions"
+    return f"{meta_count} {meta_label}, {ordinary_count} {ordinary_label}"
 
 
 def format_discovery_summary(counts: dict[str, int]) -> str:
@@ -140,7 +153,7 @@ def render_repository_overview_block(counts: dict[str, dict[str, int]]) -> str:
         f"| [发现 / Discoveries](DISCOVERIES.md) | {format_discovery_summary(counts['discoveries'])} | 从函数、案例与自举循环中产生的新发现。 / New discoveries generated from bootstrap cycles between functions and cases. |",
         f"| [预测 / Predictions](PREDICTIONS.md) | {format_prediction_summary(counts['predictions'])} | 由函数、案例、发现与自举循环推出的可检验未来判断。 / Testable future judgments derived from functions, cases, discoveries, and bootstrap cycles. |",
         f"| [新答案 / New Answers](ANSWERS.md) | {format_answer_summary(counts['answers'])} | 对既有问题、经典问题、未解问题或已有答案的新回答。 / New answers to existing, classic, unresolved, or previously answered questions. |",
-        f"| [函数表 / Functions](FUNCTIONS.md) | {counts['functions']['total']} functions | 函数、机制、结构与公式。 / Functions, mechanisms, structures, and formulas. |",
+        f"| [函数表 / Functions](FUNCTIONS.md) | {counts['functions']['display']} | 函数、机制、结构与公式。 / Functions, mechanisms, structures, and formulas. |",
         f"| [案例表 / Cases](CASES.md) | {counts['cases']['total']} cases | 案例、证据、历史对象与验证材料。 / Cases, evidence, historical objects, and verification materials. |",
         END_MARKER,
     ]

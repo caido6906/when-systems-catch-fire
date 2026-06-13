@@ -65,6 +65,10 @@ from render_human_entry_from_unified_md import (
 
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
+META_FUNCTIONS_JSON = REPO_ROOT / "data/functions/meta-functions.json"
+META_FUNCTIONS_JSONL = REPO_ROOT / "data/functions/meta-functions.jsonl"
+META_FUNCTIONS_INDEX_MD = REPO_ROOT / "data/functions/meta-functions-index.md"
+META_FUNCTION_PAGE = REPO_ROOT / "docs/zh/functions/meta/MF-0000.md"
 DISCOVERIES_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
 DISCOVERIES_INDEX_JSON = REPO_ROOT / "data/discoveries/unified-discoveries-index.md"
 PREDICTIONS_JSON = REPO_ROOT / "data/predictions/unified-predictions.json"
@@ -98,6 +102,66 @@ def check_readme(errors: list[str]) -> None:
         errors.append("README.md entrance order is incorrect")
     if not readme_overview_matches(README):
         errors.append("README.md repository overview block is out of date")
+
+
+def check_meta_functions(errors: list[str]) -> dict[str, int]:
+    meta_functions = read_discovery_json(META_FUNCTIONS_JSON, [])
+    if not isinstance(meta_functions, list):
+        errors.append("data/functions/meta-functions.json must contain a list")
+        meta_functions = []
+    if not META_FUNCTIONS_JSON.exists():
+        errors.append("missing generated file: data/functions/meta-functions.json")
+    if not META_FUNCTIONS_JSONL.exists():
+        errors.append("missing generated file: data/functions/meta-functions.jsonl")
+    if not META_FUNCTIONS_INDEX_MD.exists():
+        errors.append("missing generated file: data/functions/meta-functions-index.md")
+    if not META_FUNCTION_PAGE.exists():
+        errors.append("missing generated file: docs/zh/functions/meta/MF-0000.md")
+
+    if len(meta_functions) != 1:
+        errors.append(f"expected exactly one meta function, found {len(meta_functions)}")
+        return {"meta": len(meta_functions), "ordinary": 0}
+
+    meta = meta_functions[0]
+    if meta.get("id") != "MF-0000":
+        errors.append(f"bad meta function id: {meta.get('id')}")
+    if meta.get("section") != 0:
+        errors.append(f"bad meta function section: {meta.get('section')}")
+    if meta.get("ordinary_function_counted") is not False:
+        errors.append("MF-0000 must not be counted as an ordinary function")
+    title = meta.get("title", {})
+    if title.get("zh") != "自举元函数" or title.get("en") != "Bootstrap Meta-Function":
+        errors.append("MF-0000 title must be 自举元函数 / Bootstrap Meta-Function")
+    if meta.get("page") != "docs/zh/functions/meta/MF-0000.md":
+        errors.append(f"bad MF-0000 page: {meta.get('page')}")
+    if meta.get("source_status") not in {"found", "source_pending"}:
+        errors.append(f"bad MF-0000 source_status: {meta.get('source_status')}")
+    if not meta.get("source_refs"):
+        errors.append("MF-0000 must have source_refs")
+
+    page_text = META_FUNCTION_PAGE.read_text(encoding="utf-8") if META_FUNCTION_PAGE.exists() else ""
+    required_terms = [
+        "第 0 节",
+        "自举元函数",
+        "Bootstrap Meta-Function",
+        "M_boot",
+        "ε_sense",
+        "P_track",
+        "d(ΔK)/dt",
+        "B_n",
+        "ΔB_n",
+    ]
+    for term in required_terms:
+        if term not in page_text:
+            errors.append(f"MF-0000 page missing term: {term}")
+
+    counts = count_repository_objects()
+    if counts["functions"].get("meta") != 1:
+        errors.append(f"repository overview meta-function count must be 1, found {counts['functions'].get('meta')}")
+    if counts["functions"].get("ordinary") != 470:
+        errors.append(f"repository overview ordinary function count must remain 470, found {counts['functions'].get('ordinary')}")
+
+    return {"meta": len(meta_functions), "ordinary": counts["functions"].get("ordinary", 0)}
 
 
 def check_discoveries(errors: list[str]) -> dict[str, int]:
@@ -261,6 +325,10 @@ def check_functions_cases(errors: list[str]) -> dict[str, int]:
 def check_presence(errors: list[str]) -> None:
     expected = [
         DOC_FUNC_INDEX,
+        META_FUNCTIONS_JSON,
+        META_FUNCTIONS_JSONL,
+        META_FUNCTIONS_INDEX_MD,
+        META_FUNCTION_PAGE,
         DOC_CASE_INDEX,
         DISCOVERY_INDEX_MD,
         REPO_ROOT / "data/functions/unified-functions-index.md",
@@ -283,6 +351,8 @@ def check_presence(errors: list[str]) -> None:
         REPO_ROOT / "data/answers/category-map.json",
         REPO_ROOT / "docs/zh/answers/items",
         REPO_ROOT / "docs/zh/answers/categories",
+        REPO_ROOT / "data/rebuild/section-zero-bootstrap-metafunction-report.md",
+        REPO_ROOT / "data/rebuild/section-zero-bootstrap-metafunction-report.json",
         BOOTSTRAP_REPORT_MD,
         REPO_ROOT / "data/rebuild/answer-leads-quality-report.md",
         REPO_ROOT / "data/rebuild/answer-leads-quality-report.json",
@@ -309,6 +379,7 @@ def main() -> int:
     quick_mode = args.quick or (args.check and not args.full)
 
     check_readme(errors)
+    meta_stats = check_meta_functions(errors)
     if quick_mode:
         discovery_stats = {
             "curated": len(read_discovery_json(DISCOVERIES_JSON, [])),
@@ -333,6 +404,7 @@ def main() -> int:
         "readme_ok": readme_overview_matches(README),
         "mode": "quick" if quick_mode else "full",
         "counts": counts,
+        "meta_functions": meta_stats,
         "discoveries": discovery_stats,
         "predictions": prediction_stats,
         "answers": answer_stats,

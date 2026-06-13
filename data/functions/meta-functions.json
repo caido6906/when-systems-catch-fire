@@ -1,0 +1,53 @@
+[
+  {
+    "id": "MF-0000",
+    "section": 0,
+    "type": "meta_function",
+    "status": "active",
+    "ordinary_function_counted": false,
+    "title": {
+      "zh": "自举元函数",
+      "en": "Bootstrap Meta-Function"
+    },
+    "expression": "M_boot = ε_sense × P_track × d(ΔK)/dt",
+    "state_expression": "B_n = (F_n, C_n, D_n, P_n, A_n, L_n)",
+    "bootstrap_cycle": "B_(n+1) = B_n ⊕ ΔB_n",
+    "convergence": "Converged(B_n) ⇔ ||ΔB_n|| = 0 ∧ ||ΔB_(n+1)|| = 0",
+    "source_status": "found",
+    "source_refs": [
+      "dianhuo/originals/1912597766393864312_点火｜自举循环操作手册（2026.06.12更新）.md",
+      "dianhuo/originals/20260610_1912361255428213848_点火-八函数总表（2026.06.10·71案例重跑更新版·含第零节）.md"
+    ],
+    "related_objects": [
+      {
+        "id": "T14",
+        "title": {
+          "zh": "自举元函数层级",
+          "en": "bootstrap meta-function hierarchy"
+        },
+        "page": "docs/zh/functions/items/T14.md"
+      },
+      {
+        "id": "D141",
+        "title": {
+          "zh": "自举元函数",
+          "en": ""
+        },
+        "page": "docs/zh/functions/items/D141.md"
+      },
+      {
+        "id": "C-0237",
+        "title": {
+          "zh": "好奇心是退出的前哨",
+          "en": ""
+        },
+        "page": "docs/zh/cases/items/C-0237.md"
+      }
+    ],
+    "page": "docs/zh/functions/meta/MF-0000.md",
+    "reviewer_note": "Original Section 0 recovered from local source-history notes; this is the canonical repo representation for the meta-function layer.",
+    "created_at": "2026-06-13",
+    "updated_at": "2026-06-13",
+    "license": "CC-BY-NC-4.0"
+  }
+]
