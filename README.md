@@ -1,9 +1,13 @@
 # When Systems Catch Fire / 点火
 
-《点火》不是一本固定成书，而是一个开放维护的函数与案例知识库。它收集“点火函数”、函数之间的推导关系、案例证据和由此产生的新发现。项目由人类好奇心发起，由 AI 协助推理，并由 Agent 化流程协助编写与维护。
+《点火》不是一本固定成书，而是一个开放维护的函数与案例知识库。它收集“点火函数”、函数之间的推导关系、案例证据和由此产生的新发现。
 
-When Systems Catch Fire is not a fixed book project. It is an open, maintained function-and-case knowledge base for humans and AI agents. It collects ignition functions, derivation links between functions, supporting cases, and discoveries generated through human curiosity, AI-assisted reasoning, and agentic maintenance.
+## 入口
 
+| 区域 | 入口 | 内容 |
+|---|---|---|
+| 函数表 | [统一函数总表](FUNCTIONS.md) | 470 条函数，可跳转详情页与关联案例 |
+| 案例表 | [统一案例总表](CASES.md) | 578 个案例，可跳转详情页与关联函数 |
 ## Current Structure / 当前结构
 
 | Layer | 中文说明 | Entry |
