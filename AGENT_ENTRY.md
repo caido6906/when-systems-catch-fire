@@ -41,6 +41,27 @@ English: Section 0 of the original function table is the Bootstrap Meta-Function
 - 普通函数数与元函数数分开统计。
 - 所有同步、重建、渲染、校验流程都必须保留第 0 节入口。
 
+## 正反双通道自举判定 / Forward-Reverse Bootstrap Judgment
+
+中文：完整自举元函数必须同时运行正向通道与反向通道。正向通道论证对象成立，反向通道论证对象不成立。只有正向通过且反向不通过，才能判定对象成立；只有正向不通过且反向通过，才能判定对象不成立。若正反同时通过，说明对象定义、函数变量、证据映射或判定器存在矛盾，整个自举循环不通过。若正反都不通过，则为证据不足或判定器不足，状态为 underdetermined。
+English: A complete bootstrap meta-function must run both the forward and reverse channels. The forward channel argues that the object holds; the reverse channel argues that it does not hold. The object is accepted only when the forward channel passes and the reverse channel fails. If both channels pass, the object definition, function variables, evidence mapping, or evaluator is contradictory, and the bootstrap cycle fails. If neither channel passes, the result is underdetermined.
+
+判定表 / Judgment Table:
+
+- J⁺=1, J⁻=0 → true
+- J⁺=0, J⁻=1 → false
+- J⁺=1, J⁻=1 → contradiction / bootstrap_failed
+- J⁺=0, J⁻=0 → underdetermined
+- any pending channel → pending
+
+规则 / Rule:
+
+- active 对象必须通过正反双通道判定。
+- contradiction 不得进入 active。
+- underdetermined 不得进入 active。
+- pending 不得进入 active。
+- 自举元函数本身也必须接受嵌套自举检查。
+
 ## 发现写入规则 / Discovery Writing Rule
 
 中文：如果用户说“这是一个新发现”“把这个发现存进点火仓库”“新增一条发现”，Agent 必须写入发现系统，而不是写入函数表或案例表。

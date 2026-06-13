@@ -42,6 +42,9 @@ OUT_FUNC_INDEX_MD = REPO_ROOT / "data/functions/unified-functions-index.md"
 OUT_FUNC_META_JSON = REPO_ROOT / "data/functions/meta-functions.json"
 OUT_FUNC_META_JSONL = REPO_ROOT / "data/functions/meta-functions.jsonl"
 OUT_FUNC_META_INDEX_MD = REPO_ROOT / "data/functions/meta-functions-index.md"
+OUT_FUNC_BOOTSTRAP_TABLE_JSON = REPO_ROOT / "data/functions/bootstrap-meta-function-table.json"
+OUT_FUNC_BOOTSTRAP_TABLE_JSONL = REPO_ROOT / "data/functions/bootstrap-meta-function-table.jsonl"
+OUT_FUNC_BOOTSTRAP_TABLE_MD = REPO_ROOT / "data/functions/bootstrap-meta-function-table.md"
 
 OUT_CASE_JSON = REPO_ROOT / "data/cases/unified-cases.json"
 OUT_CASE_JSONL = REPO_ROOT / "data/cases/unified-cases.jsonl"
@@ -56,6 +59,7 @@ ROOT_CASES = REPO_ROOT / "CASES.md"
 ROOT_DISCOVERIES = REPO_ROOT / "DISCOVERIES.md"
 DOC_FUNC_INDEX = REPO_ROOT / "docs/zh/functions.md"
 DOC_FUNC_META_DIR = REPO_ROOT / "docs/zh/functions/meta"
+DOC_FUNC_META_ITEMS_DIR = REPO_ROOT / "docs/zh/functions/meta/items"
 DOC_CASE_INDEX = REPO_ROOT / "docs/zh/cases.md"
 DOC_FUNC_DIR = REPO_ROOT / "docs/zh/functions/items"
 DOC_CASE_DIR = REPO_ROOT / "docs/zh/cases/items"
@@ -827,6 +831,18 @@ def load_meta_functions(path: Path = OUT_FUNC_META_JSON) -> List[dict]:
     return data
 
 
+def load_bootstrap_meta_table(path: Path = OUT_FUNC_BOOTSTRAP_TABLE_JSON) -> List[dict]:
+    if not path.exists():
+        raise FileNotFoundError(f"Missing bootstrap meta function table file: {path}")
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        return []
+    data = json.loads(text)
+    if not isinstance(data, list):
+        raise RuntimeError(f"Bootstrap meta function table must contain a list: {path}")
+    return data
+
+
 def meta_text(value) -> str:
     if isinstance(value, dict):
         return str(value.get("text") or value.get("math") or "").strip()
@@ -861,6 +877,43 @@ def render_meta_function_card(meta: dict, current_path: Path) -> str:
     source_status = meta.get("source_status", "found")
 
     source_lines = [f"- `{ref}`" for ref in source_refs] or ["- `source_pending`"]
+
+    extra_lines: list[str] = []
+    if meta["id"] == "MF-0000":
+        bootstrap_items = load_bootstrap_meta_table()
+        internal_items = [item for item in bootstrap_items if item.get("id") != "MF-0000"]
+        if internal_items:
+            extra_lines.extend(
+                [
+                    "",
+                    "**第 0 节内部子项 / Section 0 Internal Subitems**",
+                    "",
+                    "| 编号 / ID | 名称 / Title | 作用 / Role |",
+                    "| --- | --- | --- |",
+                ]
+            )
+            for item in internal_items:
+                item_link = rel_link(current_path, REPO_ROOT / item["page"])
+                title = format_bilingual_title(item["title"]["zh"], item["title"]["en"])
+                role = item.get("role", "")
+                role_map = {
+                    "forward_channel": "论证 x 成立 / Argues that x holds",
+                    "reverse_channel": "论证 x 不成立 / Argues that x does not hold",
+                    "exclusivity_judge": "检查正反是否同时通过 / Rejects simultaneous pass",
+                    "nested_judge": "检查自举元函数自身 / Tests bootstrap self-nesting",
+                    "convergence_judge": "检查整个系统是否收敛 / Tests full-system convergence",
+                }
+                extra_lines.append(f"| [{item['id']}]({item_link}) | {title} | {role_map.get(role, role)} |")
+            extra_lines.extend(
+                [
+                    "",
+                    "**双通道表 / Dual-channel Table**",
+                    "",
+                    f"- [`bootstrap-meta-function-table.md`]({rel_link(current_path, OUT_FUNC_BOOTSTRAP_TABLE_MD)})",
+                    f"- [`bootstrap-meta-function-table.json`]({rel_link(current_path, OUT_FUNC_BOOTSTRAP_TABLE_JSON)})",
+                    f"- [`bootstrap-meta-function-table.jsonl`]({rel_link(current_path, OUT_FUNC_BOOTSTRAP_TABLE_JSONL)})",
+                ]
+            )
 
     return "\n".join(
         [
@@ -901,6 +954,7 @@ def render_meta_function_card(meta: dict, current_path: Path) -> str:
             "**来源 / Source**",
             *source_lines,
             f"- source_status: `{source_status}`",
+            *extra_lines,
             "",
         ]
     )
@@ -931,6 +985,13 @@ def render_meta_function_page(meta: dict) -> str:
         related_lines.append("- 暂无明确关联对象 / No explicit related objects yet.")
 
     source_lines = [f"- `{ref}`" for ref in source_refs] or ["- `source_pending`"]
+
+    dual = meta.get("dual_channel", {})
+    dual_forward = dual.get("forward", "MF-0001")
+    dual_reverse = dual.get("reverse", "MF-0002")
+    dual_exclusivity = dual.get("exclusivity_judge", "MF-0003")
+    dual_nested = dual.get("nested_judge", "MF-0004")
+    dual_convergence = dual.get("convergence_judge", "MF-0005")
 
     return "\n".join(
         [
@@ -970,10 +1031,31 @@ def render_meta_function_page(meta: dict) -> str:
             f"中文：{state_expression}",
             f"English: {state_expression.replace('×', 'x')}",
             "",
+            "## 正反双通道 / Forward-Reverse Dual Channel",
+            "",
+            "中文：完整自举元函数不仅要论证命题成立，还要论证命题不成立。只有成立通道通过、不成立通道不通过，命题才算成立。",
+            "English: A complete bootstrap meta-function must not only argue that a proposition holds, but also test whether it does not hold. A proposition counts as true only when the forward channel passes and the reverse channel fails.",
+            "",
+            "## 判定表 / Judgment Table",
+            "",
+            "| J⁺(x) | J⁻(x) | Result | Meaning |",
+            "|---:|---:|---|---|",
+            "| 1 | 0 | true | x holds |",
+            "| 0 | 1 | false | x does not hold |",
+            "| 1 | 1 | contradiction | bootstrap fails |",
+            "| 0 | 0 | underdetermined | evidence or evaluator insufficient |",
+            "| ⊥ | any | pending | unresolved |",
+            "| any | ⊥ | pending | unresolved |",
+            "",
+            "## 自举嵌套 / Bootstrap Nesting",
+            "",
+            "中文：自举元函数可以作用于自举元函数自身，用来检查正向通道、反向通道和互斥判定器是否可靠。",
+            "English: The bootstrap meta-function can be applied to itself to test the reliability of the forward channel, reverse channel, and exclusivity judge.",
+            "",
             "## 收敛判据 / Convergence Criteria",
             "",
-            f"中文：{convergence or '||ΔB_n|| = 0 且 ||ΔB_{n+1}|| = 0'}",
-            f"English: {(convergence or '||DeltaB_n|| = 0 and ||DeltaB_n+1|| = 0').replace('Δ', 'Delta')}",
+            f"中文：{convergence or '||ΔB_n|| = 0 ∧ ||ΔB_(n+1)|| = 0 ∧ LinkGraphStable(B_n) ∧ DynamicCountsStable(B_n) ∧ NoDuplicateLabels(B_n) ∧ AcademicNoveltyGate(B_n)'}",
+            f"English: {(convergence or '||DeltaB_n|| = 0 and ||DeltaB_n+1|| = 0 and LinkGraphStable(B_n) and DynamicCountsStable(B_n) and NoDuplicateLabels(B_n) and AcademicNoveltyGate(B_n)').replace('Δ', 'Delta')}",
             "",
             "## 与普通函数的区别 / Difference from Ordinary Functions",
             "",
@@ -988,6 +1070,14 @@ def render_meta_function_page(meta: dict) -> str:
             "",
             *source_lines,
             f"- source_status: `{source_status}`",
+            "",
+            "## 双通道入口 / Dual-channel Entry",
+            "",
+            f"- [{dual_forward}｜正向自举通道 / Forward Bootstrap Channel]({rel_link(current_path, DOC_FUNC_META_ITEMS_DIR / f'{dual_forward}.md')})",
+            f"- [{dual_reverse}｜反向自举通道 / Reverse Bootstrap Channel]({rel_link(current_path, DOC_FUNC_META_ITEMS_DIR / f'{dual_reverse}.md')})",
+            f"- [{dual_exclusivity}｜正反互斥判定器 / Forward-Reverse Exclusivity Judge]({rel_link(current_path, DOC_FUNC_META_ITEMS_DIR / f'{dual_exclusivity}.md')})",
+            f"- [{dual_nested}｜自举嵌套判定器 / Nested Bootstrap Judge]({rel_link(current_path, DOC_FUNC_META_ITEMS_DIR / f'{dual_nested}.md')})",
+            f"- [{dual_convergence}｜自举收敛判定器 / Bootstrap Convergence Judge]({rel_link(current_path, DOC_FUNC_META_ITEMS_DIR / f'{dual_convergence}.md')})",
             "",
         ]
     )
@@ -1155,9 +1245,10 @@ def group_cases(cases: List[dict]) -> list[tuple[str, list[dict], bool]]:
 def render_meta_functions_section(meta_functions: List[dict], current_path: Path) -> list[str]:
     if not meta_functions:
         return []
+    bootstrap_items = load_bootstrap_meta_table()
     parts = [
         "<details open>",
-        f"<summary>第 0 节：自举元函数 / Section 0: Bootstrap Meta-Function ({len(meta_functions)})</summary>",
+        f"<summary>第 0 节：自举元函数 / Section 0: Bootstrap Meta-Function (1+5)</summary>",
         "",
     ]
     for meta in meta_functions:
@@ -1169,16 +1260,19 @@ def render_meta_functions_section(meta_functions: List[dict], current_path: Path
 
 def render_functions_collection(functions: List[dict], current_path: Path) -> str:
     meta_functions = load_meta_functions()
+    bootstrap_items = load_bootstrap_meta_table()
     total = len(functions)
     meta_count = len(meta_functions)
-    meta_label = "meta-function" if meta_count == 1 else "meta-functions"
+    bootstrap_internal = max(len(bootstrap_items) - 1, 0)
+    meta_label = "root meta-function" if meta_count == 1 else "root meta-functions"
     quick_lines = [
-        f"- 第 0 节 / Section 0：{meta_count} 条元函数 / {meta_count} meta-function{'s' if meta_count != 1 else ''}",
+        f"- 第 0 节 / Section 0：{meta_count} 条主入口 + {bootstrap_internal} 条内部子项 / {meta_count} root entry + {bootstrap_internal} internal subitems",
         f"- 公理层 / Axioms：{sum(1 for f in functions if f['level']['zh'] == '公理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '公理')} entries",
         f"- 定理层 / Theorems：{sum(1 for f in functions if f['level']['zh'] == '定理')} 条 / {sum(1 for f in functions if f['level']['zh'] == '定理')} entries",
         f"- 推论层 / Derived functions：{sum(1 for f in functions if f['level']['zh'] == '推论')} 条 / {sum(1 for f in functions if f['level']['zh'] == '推论')} entries",
         f"- 普通函数 / Ordinary functions：{total} 条 / {total} entries",
         f"- 机器数据 / Machine data：[`data/functions/meta-functions.json`](data/functions/meta-functions.json), [`data/functions/unified-functions.json`](data/functions/unified-functions.json)",
+        f"- 双通道表 / Dual-channel table：[`data/functions/bootstrap-meta-function-table.md`](data/functions/bootstrap-meta-function-table.md), [`data/functions/bootstrap-meta-function-table.json`](data/functions/bootstrap-meta-function-table.json), [`data/functions/bootstrap-meta-function-table.jsonl`](data/functions/bootstrap-meta-function-table.jsonl)",
         f"- JSONL：[`data/functions/meta-functions.jsonl`](data/functions/meta-functions.jsonl), [`data/functions/unified-functions.jsonl`](data/functions/unified-functions.jsonl)",
         f"- 重建审计 / Rebuild audit：[`data/rebuild/human-entry-render-report.md`](data/rebuild/human-entry-render-report.md)",
     ]
@@ -1186,8 +1280,8 @@ def render_functions_collection(functions: List[dict], current_path: Path) -> st
         render_root_intro(
             "统一函数总表",
             "Unified Function Table",
-            f"本表收录 {meta_count} 条第 0 节元函数和 {total} 条普通函数。每条条目都包含编号、名称、函数内容、关联对象和来源回指。",
-            f"This table contains {meta_count} Section 0 {meta_label} and {total} ordinary functions. Each entry includes its ID, title, content, related objects, and source reference.",
+            f"本表收录 {meta_count} 条第 0 节主入口、{bootstrap_internal} 条内部子项和 {total} 条普通函数。每条条目都包含编号、名称、函数内容、关联对象和来源回指。",
+            f"This table contains {meta_count} Section 0 {meta_label}, {bootstrap_internal} internal subitems, and {total} ordinary functions. Each entry includes its ID, title, content, related objects, and source reference.",
             quick_lines,
         ),
     ]

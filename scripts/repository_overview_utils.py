@@ -16,6 +16,7 @@ from answer_utils import (
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
 FUNCTIONS_META_JSON = REPO_ROOT / "data/functions/meta-functions.json"
+BOOTSTRAP_META_TABLE_JSON = REPO_ROOT / "data/functions/bootstrap-meta-function-table.json"
 DISCOVERIES_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
 DISCOVERIES_CATEGORY_MAP = REPO_ROOT / "data/discoveries/category-map.json"
 PREDICTIONS_JSON = REPO_ROOT / "data/predictions/unified-predictions.json"
@@ -51,6 +52,7 @@ def novelty_counts(items: list[dict]) -> dict[str, int]:
 
 def count_repository_objects(repo_root: Path = REPO_ROOT) -> dict[str, dict[str, int]]:
     meta_functions = read_json(repo_root / "data/functions/meta-functions.json", [])
+    bootstrap_meta_table = read_json(repo_root / "data/functions/bootstrap-meta-function-table.json", [])
     discoveries = read_json(repo_root / "data/discoveries/unified-discoveries.json", [])
     predictions = read_json(repo_root / "data/predictions/unified-predictions.json", [])
     answers = read_json(repo_root / "data/answers/unified-answers.json", [])
@@ -91,9 +93,11 @@ def count_repository_objects(repo_root: Path = REPO_ROOT) -> dict[str, dict[str,
         },
         "functions": {
             "meta": len(meta_functions),
+            "bootstrap_internal": max(len(bootstrap_meta_table) - 1, 0),
+            "bootstrap_total": len(bootstrap_meta_table),
             "ordinary": len(functions),
             "total": len(meta_functions) + len(functions),
-            "display": format_function_summary(len(meta_functions), len(functions)),
+            "display": format_function_summary(len(meta_functions), max(len(bootstrap_meta_table) - 1, 0), len(functions)),
         },
         "cases": {
             "total": len(cases),
@@ -101,11 +105,16 @@ def count_repository_objects(repo_root: Path = REPO_ROOT) -> dict[str, dict[str,
     }
 
 
-def format_function_summary(meta_count: int, ordinary_count: int) -> str:
+def format_function_summary(meta_count: int, bootstrap_internal_count: int, ordinary_count: int) -> str:
     if meta_count <= 0:
-        return f"{ordinary_count} functions"
+        if bootstrap_internal_count <= 0:
+            return f"{ordinary_count} functions"
+        return f"{bootstrap_internal_count} bootstrap items, {ordinary_count} functions"
     meta_label = "meta-function" if meta_count == 1 else "meta-functions"
+    bootstrap_label = "bootstrap item" if bootstrap_internal_count == 1 else "bootstrap items"
     ordinary_label = "ordinary function" if ordinary_count == 1 else "ordinary functions"
+    if bootstrap_internal_count > 0:
+        return f"{meta_count} {meta_label}, {bootstrap_internal_count} {bootstrap_label}, {ordinary_count} {ordinary_label}"
     return f"{meta_count} {meta_label}, {ordinary_count} {ordinary_label}"
 
 

@@ -1,15 +1,18 @@
 # Sync / Heartbeat Performance Report
 
-- generated_at: 2026-06-13T13:16:30.130383+00:00
-- sync_dry_run_total_s: 31.122
-- heartbeat_once_dry_run_total_s: 31.185
-- validate_quick_duration_s: 0.261
+- generated_at: 2026-06-13T14:20:28.214690+00:00
+- sync_dry_run_total_s: 5.61
+- heartbeat_once_dry_run_total_s: 5.714
+- validate_quick_duration_s: 0.27
 - within_60s: True
+- section_0_dual_channel_guard_present: True
+- section_0_internal_count: 5
 - recommended_long_heartbeat: False
 
 ## Skipped Steps
 
 - academic_novelty_check.py --all-answers --dry-run
+- detect_repetitive_text.py --check
 - render_discovery_index.py --check
 - render_prediction_index.py --check
 

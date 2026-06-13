@@ -94,8 +94,14 @@ def write_performance_report(payload: dict) -> None:
     ]
     if "section_0_guard_present" in payload:
         lines.insert(7, f"- section_0_guard_present: {payload['section_0_guard_present']}")
-    if "ordinary_function_count_preserved" in payload:
+    if "section_0_dual_channel_guard_present" in payload:
         insert_at = 8 if "section_0_guard_present" in payload else 7
+        lines.insert(insert_at, f"- section_0_dual_channel_guard_present: {payload['section_0_dual_channel_guard_present']}")
+    if "section_0_internal_count" in payload:
+        insert_at = 9 if "section_0_guard_present" in payload and "section_0_dual_channel_guard_present" in payload else 8 if "section_0_guard_present" in payload or "section_0_dual_channel_guard_present" in payload else 7
+        lines.insert(insert_at, f"- section_0_internal_count: {payload['section_0_internal_count']}")
+    if "ordinary_function_count_preserved" in payload:
+        insert_at = 10 if "section_0_guard_present" in payload and "section_0_dual_channel_guard_present" in payload and "section_0_internal_count" in payload else 9 if ("section_0_guard_present" in payload and "section_0_dual_channel_guard_present" in payload) or ("section_0_guard_present" in payload and "section_0_internal_count" in payload) or ("section_0_dual_channel_guard_present" in payload and "section_0_internal_count" in payload) else 8 if "section_0_guard_present" in payload or "section_0_dual_channel_guard_present" in payload or "section_0_internal_count" in payload else 7
         lines.insert(insert_at, f"- ordinary_function_count_preserved: {payload['ordinary_function_count_preserved']}")
     for step in payload["skipped_steps"]:
         lines.append(f"- {step}")
@@ -173,6 +179,8 @@ def main() -> int:
             "commands": commands,
             "validate_ok": all(result["ok"] for result in commands),
             "section_0_guard_present": validate_stdout.get("meta_functions", {}).get("meta", 0) == 1,
+            "section_0_dual_channel_guard_present": validate_stdout.get("meta_functions", {}).get("bootstrap_internal", 0) == 5,
+            "section_0_internal_count": validate_stdout.get("meta_functions", {}).get("bootstrap_internal", 0),
             "ordinary_function_count_preserved": validate_stdout.get("meta_functions", {}).get("ordinary", 0) == 470,
         }
         write_json(STATE_FILE, payload["state"])
@@ -185,8 +193,11 @@ def main() -> int:
                 "validate_quick_duration_s": validate_quick_duration,
                 "within_60s": heartbeat_total <= 60 and sum(sync_command_durations) <= 60,
                 "recommended_long_heartbeat": False,
+                "section_0_dual_channel_guard_present": payload["section_0_dual_channel_guard_present"],
+                "section_0_internal_count": payload["section_0_internal_count"],
                 "skipped_steps": [
                     "academic_novelty_check.py --all-answers --dry-run",
+                    "detect_repetitive_text.py --check",
                     "render_discovery_index.py --check",
                     "render_prediction_index.py --check",
                 ],

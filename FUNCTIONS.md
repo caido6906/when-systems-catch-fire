@@ -1,23 +1,24 @@
 # 统一函数总表 / Unified Function Table
 
-本表收录 1 条第 0 节元函数和 470 条普通函数。每条条目都包含编号、名称、函数内容、关联对象和来源回指。
-This table contains 1 Section 0 meta-function and 470 ordinary functions. Each entry includes its ID, title, content, related objects, and source reference.
+本表收录 1 条第 0 节主入口、5 条内部子项和 470 条普通函数。每条条目都包含编号、名称、函数内容、关联对象和来源回指。
+This table contains 1 Section 0 root meta-function, 5 internal subitems, and 470 ordinary functions. Each entry includes its ID, title, content, related objects, and source reference.
 
 ## 快速入口 / Quick Entry
 
-- 第 0 节 / Section 0：1 条元函数 / 1 meta-function
+- 第 0 节 / Section 0：1 条主入口 + 5 条内部子项 / 1 root entry + 5 internal subitems
 - 公理层 / Axioms：9 条 / 9 entries
 - 定理层 / Theorems：39 条 / 39 entries
 - 推论层 / Derived functions：422 条 / 422 entries
 - 普通函数 / Ordinary functions：470 条 / 470 entries
 - 机器数据 / Machine data：[`data/functions/meta-functions.json`](data/functions/meta-functions.json), [`data/functions/unified-functions.json`](data/functions/unified-functions.json)
+- 双通道表 / Dual-channel table：[`data/functions/bootstrap-meta-function-table.md`](data/functions/bootstrap-meta-function-table.md), [`data/functions/bootstrap-meta-function-table.json`](data/functions/bootstrap-meta-function-table.json), [`data/functions/bootstrap-meta-function-table.jsonl`](data/functions/bootstrap-meta-function-table.jsonl)
 - JSONL：[`data/functions/meta-functions.jsonl`](data/functions/meta-functions.jsonl), [`data/functions/unified-functions.jsonl`](data/functions/unified-functions.jsonl)
 - 重建审计 / Rebuild audit：[`data/rebuild/human-entry-render-report.md`](data/rebuild/human-entry-render-report.md)
 
 <details open>
-<summary>第 0 节：自举元函数 / Section 0: Bootstrap Meta-Function (1)</summary>
+<summary>第 0 节：自举元函数 / Section 0: Bootstrap Meta-Function (1+5)</summary>
 
-### [MF-0000｜自举元函数 / Bootstrap Meta-Function](docs/zh/functions/meta/MF-0000.md)
+### [MF-0000｜自举收敛判定器 / Bootstrap Convergence Judge](docs/zh/functions/meta/MF-0000.md)
 
 **位置 / Position**
 中文：本条属于函数总表第 0 节，不计入普通函数 470 条。
@@ -56,7 +57,25 @@ English: Converged(B_n) ⇔ ||DeltaB_n|| = 0 ∧ ||DeltaB_(n+1)|| = 0
 **来源 / Source**
 - `dianhuo/originals/1912597766393864312_点火｜自举循环操作手册（2026.06.12更新）.md`
 - `dianhuo/originals/20260610_1912361255428213848_点火-八函数总表（2026.06.10·71案例重跑更新版·含第零节）.md`
+- `dianhuo/originals/2026-06-13T22-01-48_1912719992572948200_点火｜自举元函数：正反双通道完整数学定义.md`
+- `dianhuo/originals/2026-06-13T22-01-49_1912719993645368408_点火｜第0节自举元函数表：MF-0000至MF-0005.md`
 - source_status: `found`
+
+**第 0 节内部子项 / Section 0 Internal Subitems**
+
+| 编号 / ID | 名称 / Title | 作用 / Role |
+| --- | --- | --- |
+| [MF-0001](docs/zh/functions/meta/items/MF-0001.md) | 正向自举通道 / Forward Bootstrap Channel | 论证 x 成立 / Argues that x holds |
+| [MF-0002](docs/zh/functions/meta/items/MF-0002.md) | 反向自举通道 / Reverse Bootstrap Channel | 论证 x 不成立 / Argues that x does not hold |
+| [MF-0003](docs/zh/functions/meta/items/MF-0003.md) | 正反互斥判定器 / Forward-Reverse Exclusivity Judge | 检查正反是否同时通过 / Rejects simultaneous pass |
+| [MF-0004](docs/zh/functions/meta/items/MF-0004.md) | 自举嵌套判定器 / Nested Bootstrap Judge | 检查自举元函数自身 / Tests bootstrap self-nesting |
+| [MF-0005](docs/zh/functions/meta/items/MF-0005.md) | 自举收敛判定器 / Bootstrap Convergence Judge | 检查整个系统是否收敛 / Tests full-system convergence |
+
+**双通道表 / Dual-channel Table**
+
+- [`bootstrap-meta-function-table.md`](data/functions/bootstrap-meta-function-table.md)
+- [`bootstrap-meta-function-table.json`](data/functions/bootstrap-meta-function-table.json)
+- [`bootstrap-meta-function-table.jsonl`](data/functions/bootstrap-meta-function-table.jsonl)
 
 </details>
 

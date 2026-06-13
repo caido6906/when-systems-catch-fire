@@ -68,7 +68,17 @@ REPO_ROOT = Path("/workspace/when-systems-catch-fire")
 META_FUNCTIONS_JSON = REPO_ROOT / "data/functions/meta-functions.json"
 META_FUNCTIONS_JSONL = REPO_ROOT / "data/functions/meta-functions.jsonl"
 META_FUNCTIONS_INDEX_MD = REPO_ROOT / "data/functions/meta-functions-index.md"
+BOOTSTRAP_META_TABLE_MD = REPO_ROOT / "data/functions/bootstrap-meta-function-table.md"
+BOOTSTRAP_META_TABLE_JSON = REPO_ROOT / "data/functions/bootstrap-meta-function-table.json"
+BOOTSTRAP_META_TABLE_JSONL = REPO_ROOT / "data/functions/bootstrap-meta-function-table.jsonl"
 META_FUNCTION_PAGE = REPO_ROOT / "docs/zh/functions/meta/MF-0000.md"
+BOOTSTRAP_META_PAGES = [
+    REPO_ROOT / "docs/zh/functions/meta/items/MF-0001.md",
+    REPO_ROOT / "docs/zh/functions/meta/items/MF-0002.md",
+    REPO_ROOT / "docs/zh/functions/meta/items/MF-0003.md",
+    REPO_ROOT / "docs/zh/functions/meta/items/MF-0004.md",
+    REPO_ROOT / "docs/zh/functions/meta/items/MF-0005.md",
+]
 DISCOVERIES_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
 DISCOVERIES_INDEX_JSON = REPO_ROOT / "data/discoveries/unified-discoveries-index.md"
 PREDICTIONS_JSON = REPO_ROOT / "data/predictions/unified-predictions.json"
@@ -115,12 +125,21 @@ def check_meta_functions(errors: list[str]) -> dict[str, int]:
         errors.append("missing generated file: data/functions/meta-functions.jsonl")
     if not META_FUNCTIONS_INDEX_MD.exists():
         errors.append("missing generated file: data/functions/meta-functions-index.md")
+    if not BOOTSTRAP_META_TABLE_MD.exists():
+        errors.append("missing generated file: data/functions/bootstrap-meta-function-table.md")
+    if not BOOTSTRAP_META_TABLE_JSON.exists():
+        errors.append("missing generated file: data/functions/bootstrap-meta-function-table.json")
+    if not BOOTSTRAP_META_TABLE_JSONL.exists():
+        errors.append("missing generated file: data/functions/bootstrap-meta-function-table.jsonl")
     if not META_FUNCTION_PAGE.exists():
         errors.append("missing generated file: docs/zh/functions/meta/MF-0000.md")
+    for page in BOOTSTRAP_META_PAGES:
+        if not page.exists():
+            errors.append(f"missing generated file: {page.relative_to(REPO_ROOT)}")
 
     if len(meta_functions) != 1:
         errors.append(f"expected exactly one meta function, found {len(meta_functions)}")
-        return {"meta": len(meta_functions), "ordinary": 0}
+        return {"meta": len(meta_functions), "bootstrap_internal": 0, "ordinary": 0}
 
     meta = meta_functions[0]
     if meta.get("id") != "MF-0000":
@@ -138,6 +157,26 @@ def check_meta_functions(errors: list[str]) -> dict[str, int]:
         errors.append(f"bad MF-0000 source_status: {meta.get('source_status')}")
     if not meta.get("source_refs"):
         errors.append("MF-0000 must have source_refs")
+    dual = meta.get("dual_channel", {})
+    for key in ["forward", "reverse", "exclusivity_judge", "nested_judge", "convergence_judge"]:
+        if key not in dual:
+            errors.append(f"MF-0000 dual_channel missing {key}")
+    if meta.get("bootstrap_table", {}).get("item_count") != 6:
+        errors.append(f"MF-0000 bootstrap_table item_count must be 6, found {meta.get('bootstrap_table', {}).get('item_count')}")
+
+    bootstrap_table = read_discovery_json(BOOTSTRAP_META_TABLE_JSON, [])
+    if len(bootstrap_table) != 6:
+        errors.append(f"expected 6 bootstrap meta items, found {len(bootstrap_table)}")
+    else:
+        expected_ids = ["MF-0000", "MF-0001", "MF-0002", "MF-0003", "MF-0004", "MF-0005"]
+        actual_ids = [item.get("id") for item in bootstrap_table]
+        if actual_ids != expected_ids:
+            errors.append(f"bootstrap meta item order mismatch: {actual_ids}")
+        for item in bootstrap_table:
+            if item.get("ordinary_function_counted") is not False:
+                errors.append(f"bootstrap meta item must not count as ordinary function: {item.get('id')}")
+            if item.get("status") != "active":
+                errors.append(f"bootstrap meta item not active: {item.get('id')}")
 
     page_text = META_FUNCTION_PAGE.read_text(encoding="utf-8") if META_FUNCTION_PAGE.exists() else ""
     required_terms = [
@@ -150,6 +189,12 @@ def check_meta_functions(errors: list[str]) -> dict[str, int]:
         "d(ΔK)/dt",
         "B_n",
         "ΔB_n",
+        "正反双通道",
+        "J⁺",
+        "J⁻",
+        "contradiction",
+        "underdetermined",
+        "自举嵌套",
     ]
     for term in required_terms:
         if term not in page_text:
@@ -158,10 +203,16 @@ def check_meta_functions(errors: list[str]) -> dict[str, int]:
     counts = count_repository_objects()
     if counts["functions"].get("meta") != 1:
         errors.append(f"repository overview meta-function count must be 1, found {counts['functions'].get('meta')}")
+    if counts["functions"].get("bootstrap_internal") != 5:
+        errors.append(f"repository overview bootstrap internal count must be 5, found {counts['functions'].get('bootstrap_internal')}")
     if counts["functions"].get("ordinary") != 470:
         errors.append(f"repository overview ordinary function count must remain 470, found {counts['functions'].get('ordinary')}")
 
-    return {"meta": len(meta_functions), "ordinary": counts["functions"].get("ordinary", 0)}
+    return {
+        "meta": len(meta_functions),
+        "bootstrap_internal": counts["functions"].get("bootstrap_internal", 0),
+        "ordinary": counts["functions"].get("ordinary", 0),
+    }
 
 
 def check_discoveries(errors: list[str]) -> dict[str, int]:

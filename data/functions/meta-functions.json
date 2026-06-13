@@ -13,10 +13,31 @@
     "state_expression": "B_n = (F_n, C_n, D_n, P_n, A_n, L_n)",
     "bootstrap_cycle": "B_(n+1) = B_n ⊕ ΔB_n",
     "convergence": "Converged(B_n) ⇔ ||ΔB_n|| = 0 ∧ ||ΔB_(n+1)|| = 0",
+    "dual_channel": {
+      "forward": "MF-0001",
+      "reverse": "MF-0002",
+      "exclusivity_judge": "MF-0003",
+      "nested_judge": "MF-0004",
+      "convergence_judge": "MF-0005"
+    },
+    "bootstrap_table": {
+      "page": "data/functions/bootstrap-meta-function-table.md",
+      "item_count": 6,
+      "items": [
+        "MF-0000",
+        "MF-0001",
+        "MF-0002",
+        "MF-0003",
+        "MF-0004",
+        "MF-0005"
+      ]
+    },
     "source_status": "found",
     "source_refs": [
       "dianhuo/originals/1912597766393864312_点火｜自举循环操作手册（2026.06.12更新）.md",
-      "dianhuo/originals/20260610_1912361255428213848_点火-八函数总表（2026.06.10·71案例重跑更新版·含第零节）.md"
+      "dianhuo/originals/20260610_1912361255428213848_点火-八函数总表（2026.06.10·71案例重跑更新版·含第零节）.md",
+      "dianhuo/originals/2026-06-13T22-01-48_1912719992572948200_点火｜自举元函数：正反双通道完整数学定义.md",
+      "dianhuo/originals/2026-06-13T22-01-49_1912719993645368408_点火｜第0节自举元函数表：MF-0000至MF-0005.md"
     ],
     "related_objects": [
       {
@@ -45,7 +66,7 @@
       }
     ],
     "page": "docs/zh/functions/meta/MF-0000.md",
-    "reviewer_note": "Original Section 0 recovered from local source-history notes; this is the canonical repo representation for the meta-function layer.",
+    "reviewer_note": "Original Section 0 recovered from local source-history notes; this is the canonical repo representation for the meta-function layer. Section 0 now also carries a dual-channel judgment table and nested bootstrap subitems.",
     "created_at": "2026-06-13",
     "updated_at": "2026-06-13",
     "license": "CC-BY-NC-4.0"
