@@ -23,6 +23,29 @@ This is the primary entry file for AI Agents working with When Systems Catch Fir
 7. 不要把旧 `archive/book-legacy/` 当作当前主结构。
 8. 不要把链接笔记、私有写作风格库、同步脚本配置或未公开材料混入本公开知识库。
 
+## 发现写入规则 / Discovery Writing Rule
+
+中文：如果用户说“这是一个新发现”“把这个发现存进点火仓库”“新增一条发现”，Agent 必须写入发现系统，而不是写入函数表或案例表。
+
+English: If the user says “this is a new discovery,” “store this discovery in the Ignition repository,” or “add a discovery,” the Agent must write it into the discovery system, not into the function table or case table.
+
+写入入口 / Writing entry:
+
+- `DISCOVERIES.md`
+- `data/discoveries/unified-discoveries.json`
+- `data/discoveries/unified-discoveries.jsonl`
+- `docs/zh/discoveries/items/`
+- `scripts/add_discovery.py`
+
+判断原则 / Decision rule:
+
+- 函数表 / Function table：保存机制、公式、结构函数。 / Stores mechanisms, formulas, and structural functions.
+- 案例表 / Case table：保存证据、历史对象、验证材料。 / Stores evidence, historical objects, and verification materials.
+- 发现表 / Discovery table：保存由函数与案例共同推出的新洞见。 / Stores new insights derived from functions and cases.
+
+除非用户明确要求修改函数表或案例表，否则新洞见默认写入发现表。
+Unless the user explicitly asks to modify the function table or case table, new insights should be written into the discovery table by default.
+
 ## Recommended Reading Order
 
 1. `llms.txt`

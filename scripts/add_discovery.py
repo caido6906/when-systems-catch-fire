@@ -341,6 +341,8 @@ def main() -> None:
     parser.add_argument("--related-commit", default="")
     parser.add_argument("--date", default=date.today().isoformat())
     parser.add_argument("--status", default="draft")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--validate", action="store_true")
     args = parser.parse_args()
 
     items = read_json(DISCOVERY_JSON, [])
@@ -374,6 +376,20 @@ def main() -> None:
         "status": args.status,
         "links": {"human_page": f"docs/zh/discoveries/items/{discovery_id}.md"},
     }
+
+    preview = {
+        "id": item["id"],
+        "title": item["title"],
+        "status": item["status"],
+        "related_functions": [entry["id"] for entry in related_functions],
+        "related_cases": [entry["id"] for entry in related_cases],
+        "links": item["links"],
+    }
+    print(json.dumps(preview, ensure_ascii=False, indent=2))
+
+    if args.dry_run or args.validate:
+        print("dry-run: no files were written")
+        return
 
     items.append(item)
     items.sort(key=lambda row: row["id"])
