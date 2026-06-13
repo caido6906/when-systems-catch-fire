@@ -14,6 +14,7 @@ English: Each discovery should be recorded as an independent entry. A discovery 
 - 状态 / Status：draft / checked / published
 - 日期 / Date：YYYY-MM-DD
 - 来源 / Source：
+- 分类 / Categories：physics, psychology, other
 
 ---
 
@@ -58,3 +59,11 @@ English:
 - 对话来源 / Conversation source：
 - 笔记来源 / Source note：
 - 相关提交 / Related commit：
+
+---
+
+## 分类说明 / Category Notes
+
+中文：一条发现可以属于一个或多个分类。分类 ID 来自 `data/discoveries/categories.json`。如果无法判断，先使用 `other`，后续再归类。
+
+English: A discovery may belong to one or more categories. Category IDs come from `data/discoveries/categories.json`. If uncertain, use `other` first and reclassify later.

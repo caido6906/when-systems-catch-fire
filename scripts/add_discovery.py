@@ -10,6 +10,8 @@ import os
 from datetime import date
 from pathlib import Path
 
+from discovery_category_utils import CATEGORY_DIR, CATEGORY_MAP_JSON, render_category_page, resolve_categories, update_category_map_with_discovery
+
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
 DISCOVERY_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
@@ -184,33 +186,61 @@ def render_discovery_page(item: dict) -> str:
         f"[← 返回发现总表 / Back to Discoveries]({rel_link(current_path, DISCOVERY_LIST_MD)})",
         f"[返回仓库首页 / Back to Repository Home]({rel_link(current_path, REPO_ROOT / 'README.md')})",
         "",
-        "## 发现内容 / Discovery",
+        "## 基本信息 / Basic Information",
         "",
-        "中文：",
-        item["content"]["zh"],
+        f"- 发现编号 / Discovery ID：{item['id']}",
+        f"- 中文标题 / Chinese title：{item['title']['zh']}",
+        f"- English title：{item['title']['en']}",
+        f"- 状态 / Status：{item['status']}",
+        f"- 日期 / Date：{item['source']['date']}",
+        f"- 来源 / Source：{item['source']['source_note'] or item['source']['conversation'] or '—'}",
         "",
-        "English:",
-        safe_english(item["content"]["en"]),
-        "",
-        "## 它为什么重要 / Why It Matters",
-        "",
-        "中文：",
-        item["why_it_matters"]["zh"],
-        "",
-        "English:",
-        safe_english(item["why_it_matters"]["en"]),
-        "",
-        "## 推论链条 / Inference Chain",
-        "",
-        "中文：",
-        item["inference_chain"]["zh"],
-        "",
-        "English:",
-        safe_english(item["inference_chain"]["en"]),
-        "",
-        "## 相关函数 / Related Functions",
+        "## 分类 / Categories",
         "",
     ]
+    categories = item.get("categories", [])
+    if categories:
+        for cat in categories:
+            if cat.get("page"):
+                lines.append(
+                    f"- [{cat['title']['zh']} / {cat['title']['en']}]({rel_link(current_path, REPO_ROOT / cat['page'])})"
+                )
+            else:
+                lines.append(f"- {cat['title']['zh']} / {cat['title']['en']}")
+    else:
+        lines.append("- 其他 / Other")
+
+    lines.extend(
+        [
+            "",
+            "## 发现内容 / Discovery",
+            "",
+            "中文：",
+            item["content"]["zh"],
+            "",
+            "English:",
+            safe_english(item["content"]["en"]),
+            "",
+            "## 它为什么重要 / Why It Matters",
+            "",
+            "中文：",
+            item["why_it_matters"]["zh"],
+            "",
+            "English:",
+            safe_english(item["why_it_matters"]["en"]),
+            "",
+            "## 推论链条 / Inference Chain",
+            "",
+            "中文：",
+            item["inference_chain"]["zh"],
+            "",
+            "English:",
+            safe_english(item["inference_chain"]["en"]),
+            "",
+            "## 相关函数 / Related Functions",
+            "",
+        ]
+    )
     related_functions = item.get("related_functions", [])
     if related_functions:
         for entry in related_functions:
@@ -250,12 +280,6 @@ def render_discovery_page(item: dict) -> str:
             f"- 对话来源 / Conversation source：{item['source']['conversation'] or '—'}",
             f"- 源笔记 / Source note：{item['source']['source_note'] or '—'}",
             f"- 相关提交 / Related commit：{item['source']['related_commit'] or '—'}",
-            f"- 生成日期 / Date：{item['source']['date']}",
-            "",
-            "## 状态 / Status",
-            "",
-            f"- 中文：{item['status']}",
-            f"- English: {safe_english(item['status'])}",
             "",
         ]
     )
@@ -263,6 +287,8 @@ def render_discovery_page(item: dict) -> str:
 
 
 def render_discoveries_list(items: list[dict]) -> str:
+    category_map = read_json(CATEGORY_MAP_JSON, [])
+    category_rows = [entry for entry in category_map if entry.get("category_id") and entry["category_id"] != "other"]
     lines = [
         "# 发现总表 / Discovery Index",
         "",
@@ -276,15 +302,48 @@ def render_discoveries_list(items: list[dict]) -> str:
         "",
         "English: Whenever a new discovery is produced, add it as a separate discovery entry. Do not bury discoveries inside the function table or case table. The function table stores mechanisms, the case table stores evidence, and the discovery table stores new insights derived from mechanisms and evidence.",
         "",
-        "## 发现列表 / Discovery List",
+        "## 学科分类 / Categories",
+        "",
+        "中文：以下分类由当前函数表与案例表的自举扫描生成，不是空壳入口。每条发现可以属于一个或多个分类。",
+        "",
+        "English: The following categories are generated from a bootstrap scan of the current function and case tables. They are not empty shells, and each discovery may belong to one or more categories.",
+        "",
+        "| 分类 / Category | 入口 / Entry | 当前覆盖 / Current Coverage |",
+        "| --- | --- | --- |",
+    ]
+    for category in category_rows:
+        coverage = category.get("coverage", {})
+        lines.append(
+            f"| {category['title']['zh']} / {category['title']['en']} | [{category['title']['en']}]({category['page']}) | {coverage.get('related_functions_count', 0)} related functions, {coverage.get('related_cases_count', 0)} related cases |"
+        )
+
+    zero_categories = [
+        category
+        for category in category_rows
+        if category.get("coverage", {}).get("related_functions_count", 0) == 0 and category.get("coverage", {}).get("related_cases_count", 0) == 0
+    ]
+    if zero_categories:
+        lines.extend(["", "### 可扩展分类 / Expandable Categories", ""])
+        for category in zero_categories:
+            lines.append(f"- [{category['title']['zh']} / {category['title']['en']}]({category['page']})")
+
+    lines.extend(
+        [
+        "## 最近发现 / Recent Discoveries",
         "",
         "<!-- DISCOVERY_LIST_START -->",
     ]
+    )
     if items:
         for item in items:
+            category_tags = ""
+            if item.get("categories"):
+                category_tags = " · " + ", ".join(cat["title"]["en"] for cat in item["categories"])
             lines.append(
-                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']})"
+                f"- [{item['id']}｜{item['title']['zh']} / {item['title']['en']}]({item['links']['human_page']}){category_tags}"
             )
+    else:
+        lines.extend(["暂无已整理发现。", "No curated discoveries yet."])
     lines.append("<!-- DISCOVERY_LIST_END -->")
     lines.append("")
     return "\n".join(lines)
@@ -293,17 +352,22 @@ def render_discoveries_list(items: list[dict]) -> str:
 def render_discovery_index_md(items: list[dict]) -> str:
     rows = []
     for item in items:
+        categories = ", ".join(cat["title"]["en"] for cat in item.get("categories", [])) or "other"
         rows.append(
             [
                 f"[{item['id']}]({item['links']['human_page']})",
                 f"{item['title']['zh']} / {item['title']['en']}",
+                categories,
                 item["status"],
                 str(len(item.get("related_functions", []))),
                 str(len(item.get("related_cases", []))),
                 item["links"]["human_page"],
             ]
         )
-    table = ["| 编号 / ID | 标题 / Title | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases | 页面 / Page |", "| --- | --- | --- | --- | --- | --- |"]
+    table = [
+        "| 编号 / ID | 标题 / Title | 分类 / Categories | 状态 / Status | 相关函数 / Related functions | 相关案例 / Related cases | 页面 / Page |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
     table.extend("| " + " | ".join(row) + " |" for row in rows)
     if not rows:
         table.extend(["", "暂无条目 / No entries yet.", ""])
@@ -312,7 +376,7 @@ def render_discovery_index_md(items: list[dict]) -> str:
             "# 发现机器索引 / Discovery Machine Index",
             "",
             "机器可读索引，保留中文标题、英文标题、状态和关联计数。",
-            "Machine-readable index that keeps Chinese titles, English titles, status, and relation counts.",
+            "Machine-readable index that keeps Chinese titles, English titles, categories, status, and relation counts.",
             "",
             "- [`data/discoveries/unified-discoveries.json`](unified-discoveries.json)",
             "- [`data/discoveries/unified-discoveries.jsonl`](unified-discoveries.jsonl)",
@@ -339,6 +403,7 @@ def main() -> None:
     parser.add_argument("--conversation", default="")
     parser.add_argument("--source-note", default="")
     parser.add_argument("--related-commit", default="")
+    parser.add_argument("--categories", default="")
     parser.add_argument("--date", default=date.today().isoformat())
     parser.add_argument("--status", default="draft")
     parser.add_argument("--dry-run", action="store_true")
@@ -352,6 +417,8 @@ def main() -> None:
     discovery_id = next_discovery_id(items)
     func_map = load_function_map()
     case_map = load_case_map()
+    category_ids = parse_csv_ids(args.categories) or ["other"]
+    categories = resolve_categories(category_ids)
 
     related_functions, func_warnings = build_related_functions(parse_csv_ids(args.functions), func_map)
     related_cases, case_warnings = build_related_cases(parse_csv_ids(args.cases), case_map)
@@ -367,6 +434,7 @@ def main() -> None:
         "inference_chain": {"zh": args.chain_zh, "en": args.chain_en},
         "related_functions": related_functions,
         "related_cases": related_cases,
+        "categories": categories,
         "source": {
             "conversation": args.conversation,
             "source_note": args.source_note or args.source,
@@ -381,6 +449,7 @@ def main() -> None:
         "id": item["id"],
         "title": item["title"],
         "status": item["status"],
+        "categories": [entry["id"] for entry in categories],
         "related_functions": [entry["id"] for entry in related_functions],
         "related_cases": [entry["id"] for entry in related_cases],
         "links": item["links"],
@@ -399,6 +468,15 @@ def main() -> None:
     write_text(DISCOVERY_LIST_MD, render_discoveries_list(items))
     write_text(DISCOVERY_INDEX_MD, render_discovery_index_md(items))
     write_text(DISCOVERY_DIR / f"{discovery_id}.md", render_discovery_page(item))
+
+    category_map = read_json(CATEGORY_MAP_JSON, [])
+    if isinstance(category_map, list) and category_map:
+        category_map = update_category_map_with_discovery(category_map, item)
+        write_json(CATEGORY_MAP_JSON, category_map)
+        write_jsonl(CATEGORY_MAP_JSON.with_suffix(".jsonl"), category_map)
+        for category in category_map:
+            write_text(CATEGORY_DIR / f"{category['category_id']}.md", render_category_page(category))
+        write_text(DISCOVERY_LIST_MD, render_discoveries_list(items))
 
     print(f"added {discovery_id}")
 

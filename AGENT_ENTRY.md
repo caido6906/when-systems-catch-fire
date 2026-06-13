@@ -46,6 +46,25 @@ English: If the user says “this is a new discovery,” “store this discovery
 除非用户明确要求修改函数表或案例表，否则新洞见默认写入发现表。
 Unless the user explicitly asks to modify the function table or case table, new insights should be written into the discovery table by default.
 
+## 函数、案例、发现的增量入口 / Incremental Entrances for Functions, Cases, and Discoveries
+
+中文：函数、案例、发现都会继续新增。Agent 不得把三者混写。
+
+English: Functions, cases, and discoveries may all continue to grow. Agents must not mix them.
+
+- 函数 / Functions：写入 `FUNCTIONS.md`、`docs/zh/functions/items/`、`data/functions/unified-functions.json/jsonl`
+- 案例 / Cases：写入 `CASES.md`、`docs/zh/cases/items/`、`data/cases/unified-cases.json/jsonl`
+- 发现 / Discoveries：写入 `DISCOVERIES.md`、`docs/zh/discoveries/items/`、`data/discoveries/unified-discoveries.json/jsonl`
+
+## 发现二级分类规则 / Discovery Category Rule
+
+中文：每条发现必须进入一个或多个二级学科分类。分类入口来自 `data/discoveries/categories.json` 与 `docs/zh/discoveries/categories/`。
+
+English: Each discovery must belong to one or more disciplinary categories. Category entrances come from `data/discoveries/categories.json` and `docs/zh/discoveries/categories/`.
+
+如果发现跨学科，可以多分类。
+If a discovery is cross-disciplinary, assign multiple categories.
+
 ## Recommended Reading Order
 
 1. `llms.txt`

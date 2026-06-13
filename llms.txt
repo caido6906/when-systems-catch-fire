@@ -17,6 +17,14 @@ Human-readable entries:
 - data/discoveries/index.md
 - AGENT_ENTRY.md
 - DISCOVERIES.md
+- docs/zh/discoveries/categories/
+- data/discoveries/categories.json
+- data/discoveries/category-map.json
+
+Discovery rule:
+- Functions, cases, and discoveries are separate incremental entrances.
+- New discoveries must also be assigned to one or more disciplinary categories.
+- Category IDs come from data/discoveries/categories.json and docs/zh/discoveries/categories/.
 
 Do not treat raw notes as canonical.
 Raw notes are sources. Canonical structured entries live under data/functions and data/cases.
