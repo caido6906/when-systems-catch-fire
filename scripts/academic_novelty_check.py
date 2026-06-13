@@ -23,6 +23,7 @@ REPO_ROOT = Path("/workspace/when-systems-catch-fire")
 DATASETS = {
     "prediction": REPO_ROOT / "data/predictions/unified-predictions.json",
     "discovery": REPO_ROOT / "data/discoveries/unified-discoveries.json",
+    "answer": REPO_ROOT / "data/answers/unified-answers.json",
 }
 
 
@@ -59,7 +60,20 @@ def word_tokens(text: str) -> list[str]:
 
 def generate_query_terms(item: dict) -> list[str]:
     parts = []
-    for key in ["title", "statement", "basis", "test_condition", "falsification_condition", "content", "why_it_matters"]:
+    for key in [
+        "title",
+        "statement",
+        "basis",
+        "test_condition",
+        "falsification_condition",
+        "content",
+        "why_it_matters",
+        "question",
+        "answer",
+        "prior_answers",
+        "new_explanation",
+        "testability",
+    ]:
         value = item.get(key)
         if isinstance(value, dict):
             parts.extend([value.get("zh", ""), value.get("en", "")])
@@ -220,17 +234,22 @@ def locate(dataset_type: str, entry_id: str) -> tuple[Path, int]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check academic novelty for curated discovery or prediction entries.")
-    parser.add_argument("--type", choices=["discovery", "prediction"], help="Entry type to inspect.")
+    parser.add_argument("--type", choices=["discovery", "prediction", "answer"], help="Entry type to inspect.")
     parser.add_argument("--id", dest="entry_id", help="Specific entry id to inspect.")
     parser.add_argument("--all-discoveries", action="store_true", help="Process all discovery entries.")
     parser.add_argument("--all-predictions", action="store_true", help="Process all prediction entries.")
+    parser.add_argument("--all-answers", action="store_true", help="Process all answer entries.")
     parser.add_argument("--check", action="store_true", help="Print a dry preview and exit.")
     parser.add_argument("--dry-run", action="store_true", help="Do not write files.")
     args = parser.parse_args()
 
     targets: list[tuple[str, dict, int | None]] = []
-    if args.all_discoveries or args.all_predictions:
-        for dataset_type in (["discovery"] if args.all_discoveries else []) + (["prediction"] if args.all_predictions else []):
+    if args.all_discoveries or args.all_predictions or args.all_answers:
+        for dataset_type in (
+            (["discovery"] if args.all_discoveries else [])
+            + (["prediction"] if args.all_predictions else [])
+            + (["answer"] if args.all_answers else [])
+        ):
             rows = read_json(DATASETS[dataset_type], [])
             for idx, row in enumerate(rows):
                 targets.append((dataset_type, row, idx))

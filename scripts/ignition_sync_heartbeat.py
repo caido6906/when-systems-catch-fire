@@ -75,6 +75,7 @@ def main() -> int:
     if args.once and args.dry_run:
         commands.append(run(["python3", "scripts/sync_ignition_knowledge_base.py", "--dry-run"]))
         commands.append(run(["python3", "scripts/validate_ignition_repository.py", "--check"]))
+        commands.append(run(["python3", "scripts/render_answer_index.py", "--check"]))
         payload = {
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "lock_present": LOCK_FILE.exists(),

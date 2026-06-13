@@ -1,7 +1,7 @@
 # When Systems Catch Fire / 点火
 
-《点火》不是一本固定成书，而是一个开放维护的函数、案例、发现与预测知识库。
-When Systems Catch Fire is not a fixed book, but an open and maintained knowledge base of functions, cases, discoveries, and predictions.
+《点火》不是一本固定成书，而是一个开放维护的函数、案例、发现、预测与新答案知识库。
+When Systems Catch Fire is not a fixed book, but an open and maintained knowledge base of functions, cases, discoveries, predictions, and new answers.
 
 ## 入口 / Entrance
 
@@ -10,6 +10,7 @@ When Systems Catch Fire is not a fixed book, but an open and maintained knowledg
 | --- | ---: | --- |
 | [发现 / Discoveries](DISCOVERIES.md) | 0 curated discoveries, 83 leads | 从函数、案例与自举循环中产生的新发现。 / New discoveries generated from bootstrap cycles between functions and cases. |
 | [预测 / Predictions](PREDICTIONS.md) | 8 predictions, 8 inconclusive novelty | 由函数、案例、发现与自举循环推出的可检验未来判断。 / Testable future judgments derived from functions, cases, discoveries, and bootstrap cycles. |
+| [新答案 / New Answers](ANSWERS.md) | 0 answers, 4 leads, 4 inconclusive novelty | 对既有问题、经典问题、未解问题或已有答案的新回答。 / New answers to existing, classic, unresolved, or previously answered questions. |
 | [函数表 / Functions](FUNCTIONS.md) | 470 functions | 函数、机制、结构与公式。 / Functions, mechanisms, structures, and formulas. |
 | [案例表 / Cases](CASES.md) | 578 cases | 案例、证据、历史对象与验证材料。 / Cases, evidence, historical objects, and verification materials. |
 <!-- REPOSITORY_OVERVIEW_END -->
@@ -22,6 +23,7 @@ When Systems Catch Fire is not a fixed book, but an open and maintained knowledg
 | Cases | 案例层，保存案例与函数关系 | `data/cases/unified-cases.json`, `data/cases/unified-cases.jsonl`, `data/cases/items/` |
 | Discoveries | 新发现说明层，面向人类阅读和传播 | `DISCOVERIES.md`, `data/discoveries/unified-discoveries.json`, `data/discoveries/unified-discoveries.jsonl`, `docs/zh/discoveries/items/` |
 | Predictions | 预测说明层，面向人类阅读和验证 | `PREDICTIONS.md`, `data/predictions/unified-predictions.json`, `data/predictions/unified-predictions.jsonl`, `docs/zh/predictions/items/` |
+| New Answers | 新答案说明层，面向既有问题的新回答与学术独有性检查 | `ANSWERS.md`, `data/answers/unified-answers.json`, `data/answers/unified-answers.jsonl`, `docs/zh/answers/items/` |
 | Registry | 原始统一总表，作为生成 JSON 的来源 | `data/registry/统一函数总表.csv`, `data/registry/统一案例总表.csv` |
 | Legacy Book | 旧书籍结构，保留为历史材料 | `archive/book-legacy/` |
 | Raw Notes | 原始笔记与来源材料，不作为 canonical item | `dianhuo/originals/` |
@@ -34,7 +36,8 @@ When Systems Catch Fire is not a fixed book, but an open and maintained knowledg
 4. Use `data/cases/unified-cases.jsonl` for case lookup.
 5. Use `data/discoveries/unified-discoveries.jsonl` for structured discovery entries.
 6. Use `data/predictions/unified-predictions.jsonl` for structured prediction entries.
-7. Use `data/functions/items/*.json` and `data/cases/items/*.json` as canonical machine-readable records.
+7. Use `data/answers/unified-answers.jsonl` for structured new-answer entries.
+8. Use `data/functions/items/*.json` and `data/cases/items/*.json` as canonical machine-readable records.
 
 Do not treat raw notes as canonical. Raw notes are sources. Current structured entries live under `data/functions/`, `data/cases/`, `data/discoveries/`, and `data/predictions/`.
 
@@ -44,6 +47,7 @@ Do not treat raw notes as canonical. Raw notes are sources. Current structured e
 - 中文案例入口 / Chinese cases: `CASES.md`, `docs/zh/cases.md`
 - 中文发现入口 / Chinese discoveries: `DISCOVERIES.md`, `docs/zh/discoveries/items/`
 - 中文预测入口 / Chinese predictions: `PREDICTIONS.md`, `docs/zh/predictions/items/`
+- 中文新答案入口 / Chinese new answers: `ANSWERS.md`, `docs/zh/answers/items/`
 ## Data Policy / 数据原则
 
 - JSON item files are canonical machine-readable records.

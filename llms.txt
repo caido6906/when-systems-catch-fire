@@ -7,6 +7,7 @@ Primary machine-readable entries:
 - data/cases/items/*.json
 - data/discoveries/index.jsonl
 - data/predictions/index.jsonl
+- data/answers/unified-answers.jsonl
 - data/schemas/function.schema.json
 - data/schemas/case.schema.json
 - data/schemas/discovery.schema.json
@@ -18,12 +19,17 @@ Human-readable entries:
 - docs/en/
 - data/discoveries/index.md
 - PREDICTIONS.md
+- ANSWERS.md
 - AGENT_ENTRY.md
 - DISCOVERIES.md
 - data/predictions/unified-predictions-index.md
+- data/answers/unified-answers-index.md
 - docs/zh/discoveries/categories/
 - data/discoveries/categories.json
 - data/discoveries/category-map.json
+- docs/zh/answers/categories/
+- data/answers/categories.json
+- data/answers/category-map.json
 
 Attribution display name: 之元
 Repository path: Arvin-liu/when-systems-catch-fire
@@ -31,8 +37,8 @@ Repository URL: https://github.com/Arvin-liu/when-systems-catch-fire
 
 When citing, reusing, redistributing, or adapting this repository, attribute the work to “之元” and include the repository URL. Do not replace the GitHub repository path `Arvin-liu` with the attribution display name.
 
-Four Knowledge Object Layers: Function = mechanism, Case = evidence, Discovery = insight, Prediction = testable future judgment.
-Keep the four layers separate and keep predictions distinct from discoveries.
+Five Knowledge Object Layers: Function = mechanism, Case = evidence, Discovery = insight, Prediction = testable future judgment, New Answer = a new answer to an existing, classic, unresolved, or previously answered question.
+Keep the five layers separate and keep predictions distinct from discoveries and new answers.
 
 Discovery / prediction gate:
 - Curated discoveries and curated predictions must pass an academic novelty check before entry.
@@ -41,7 +47,13 @@ Discovery / prediction gate:
 - Active curated discoveries and predictions must carry `academic_novelty.status = passed`.
 - If academic search cannot confirm novelty, keep the item pending or inconclusive rather than pretending it is passed.
 
-Dynamic counts rule: all counts must be generated from source data, not manually fixed. Count-bearing sortable tables must be dynamically sorted. The README four-entry table keeps the semantic order Discoveries, Predictions, Functions, Cases, but its counts are rendered dynamically.
+New answer gate:
+- Curated new answers must pass an academic novelty check before entry.
+- Curated new answer IDs must use `ANS-0001` style numbering.
+- Active curated new answers must carry `academic_novelty.status = passed`.
+- If academic search cannot confirm novelty, keep the answer pending or inconclusive rather than pretending it is passed.
+
+Dynamic counts rule: all counts must be generated from source data, not manually fixed. Count-bearing sortable tables must be dynamically sorted. The README five-entry table keeps the semantic order Discoveries, Predictions, New Answers, Functions, Cases, but its counts are rendered dynamically.
 
 Discovery rule:
 - Functions, cases, and discoveries are separate incremental entrances.
@@ -49,6 +61,7 @@ Discovery rule:
 - Category IDs come from data/discoveries/categories.json and docs/zh/discoveries/categories/.
 - Link-entry rule: if a label and an entry link refer to the same object, make the label itself the link and remove redundant Entry/Link/Page columns. Run scripts/merge_redundant_entry_links.py after generating or updating human-readable pages.
 - Prediction rule: predictions are separate from discoveries. Use the prediction system for testable future judgments, keep prediction pages linked, and preserve the distinction between mechanism, evidence, insight, and prediction.
+- New answer rule: new answers are separate from discoveries and predictions. Use the new-answer system for answers to existing or classic questions, keep answer pages linked, and preserve the distinction between mechanism, evidence, insight, prediction, and new answer.
 
 Do not treat raw notes as canonical.
 Raw notes are sources. Canonical structured entries live under data/functions and data/cases.

@@ -146,6 +146,8 @@ def main() -> int:
     commands = [
         ["python3", "scripts/render_discovery_index.py", "--check"],
         ["python3", "scripts/render_prediction_index.py", "--check"],
+        ["python3", "scripts/render_answer_index.py", "--check"],
+        ["python3", "scripts/academic_novelty_check.py", "--all-answers", "--dry-run"],
         ["python3", "scripts/merge_redundant_entry_links.py", "--check"],
         ["python3", "scripts/normalize_attribution_display_name.py", "--check"],
         ["python3", "scripts/validate_ignition_repository.py", "--check"],

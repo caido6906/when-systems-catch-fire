@@ -4,13 +4,15 @@ This is the primary entry file for AI Agents working with When Systems Catch Fir
 
 ## 当前项目定位
 
-《点火》当前不是固定书稿项目，而是一个开放维护的函数与案例知识库。当前主结构是：
+《点火》当前不是固定书稿项目，而是一个开放维护的函数、案例、发现、预测与新答案知识库。当前主结构是：
 
 1. 函数层：`data/functions/`
 2. 案例层：`data/cases/`
 3. 新发现说明层：`data/discoveries/`
-4. 历史书稿层：`archive/book-legacy/`
-5. 原始来源层：`dianhuo/originals/`
+4. 预测说明层：`data/predictions/`
+5. 新答案说明层：`data/answers/`
+6. 历史书稿层：`archive/book-legacy/`
+7. 原始来源层：`dianhuo/originals/`
 
 ## Agent 使用规则
 
@@ -45,6 +47,22 @@ English: If the user says “this is a new discovery,” “store this discovery
 
 除非用户明确要求修改函数表或案例表，否则新洞见默认写入发现表。
 Unless the user explicitly asks to modify the function table or case table, new insights should be written into the discovery table by default.
+
+## 新答案写入规则 / New Answer Writing Rule
+
+中文：如果用户说“这是一个新答案”“把这个答案存进点火仓库”“这个问题我们有新的回答”“这个旧问题我们有新解释”，Agent 必须优先写入新答案系统，而不是发现或预测系统。
+
+English: If the user says “this is a new answer,” “store this answer in the Ignition repository,” “we have a new answer to this question,” or “we have a new explanation for this old problem,” the Agent should write it into the New Answers system, not into Discoveries or Predictions by default.
+
+写入入口 / Writing entry:
+
+- `ANSWERS.md`
+- `data/answers/unified-answers.json`
+- `data/answers/unified-answers.jsonl`
+- `docs/zh/answers/items/`
+- `scripts/add_answer.py`
+
+正式新答案必须通过学术搜索独有性检查；没有通过时保留为 `answer_pending_novelty_review` 或 `pending` / `inconclusive`，不要伪装成 `active`。
 
 ## 函数、案例、发现的增量入口 / Incremental Entrances for Functions, Cases, and Discoveries
 
@@ -103,26 +121,28 @@ English: Curated discoveries and curated predictions must pass an academic novel
 - 发现回答：我们已经看见了什么。 / Discovery answers: what have we already seen.
 - 预测回答：由此可以预期什么，并且未来如何验证或证伪。 / Prediction answers: what can be expected and how it will be tested or falsified.
 
-## 四层知识对象 / Four Knowledge Object Layers
+## 五层知识对象 / Five Knowledge Object Layers
 
-中文：点火仓库的四层知识对象分别是函数、案例、发现与预测。不要把四层写混，也不要把发现与预测混为一层。
+中文：点火仓库的五层知识对象分别是函数、案例、发现、预测与新答案。不要把五层写混，也不要把发现、预测与新答案混为一层。
 
-English: The four knowledge object layers in the Ignition repository are function, case, discovery, and prediction. Do not mix the four layers, and do not collapse discovery into prediction or prediction into discovery.
+English: The five knowledge object layers in the Ignition repository are function, case, discovery, prediction, and new answer. Do not mix the five layers, and do not collapse discovery into prediction or prediction into new answer.
 
 - 函数 / Function = 机制 / mechanism
 - 案例 / Case = 证据 / evidence
 - 发现 / Discovery = 洞见 / insight
 - 预测 / Prediction = 可检验未来判断 / testable future judgment
+- 新答案 / New Answer = 对既有问题、经典问题、未解问题或已有答案的新回答 / a new answer to an existing, classic, unresolved, or previously answered question
 
 ## 动态数字与排序规则 / Dynamic Counts and Sorting Rule
 
-中文：仓库中所有数量都必须由脚本从数据源动态统计，不得手写固定数。凡是带数量且可排序的表，都必须按数量动态排序。README 的四入口保持语义顺序，但数量必须动态渲染。
+中文：仓库中所有数量都必须由脚本从数据源动态统计，不得手写固定数。凡是带数量且可排序的表，都必须按数量动态排序。README 的五入口保持语义顺序，但数量必须动态渲染。
 
-English: All counts in the repository must be dynamically generated from data sources. Any count-bearing table that can be sorted must be dynamically sorted. The README four-entry table keeps the semantic order, but its counts must be rendered dynamically.
+English: All counts in the repository must be dynamically generated from data sources. Any count-bearing table that can be sorted must be dynamically sorted. The README five-entry table keeps the semantic order, but its counts must be rendered dynamically.
 
 - README.md 四入口数量
 - DISCOVERIES.md 分类表
 - PREDICTIONS.md 分类表
+- ANSWERS.md 分类表
 - FUNCTIONS.md 统计
 - CASES.md 统计
 - data/**/*.md 索引
@@ -130,7 +150,7 @@ English: All counts in the repository must be dynamically generated from data so
 
 默认规则 / Default rules:
 
-- 主入口保持语义顺序：发现、预测、函数表、案例表，但数量动态。
+- 主入口保持语义顺序：发现、预测、新答案、函数表、案例表，但数量动态。
 - 分类表按正式条目数、待整理线索数、覆盖量降序排序。
 - Recent 列表按 updated_at / created_at 降序排序。
 - 统计表按数量降序排序。
@@ -145,6 +165,7 @@ English: Whenever a name and an entry link point to the same object, make the na
 
 - `README.md`
 - `DISCOVERIES.md`
+- `ANSWERS.md`
 - `FUNCTIONS.md`
 - `CASES.md`
 - `docs/**/*.md`

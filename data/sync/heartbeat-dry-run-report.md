@@ -1,6 +1,6 @@
 # Ignition Heartbeat Dry Run Report
 
-- generated_at: 2026-06-13T10:34:21.361772+00:00
+- generated_at: 2026-06-13T10:50:55.414794+00:00
 - lock_present: False
 - validate_ok: True
 
@@ -8,3 +8,4 @@
 
 - python3 scripts/sync_ignition_knowledge_base.py --dry-run: 0
 - python3 scripts/validate_ignition_repository.py --check: 0
+- python3 scripts/render_answer_index.py --check: 0

@@ -5,8 +5,13 @@ from __future__ import annotations
 
 import json
 import re
-from collections import Counter
 from pathlib import Path
+
+from answer_utils import (
+    ANSWERS_JSON,
+    CATEGORY_MAP_JSON as ANSWERS_CATEGORY_MAP,
+    read_json as read_answer_json,
+)
 
 
 REPO_ROOT = Path("/workspace/when-systems-catch-fire")
@@ -14,6 +19,8 @@ DISCOVERIES_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
 DISCOVERIES_CATEGORY_MAP = REPO_ROOT / "data/discoveries/category-map.json"
 PREDICTIONS_JSON = REPO_ROOT / "data/predictions/unified-predictions.json"
 PREDICTIONS_CATEGORY_MAP = REPO_ROOT / "data/predictions/category-map.json"
+ANSWERS_JSON = REPO_ROOT / "data/answers/unified-answers.json"
+ANSWERS_CATEGORY_MAP_JSON = REPO_ROOT / "data/answers/category-map.json"
 FUNCTIONS_JSON = REPO_ROOT / "data/functions/unified-functions.json"
 CASES_JSON = REPO_ROOT / "data/cases/unified-cases.json"
 README = REPO_ROOT / "README.md"
@@ -33,28 +40,27 @@ def read_json(path: Path, default):
 
 
 def novelty_counts(items: list[dict]) -> dict[str, int]:
-    counts = Counter()
+    counts = {"passed": 0, "pending": 0, "inconclusive": 0, "failed": 0}
     for item in items:
         status = item.get("academic_novelty", {}).get("status", "pending")
-        counts[status] += 1
-    return {
-        "passed": counts.get("passed", 0),
-        "pending": counts.get("pending", 0),
-        "inconclusive": counts.get("inconclusive", 0),
-        "failed": counts.get("failed", 0),
-    }
+        if status in counts:
+            counts[status] += 1
+    return counts
 
 
 def count_repository_objects(repo_root: Path = REPO_ROOT) -> dict[str, dict[str, int]]:
     discoveries = read_json(repo_root / "data/discoveries/unified-discoveries.json", [])
     predictions = read_json(repo_root / "data/predictions/unified-predictions.json", [])
+    answers = read_json(repo_root / "data/answers/unified-answers.json", [])
     functions = read_json(repo_root / "data/functions/unified-functions.json", [])
     cases = read_json(repo_root / "data/cases/unified-cases.json", [])
     discovery_categories = read_json(repo_root / "data/discoveries/category-map.json", [])
     prediction_categories = read_json(repo_root / "data/predictions/category-map.json", [])
+    answer_categories = read_json(repo_root / "data/answers/category-map.json", [])
 
     discovery_novelty = novelty_counts(discoveries)
     prediction_novelty = novelty_counts(predictions)
+    answer_novelty = novelty_counts(answers)
 
     return {
         "discoveries": {
@@ -72,6 +78,14 @@ def count_repository_objects(repo_root: Path = REPO_ROOT) -> dict[str, dict[str,
             "pending_novelty": prediction_novelty["pending"],
             "inconclusive_novelty": prediction_novelty["inconclusive"],
             "failed_novelty": prediction_novelty["failed"],
+        },
+        "answers": {
+            "curated": sum(1 for item in answers if item.get("status") == "active" and item.get("academic_novelty", {}).get("status") == "passed"),
+            "leads": sum(1 for item in answers if not (item.get("status") == "active" and item.get("academic_novelty", {}).get("status") == "passed")),
+            "passed_novelty": answer_novelty["passed"],
+            "pending_novelty": answer_novelty["pending"],
+            "inconclusive_novelty": answer_novelty["inconclusive"],
+            "failed_novelty": answer_novelty["failed"],
         },
         "functions": {
             "total": len(functions),
@@ -102,6 +116,22 @@ def format_prediction_summary(counts: dict[str, int]) -> str:
     return ", ".join(parts)
 
 
+def format_answer_summary(counts: dict[str, int]) -> str:
+    parts = [f"{counts['curated']} answers", f"{counts['leads']} leads"]
+    novelty_bits = []
+    if counts.get("passed_novelty", 0):
+        novelty_bits.append(f"{counts['passed_novelty']} passed novelty")
+    if counts.get("pending_novelty", 0):
+        novelty_bits.append(f"{counts['pending_novelty']} pending novelty review")
+    if counts.get("inconclusive_novelty", 0):
+        novelty_bits.append(f"{counts['inconclusive_novelty']} inconclusive novelty")
+    if counts.get("failed_novelty", 0):
+        novelty_bits.append(f"{counts['failed_novelty']} failed novelty")
+    if novelty_bits:
+        parts.append(", ".join(novelty_bits))
+    return ", ".join(parts)
+
+
 def render_repository_overview_block(counts: dict[str, dict[str, int]]) -> str:
     lines = [
         START_MARKER,
@@ -109,6 +139,7 @@ def render_repository_overview_block(counts: dict[str, dict[str, int]]) -> str:
         "| --- | ---: | --- |",
         f"| [发现 / Discoveries](DISCOVERIES.md) | {format_discovery_summary(counts['discoveries'])} | 从函数、案例与自举循环中产生的新发现。 / New discoveries generated from bootstrap cycles between functions and cases. |",
         f"| [预测 / Predictions](PREDICTIONS.md) | {format_prediction_summary(counts['predictions'])} | 由函数、案例、发现与自举循环推出的可检验未来判断。 / Testable future judgments derived from functions, cases, discoveries, and bootstrap cycles. |",
+        f"| [新答案 / New Answers](ANSWERS.md) | {format_answer_summary(counts['answers'])} | 对既有问题、经典问题、未解问题或已有答案的新回答。 / New answers to existing, classic, unresolved, or previously answered questions. |",
         f"| [函数表 / Functions](FUNCTIONS.md) | {counts['functions']['total']} functions | 函数、机制、结构与公式。 / Functions, mechanisms, structures, and formulas. |",
         f"| [案例表 / Cases](CASES.md) | {counts['cases']['total']} cases | 案例、证据、历史对象与验证材料。 / Cases, evidence, historical objects, and verification materials. |",
         END_MARKER,

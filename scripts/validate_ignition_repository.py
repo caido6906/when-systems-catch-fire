@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 from build_predictions_from_bootstrap import (
@@ -16,6 +17,20 @@ from build_predictions_from_bootstrap import (
     enrich_prediction,
     render_index as render_prediction_index,
     render_machine_index,
+)
+from answer_utils import (
+    ANSWERS_INDEX_MD,
+    ANSWERS_JSON,
+    ANSWERS_LIST_MD,
+    ANSWER_TEMPLATE_MD,
+    CATEGORY_MAP_JSON as ANSWERS_CATEGORY_MAP_JSON,
+    CATEGORY_DEFINITIONS as ANSWER_CATEGORY_DEFINITIONS,
+    build_category_map as build_answer_category_map,
+    render_answer_index,
+    render_answer_index_md,
+    render_answer_page,
+    render_category_page as render_answer_category_page,
+    read_json as read_answer_json,
 )
 from discovery_category_utils import (
     BOOTSTRAP_REPORT_MD,
@@ -54,6 +69,8 @@ DISCOVERIES_JSON = REPO_ROOT / "data/discoveries/unified-discoveries.json"
 DISCOVERIES_INDEX_JSON = REPO_ROOT / "data/discoveries/unified-discoveries-index.md"
 PREDICTIONS_JSON = REPO_ROOT / "data/predictions/unified-predictions.json"
 PREDICTIONS_INDEX_JSON = REPO_ROOT / "data/predictions/unified-predictions-index.md"
+ANSWERS_JSON_PATH = REPO_ROOT / "data/answers/unified-answers.json"
+ANSWERS_INDEX_JSON = REPO_ROOT / "data/answers/unified-answers-index.md"
 
 
 def fail(errors: list[str]) -> int:
@@ -67,6 +84,7 @@ def check_readme(errors: list[str]) -> None:
     required = [
         "[发现 / Discoveries](DISCOVERIES.md)",
         "[预测 / Predictions](PREDICTIONS.md)",
+        "[新答案 / New Answers](ANSWERS.md)",
         "[函数表 / Functions](FUNCTIONS.md)",
         "[案例表 / Cases](CASES.md)",
     ]
@@ -144,6 +162,40 @@ def check_predictions(errors: list[str]) -> dict[str, int]:
     }
 
 
+def check_answers(errors: list[str]) -> dict[str, int]:
+    answers = read_answer_json(ANSWERS_JSON_PATH, [])
+    category_map = read_answer_json(REPO_ROOT / "data/answers/category-map.json", [])
+    expected_human = render_answer_index(answers, category_map)
+    current_human = ANSWERS_LIST_MD.read_text(encoding="utf-8") if ANSWERS_LIST_MD.exists() else ""
+    if expected_human != current_human:
+        errors.append("ANSWERS.md does not match generated answer index")
+    expected_machine = render_answer_index_md(answers)
+    current_machine = ANSWERS_INDEX_MD.read_text(encoding="utf-8") if ANSWERS_INDEX_MD.exists() else ""
+    if expected_machine != current_machine:
+        errors.append("data/answers/unified-answers-index.md is out of date")
+    template_ok = ANSWER_TEMPLATE_MD.exists()
+    if not template_ok:
+        errors.append("docs/zh/answers/ANSWER_TEMPLATE.md is missing")
+    for item in answers:
+        if not re.match(r"^ANS-\d{4}$", item.get("id", "")):
+            errors.append(f"bad answer id: {item.get('id')}")
+        if "academic_novelty" not in item:
+            errors.append(f"answer missing academic_novelty: {item.get('id')}")
+        if item.get("status") == "active" and item.get("academic_novelty", {}).get("status") != "passed":
+            errors.append(f"active answer without passed novelty: {item.get('id')}")
+    for category in category_map:
+        if "Entry" in json.dumps(category, ensure_ascii=False):
+            errors.append(f"answer category contains Entry column data: {category.get('id')}")
+    return {
+        "curated": sum(1 for item in answers if item.get("status") == "active" and item.get("academic_novelty", {}).get("status") == "passed"),
+        "leads": sum(1 for item in answers if not (item.get("status") == "active" and item.get("academic_novelty", {}).get("status") == "passed")),
+        "passed_novelty": sum(1 for item in answers if item.get("academic_novelty", {}).get("status") == "passed"),
+        "pending_novelty": sum(1 for item in answers if item.get("academic_novelty", {}).get("status") == "pending"),
+        "inconclusive_novelty": sum(1 for item in answers if item.get("academic_novelty", {}).get("status") == "inconclusive"),
+        "failed_novelty": sum(1 for item in answers if item.get("academic_novelty", {}).get("status") == "failed"),
+    }
+
+
 def check_functions_cases(errors: list[str]) -> dict[str, int]:
     functions = parse_function_table(FUNC_SOURCE)
     cases = parse_case_table(CASE_SOURCE)
@@ -176,6 +228,16 @@ def check_presence(errors: list[str]) -> None:
         REPO_ROOT / "data/predictions/unified-predictions-index.md",
         REPO_ROOT / "data/discoveries/unified-discoveries-index.md",
         REPO_ROOT / "data/discoveries/bootstrap-category-report.md",
+        ANSWERS_LIST_MD,
+        ANSWERS_INDEX_MD,
+        ANSWER_TEMPLATE_MD,
+        REPO_ROOT / "data/answers/unified-answers.json",
+        REPO_ROOT / "data/answers/unified-answers.jsonl",
+        REPO_ROOT / "data/answers/unified-answers-index.md",
+        REPO_ROOT / "data/answers/categories.json",
+        REPO_ROOT / "data/answers/category-map.json",
+        REPO_ROOT / "docs/zh/answers/items",
+        REPO_ROOT / "docs/zh/answers/categories",
         BOOTSTRAP_REPORT_MD,
     ]
     for path in expected:
@@ -192,6 +254,7 @@ def main() -> int:
     check_readme(errors)
     discovery_stats = check_discoveries(errors)
     prediction_stats = check_predictions(errors)
+    answer_stats = check_answers(errors)
     function_stats = check_functions_cases(errors)
     check_presence(errors)
 
@@ -201,6 +264,7 @@ def main() -> int:
         "counts": counts,
         "discoveries": discovery_stats,
         "predictions": prediction_stats,
+        "answers": answer_stats,
         "functions": function_stats,
         "errors": errors,
     }
